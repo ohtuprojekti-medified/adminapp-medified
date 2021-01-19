@@ -1,19 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
 
-import Moods from './components/Moods'
-import moodService from './services/moodService'
+import patientService from './services/patientService'
 import { useEffect, useState } from 'react';
+import Patients from './components/Patients';
 
 const App = () => {
-  const [moods, setMoods] = useState([])
+  const [patients, setPatients] = useState([])
 
-  useEffect(() => moodService.getAll().then(moodsAtBeginning => setMoods(moodsAtBeginning)), [])
+  // Potilastietojen haku selaimen yhdistaessa
+  useEffect(() => patientService.getAll().then(patientsAtBeginning => setPatients(patientsAtBeginning)), [])
 
   return (
     <div className="App">
       <h1>Adminsovellus mielialan seurantaan</h1>
-      <Moods moods={moods} />
+      <Patients patients={patients} />
     </div>
   );
 }
