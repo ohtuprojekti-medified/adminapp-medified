@@ -15,7 +15,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test-coverage": "CI=true npm test -- --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.3"
+    "@testing-library/react": "^11.2.3",
+    "eslint-plugin-jest": "^24.1.3"
   }
 }

@@ -1,9 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
 
 import patientService from './services/patientService'
-import { useEffect, useState } from 'react';
-import Patients from './components/Patients';
+import React, { useEffect, useState } from 'react'
+import Patients from './components/Patients'
 
 const App = () => {
   const [patients, setPatients] = useState([])
@@ -16,7 +15,7 @@ const App = () => {
       <h1>Adminsovellus mielialan seurantaan</h1>
       <Patients patients={patients} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
