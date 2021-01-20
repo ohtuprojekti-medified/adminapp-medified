@@ -12,3 +12,9 @@ npm run test
 
 ### Testikattavuuden selvittäminen
 npm run test-coverage
+
+### Linttaus
+npm run lint
+
+### Koodin siistiminen
+npm run lint-fix
