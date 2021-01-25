@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+
+  backend:
+    build: backend
+    ports:
+      - 5000:5000
+    environment:
+      - PORT=5000
+      - NODE_ENV=development
+    volumes:
+      - ./backend/:/usr/local/app
+    command: npm run dev
+    
+  frontend:
+    build: frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/:/usr/local/app
+    command: npm start
