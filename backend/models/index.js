@@ -5,7 +5,7 @@ const Sequelize = require('sequelize')
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.host,
   dialect: dbConfig.dialect,
-  operatorsAliases: false,
+  operatorsAliases: 0,
 
   pool: {
     max: dbConfig.pool.max,
@@ -20,6 +20,7 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
+db.patients = require('../models/patient')(sequelize, Sequelize)
 db.moods = require('../models/mood')(sequelize, Sequelize)
 
 module.exports = db

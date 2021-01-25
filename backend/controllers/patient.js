@@ -1,21 +1,20 @@
 const db = require('../models')
-const Mood = db.moods
+const Patient = db.patients
 
 const create = (req, res) => {
-  if (!req.body.title) {
+  if(!req.body.name) {
     res.status(400).send({
       message:
-        'Content can not be empty'
+        'Patient name can not be empty'
     })
     return
   }
 
-  const mood = {
-    title: req.body.title,
-    range: req.body.range
+  const patient = {
+    name: req.body.title
   }
 
-  Mood.create(mood)
+  Patient.create(patient)
     .then(data => {
       res.send(data)
     })
@@ -25,10 +24,10 @@ const create = (req, res) => {
           err.message
       })
     })
-}
+  }
 
 const findAll = (req, res) => {
-  Mood.findAll()
+  Patient.findAll()
     .then(data => {
       res.send(data)
     })
