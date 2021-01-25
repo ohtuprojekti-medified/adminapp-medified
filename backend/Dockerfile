@@ -1,12 +1,12 @@
 FROM node:14
-ENV NODE_ENV=production
 
-WORKDIR /app
+WORKDIR /usr/local/app
 
 COPY ["package.json", "package-lock.json*", "./"]
-
-RUN npm install --production
+RUN npm install
 
 COPY . .
 
-CMD npm start
+EXPOSE 5000
+
+CMD ["npm", "start"]
