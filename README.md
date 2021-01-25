@@ -1,3 +1,5 @@
+https://github.com/ohtuprojekti-medified/adminapp-medified/workflows/Node.js%20CI/badge.svg
+
 # Ohjelmistotuotantoprojekti, kevät 2021
 
 ## Admin-sovellus depressiopotilailta kerätyn datan tarkasteluun
