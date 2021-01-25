@@ -1,4 +1,4 @@
-https://github.com/ohtuprojekti-medified/adminapp-medified/workflows/Node.js%20CI/badge.svg
+![Github Actions](https://github.com/ohtuprojekti-medified/adminapp-medified/workflows/Node.js%20CI/badge.svg)
 
 # Ohjelmistotuotantoprojekti, kevät 2021
 
