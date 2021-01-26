@@ -1,5 +1,6 @@
 const config = require('./utils/config')
 const logger = require('./utils/logger')
+const middleware = require('./utils/middleware')
 const patientsRouter = require('./controllers/patientsRouter')
 const express = require('express')
 const morgan = require('morgan')
@@ -24,6 +25,8 @@ app.use(cors())
 const patientsUrl = '/api/patients'
 // /api/patients/ polkujen käsittely
 app.use(patientsUrl, patientsRouter)
+// Pyyntoihin ylla maarittelemattomista poluista palautetaan 404
+app.use(middleware.unknownEndpoint)
 
 app.listen(config.PORT, () => logger.log(`Backend is running in port ${config.PORT}`))
 
