@@ -1,4 +1,4 @@
-require('dotenv').config
+const config = require('./utils/config')
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -58,7 +58,6 @@ let patients = [
 // HTTP-kyselyt
 app.get(`${baseUrl}/patients`, (req, res) => res.json(patients))
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`Backend is running in port ${PORT}`))
+app.listen(config.PORT, () => console.log(`Backend is running in port ${config.PORT}`))
 
 module.exports = app
