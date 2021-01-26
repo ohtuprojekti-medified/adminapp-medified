@@ -9,9 +9,9 @@ const errorHandler = (error, req, res, next) => {
 
   switch (error.name) {
   case 'CastError':
-    return res.status(400).send({ error: 'Id in URL is not correct' })
+    res.status(400).send({ error: 'Id in URL is not correct' })
   case 'ValidationError':
-    return res.status(400).json({ error: error.message })
+    res.status(400).json({ error: error.message })
   }
 
   next(error)
