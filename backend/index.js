@@ -1,4 +1,5 @@
 const config = require('./utils/config')
+const logger = require('./utils/logger')
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -58,6 +59,6 @@ let patients = [
 // HTTP-kyselyt
 app.get(`${baseUrl}/patients`, (req, res) => res.json(patients))
 
-app.listen(config.PORT, () => console.log(`Backend is running in port ${config.PORT}`))
+app.listen(config.PORT, () => logger.log(`Backend is running in port ${config.PORT}`))
 
 module.exports = app
