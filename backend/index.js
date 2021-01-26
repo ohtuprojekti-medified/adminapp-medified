@@ -1,5 +1,6 @@
 const config = require('./utils/config')
 const logger = require('./utils/logger')
+const patientsRouter = require('./controllers/patientsRouter')
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -20,44 +21,9 @@ app.use(morgan(':body'))
 app.use(cors())
 
 // Tietokannan url
-const baseUrl = '/api'
-
-// Testitietokanta
-let patients = [
-  {
-    id: 1,
-    name: 'Matti M.',
-    moods: [
-      { id: 1, title: 'suru', range: 5 },
-      { id: 2, title: 'ilo', range: 8 },
-      { id: 3, title: 'viha', range: 3 },
-      { id: 4, title: 'uupumus', range: 1 }
-    ]
-  },
-  {
-    id: 2,
-    name: 'Maija S.',
-    moods: [
-      { id: 1, title: 'ilo', range: 5 },
-      { id: 2, title: 'ilo', range: 9 },
-      { id: 3, title: 'viha', range: 2 },
-      { id: 4, title: 'ilo', range: 1 }
-    ]
-  },
-  {
-    id: 3,
-    name: 'Pekka P.',
-    moods: [
-      { id: 1, title: 'suru', range: 1 },
-      { id: 2, title: 'suru', range: 2 },
-      { id: 3, title: 'viha', range: 3 },
-      { id: 4, title: 'uupumus', range: 4 }
-    ]
-  }
-]
-
-// HTTP-kyselyt
-app.get(`${baseUrl}/patients`, (req, res) => res.json(patients))
+const patientsUrl = '/api/patients'
+// /api/patients/ polkujen käsittely
+app.use(patientsUrl, patientsRouter)
 
 app.listen(config.PORT, () => logger.log(`Backend is running in port ${config.PORT}`))
 
