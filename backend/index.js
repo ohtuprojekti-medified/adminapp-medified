@@ -27,6 +27,8 @@ const patientsUrl = '/api/patients'
 app.use(patientsUrl, patientsRouter)
 // Pyyntoihin ylla maarittelemattomista poluista palautetaan 404
 app.use(middleware.unknownEndpoint)
+// Virheidenkasittely
+app.use(middleware.errorHandler)
 
 app.listen(config.PORT, () => logger.log(`Backend is running in port ${config.PORT}`))
 
