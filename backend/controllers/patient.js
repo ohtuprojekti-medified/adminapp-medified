@@ -1,42 +1,16 @@
 const db = require('../models')
 const Patient = db.patients
 
-const create = (req, res) => {
-  if(!req.body.name) {
-    res.status(400).send({
-      message:
-        'Patient name can not be empty'
-    })
-    return
-  }
+const create = async (patientObject) => {
 
-  const patient = {
-    name: req.body.title
-  }
+  const response = await Patient.create(patientObject)
 
-  Patient.create(patient)
-    .then(data => {
-      res.send(data)
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message
-      })
-    })
-  }
+  return response
+}
 
-const findAll = (req, res) => {
-  Patient.findAll()
-    .then(data => {
-      res.send(data)
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message
-      })
-    })
+const findAll = async () => {
+  const patients = await Patient.findAll()
+  return patients
 }
 
 module.exports = { create, findAll }
