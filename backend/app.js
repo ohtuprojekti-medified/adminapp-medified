@@ -1,6 +1,8 @@
 const middleware = require('./utils/middleware')
 const patientsRouter = require('./controllers/patientsRouter')
 const express = require('express')
+// Try-catch ei tarvita patientsRouterissa
+require('express-async-errors')
 const morgan = require('morgan')
 const cors = require('cors')
 
