@@ -1,5 +1,6 @@
 const middleware = require('./utils/middleware')
-const patientsRouter = require('./controllers/patientsRouter')
+//const patientsRouter = require('./controllers/patientsRouter')
+const patientsRouter = require('./routes/patientRouter')
 const express = require('express')
 // Try-catch ei tarvita patientsRouterissa
 require('express-async-errors')
@@ -21,8 +22,11 @@ app.use(morgan(':body'))
 
 app.use(cors())
 
+const db = require('./models')
+db.sequelize.sync()
+
 // Tietokannan url
-const patientsUrl = '/api/patients'
+const patientsUrl = '/api'
 // /api/patients/ polkujen käsittely
 app.use(patientsUrl, patientsRouter)
 // Pyyntoihin ylla maarittelemattomista poluista palautetaan 404

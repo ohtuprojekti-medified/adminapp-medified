@@ -1,17 +1,17 @@
-const dbConfig = require('../config/db.config')
+const config = require('../utils/config')
 
 // Sequelize käyttöön
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.host,
-  dialect: dbConfig.dialect,
+const sequelize = new Sequelize(config.db_name, config.db_user, config.db_password, {
+  host: config.db_host,
+  dialect: config.dialect,
   operatorsAliases: 0,
 
   pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
+    max: config.pool.max,
+    min: config.pool.min,
+    acquire: config.pool.acquire,
+    idle: config.pool.idle
   }
 })
 
@@ -22,5 +22,10 @@ db.sequelize = sequelize
 
 db.patients = require('../models/patient')(sequelize, Sequelize)
 db.moods = require('../models/mood')(sequelize, Sequelize)
+
+db.patients.hasMany(db.moods)
+db.moods.belongsTo(db.patients, {
+  foreignKey: 'patientId'
+})
 
 module.exports = db

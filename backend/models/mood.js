@@ -11,21 +11,12 @@ module.exports = (sequelize, Sequelize) => {
     range: {
       type: Sequelize.INTEGER
     },
-    userId: {
+    patientId: {
       type: Sequelize.INTEGER
     }
   }, {
     timestamps: false
   })
-
-  Mood.associate = function(models) {
-    Mood.belongsTo(models.Patient, {
-      foreignKey: 'patientId',
-      as: 'patient'
-    })
-  }
-
-
 
   return Mood
 }

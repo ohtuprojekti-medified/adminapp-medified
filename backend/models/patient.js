@@ -11,12 +11,6 @@ module.exports = (sequelize, Sequelize) => {
   }, {
     timestamps: false
   })
-  Patient.associate = function(models) {
-    Patient.hasMany(models.mood, {
-      foreignKey: 'patientId',
-      as: 'moods',
-    })
-  }
 
   return Patient
 }
