@@ -4,6 +4,10 @@ services:
 
   postgres:
     image: postgres:latest
+    env_file:
+      - .env
+    volumes:
+      - database-data:/var/lib/postgresql/data/
 
   backend:
     build: backend
@@ -25,3 +29,6 @@ services:
     volumes:
       - ./frontend/:/usr/local/app
     command: npm start
+
+volumes:
+  database-data:
