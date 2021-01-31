@@ -4,20 +4,23 @@ services:
 
   postgres:
     image: postgres:latest
-    env_file:
-      - .env
+    restart: unless-stopped
+    env_file: ./.env
     volumes:
-      - database-data:/var/lib/postgresql/data/
+      - ./database-data:/var/lib/postgresql/data
 
   backend:
     build: backend
     ports:
       - 5000:5000
+    env_file: ./.env
     environment:
       - PORT=5000
       - NODE_ENV=development
+    depends_on: 
+      - postgres
     volumes:
-      - ./backend/:/usr/local/app
+      - ./backend:/usr/local/app
     command: npm run dev
     
   frontend:
@@ -27,7 +30,7 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./frontend/:/usr/local/app
+      - ./frontend:/usr/local/app
     command: npm start
 
 volumes:
