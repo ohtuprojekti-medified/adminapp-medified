@@ -36,3 +36,5 @@ yarn-error.log*
 
 # environment variables
 backend/.env
+
+database-data/
