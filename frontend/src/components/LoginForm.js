@@ -1,11 +1,19 @@
 import React from 'react'
+import loginService from '../services/loginService'
 
-const LoginForm = ({ username, setUsername, password, setPassword }) => {
+const LoginForm = ({ username, setUsername, password, setPassword, setUser }) => {
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
 
-    console.log('Login for ', username)
+    try {
+      const user = await loginService.login({ username, password })
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    } catch (exception) {
+      console.log('An error occured')
+    }
   }
   return (
     <div>
@@ -15,8 +23,8 @@ const LoginForm = ({ username, setUsername, password, setPassword }) => {
           onChange={({ target }) => setUsername(target.value)} /></div>
         <div>password: <input type='password' value={password} name='Password'
           onChange={({ target }) => setPassword(target.value)} /></div>
+        <button type='submit'>Login</button>
       </form>
-      <button type='submit'>Login</button>
     </div>
   )
 }
