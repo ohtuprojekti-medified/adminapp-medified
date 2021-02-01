@@ -1,6 +1,6 @@
 import React from 'react'
 
-// Potilaan mielialat listaava komponentti
+// Lists moods for patients
 const Moods = ({ patientName, moods }) =>
   <div>
     <h4>{patientName}</h4>
