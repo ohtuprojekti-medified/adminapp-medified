@@ -7,7 +7,7 @@ import Patients from './components/Patients'
 const App = () => {
   const [patients, setPatients] = useState([])
 
-  // Potilastietojen haku selaimen yhdistaessa
+  // GET patients-data when browser connects
   useEffect(() => patientService.getAll().then(patientsAtBeginning => setPatients(patientsAtBeginning)), [])
 
   return (

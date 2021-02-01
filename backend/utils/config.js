@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const PORT = process.env.PORT || '5000'
 
-// Tietokannan URI:t
+// DB URI:s
 /*const DB_URI = undefined
 const TEST_DB_URI = undefined*/
 

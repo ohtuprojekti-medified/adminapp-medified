@@ -1,33 +1,32 @@
 const middleware = require('./utils/middleware')
 const patientsRouter = require('./controllers/patientsRouter')
 const express = require('express')
-// Try-catch ei tarvita patientsRouterissa
+// Try-catch no longer needed
 require('express-async-errors')
 const morgan = require('morgan')
 const cors = require('cors')
 
 const app = express()
 
-// Tama tarvitaan, jos frontend buildataan backendiin
+// Needed if frontend is builded into /public
 //app.use(express.static('build'))
 
-// JSON luettavaan muotoon
+// JSON to readable form
 app.use(express.json())
 
-// Morgan logit HTTP-pyynnöistä
+// Morgan-logs for HTTP-requests
 morgan.token('body', (req) => JSON.stringify(req.body))
 app.use(morgan('tiny'))
 app.use(morgan(':body'))
 
 app.use(cors())
 
-// Tietokannan url
+// DB-URL
 const patientsUrl = '/api/patients'
-// /api/patients/ polkujen käsittely
+// /api/patients/ routing
 app.use(patientsUrl, patientsRouter)
-// Pyyntoihin ylla maarittelemattomista poluista palautetaan 404
+// Return 404 for non-existent paths
 app.use(middleware.unknownEndpoint)
-// Virheidenkasittely
 app.use(middleware.errorHandler)
 
 module.exports = app

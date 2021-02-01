@@ -1,6 +1,6 @@
 const patientsRouter = require('express').Router()
 
-// Testitietokanta
+// DB for testing
 let patients = [
   {
     id: 1,
@@ -34,7 +34,7 @@ let patients = [
   }
 ]
 
-// HTTP-kyselyt
+// HTTP-requests
 patientsRouter.get('/', (req, res) => res.json(patients))
 
 module.exports = patientsRouter
