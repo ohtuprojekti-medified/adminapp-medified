@@ -5,8 +5,8 @@
 //const baseUrl = `http://localhost:5000/${productionPath}api/login`
 
 const login = async credentials => {
-  //const response = await axios.post(baseUrl, credentials)
   // Backend response needed
+  //const response = await axios.post(baseUrl, credentials)
   //return response.data
   console.log(credentials)
   return {

@@ -3,10 +3,22 @@ import '@testing-library/jest-dom/extend-expect'
 import { render } from '@testing-library/react'
 import App from './App'
 
-test('renders header', () => {
-  const component = render(<App />)
+describe('<App />', () => {
+  let component
 
-  expect(component.container).toHaveTextContent(
-    'Adminapp for monitoring moods'
-  )
+  beforeEach(() => {
+    component = render(<App />)
+  })
+
+  test('renders header', () => {
+    expect(component.container).toHaveTextContent(
+      'Adminapp for monitoring moods'
+    )
+  })
+
+  test('renders login form', () => {
+    expect(component.container).toHaveTextContent('Login:')
+    expect(component.container).toHaveTextContent('username:')
+    expect(component.container).toHaveTextContent('password:')
+  })
 })
