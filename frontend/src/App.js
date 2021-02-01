@@ -6,6 +6,8 @@ import Patients from './components/Patients'
 
 const App = () => {
   const [patients, setPatients] = useState([])
+  const [username, setUsername] = useState([])
+  const [password, setPassword] = useState([])
 
   // GET patients-data when browser connects
   useEffect(() => patientService.getAll().then(patientsAtBeginning => setPatients(patientsAtBeginning)), [])
