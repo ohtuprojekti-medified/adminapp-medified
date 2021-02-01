@@ -4,7 +4,7 @@ import React from 'react'
 const Moods = ({ patientName, moods }) =>
   <div>
     <h4>{patientName}</h4>
-    <ul>{moods.map(mood => <li key={mood.id}><p>Mieliala {mood.title} oli tasolla {mood.range}.</p></li>)}</ul>
+    <ul>{moods.map(mood => <li key={mood.id}><p>Mood {mood.title} was on level {mood.range}.</p></li>)}</ul>
   </div>
 
 export default Moods
