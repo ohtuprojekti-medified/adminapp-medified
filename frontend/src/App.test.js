@@ -7,6 +7,6 @@ test('renders header', () => {
   const component = render(<App />)
 
   expect(component.container).toHaveTextContent(
-    'Adminsovellus mielialan seurantaan'
+    'Adminapp for monitoring moods'
   )
 })
