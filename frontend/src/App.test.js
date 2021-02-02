@@ -1,10 +1,14 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
+import { prettyDOM } from '@testing-library/dom'
 import App from './App'
 
 describe('<App />', () => {
   let component
+
+  const testUsername = 'TestUser'
+  const testPassword = 'TestPassword'
 
   beforeEach(() => {
     component = render(<App />)
@@ -20,5 +24,27 @@ describe('<App />', () => {
     expect(component.container).toHaveTextContent('Login:')
     expect(component.container).toHaveTextContent('username:')
     expect(component.container).toHaveTextContent('password:')
+  })
+
+  test('does not render login form after logged in', () => {
+    const usernameInput = component.container.querySelector('input[type=\'text\']')
+    const passwordInput = component.container.querySelector('input[type=\'password\']')
+    const loginForm = component.container.querySelector('form')
+    console.log(prettyDOM(loginForm))
+
+    // Add username and password to form
+    fireEvent.change(usernameInput, {
+      target: { value: testUsername }
+    })
+    fireEvent.change(passwordInput, {
+      target: { value: testPassword }
+    })
+    // Click Login button
+    fireEvent.submit(loginForm)
+    component.debug()
+
+    expect(component.container).not.toHaveTextContent('Login:')
+    expect(component.container).not.toHaveTextContent('username:')
+    expect(component.container).not.toHaveTextContent('password:')
   })
 })
