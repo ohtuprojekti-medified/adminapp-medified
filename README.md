@@ -24,3 +24,18 @@ Projektin aikana pidetyt palaverit:
 * Team accepts the User Story (tavallisesti Product owner)
 * Code is documented (?)
 * Help documentation is updated (?)
+
+## Development Environment
+The development environment is entirely configured in the docker-compose.yml file located in this repository. The file defines the containers/environments for:
+
+- Frontend
+- Backend
+- The database used by the services
+
+The environment variables are defined in .env file. You need to edit .tmp.env file for your local environment (e.g. add 'postgres' for the missing variables).
+
+### Start the development environment
+`docker-compose up`
+
+### Stop the development environment
+`docker-compose down`
