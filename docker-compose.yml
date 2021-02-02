@@ -22,7 +22,12 @@ services:
     depends_on:
       - adminapp-db
     volumes:
-      - ./backend:/usr/local/app
+      - ./backend/index.js:/usr/local/app/index.js
+      - ./backend/app.js:/usr/local/app/app.js
+      - ./backend/controllers:/usr/local/app/controllers
+      - ./backend/models:/usr/local/app/models
+      - ./backend/routes:/usr/local/app/routes
+      - ./backend/utils:/usr/local/app/utils
     command: npm run dev
 
   frontend:
@@ -32,7 +37,7 @@ services:
     depends_on:
       - backend
     volumes:
-      - ./frontend:/usr/local/app
+      - ./frontend/src:/usr/local/app/src
     command: npm start
 
 volumes:
