@@ -31,7 +31,8 @@
     "nodemon": "^2.0.7",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^6.4.0"
+    "sequelize": "^6.4.0",
+    "sequelize-fixtures": "^1.2.0"
   },
   "devDependencies": {
     "eslint": "^7.18.0",

@@ -1,6 +1,6 @@
 const config = require('../utils/config')
 
-// Sequelize käyttöön
+// Use Sequelize with postgres database
 const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize(config.db_name, config.db_user, config.db_password, {
@@ -21,12 +21,6 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.patients = require('../models/patient')(sequelize, Sequelize)
-db.moods = require('../models/mood')(sequelize, Sequelize)
-
-db.patients.hasMany(db.moods)
-db.moods.belongsTo(db.patients, {
-  foreignKey: 'patientId'
-})
+db.users = require('../models/appUser')(sequelize, Sequelize)
 
 module.exports = db

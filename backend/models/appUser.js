@@ -1,22 +1,18 @@
+// Sequelize model for App user
+
 module.exports = (sequelize, Sequelize) => {
-  const Mood = sequelize.define('Mood', {
+  const User = sequelize.define('user', {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    title: {
+    name: {
       type: Sequelize.STRING
-    },
-    range: {
-      type: Sequelize.INTEGER
-    },
-    patientId: {
-      type: Sequelize.INTEGER
     }
   }, {
     timestamps: false
   })
 
-  return Mood
+  return User
 }
