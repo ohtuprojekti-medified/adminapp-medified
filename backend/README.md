@@ -1,17 +1,17 @@
 # adminapp-medified-backend
-Adminapp-medfield sovelluksen backend.
+Backend for adminapp.
 
-## Skriptit
-### Ajo
+## Scripts
+### Run server
 npm start
-### Development-tila
+### Development-mode
 npm run dev\
-Ajaa backendin normaalisti, mutta tiedostojen muuttuessa, backend käynnistyy uudestaan
-### Testien ajo
+Runs server but restarts it when chages are made
+### Run tests
 npm run test
-### Lint
+### Eslint
 npm run lint\
-Huomauttaa väärästä tyylistä koodissa
-### Lint ja fix
+Notifies for wrong style in code
+### Lint and fix
 npm run lint-fix\
-Siivoaa koodin
+Fixes wrong style
