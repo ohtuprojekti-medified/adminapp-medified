@@ -15,3 +15,5 @@ Notifies for wrong style in code
 ### Lint and fix
 npm run lint-fix\
 Fixes wrong style
+### Run server in test environment
+npm run start:test
