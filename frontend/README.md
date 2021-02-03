@@ -1,20 +1,20 @@
 # Ohjelmistotuotantoprojekti, kevät 2021
 
-## Admin-sovellus depressiopotilailta kerätyn datan tarkasteluun
+## Admin-app for monitoring user data
 
-## Skriptit
+## Scripts
 
-### Ajo
+### Run app
 npm start
 
-### Testien ajo
+### Run tests
 npm run test
 
-### Testikattavuuden selvittäminen
+### Find out test coverage
 npm run test-coverage
 
-### Linttaus
+### Eslint
 npm run lint
 
-### Koodin siistiminen
+### Fix with Eslint
 npm run lint-fix
