@@ -1,7 +1,8 @@
-const config = require('../utils/config')
+'use strict'
 
-// Use Sequelize with postgres database
 const Sequelize = require('sequelize')
+const config = require('../utils/config')
+const db = {}
 
 const sequelize = new Sequelize(config.db_name, config.db_user, config.db_password, {
   host: config.db_host,
@@ -16,11 +17,10 @@ const sequelize = new Sequelize(config.db_name, config.db_user, config.db_passwo
   }
 })
 
-const db = {}
 
-db.Sequelize = Sequelize
 db.sequelize = sequelize
+db.Sequelize = Sequelize
 
-db.users = require('../models/appUser')(sequelize, Sequelize)
+db.users = require('../models/appuser')(sequelize, Sequelize)
 
 module.exports = db
