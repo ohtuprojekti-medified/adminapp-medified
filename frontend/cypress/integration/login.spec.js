@@ -13,13 +13,14 @@ describe('Login', function () {
     cy.contains('password:')
 
     // Can login
-    cy.get('input:first').type(testUsername)
-    cy.get('input:last').type(testPassword)
+    cy.get('#username').type(testUsername)
+    cy.get('#password').type(testPassword)
     cy.contains('login').click()
 
     // After login login form is not shown
     cy.get('body').should('not.contain', 'Login')
     cy.get('body').should('not.contain', 'username:')
     cy.get('body').should('not.contain', 'password:')
+    cy.get('body').should('not.contain', 'login')
   })
 })
