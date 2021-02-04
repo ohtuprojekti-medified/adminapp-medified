@@ -12,6 +12,7 @@ services:
     volumes:
      - ./backend:/usr/local/app
     command: npm run dev
+    container_name: adminapp-backend
     
   frontend:
     build: frontend
@@ -22,3 +23,4 @@ services:
     volumes:
       - ./frontend:/usr/local/app
     command: npm start
+    container_name: adminapp-frontend
