@@ -7,12 +7,13 @@ const cors = require('cors')
 
 const app = express()
 
-// Tama tarvitaan, jos frontend buildataan backendiin
+// Needed if frontend is builded into /public
 //app.use(express.static('build'))
 
+// JSON to readable form
 app.use(express.json())
 
-// Morgan logs for HTTP-queries
+// Morgan-logs for HTTP-requests
 morgan.token('body', (req) => JSON.stringify(req.body))
 app.use(morgan('tiny'))
 app.use(morgan(':body'))

@@ -34,3 +34,11 @@ jobs:
         npm install
         npm run build
         npm run test --watchAll=false   
+        npm run lint
+
+    - name: install, build and test backend
+      run: |
+        cd backend
+        npm install
+        npm run test
+        npm run lint

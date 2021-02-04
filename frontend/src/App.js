@@ -10,6 +10,9 @@ const App = () => {
   // Get users when browser connects
   useEffect(() => userService.getAll().then(usersAtBeginning => setUsers(usersAtBeginning)), [])
 
+  // User needs to be implemented for eslint
+  user ? user : null
+
   return (
     <div className="App">
       <h1>Admin app</h1>

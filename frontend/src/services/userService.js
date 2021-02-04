@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-// Tuotantoympäristössä api:n polku alkaa medified/...
+// Needed for production environment
 const productionPath = process.env.NODE_ENV === 'production' ? 'medified/' : ''
 const baseUrl = `http://localhost:5000/${productionPath}api`
 
