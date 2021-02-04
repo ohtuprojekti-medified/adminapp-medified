@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Admin app</h1>
+      <h1>Adminapp for monitoring moods</h1>
       <Users users={users} />
     </div>
   )
