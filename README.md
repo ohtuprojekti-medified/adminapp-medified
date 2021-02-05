@@ -28,7 +28,11 @@ Adminapp is a wed-application for organizations to be able to easily view data c
 
 [Project meetings](https://docs.google.com/spreadsheets/d/1Iz9njk4EYOEunnRDfs3cAydd4zUapblLWb9VrtLpe2Y/edit#gid=0)
 
-[Definition of done]()
+[Definition of done](https://github.com/ohtuprojekti-medified/adminapp-medified/wiki/Definition-of-Done)
+
+### License
+
+This project is licensed under the terms of the [MIT license](https://github.com/ohtuprojekti-medified/adminapp-medified/blob/master/LICENSE)
 
 ### Clone project locally
 
