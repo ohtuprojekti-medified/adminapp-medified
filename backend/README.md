@@ -14,13 +14,8 @@ Automatic re-run when files are changed
 
 Notifies about code style
 ### Lint and fix
-<<<<<<< HEAD
 npm run lint-fix\
-Fixes wrong style
-### Run server in test environment
-npm run start:test
-=======
-`npm run lint-fix`
 
 Cleans code
->>>>>>> master
+### Run server in test environment
+npm run start:test
