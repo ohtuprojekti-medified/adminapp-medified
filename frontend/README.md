@@ -1,20 +1,18 @@
-# Ohjelmistotuotantoprojekti, kevät 2021
+# adminapp-medified-frontend
 
-## Admin-sovellus depressiopotilailta kerätyn datan tarkasteluun
+## Scripts
 
-## Skriptit
+### Run
+`npm start`
 
-### Ajo
-npm start
+### Test
+`npm run test`
 
-### Testien ajo
-npm run test
+### Testcoverage
+`npm run test-coverage`
 
-### Testikattavuuden selvittäminen
-npm run test-coverage
+### Lint
+`npm run lint`
 
-### Linttaus
-npm run lint
-
-### Koodin siistiminen
-npm run lint-fix
+### Clean code
+`npm run lint-fix`
