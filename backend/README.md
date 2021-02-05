@@ -14,8 +14,8 @@ Automatic re-run when files are changed
 
 Notifies about code style
 ### Lint and fix
-npm run lint-fix\
+'npm run lint-fix\'
 
 Cleans code
 ### Run server in test environment
-npm run start:test
+'npm run start:test'
