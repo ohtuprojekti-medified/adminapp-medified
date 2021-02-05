@@ -12,12 +12,12 @@ Adminapp is a wed-application for organizations to be able to easily view data c
 
 #### Frontend
 
-* [Code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/frontend) and [installing instructions](https://github.com/ohtuprojekti-medified/adminapp-medified/blob/master/frontend/README.md)
+* [Code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/frontend)
 * Production (coming soon)
 
 #### Backend
 
-* [Code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/backend) and [installing instructions](https://github.com/ohtuprojekti-medified/adminapp-medified/blob/master/backend/README.md)
+* [Code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/backend)
 * Production (coming soon)
 
 ### Documentation
@@ -29,3 +29,19 @@ Adminapp is a wed-application for organizations to be able to easily view data c
 [Project meetings](https://docs.google.com/spreadsheets/d/1Iz9njk4EYOEunnRDfs3cAydd4zUapblLWb9VrtLpe2Y/edit#gid=0)
 
 [Definition of done]()
+
+### Clone project locally
+
+`git clone git@github.com:ohtuprojekti-medified/adminapp-medified.git`
+
+#### Requirements
+
+#### Run
+
+adminapp-medified/frontend
+
+`npm start`
+
+adminapp-medified/backend
+
+`npm start`
