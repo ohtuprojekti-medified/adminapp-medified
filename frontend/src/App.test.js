@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent, waitFor } from '@testing-library/react'
-//import { prettyDOM } from '@testing-library/dom'
+import { prettyDOM } from '@testing-library/dom'
 import App from './App'
 
 describe('<App />', () => {
@@ -61,5 +61,29 @@ describe('<App />', () => {
     fireEvent.submit(loginForm)
 
     waitFor(() => expect(component.container).toHaveTextContent('Patients moods listed'))
+  })
+
+  test('renders login form after log out', async () => {
+    // Login
+    const usernameInput = component.container.querySelector('input[type=\'text\']')
+    const passwordInput = component.container.querySelector('input[type=\'password\']')
+    const loginForm = component.container.querySelector('form')
+    fireEvent.change(usernameInput, {
+      target: { value: testUsername }
+    })
+    fireEvent.change(passwordInput, {
+      target: { value: testPassword }
+    })
+    fireEvent.submit(loginForm)
+
+    // Log out
+    const logOutButton = component.container.querySelector('button[id=\'logOut\']')
+    waitFor(() => fireEvent.click(logOutButton))
+
+    waitFor(() => {
+      expect(component.container).toHaveTextContent('Login:')
+      expect(component.container).toHaveTextContent('username:')
+      expect(component.container).toHaveTextContent('password:')
+    })
   })
 })

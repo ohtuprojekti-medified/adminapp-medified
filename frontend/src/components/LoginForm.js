@@ -28,7 +28,7 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
   }
   return (
     user
-      ? <button onClick={logOut}>log out</button>
+      ? <button id='logOut' onClick={logOut}>log out</button>
       : <div>
         <h3>Login:</h3>
         <form onSubmit={handleLogin}>
