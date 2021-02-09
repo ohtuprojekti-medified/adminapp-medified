@@ -39,4 +39,10 @@ describe('Login', function () {
     // Patients page is shown
     cy.contains('Patients moods listed')
   })
+
+  it('shows logout-button after successfull logout', () => {
+    login()
+
+    cy.contains('logOut')
+  })
 })
