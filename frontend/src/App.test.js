@@ -1,11 +1,24 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent, waitFor } from '@testing-library/react'
-import { prettyDOM } from '@testing-library/dom'
+//import { prettyDOM } from '@testing-library/dom'
 import App from './App'
 
 describe('<App />', () => {
   let component
+  let usernameInput, passwordInput, loginForm
+
+  const login = (username, password) => {
+    // Add username and password to form
+    fireEvent.change(usernameInput, {
+      target: { value: username }
+    })
+    fireEvent.change(passwordInput, {
+      target: { value: password }
+    })
+    // Submit the form
+    fireEvent.submit(loginForm)
+  }
 
   // Test users username and password
   const testUsername = 'TestUser'
@@ -13,6 +26,10 @@ describe('<App />', () => {
 
   beforeEach(() => {
     component = render(<App />)
+
+    usernameInput = component.container.querySelector('input[type=\'text\']')
+    passwordInput = component.container.querySelector('input[type=\'password\']')
+    loginForm = component.container.querySelector('form')
   })
 
   test('renders header', () => {
@@ -26,19 +43,7 @@ describe('<App />', () => {
   })
 
   test('does not render login form after logged in', async () => {
-    const usernameInput = component.container.querySelector('input[type=\'text\']')
-    const passwordInput = component.container.querySelector('input[type=\'password\']')
-    const loginForm = component.container.querySelector('form')
-
-    // Add username and password to form
-    fireEvent.change(usernameInput, {
-      target: { value: testUsername }
-    })
-    fireEvent.change(passwordInput, {
-      target: { value: testPassword }
-    })
-    // Submit the form
-    fireEvent.submit(loginForm)
+    login(testUsername, testPassword)
 
     waitFor(() => {
       expect(component.container).not.toHaveTextContent('Login:')
@@ -48,33 +53,13 @@ describe('<App />', () => {
   })
 
   test('renders patients page after successful login', async () => {
-    // Login
-    const usernameInput = component.container.querySelector('input[type=\'text\']')
-    const passwordInput = component.container.querySelector('input[type=\'password\']')
-    const loginForm = component.container.querySelector('form')
-    fireEvent.change(usernameInput, {
-      target: { value: testUsername }
-    })
-    fireEvent.change(passwordInput, {
-      target: { value: testPassword }
-    })
-    fireEvent.submit(loginForm)
+    login(testUsername, testPassword)
 
     waitFor(() => expect(component.container).toHaveTextContent('Patients moods listed'))
   })
 
   test('renders login form after log out', async () => {
-    // Login
-    const usernameInput = component.container.querySelector('input[type=\'text\']')
-    const passwordInput = component.container.querySelector('input[type=\'password\']')
-    const loginForm = component.container.querySelector('form')
-    fireEvent.change(usernameInput, {
-      target: { value: testUsername }
-    })
-    fireEvent.change(passwordInput, {
-      target: { value: testPassword }
-    })
-    fireEvent.submit(loginForm)
+    login(testUsername, testPassword)
 
     // Log out
     const logOutButton = component.container.querySelector('button[id=\'logOut\']')
