@@ -4,43 +4,46 @@ import { render, fireEvent } from '@testing-library/react'
 import LoginForm from './LoginForm'
 
 describe('<LoginForm />', () => {
-    let component
+  let component, formWithMock
+  let username, password
+  let mockSetUser, mockSetUsername, mockSetPassword
 
-    const testUsername = 'FormUser'
-    const testPassword = 'PasswordInForm'
+  const testUsername = 'FormUser'
+  const testPassword = 'PasswordInForm'
 
-    beforeEach(() => {
-        component = render(<LoginForm />)
+  beforeEach(() => {
+    component = render(<LoginForm />)
+
+    mockSetUser = jest.fn()
+    mockSetUsername = jest.fn()
+    mockSetPassword = jest.fn()
+
+    formWithMock = render(
+      <LoginForm username={username} setUsername={mockSetUsername} password={password}
+        setPassword={mockSetPassword} setUser={mockSetUser} />
+    )
+  })
+
+  test('renders form', () => {
+    expect(component.container).toHaveTextContent('Login:')
+    expect(component.container).toHaveTextContent('username:')
+    expect(component.container).toHaveTextContent('password:')
+    expect(component.container).toHaveTextContent('login')
+  })
+
+  test('clicking login-button calls setUser', async () => {
+    const usernameInput = formWithMock.container.querySelector('input[type=\'text\']')
+    const passwordInput = formWithMock.container.querySelector('input[type=\'password\']')
+    const loginButton = formWithMock.container.querySelector('button')
+
+    fireEvent.change(usernameInput, {
+      target: { value: testUsername }
+    })
+    fireEvent.change(passwordInput, {
+      target: { value: testPassword }
     })
 
-    test('renders form', () => {
-        expect(component.container).toHaveTextContent('Login:')
-        expect(component.container).toHaveTextContent('username:')
-        expect(component.container).toHaveTextContent('password:')
-        expect(component.container).toHaveTextContent('login')
-    })
-
-    test('clicking login-button calls setUser', () => {
-        const mockSetUser = jest.fn()
-        let username, setUsername = () => (console.log('setUsername')), password, setPassword= () => (console.log('setPassword'))
-
-        const formWithMock = render(
-            <LoginForm username={username} setUsername={setUsername} password={password}
-            setPassword={setPassword} setUser={mockSetUser} /> 
-        )
-
-        const usernameInput = formWithMock.container.querySelector('input[type=\'text\']')
-        const passwordInput = formWithMock.container.querySelector('input[type=\'password\']')
-        const loginButton = formWithMock.container.querySelector('button')
-
-        fireEvent.change(usernameInput, {
-            target: { value: testUsername }
-          })
-          fireEvent.change(passwordInput, {
-            target: { value: testPassword }
-          })
-          
-        fireEvent.click(loginButton)
-        //expect(mockSetUser.mock.calls).toHaveLength(1)
-    })
+    fireEvent.click(loginButton)
+    //expect(mockSetUser.mock.calls).toHaveLength(1)
+  })
 })
