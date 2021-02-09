@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 import LoginForm from './LoginForm'
 
 describe('<LoginForm />', () => {
@@ -44,6 +44,6 @@ describe('<LoginForm />', () => {
     })
 
     fireEvent.click(loginButton)
-    //expect(mockSetUser.mock.calls).toHaveLength(1)
+    await waitFor(() => expect(mockSetUser.mock.calls).toHaveLength(1))
   })
 })

@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render, fireEvent } from '@testing-library/react'
-import { prettyDOM } from '@testing-library/dom'
+import { render, fireEvent, waitFor } from '@testing-library/react'
+//import { prettyDOM } from '@testing-library/dom'
 import App from './App'
 
 describe('<App />', () => {
@@ -27,11 +27,10 @@ describe('<App />', () => {
   })
 
   //This test has a bug where the login form is not submitted
-  test('does not render login form after logged in', () => {
+  test('does not render login form after logged in', async () => {
     const usernameInput = component.container.querySelector('input[type=\'text\']')
     const passwordInput = component.container.querySelector('input[type=\'password\']')
     const loginForm = component.container.querySelector('form')
-    console.log(prettyDOM(loginForm))
 
     // Add username and password to form
     fireEvent.change(usernameInput, {
@@ -43,10 +42,11 @@ describe('<App />', () => {
     // Click Login button
     // This does not work
     fireEvent.submit(loginForm)
-    component.debug()
 
-    /*expect(component.container).not.toHaveTextContent('Login:')
-    expect(component.container).not.toHaveTextContent('username:')
-    expect(component.container).not.toHaveTextContent('password:')*/
+    waitFor(() => {
+      expect(component.container).not.toHaveTextContent('Login:')
+      expect(component.container).not.toHaveTextContent('username:')
+      expect(component.container).not.toHaveTextContent('password:')
+    })
   })
 })
