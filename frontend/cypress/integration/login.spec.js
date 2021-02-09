@@ -1,8 +1,17 @@
 const testUsername = 'CypressUser'
 const testPassword = 'CypressPassword'
 
+// Helper functions
+const login = () => {
+  // Enter website and login
+  cy.visit('http://localhost:3000/')
+  cy.get('#username').type(testUsername)
+  cy.get('#password').type(testPassword)
+  cy.contains('login').click()
+}
+
 describe('Login', function () {
-  it('dissappears after logged in', function () {
+  it('exists', function() {
     // Can enter website
     cy.visit('http://localhost:3000/')
     cy.contains('Adminapp for monitoring moods')
@@ -11,11 +20,11 @@ describe('Login', function () {
     cy.contains('Login')
     cy.contains('username:')
     cy.contains('password:')
+    cy.contains('login')
+  })
 
-    // Can login
-    cy.get('#username').type(testUsername)
-    cy.get('#password').type(testPassword)
-    cy.contains('login').click()
+  it('dissappears after logged in', function () {
+    login()
 
     // After login login form is not shown
     cy.get('body').should('not.contain', 'Login')
@@ -25,11 +34,7 @@ describe('Login', function () {
   })
 
   it('shows patients page after successful login', function() {
-    // Enter website and login
-    cy.visit('http://localhost:3000/')
-    cy.get('#username').type(testUsername)
-    cy.get('#password').type(testPassword)
-    cy.contains('login').click()
+    login()
 
     // Patients page is shown
     cy.contains('Patients moods listed')
