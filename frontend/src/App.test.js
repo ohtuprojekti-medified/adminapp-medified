@@ -46,4 +46,20 @@ describe('<App />', () => {
       expect(component.container).not.toHaveTextContent('password:')
     })
   })
+
+  test('renders patients page after successful login', async () => {
+    // Login
+    const usernameInput = component.container.querySelector('input[type=\'text\']')
+    const passwordInput = component.container.querySelector('input[type=\'password\']')
+    const loginForm = component.container.querySelector('form')
+    fireEvent.change(usernameInput, {
+      target: { value: testUsername }
+    })
+    fireEvent.change(passwordInput, {
+      target: { value: testPassword }
+    })
+    fireEvent.submit(loginForm)
+
+    waitFor(() => expect(component.container).toHaveTextContent('Patients moods listed'))
+  })
 })
