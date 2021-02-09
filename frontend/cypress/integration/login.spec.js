@@ -23,4 +23,15 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'password:')
     cy.get('body').should('not.contain', 'login')
   })
+
+  it('shows patients page after successful login', function() {
+    // Enter website and login
+    cy.visit('http://localhost:3000/')
+    cy.get('#username').type(testUsername)
+    cy.get('#password').type(testPassword)
+    cy.contains('login').click()
+
+    // Patients page is shown
+    cy.contains('Patients moods listed')
+  })
 })
