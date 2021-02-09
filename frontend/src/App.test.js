@@ -71,4 +71,24 @@ describe('<App />', () => {
       expect(component.container).toHaveTextContent('password:')
     })
   })
+
+  test('logout-button is not shown in the beginning', async () =>  {
+    waitFor(() => expect(component.container.not.toHaveTextContent('log out')))
+  })
+
+  test('renders logout-button after successful login', async () => {
+    login(testUsername, testPassword)
+
+    waitFor(() => expect(component.container.toHaveTextContent('log out')))
+  })
+
+  test('logging out removes logout-button', async () => {
+    login(testUsername, testPassword)
+
+    // Log out
+    const logOutButton = component.container.querySelector('button[id=\'logOut\']')
+    waitFor(() => fireEvent.click(logOutButton))
+
+    waitFor(() => expect(component.container.not.toHaveTextContent('log out')))
+  })
 })

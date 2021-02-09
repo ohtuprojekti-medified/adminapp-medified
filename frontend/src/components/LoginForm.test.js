@@ -69,6 +69,10 @@ describe('<LoginForm />', () => {
     waitFor(() => expect(component.container.toHaveTextContent('logOut')))
   })
 
+  test('logout-button is not shown in the beginning', async () =>  {
+    waitFor(() => expect(component.container.not.toHaveTextContent('logOut')))
+  })
+
   test('logging out renders login-form', async () => {
     // Add username and password to form
     fireEvent.change(usernameInput, {
