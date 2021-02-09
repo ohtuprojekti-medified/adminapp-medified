@@ -8,16 +8,19 @@ describe('<LoginForm />', () => {
   let username, password
   let mockSetUser, mockSetUsername, mockSetPassword
 
+  // Test users username and password
   const testUsername = 'FormUser'
   const testPassword = 'PasswordInForm'
 
   beforeEach(() => {
     component = render(<LoginForm />)
 
+    // Mock-functions for Form
     mockSetUser = jest.fn()
     mockSetUsername = jest.fn()
     mockSetPassword = jest.fn()
 
+    // Form with mock-functions
     formWithMock = render(
       <LoginForm username={username} setUsername={mockSetUsername} password={password}
         setPassword={mockSetPassword} setUser={mockSetUser} />
@@ -36,6 +39,7 @@ describe('<LoginForm />', () => {
     const passwordInput = formWithMock.container.querySelector('input[type=\'password\']')
     const loginButton = formWithMock.container.querySelector('button')
 
+    // Add username and password to input fields
     fireEvent.change(usernameInput, {
       target: { value: testUsername }
     })
@@ -43,6 +47,7 @@ describe('<LoginForm />', () => {
       target: { value: testPassword }
     })
 
+    // Click login
     fireEvent.click(loginButton)
     await waitFor(() => expect(mockSetUser.mock.calls).toHaveLength(1))
   })

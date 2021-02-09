@@ -7,6 +7,7 @@ import App from './App'
 describe('<App />', () => {
   let component
 
+  // Test users username and password
   const testUsername = 'TestUser'
   const testPassword = 'TestPassword'
 
@@ -15,9 +16,7 @@ describe('<App />', () => {
   })
 
   test('renders header', () => {
-    expect(component.container).toHaveTextContent(
-      'Adminapp for monitoring moods'
-    )
+    expect(component.container).toHaveTextContent('Adminapp for monitoring moods')
   })
 
   test('renders login form', () => {
@@ -26,7 +25,6 @@ describe('<App />', () => {
     expect(component.container).toHaveTextContent('password:')
   })
 
-  //This test has a bug where the login form is not submitted
   test('does not render login form after logged in', async () => {
     const usernameInput = component.container.querySelector('input[type=\'text\']')
     const passwordInput = component.container.querySelector('input[type=\'password\']')
@@ -39,8 +37,7 @@ describe('<App />', () => {
     fireEvent.change(passwordInput, {
       target: { value: testPassword }
     })
-    // Click Login button
-    // This does not work
+    // Submit the form
     fireEvent.submit(loginForm)
 
     waitFor(() => {
