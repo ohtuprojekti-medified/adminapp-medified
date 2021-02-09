@@ -3,14 +3,16 @@ const testPassword = 'CypressPassword'
 
 // Helper functions
 const login = () => {
-  // Enter website and login
-  cy.visit('http://localhost:3000/')
   cy.get('#username').type(testUsername)
   cy.get('#password').type(testPassword)
   cy.contains('login').click()
 }
 
 describe('Login', function () {
+  beforeEach(function() {
+    cy.visit('http://localhost:3000/')
+  })
+
   it('exists', function() {
     // Can enter website
     cy.visit('http://localhost:3000/')
@@ -40,9 +42,13 @@ describe('Login', function () {
     cy.contains('Patients moods listed')
   })
 
-  it('shows logout-button after successfull logout', () => {
+  it('shows logout-button after successfull login', () => {
     login()
 
-    cy.contains('logOut')
+    cy.contains('log out')
+  })
+
+  it('does not show logout-button before login', () => {
+    cy.get('body').should('not.contain', 'log out')
   })
 })
