@@ -20,11 +20,9 @@ const App = () => {
   return (
     <div className="App">
       <h1>Adminapp for monitoring moods</h1>
-      {user
-        ? <Patients patients={patients} />
-        : <LoginForm username={username} setUsername={setUsername} password={password}
-          setPassword={setPassword} setUser={setUser} />
-      }
+      <LoginForm username={username} setUsername={setUsername} password={password}
+        setPassword={setPassword} user={user} setUser={setUser} />
+      {user === null ? null : <Patients patients={patients} />}
     </div>
   )
 }
