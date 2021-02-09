@@ -15,7 +15,6 @@ describe('Login', function () {
 
   it('exists', function() {
     // Can enter website
-    cy.visit('http://localhost:3000/')
     cy.contains('Adminapp for monitoring moods')
 
     // Login form is shown
