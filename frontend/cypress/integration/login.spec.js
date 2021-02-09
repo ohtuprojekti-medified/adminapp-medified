@@ -7,6 +7,9 @@ const login = () => {
   cy.get('#password').type(testPassword)
   cy.contains('login').click()
 }
+const logout = () => {
+  cy.contains('log out').click()
+}
 
 describe('Login', function () {
   beforeEach(function() {
@@ -48,6 +51,23 @@ describe('Login', function () {
   })
 
   it('does not show logout-button before login', () => {
+    cy.get('body').should('not.contain', 'log out')
+  })
+
+  it('shows login form after logging out', () => {
+    login()
+    logout()
+
+    cy.contains('Login')
+    cy.contains('username:')
+    cy.contains('password:')
+    cy.contains('login')
+  })
+
+  it('does not show logout-button after logging out', () => {
+    login()
+    logout()
+
     cy.get('body').should('not.contain', 'log out')
   })
 })
