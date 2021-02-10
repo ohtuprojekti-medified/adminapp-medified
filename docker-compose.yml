@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
 
-  backend:
+  adminapp-backend:
     build: backend
     ports:
       - 5000:5000
@@ -14,12 +14,12 @@ services:
     command: npm run dev
     container_name: adminapp-backend
     
-  frontend:
+  adminapp-frontend:
     build: frontend
     ports:
       - 3000:3000
     depends_on:
-      - backend
+      - adminapp-backend
     volumes:
       - ./frontend:/usr/local/app
     command: npm start
