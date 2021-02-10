@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
 
-  adminapp-backend:
+  adminapp-medified-backend:
     build: backend
     ports:
       - 5000:5000
@@ -12,15 +12,15 @@ services:
     volumes:
      - ./backend:/usr/local/app
     command: npm run dev
-    container_name: adminapp-backend
+    container_name: adminapp-medified-backend
     
-  adminapp-frontend:
+  adminapp-medified-frontend:
     build: frontend
     ports:
       - 3000:3000
     depends_on:
-      - adminapp-backend
+      - adminapp-medified-backend
     volumes:
       - ./frontend:/usr/local/app
     command: npm start
-    container_name: adminapp-frontend
+    container_name: adminapp-medified-frontend
