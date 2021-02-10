@@ -2,10 +2,10 @@ import React from 'react'
 
 import Moods from './Moods'
 
-//Potilaat listaava komponentti
+// List patients
 const Patients = ({ patients }) =>
   <div>
-    <h3>Potilaiden mielialat listattuna</h3>
+    <h3>Patients moods listed</h3>
     <ul>{patients.map(patient => <li key={patient.id}><Moods patientName={patient.name} moods={patient.moods} /></li>)}</ul>
   </div>
 
