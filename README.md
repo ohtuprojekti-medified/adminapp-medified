@@ -49,3 +49,21 @@ adminapp-medified/frontend
 adminapp-medified/backend
 
 `npm start`
+
+### Development Environment
+The development environment is entirely configured in the docker-compose.yml file located in this repository. The file defines the containers/environments for:
+
+- Frontend
+- Backend
+
+#### First time install
+Run `install.sh` script for running `npm install` locally for both frontend and backend. You can also do this manually.
+#### Start the development environment
+`docker-compose up`
+
+#### Stop the development environment
+`docker-compose down`
+
+#### Add new npm package
+Stop and restart docker-compose after running `npm install` in frontend/backend. 
+
