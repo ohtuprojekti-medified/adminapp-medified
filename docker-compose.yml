@@ -2,16 +2,7 @@ version: '3.8'
 
 services:
 
-  adminapp-db:
-    image: postgres:latest
-    restart: unless-stopped
-    env_file: ./.env
-    volumes:
-      - database-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
-
-  backend:
+  adminapp-backend:
     build: backend
     ports:
       - 5000:5000
@@ -22,23 +13,17 @@ services:
     depends_on:
       - adminapp-db
     volumes:
-      - ./backend/index.js:/usr/local/app/index.js
-      - ./backend/app.js:/usr/local/app/app.js
-      - ./backend/controllers:/usr/local/app/controllers
-      - ./backend/models:/usr/local/app/models
-      - ./backend/routes:/usr/local/app/routes
-      - ./backend/utils:/usr/local/app/utils
+     - ./backend:/usr/local/app
     command: npm run dev
-
-  frontend:
+    container_name: adminapp-backend
+    
+  adminapp-frontend:
     build: frontend
     ports:
       - 3000:3000
     depends_on:
-      - backend
+      - adminapp-backend
     volumes:
-      - ./frontend/src:/usr/local/app/src
+      - ./frontend:/usr/local/app
     command: npm start
-
-volumes:
-  database-data:
+    container_name: adminapp-frontend
