@@ -31,3 +31,5 @@ yarn-error.log*
 
 # environment variables
 backend/.env
+frontend/.env
+.env
