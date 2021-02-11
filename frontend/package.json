@@ -45,6 +45,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "cypress": "^6.4.0",
+    "cypress-dotenv": "^1.2.2",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-jest": "^24.1.3"
   }

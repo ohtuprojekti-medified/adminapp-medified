@@ -11,6 +11,8 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
       if (user.user) {
         console.log(user.user)
         setUser(user.user)
+      } else {
+        setUser(undefined)
       }
       setUsername('')
       setPassword('')
