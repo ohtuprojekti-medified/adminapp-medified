@@ -1,5 +1,5 @@
-const testUsername = 'CypressUser'
-const testPassword = 'CypressPassword'
+const testUsername = Cypress.env('USERNAME')
+const testPassword = Cypress.env('PASSWORD')
 
 // Helper functions
 const login = () => {

@@ -7,28 +7,33 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
     event.preventDefault()
 
     try {
-      const token = await loginService.login({ username, password })
-      setUser(token)
+      const user = await loginService.login({ username, password })
+      if (user.user) {
+        console.log(user.user)
+        setUser(user.user)
+      } else {
+        setUser(undefined)
+      }
       setUsername('')
       setPassword('')
     } catch (exception) {
-      console.log('An error occured')
+      console.log(exception)
     }
   }
 
-  const logOut = async (event) => {
+  const handleLogOut = async (event) => {
     event.preventDefault()
-
     try {
       await loginService.logOut()
-      setUser(null)
+      setUser(undefined)
     } catch (exception) {
       console.log('An error occured')
     }
   }
+
   return (
     user
-      ? <button id='logOut' onClick={logOut}>log out</button>
+      ? <button id='logOut' onClick={handleLogOut}>log out</button>
       : <div>
         <h3>Login:</h3>
         <form onSubmit={handleLogin}>

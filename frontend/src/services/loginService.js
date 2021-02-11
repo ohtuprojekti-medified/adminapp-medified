@@ -1,26 +1,28 @@
-//import axios from 'axios'
-
-// Needed for production environment
-//const productionPath = process.env.NODE_ENV === 'production' ? 'medified/' : ''
-//const loginUrl = `http://localhost:5000/${productionPath}api/login`
-//const logOutUrl = `http://localhost:5000/${productionPath}api/logout`
+import { Auth } from 'aws-amplify'
 
 const login = async credentials => {
-  // Backend response needed
-  //const response = await axios.post(loginUrl, credentials)
-  //return response.data
-  console.log(credentials)
+  console.log(credentials.username)
+  console.log(credentials.password)
+  console.log(Auth.configure())
+  let user
+  try {
+    user = await Auth.signIn(credentials.username, credentials.password)
+  } catch (error) {
+    console.log('error signing in', error)
+  }
   return {
-    token: 'Test token',
-    username: 'Username'
+    user
   }
 }
 
 const logOut = async () => {
-  // Bacend response needed
-  //const response = await axios.post(logOutUrl)
-  //return response.data
-  console.log('logged out')
+  try {
+    Auth.signOut()
+  } catch (error) {
+    console.log('error signing out', error)
+  }
 }
+
+
 
 export default { login, logOut }
