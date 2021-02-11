@@ -1,26 +1,24 @@
-# Ohjelmistotuotantoprojekti, kevät 2021
-
-## Admin-app for monitoring user data
+# adminapp-medified-frontend
 
 ## Scripts
 
-### Run app
-npm start
+### Run
+`npm start`
 
-### Run tests
-npm run test
+### Test
+`npm run test`
 
-### Find out test coverage
-npm run test-coverage
+### Testcoverage
+`npm run test-coverage`
 
-### Eslint
-npm run lint
+### Lint
+`npm run lint`
 
-### Fix with Eslint
-npm run lint-fix
+### Clean code
+`npm run lint-fix`
 
 ### Open Cypress UI
-npm run cypress:open
+`npm run cypress:open`
 
 ### Run Cypress tests in console
-npm run test:e2e
+`npm run test:e2e`
