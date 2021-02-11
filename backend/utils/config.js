@@ -6,10 +6,19 @@ const PORT = process.env.PORT || '5000'
 /*const DB_URI = undefined
 const TEST_DB_URI = undefined*/
 
-const db_host = process.env.DB_HOST
+let db_host, db_name
+
+if(process.env.NODE_ENV === 'development') {
+  db_host = process.env.DB_HOST
+  db_name = 'adminapp'
+} else if (process.env.NODE_ENV === 'test') {
+  db_host = process.env.DB_TEST_HOST
+  db_name = 'adminapptest'
+}
+
+
 const db_user = process.env.DB_USERNAME
 const db_password = process.env.DB_PASSWORD
-const db_name = 'adminapp'
 const dialect = 'postgres'
 const pool = {
   max: 5,

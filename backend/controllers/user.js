@@ -12,6 +12,11 @@ const create = async (userObject) => {
   return response
 }
 
+const findOne = async () => {
+  const user = await appUser.findOne()
+  return user
+}
 
 
-module.exports = { create, findAll }
+
+module.exports = { create, findAll, findOne }
