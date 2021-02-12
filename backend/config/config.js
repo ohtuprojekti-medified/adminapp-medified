@@ -8,13 +8,9 @@ const TEST_DB_URI = undefined*/
 
 let db_host, db_name
 
-if(process.env.NODE_ENV === 'development') {
-  db_host = process.env.DB_HOST
-  db_name = 'adminapp'
-} else if (process.env.NODE_ENV === 'test') {
-  db_host = process.env.DB_TEST_HOST
-  db_name = 'adminapptest'
-}
+db_host = process.env.DB_HOST
+db_name = 'adminapp'
+
 
 
 const db_user = process.env.DB_USERNAME
