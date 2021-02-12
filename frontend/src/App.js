@@ -1,19 +1,19 @@
 import './App.css'
 
-import patientService from './services/patientService'
+import userService from './services/userService'
 import React, { useEffect, useState } from 'react'
-import Patients from './components/Patients'
+import Users from './components/Users'
 
 const App = () => {
-  const [patients, setPatients] = useState([])
+  const [users, setUsers] = useState([])
 
-  // GET patients-data when browser connects
-  useEffect(() => patientService.getAll().then(patientsAtBeginning => setPatients(patientsAtBeginning)), [])
+  // Get users when browser connects
+  useEffect(() => userService.getAll().then(usersAtBeginning => setUsers(usersAtBeginning)), [])
 
   return (
     <div className="App">
       <h1>Adminapp for monitoring moods</h1>
-      <Patients patients={patients} />
+      <Users users={users} />
     </div>
   )
 }
