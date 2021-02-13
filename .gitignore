@@ -9,6 +9,7 @@
 # testing
 /coverage
 frontend/cypress/videos
+frontend/cypress/screenshots
 
 /backend/requests
 
@@ -39,3 +40,5 @@ yarn-error.log*
 backend/.env
 
 database-data/
+frontend/.env
+.env

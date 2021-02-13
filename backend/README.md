@@ -1,19 +1,21 @@
 # adminapp-medified-backend
-Backend for adminapp.
 
 ## Scripts
-### Run server
-npm start
+### Run
+`npm start`
 ### Development-mode
-npm run dev\
-Runs server but restarts it when chages are made
-### Run tests
-npm run test
-### Eslint
-npm run lint\
-Notifies for wrong style in code
+`npm run dev`
+
+Automatic re-run when files are changed
+### Test
+`npm run test`
+### Lint
+`npm run lint`
+
+Notifies about code style
 ### Lint and fix
-npm run lint-fix\
-Fixes wrong style
+`npm run lint-fix\`
+
+Cleans code
 ### Run server in test environment
-npm run start:test
+`npm run start:test`
