@@ -1,23 +1,15 @@
 import './App.css'
 
-import userService from './services/userService'
+//import userService from './services/userService'
 import React, { useEffect, useState } from 'react'
-<<<<<<< HEAD
-import Users from './components/Users'
-=======
+//import Users from './components/Users'
 import Amplify from 'aws-amplify'
 import Patients from './components/Patients'
 import LoginForm from './components/LoginForm'
->>>>>>> 84333b58712b246c980ff1e60af8a1d2ec23fc9d
+import patientService from './services/userService'
 
 
 const App = () => {
-<<<<<<< HEAD
-  const [users, setUsers] = useState([])
-
-  // Get users when browser connects
-  useEffect(() => userService.getAll().then(usersAtBeginning => setUsers(usersAtBeginning)), [])
-=======
   const [patients, setPatients] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -37,17 +29,12 @@ const App = () => {
     console.log(Amplify.configure())
 
   }, [])
->>>>>>> 84333b58712b246c980ff1e60af8a1d2ec23fc9d
 
   // User needs to be implemented for eslint
   user ? user : undefined
 
   return (
     <div className="App">
-<<<<<<< HEAD
-      <h1>Admin app</h1>
-      <Users users={users} />
-=======
       {user ? <h3>{user.username} logged in</h3>
         : null
       }
@@ -57,7 +44,6 @@ const App = () => {
       {user ? <Patients patients={patients}/>
         : null
       }
->>>>>>> 84333b58712b246c980ff1e60af8a1d2ec23fc9d
     </div>
   )
 }

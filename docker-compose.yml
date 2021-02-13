@@ -11,7 +11,6 @@ services:
     ports:
       - 5432:5432
 
-  backend:
   adminapp-backend:
     build: backend
     ports:
@@ -37,3 +36,6 @@ services:
       - ./frontend:/usr/local/app
     command: npm start
     container_name: adminapp-frontend
+
+volumes:
+  database-data:
