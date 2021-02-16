@@ -1,7 +1,6 @@
-FROM node:14
+FROM node:14.15-alpine
 
 WORKDIR /usr/src/app
-RUN chown -R node:node /usr/src/app
 
 COPY package.json .
 COPY package-lock.json .
@@ -22,6 +21,7 @@ RUN if [ "${NODE_ENV}" != "development" ]; then \
     npm install -g serve; \
     fi
 
+RUN chown -R node:node /usr/src/app
 USER node
 
 CMD serve -s build -l 3000
