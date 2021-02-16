@@ -10,7 +10,7 @@ services:
       - PORT=5000
       - NODE_ENV=development
     volumes:
-     - ./backend:/usr/local/app
+     - ./backend:/usr/src/app
     command: npm run dev
     container_name: adminapp-medified-backend
     
@@ -21,6 +21,6 @@ services:
     depends_on:
       - adminapp-medified-backend
     volumes:
-      - ./frontend:/usr/local/app
+      - ./frontend:/usr/src/app
     command: npm start
     container_name: adminapp-medified-frontend
