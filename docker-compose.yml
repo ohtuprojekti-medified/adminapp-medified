@@ -3,19 +3,24 @@ version: '3.8'
 services:
 
   adminapp-medified-backend:
-    build: backend
+    build: 
+      context: backend
+      args:
+        NODE_ENV: "development"
     ports:
       - 5000:5000
     environment:
       - PORT=5000
-      - NODE_ENV=development
     volumes:
      - ./backend:/usr/src/app
     command: npm run dev
     container_name: adminapp-medified-backend
     
   adminapp-medified-frontend:
-    build: frontend
+    build: 
+      context: frontend
+      args:
+        NODE_ENV: "development"
     ports:
       - 3000:3000
     depends_on:
