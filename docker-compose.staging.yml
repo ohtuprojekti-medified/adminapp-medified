@@ -17,7 +17,6 @@ services:
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
       - DB_HOST=adminapp-medified-db
-      - NODE_ENV=production
     depends_on:
       - adminapp-medified-db
     command: npm start
@@ -27,8 +26,6 @@ services:
     image: ohtumedified/adminapp-medified-frontend:latest
     depends_on:
       - adminapp-medified-backend
-    environment:
-      - NODE_ENV=production
     container_name: adminapp-medified-frontend
 
 volumes:
