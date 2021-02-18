@@ -44,17 +44,17 @@ describe('Login', function () {
     cy.contains('Patients moods listed')
   })
 
-  it('shows logout-button after successfull login', () => {
+  it('shows logout-button after successfull login', function () {
     login(testUsername, testPassword)
 
     cy.contains('log out')
   })
 
-  it('does not show logout-button before login', () => {
+  it('does not show logout-button before login', function () {
     cy.get('body').should('not.contain', 'log out')
   })
 
-  it('shows login form after logging out', () => {
+  it('shows login form after logging out', function () {
     login(testUsername, testPassword)
     logout()
 
@@ -64,14 +64,14 @@ describe('Login', function () {
     cy.contains('login')
   })
 
-  it('does not show logout-button after logging out', () => {
+  it('does not show logout-button after logging out', function () {
     login(testUsername, testPassword)
     logout()
 
     cy.get('body').should('not.contain', 'log out')
   })
 
-  it('does not login with wrong password', () => {
+  it('does not login with wrong password', function () {
     login(testUsername, 'WrongPassword')
 
     cy.contains('Login')
@@ -82,7 +82,7 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'log out')
   })
 
-  it('does not login with wrong username', () => {
+  it('does not login with wrong username', function () {
     login('WrongUsername', testPassword)
 
     cy.contains('Login')
@@ -93,7 +93,7 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'log out')
   })
 
-  it('does not login with wrong username and password', () => {
+  it('does not login with wrong username and password', function () {
     login('WrongUsername', 'WrongPassword')
 
     cy.contains('Login')
