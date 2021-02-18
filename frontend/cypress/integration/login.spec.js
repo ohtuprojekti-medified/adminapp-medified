@@ -12,11 +12,11 @@ const logout = () => {
 }
 
 describe('Login', function () {
-  beforeEach(function() {
+  beforeEach(function () {
     cy.visit('http://localhost:3000/')
   })
 
-  it('exists', function() {
+  it('exists', function () {
     // Can enter website
     cy.contains('Adminapp for monitoring moods')
 
@@ -37,7 +37,7 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'login')
   })
 
-  it('shows patients page after successful login', function() {
+  it('shows patients page after successful login', function () {
     login(testUsername, testPassword)
 
     // Patients page is shown
@@ -68,6 +68,39 @@ describe('Login', function () {
     login(testUsername, testPassword)
     logout()
 
+    cy.get('body').should('not.contain', 'log out')
+  })
+
+  it('does not login with wrong password', () => {
+    login(testUsername, 'WrongPassword')
+
+    cy.contains('Login')
+    cy.contains('username:')
+    cy.contains('password:')
+    cy.contains('login')
+    cy.get('body').should('not.contain', 'Patients moods listed')
+    cy.get('body').should('not.contain', 'log out')
+  })
+
+  it('does not login with wrong username', () => {
+    login('WrongUsername', testPassword)
+
+    cy.contains('Login')
+    cy.contains('username:')
+    cy.contains('password:')
+    cy.contains('login')
+    cy.get('body').should('not.contain', 'Patients moods listed')
+    cy.get('body').should('not.contain', 'log out')
+  })
+
+  it('does not login with wrong username and password', () => {
+    login('WrongUsername', 'WrongPassword')
+
+    cy.contains('Login')
+    cy.contains('username:')
+    cy.contains('password:')
+    cy.contains('login')
+    cy.get('body').should('not.contain', 'Patients moods listed')
     cy.get('body').should('not.contain', 'log out')
   })
 })
