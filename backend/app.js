@@ -1,5 +1,5 @@
 const middleware = require('./utils/middleware')
-const userRouter = require('./routes/userRouter')
+const router = require('./routes/routes')
 const express = require('express')
 require('express-async-errors')
 const morgan = require('morgan')
@@ -29,7 +29,7 @@ db.sequelize.sync()
 
 // Database url
 const usersUrl = '/api'
-app.use(usersUrl, userRouter)
+app.use(usersUrl, router)
 
 // Return 404 for undefined paths
 app.use(middleware.unknownEndpoint)

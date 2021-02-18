@@ -24,6 +24,8 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-db.user_profiles = require('../models/user_profile')(sequelize, Sequelize)
-db.user_survey_answers = require('../models/user_survey_answer')(sequelize, Sequelize)
+db.acces_codes = require('../models/access_codes')(sequelize, Sequelize)
+db.organisations = require('../models/organisations')(sequelize, Sequelize)
+db.user_profiles = require('../models/user_profiles')(sequelize, Sequelize)
+
 module.exports = db

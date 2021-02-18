@@ -38,3 +38,5 @@ yarn-error.log*
 backend/.env
 
 database-data/
+
+db/
