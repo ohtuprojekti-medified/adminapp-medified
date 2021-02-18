@@ -26,6 +26,11 @@ const db = require('./models')
 
 
 db.sequelize.sync()
+  .then(function(){
+    console.log('Connected to DB')
+  }, function(err){
+    console.log(err.original)
+  })
 
 // Database url
 const usersUrl = '/api'
