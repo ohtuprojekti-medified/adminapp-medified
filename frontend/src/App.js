@@ -13,9 +13,8 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
 
-  // GET patients-data when browser connects and configure amplify authorization
+  // configure amplify authorization and check if user is logged in
   useEffect(() => {
-    patientService.getAll().then(patientsAtBeginning => setPatients(patientsAtBeginning))
     require('dotenv').config()
     Amplify.configure({
       Auth: {
@@ -26,7 +25,20 @@ const App = () => {
     })
     console.log(Amplify.configure())
 
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const loggedUser = JSON.parse(loggedUserJSON)
+      setUser(loggedUser)
+    }
   }, [])
+
+  // set token for patient service and GET patients-data if user logs in or is logged in
+  useEffect(() => {
+    if(user) {
+      patientService.setToken(user.signInUserSession.idToken.jwtToken)
+      patientService.getAll().then(patientsAtBeginning => setPatients(patientsAtBeginning))
+    }
+  }, [user])
 
   // User needs to be implemented for eslint
   user ? user : undefined

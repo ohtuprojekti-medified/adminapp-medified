@@ -18,6 +18,7 @@ const login = async credentials => {
 const logOut = async () => {
   try {
     Auth.signOut()
+    window.localStorage.clear()
   } catch (error) {
     console.log('error signing out', error)
   }
