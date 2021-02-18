@@ -14,6 +14,8 @@ const app = express()
 // JSON to readable form
 app.use(express.json())
 
+app.use(middleware.authenticateToken)
+
 // Morgan-logs for HTTP-requests
 morgan.token('body', (req) => JSON.stringify(req.body))
 app.use(morgan('tiny'))
