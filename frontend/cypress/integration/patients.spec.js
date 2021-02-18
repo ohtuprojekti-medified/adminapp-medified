@@ -12,6 +12,6 @@ describe('Patients', function () {
     cy.log(testUsername)
     cy.log(testPassword)
     cy.contains('Adminapp for monitoring moods')
-    // cy.contains('Patients moods listed')
+    //cy.contains('Patients moods listed')
   })
 })
