@@ -2,9 +2,9 @@ const testUsername = Cypress.env('USERNAME')
 const testPassword = Cypress.env('PASSWORD')
 
 // Helper functions
-const login = () => {
-  cy.get('#username').type(testUsername)
-  cy.get('#password').type(testPassword)
+const login = (username, password) => {
+  cy.get('#username').type(username)
+  cy.get('#password').type(password)
   cy.contains('login').click()
 }
 const logout = () => {
@@ -28,7 +28,7 @@ describe('Login', function () {
   })
 
   it('dissappears after logged in', function () {
-    login()
+    login(testUsername, testPassword)
 
     // After login login form is not shown
     cy.get('body').should('not.contain', 'Login')
@@ -38,14 +38,14 @@ describe('Login', function () {
   })
 
   it('shows patients page after successful login', function() {
-    login()
+    login(testUsername, testPassword)
 
     // Patients page is shown
     cy.contains('Patients moods listed')
   })
 
   it('shows logout-button after successfull login', () => {
-    login()
+    login(testUsername, testPassword)
 
     cy.contains('log out')
   })
@@ -55,7 +55,7 @@ describe('Login', function () {
   })
 
   it('shows login form after logging out', () => {
-    login()
+    login(testUsername, testPassword)
     logout()
 
     cy.contains('Login')
@@ -65,7 +65,7 @@ describe('Login', function () {
   })
 
   it('does not show logout-button after logging out', () => {
-    login()
+    login(testUsername, testPassword)
     logout()
 
     cy.get('body').should('not.contain', 'log out')
