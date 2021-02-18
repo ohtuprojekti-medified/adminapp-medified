@@ -24,10 +24,25 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('login', ({ username, password }) => {
-  cy.request('POST', 'http://localhost:5000/login', { username, password })
-    .then(({ body }) => {
-      localStorage.setItem('User', JSON.stringify(body))
-      cy.visit('http://localhost:3000')
-    })
+import { Auth } from 'aws-amplify'
+
+Cypress.Commands.add('login', async credentials => {
+  let user
+  try {
+    user = await Auth.signIn(credentials.username, credentials.password)
+  } catch (error) {
+    console.log('error signing in', error)
+  }
+  localStorage.setItem(
+    'loggedUser', JSON.stringify(user.user)
+  )
+})
+
+Cypress.Commands.add('logOut', async () => {
+  try {
+    await Auth.signOut()
+    window.localStorage.clear()
+  } catch (error) {
+    console.log('error signing out', error)
+  }
 })
