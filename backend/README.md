@@ -9,6 +9,8 @@
 Automatic re-run when files are changed
 ### Test
 `npm run test`
+### Run tests with coverage
+`npm run cov`
 ### Lint
 `npm run lint`
 

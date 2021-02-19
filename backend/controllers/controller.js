@@ -1,5 +1,6 @@
 const db = require('../models')
 const models = db.sequelize.models
+const user_profiles = db.user_profiles
 
 const findAllOrgs = async () => {
   const allOrganisations = await models.organisations.findAll()
@@ -14,7 +15,7 @@ const findAllAccessCodes = async () => {
 }
 
 const findAllUsers = async () => {
-  const userProfiles = await models.user_profiles.findAll({
+  const userProfiles = await user_profiles.findAll({
     attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
   })
   return userProfiles

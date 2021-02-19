@@ -6,15 +6,9 @@ const PORT = process.env.PORT || '5000'
 /*const DB_URI = undefined
 const TEST_DB_URI = undefined*/
 
-let db_host, db_name
+const db_host = process.env.DB_HOST
+const db_name = 'adminapp'
 
-if (process.env.NODE_ENV === 'test') {
-  db_host = process.env.DB_TEST_HOST
-  db_name = 'adminapptest'
-} else {
-  db_host = process.env.DB_HOST
-  db_name = 'adminapp'
-}
 
 
 const db_user = process.env.DB_USERNAME
