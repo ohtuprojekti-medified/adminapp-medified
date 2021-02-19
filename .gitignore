@@ -43,3 +43,7 @@ database-data/
 db/
 **latest-staging-anon-extreme.sql
 
+## test coverage
+
+coverage/
+

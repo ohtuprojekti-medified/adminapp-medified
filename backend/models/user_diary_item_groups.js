@@ -1,19 +1,6 @@
-'use strict'
-const {
-  Model
-} = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
-  class user_diary_item_groups extends Model {
-    // /**
-    //  * Helper method for defining associations.
-    //  * This method is not a part of Sequelize lifecycle.
-    //  * The `models/index` file will call this method automatically.
-    //  */
-    // static associate(models) {
-    //   // define association here
-    // }
-  }
-  user_diary_item_groups.init({
+  return sequelize.define('user_diary_item_groups', {
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
@@ -22,9 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.STRING,
     extra: DataTypes.STRING(4096)
   }, {
-    timestamps: false,
-    sequelize,
-    modelName: 'user_diary_item_groups',
+    timestamps: false
   })
-  return user_diary_item_groups
 }

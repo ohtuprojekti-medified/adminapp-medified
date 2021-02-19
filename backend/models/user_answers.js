@@ -1,19 +1,6 @@
-'use strict'
-const {
-  Model
-} = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
-  class user_answers extends Model {
-    // /**
-    //  * Helper method for defining associations.
-    //  * This method is not a part of Sequelize lifecycle.
-    //  * The `models/index` file will call this method automatically.
-    //  */
-    // static associate(models) {
-    //   // define association here
-    // }
-  }
-  user_answers.init({
+  return sequelize.define('user_answers', {
     id: {
       type: DataTypes.BIGINT,
       primaryKey: true,
@@ -23,9 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     option_id: DataTypes.STRING,
     extra: DataTypes.STRING
   }, {
-    timestamps: false,
-    sequelize,
-    modelName: 'user_answers',
+    timestamps: false
   })
-  return user_answers
 }
