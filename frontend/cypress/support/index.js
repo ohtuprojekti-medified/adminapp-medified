@@ -19,12 +19,3 @@ import './commands'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import Amplify from 'aws-amplify'
-
-Amplify.configure({
-  Auth: {
-    userPoolId: Cypress.env('REACT_APP_USER_POOL_ID'),
-    userPoolWebClientId: Cypress.env('REACT_APP_WEB_CLIENT_ID'),
-    authenticationFlowType: Cypress.env('REACT_APP_AUTHENTICATION_TYPE')
-  }
-})

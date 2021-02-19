@@ -26,17 +26,33 @@
 
 import { Auth } from 'aws-amplify'
 
-Cypress.Commands.add('login', async credentials => {
-  let user
-  try {
-    user = await Auth.signIn(credentials.username, credentials.password)
-  } catch (error) {
-    console.log('error signing in', error)
-  }
-  localStorage.setItem(
-    'loggedUser', JSON.stringify(user.user)
-  )
+const testUsername = Cypress.env('USERNAME')
+const testPassword = Cypress.env('PASSWORD')
+const react_app_user_pool_id = Cypress.env('REACT_APP_USER_POOL_ID')
+const react_app_web_client_id = Cypress.env('REACT_APP_WEB_CLIENT_ID')
+//const react_app_authentication_type = Cypress.env('REACT_APP_AUTHENTICATION_TYPE')
+
+const AWSConfig = {
+  aws_user_pools_id: react_app_user_pool_id,
+  aws_user_pools_web_client_id: react_app_web_client_id
+}
+Auth.configure(AWSConfig)
+
+Cypress.Commands.add('login', () => {
+  cy.then(() => Auth.signIn(testUsername, testPassword)).then((cognitoUser) => {
+    const idToken = cognitoUser.signInUserSession.idToken.jwtToken
+    const accessToken = cognitoUser.signInUserSession.accessToken.jwtToken
+
+    const makeKey = (name) => `CognitoIdentityServiceProvider.${cognitoUser.pool.clientId}.${cognitoUser.username}.${name}`
+    window.localStorage.setItem(makeKey('accessToken'), accessToken)
+    window.localStorage.setItem(makeKey('idToken'), idToken)
+    window.localStorage.setItem(
+      `CognitoIdentityServiceProvider.${cognitoUser.pool.clientId}.LastAuthUser`,
+      cognitoUser.username
+    )
+  })
 })
+
 
 Cypress.Commands.add('logOut', async () => {
   try {

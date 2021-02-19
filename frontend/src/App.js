@@ -34,7 +34,7 @@ const App = () => {
 
   // set token for patient service and GET patients-data if user logs in or is logged in
   useEffect(() => {
-    if(user) {
+    if (user) {
       patientService.setToken(user.signInUserSession.idToken.jwtToken)
       patientService.getAll().then(patientsAtBeginning => setPatients(patientsAtBeginning))
     }
@@ -51,7 +51,7 @@ const App = () => {
       <h1>Adminapp for monitoring moods</h1>
       <LoginForm username={username} setUsername={setUsername} password={password}
         setPassword={setPassword} user={user} setUser={setUser} />
-      {user ? <Patients patients={patients}/>
+      {user ? <Patients patients={patients} />
         : null
       }
     </div>
