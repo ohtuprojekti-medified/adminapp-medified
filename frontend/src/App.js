@@ -40,9 +40,6 @@ const App = () => {
     }
   }, [user])
 
-  // User needs to be implemented for eslint
-  user ? user : undefined
-
   return (
     <div className="App">
       {user ? <h3>{user.username} logged in</h3>
