@@ -40,16 +40,10 @@ Auth.configure(AWSConfig)
 
 Cypress.Commands.add('login', () => {
   cy.then(() => Auth.signIn(testUsername, testPassword)).then((cognitoUser) => {
-    const idToken = cognitoUser.signInUserSession.idToken.jwtToken
-    const accessToken = cognitoUser.signInUserSession.accessToken.jwtToken
-
-    const makeKey = (name) => `CognitoIdentityServiceProvider.${cognitoUser.pool.clientId}.${cognitoUser.username}.${name}`
-    window.localStorage.setItem(makeKey('accessToken'), accessToken)
-    window.localStorage.setItem(makeKey('idToken'), idToken)
     window.localStorage.setItem(
-      `CognitoIdentityServiceProvider.${cognitoUser.pool.clientId}.LastAuthUser`,
-      cognitoUser.username
+      'loggedUser', JSON.stringify(cognitoUser)
     )
+    cy.visit('http://localhost:3000')
   })
 })
 

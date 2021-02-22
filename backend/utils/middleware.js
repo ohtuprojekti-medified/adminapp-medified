@@ -1,20 +1,20 @@
 const logger = require('./logger')
-const CognitoExpress = require("cognito-express")
+const CognitoExpress = require('cognito-express')
 
 //instructions used with authenticating token: https://www.npmjs.com/package/cognito-express
 const cognitoExpress = new CognitoExpress({
-  region: "eu-west-1",
+  region: 'eu-west-1',
   //hide userPoolId? found from .env in frontend
-  cognitoUserPoolId: "FILL_IN_HERE",
-  tokenUse: "id", //Possible Values: access | id
+  cognitoUserPoolId: 'FILL_IN_HERE',
+  tokenUse: 'id', //Possible Values: access | id
   tokenExpiration: 3600000 //Up to default expiration of 1 hour (3600000 ms)
-});
+})
 
 // Authenticating token in aws here
 const authenticateToken = (req, res, next) => {
   //fix cors somehow (2 different domain names, if someone sends options-request just let proceed)
   if (req.method === 'OPTIONS') {
-    next()    
+    next()
   } else {
 
     //get entire content under Authorization header
@@ -25,51 +25,51 @@ const authenticateToken = (req, res, next) => {
     if (bearer === undefined || bearer.indexOf('Bearer ') !== 0) {
       res.status(403).send({ error: 'Invalid token!' })
     }
-    const idTokenFromClient = bearer.substr('Bearer '.length)   
+    const idTokenFromClient = bearer.substr('Bearer '.length)
     console.log('token=' + idTokenFromClient)
 
     //id token sent to AWS and asked if it's valid or not
     cognitoExpress.validate(idTokenFromClient, (err, response) => {
       if (err) {
         res.status(403).send({ error: 'Invalid token!' })
-          /*
+        /*
               //API is not authenticated, do something with the error.
               //Perhaps redirect user back to the login page
-              
+
               //ERROR TYPES:
-              
+
               //If accessTokenFromClient is null or undefined
               err = {
                   "name": "TokenNotFound",
                   "message": "access token not found"
               }
-              
+
               //If tokenuse doesn't match accessTokenFromClient
               {
                   "name": "InvalidTokenUse",
                   "message": "Not an id token"
               }
-  
+
               //If token expired
               err = {
                   "name": "TokenExpiredError",
                   "message": "jwt expired",
                   "expiredAt": "2017-07-05T16:41:59.000Z"
               }
-  
+
               //If token's user pool doesn't match the one defined in constructor
               {
                   "name": "InvalidUserPool",
                   "message": "access token is not from the defined user pool"
               }
-  
+
           */
       } else {
-          //Else API has been authenticated. Proceed.
-          //res.locals.user = response; //Optional - if you want to capture user information
-          next();
+        //Else API has been authenticated. Proceed.
+        //res.locals.user = response; //Optional - if you want to capture user information
+        next()
       }
-    });
+    })
   }
 }
 
