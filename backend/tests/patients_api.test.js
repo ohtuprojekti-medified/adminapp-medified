@@ -5,10 +5,9 @@ const api = supertest(app)
 
 const patientsUrl = '/api/patients'
 
-test('patients are returned in json', async () => {
+test('patients are not returned without token', async () => {
   await api.get(patientsUrl)
-    .expect(200)
-    .expect('Content-Type', /application\/json/)
+    .expect(403)
 })
 
 afterAll(() => mongoose.connection.close())
