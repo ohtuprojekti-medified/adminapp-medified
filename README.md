@@ -65,5 +65,13 @@ Run `install.sh` script for running `npm install` locally for both frontend and 
 `docker-compose down`
 
 #### Add new npm package
-Stop and restart docker-compose after running `npm install` in frontend/backend. 
+Stop and restart docker-compose after running `npm install` in frontend/backend.
+
+#### Upload database-dump to development environment
+
+```
+docker exec -u postgres adminapp-db psql -c "DROP DATABASE \"adminapp\""
+docker exec -u postgres adminapp-db psql -c "CREATE DATABASE \"adminapp\""
+docker exec -i -u postgres adminapp-db psql adminapp < PATH_TO_DUMP
+```
 

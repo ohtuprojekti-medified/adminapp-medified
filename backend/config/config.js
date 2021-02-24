@@ -2,16 +2,10 @@ require('dotenv').config()
 
 const PORT = process.env.PORT || '5000'
 
-// DB URI:s
-/*const DB_URI = undefined
-const TEST_DB_URI = undefined*/
-
 let db_host, db_name
 
 db_host = process.env.DB_HOST
 db_name = 'adminapp'
-
-
 
 const db_user = process.env.DB_USERNAME
 const db_password = process.env.DB_PASSWORD

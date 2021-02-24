@@ -21,16 +21,16 @@ app.use(morgan(':body'))
 app.use(cors())
 
 const db = require('./models')
-// use alter: true if you need to change database models without losing test/dummy data
-// db.sequelize.sync({ alter: true })
 
-
+// Error-handling for failing database connection
 db.sequelize.sync()
-  .then(function(){
+  .then(function () {
     console.log('Connected to DB')
-  }, function(err){
+  }, function (err) {
     console.log(err.original)
   })
+
+
 
 // Database url
 const usersUrl = '/api'
