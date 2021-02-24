@@ -1,13 +1,24 @@
 const mongoose = require('mongoose')
 const supertest = require('supertest')
-const app = require('../app')
-const api = supertest(app)
+const testuTILS = require('../utils/testUtils')
+let app
+let api
 
 const patientsUrl = '/api/patients'
 
-test('patients are not returned without token', async () => {
+beforeEach(() => {
+  app = testuTILS.appWithMockAuth()
+  api = supertest(app)
+})
+
+test('patients are returned in json', async () => {
   await api.get(patientsUrl)
-    .expect(403)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+})
+
+afterEach(() => {
+  testuTILS.restoreAuth()
 })
 
 afterAll(() => mongoose.connection.close())
