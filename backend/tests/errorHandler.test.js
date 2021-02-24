@@ -5,25 +5,23 @@ let app
 let api
 let middlewares
 
-let resMock
+let nextMock
 
 beforeEach(() => {
-  resMock = {
-    status: jest.fn()
-  }
+  nextMock = jest.fn()
   middlewares = require('../utils/middleware')
-  sinon.stub(middlewares, 'unknownEndpoint')
-    .callsFake((req) => {
-      middlewares.unknownEndpoint(req, resMock)
+  sinon.stub(middlewares, 'errorHandler')
+    .callsFake((error, req, res) => {
+      middlewares.errorHandler(error, req, res, nextMock)
     })
   app = require('../app')
   api = supertest(app)
 })
 
 // This does not work yet
-test('unknownEndPoint responds with statuscode 404', async () => {
-  await api.get('/unknownURL')
-  //expect(resMock.status).toHaveBeenCalledWith(404)
+test('errorHandler calls next when no error', async () => {
+  await api.get('/api/patients')
+  //expect(nextMock).toHaveBeenCalledTimes(1)
 })
 
 afterAll(() => mongoose.connection.close())
