@@ -10,6 +10,7 @@ services:
       - database-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    container_name: adminapp-db
 
   adminapp-medified-backend:
     build: 

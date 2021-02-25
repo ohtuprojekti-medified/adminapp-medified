@@ -24,6 +24,15 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-db.users = require('../models/appuser')(sequelize, Sequelize)
-
+db.acces_codes = require('../models/access_codes')(sequelize, Sequelize)
+db.organisations = require('../models/organisations')(sequelize, Sequelize)
+db.user_profiles = require('../models/user_profiles')(sequelize, Sequelize)
+db.user_care_givers = require('../models/user_care_givers')(sequelize, Sequelize)
+db.user_activities = require('../models/user_activities')(sequelize, Sequelize)
+db.user_care_giver_activities = require('../models/user_care_giver_activities')(sequelize, Sequelize)
+db.user_answers = require('../models/user_answers')(sequelize, Sequelize)
+db.user_diary_items = require('../models/user_diary_items')(sequelize, Sequelize)
+db.user_diary_item_groups = require('../models/user_diary_item_groups')(sequelize, Sequelize)
+db.user_professional_profiles = require('../models/user_professional_profiles')(sequelize, Sequelize)
+db.user_survey_answers = require('../models/user_survey_answers')(sequelize, Sequelize)
 module.exports = db
