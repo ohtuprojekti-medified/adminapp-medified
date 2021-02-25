@@ -9,6 +9,6 @@ describe('Patients', function () {
 
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
-    cy.contains('Patients moods listed')
+    cy.contains('Application users:')
   })
 })
