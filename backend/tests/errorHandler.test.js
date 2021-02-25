@@ -33,7 +33,7 @@ test('errorHandler sends error when CastError is made', async () => {
   }
   errorHandler(error, mockReq, mockRes, mockNext)
   expect(mockSend.called).toBe(true)
-  expect(mockSend.calledWith({ error: 'Id in URL is not correct' }))
+  expect(mockSend.calledWith({ error: 'Id in URL is not correct' })).toBe(true)
 })
 
 test('errorHandler sends error when CastError is made', async () => {
@@ -43,5 +43,5 @@ test('errorHandler sends error when CastError is made', async () => {
   }
   errorHandler(error, mockReq, mockRes, mockNext)
   expect(mockJson.called).toBe(true)
-  expect(mockJson.calledWith({ error: 'Error with validation!' }))
+  expect(mockJson.calledWith({ error: 'Error with validation!' })).toBe(true)
 })

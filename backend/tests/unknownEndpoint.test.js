@@ -1,29 +1,23 @@
-const mongoose = require('mongoose')
+const mocks = require('node-mocks-http')
 const sinon = require('sinon')
-const supertest = require('supertest')
-let app
-let api
-let middlewares
-
-let resMock
+let unknownEndpoint
+let mockReq, mockRes, mockNext
+let mockSend
 
 beforeEach(() => {
-  resMock = {
-    status: jest.fn()
-  }
-  middlewares = require('../utils/middleware')
-  sinon.stub(middlewares, 'unknownEndpoint')
-    .callsFake((req) => {
-      middlewares.unknownEndpoint(req, resMock)
-    })
-  app = require('../app')
-  api = supertest(app)
+  unknownEndpoint = require('../utils/middleware').unknownEndpoint
+  mockReq = mocks.createRequest()
+  mockSend = sinon.spy()
+  mockRes = mocks.createRequest({
+    status: () => {
+      return {
+        send: mockSend
+      }
+    }
+  })
 })
 
-// This does not work yet
-test('unknownEndPoint responds with statuscode 404', async () => {
-  await api.get('/unknownURL')
-  //expect(resMock.status).toHaveBeenCalledWith(404)
+test('authenticateToken does not call next when no token', async () => {
+  unknownEndpoint(mockReq, mockRes, mockNext)
+  expect(mockSend.calledWith({ error: 'URL path does not match anything' })).toBe(true)
 })
-
-afterAll(() => mongoose.connection.close())
