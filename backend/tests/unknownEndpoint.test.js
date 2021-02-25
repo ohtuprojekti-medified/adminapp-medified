@@ -17,7 +17,7 @@ beforeEach(() => {
   })
 })
 
-test('authenticateToken does not call next when no token', async () => {
+test('unknownEndpoint sends error', async () => {
   unknownEndpoint(mockReq, mockRes, mockNext)
   expect(mockSend.calledWith({ error: 'URL path does not match anything' })).toBe(true)
 })
