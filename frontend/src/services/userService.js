@@ -4,7 +4,18 @@ import axios from 'axios'
 const productionPath = process.env.NODE_ENV === 'production' ? 'medified/' : ''
 const baseUrl = `http://localhost:5000/${productionPath}api`
 
+let token = undefined
 
-const getAll = async () => axios.get(`${baseUrl}/users`).then(response => response.data)
+const setToken = newToken => {
+  token = `Bearer ${newToken}`
+}
 
-export default { getAll }
+const getAll = async () => {
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.get(`${baseUrl}/users`, config)
+  return response.data
+}
+
+export default { getAll, setToken }

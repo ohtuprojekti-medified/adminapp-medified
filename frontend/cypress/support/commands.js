@@ -24,10 +24,35 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('login', ({ username, password }) => {
-  cy.request('POST', 'http://localhost:5000/login', { username, password })
-    .then(({ body }) => {
-      localStorage.setItem('User', JSON.stringify(body))
-      cy.visit('http://localhost:3000')
-    })
+import { Auth } from 'aws-amplify'
+
+const testUsername = Cypress.env('USERNAME')
+const testPassword = Cypress.env('PASSWORD')
+const react_app_user_pool_id = Cypress.env('REACT_APP_USER_POOL_ID')
+const react_app_web_client_id = Cypress.env('REACT_APP_WEB_CLIENT_ID')
+//const react_app_authentication_type = Cypress.env('REACT_APP_AUTHENTICATION_TYPE')
+
+const AWSConfig = {
+  aws_user_pools_id: react_app_user_pool_id,
+  aws_user_pools_web_client_id: react_app_web_client_id
+}
+Auth.configure(AWSConfig)
+
+Cypress.Commands.add('login', () => {
+  cy.then(() => Auth.signIn(testUsername, testPassword)).then((cognitoUser) => {
+    window.localStorage.setItem(
+      'loggedUser', JSON.stringify(cognitoUser)
+    )
+    cy.visit('http://localhost:3000')
+  })
+})
+
+
+Cypress.Commands.add('logOut', async () => {
+  try {
+    await Auth.signOut()
+    window.localStorage.clear()
+  } catch (error) {
+    console.log('error signing out', error)
+  }
 })

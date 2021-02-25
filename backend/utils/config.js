@@ -18,9 +18,11 @@ const pool = {
   idle: 10000
 }
 
+const REACT_APP_USER_POOL_ID = process.env.REACT_APP_USER_POOL_ID
 
 module.exports = {
   PORT,
+  REACT_APP_USER_POOL_ID,
   //  DB_URI,
   //  TEST_DB_URI,
   db_host,
