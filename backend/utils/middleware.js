@@ -1,10 +1,10 @@
 const logger = require('./logger')
 const CognitoExpress = require('cognito-express')
-const config = require('./config');
+const config = require('./config')
 
 //instructions used with authenticating token: https://www.npmjs.com/package/cognito-express
 const cognitoExpress = new CognitoExpress({
-  region: 'eu-west-1',  
+  region: 'eu-west-1',
   cognitoUserPoolId: config.REACT_APP_USER_POOL_ID,
   tokenUse: 'id', //Possible Values: access | id
   tokenExpiration: 3600000 //Up to default expiration of 1 hour (3600000 ms)
@@ -25,7 +25,9 @@ const authenticateToken = (req, res, next) => {
     if (bearer === undefined || bearer.indexOf('Bearer ') !== 0) {
       res.status(403).send({ error: 'Invalid token!' })
     }
-    const idTokenFromClient = bearer.substr('Bearer '.length)
+    const idTokenFromClient = bearer !== undefined
+      ? bearer.substr('Bearer '.length)
+      : ''
     console.log('token=' + idTokenFromClient)
 
     //id token sent to AWS and asked if it's valid or not

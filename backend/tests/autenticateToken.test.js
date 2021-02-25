@@ -1,26 +1,26 @@
-const mongoose = require('mongoose')
+const mocks = require('node-mocks-http')
 const sinon = require('sinon')
-const supertest = require('supertest')
-let app
-let api
-let middlewares
-
-let nextMock
+let authenticateToken
+let mockReq, mockRes, mockNext
 
 beforeEach(() => {
-  nextMock = jest.fn()
-  middlewares = require('../utils/middleware')
-  sinon.stub(middlewares, 'authenticateToken')
-    .callsFake((req, res) => {
-      middlewares.authenticateToken(req, res, nextMock)
-    })
-  app = require('../app')
-  api = supertest(app)
+  authenticateToken = require('../utils/middleware').authenticateToken
+  mockRes = mocks.createResponse()
+  mockNext = sinon.spy()
 })
 
-test('authenticateToken calls next when no token', async () => {
-  await api.get('/api/patients')
-  expect(nextMock).toHaveBeenCalledTimes(0)
+test('authenticateToken does not call next when no token', async () => {
+  mockReq = mocks.createRequest()
+  authenticateToken(mockReq, mockRes, mockNext)
+  expect(mockNext.called).toBe(false)
 })
 
-afterAll(() => mongoose.connection.close())
+test('authenticateToken does not call next when token is fake', async () => {
+  mockReq = mocks.createRequest({
+    headers: {
+      Authorization: 'Bearer abc123'
+    }
+  })
+  authenticateToken(mockReq, mockRes, mockNext)
+  expect(mockNext.called).toBe(false)
+})

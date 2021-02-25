@@ -6,7 +6,7 @@ const PORT = process.env.PORT || '5000'
 /*const DB_URI = undefined
 const TEST_DB_URI = undefined*/
 
-const REACT_APP_USER_POOL_ID = process.env.REACT_APP_USER_POOL_ID;
+const REACT_APP_USER_POOL_ID = process.env.REACT_APP_USER_POOL_ID
 
 module.exports = {
   PORT,
