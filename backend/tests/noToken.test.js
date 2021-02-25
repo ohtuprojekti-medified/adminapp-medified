@@ -4,7 +4,7 @@ const app = require('../app')
 const api = supertest(app)
 
 test('patients are not returned without token', async () => {
-  await api.get('/api/patients')
+  await api.get('/api/users')
     .expect(403)
 })
 
