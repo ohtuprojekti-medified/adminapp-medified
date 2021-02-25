@@ -1,16 +1,15 @@
 import './App.css'
 
-//import userService from './services/userService'
+import userService from './services/userService'
 import React, { useEffect, useState } from 'react'
-//import Users from './components/Users'
 import Amplify from 'aws-amplify'
-import Patients from './components/Patients'
+import Users from './components/Users'
 import LoginForm from './components/LoginForm'
-import patientService from './services/userService'
+
 
 
 const App = () => {
-  const [patients, setPatients] = useState([])
+  const [appUsers, setAppUsers] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
@@ -34,11 +33,11 @@ const App = () => {
     }
   }, [])
 
-  // set token for patient service and GET patients-data if user logs in or is logged in
+  // set token for user service and GET data if user logs in or is logged in
   useEffect(() => {
     if (user) {
-      patientService.setToken(user.signInUserSession.idToken.jwtToken)
-      patientService.getAll().then(patientsAtBeginning => setPatients(patientsAtBeginning))
+      userService.setToken(user.signInUserSession.idToken.jwtToken)
+      userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
     }
   }, [user])
 
@@ -50,11 +49,10 @@ const App = () => {
       <h1>Adminapp for monitoring moods</h1>
       <LoginForm username={username} setUsername={setUsername} password={password}
         setPassword={setPassword} user={user} setUser={setUser} />
-      {user ? <Patients patients={patients} />
+      {user ? <Users users={appUsers} />
         : null
       }
     </div>
-  )
-}
+  )}
 
 export default App

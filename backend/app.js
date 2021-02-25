@@ -1,5 +1,5 @@
 const middleware = require('./utils/middleware')
-const userRouter = require('./routes/userRouter')
+const router = require('./routes/routes')
 const express = require('express')
 require('express-async-errors')
 const morgan = require('morgan')
@@ -23,15 +23,20 @@ app.use(morgan(':body'))
 app.use(cors())
 
 const db = require('./models')
-// use alter: true if you need to change database models without losing test/dummy data
-// db.sequelize.sync({ alter: true })
 
-
+// Error-handling for failing database connection
 db.sequelize.sync()
+  .then(function () {
+    console.log('Connected to DB')
+  }, function (err) {
+    console.log(err.original)
+  })
+
+
 
 // Database url
 const usersUrl = '/api'
-app.use(usersUrl, userRouter)
+app.use(usersUrl, router)
 
 // Return 404 for undefined paths
 app.use(middleware.unknownEndpoint)

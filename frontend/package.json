@@ -2,6 +2,7 @@
   "name": "adminapp-medified",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/medified/",
   "dependencies": {
     "@testing-library/user-event": "^12.6.0",
     "aws-amplify": "^3.3.17",

@@ -2,12 +2,13 @@ require('dotenv').config()
 
 const PORT = process.env.PORT || '5000'
 
-const db_host = process.env.DB_HOST
+let db_host, db_name
+
+db_host = process.env.DB_HOST
+db_name = 'adminapp'
+
 const db_user = process.env.DB_USERNAME
 const db_password = process.env.DB_PASSWORD
-const username = process.env.DB_USERNAME
-const password = process.env.DB_PASSWORD
-const db_name = 'adminapp'
 const dialect = 'postgres'
 const pool = {
   max: 5,
@@ -19,13 +20,12 @@ const pool = {
 
 module.exports = {
   PORT,
+  //  DB_URI,
+  //  TEST_DB_URI,
   db_host,
   db_user,
   db_password,
-  username,
-  password,
   db_name,
   dialect,
-  pool,
-
+  pool
 }

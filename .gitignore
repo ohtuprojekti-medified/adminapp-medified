@@ -38,7 +38,16 @@ yarn-error.log*
 
 # environment variables
 backend/.env
-
-database-data/
 frontend/.env
 .env
+
+# database
+
+database-data/
+db/
+**latest-staging-anon-extreme.sql
+
+## test coverage
+
+coverage/
+

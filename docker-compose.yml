@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
 
-  adminapp-db:
+  adminapp-medified-db:
     image: postgres:latest
     restart: unless-stopped
     env_file: ./.env
@@ -10,32 +10,36 @@ services:
       - database-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    container_name: adminapp-db
 
-  adminapp-backend:
-    build: backend
+  adminapp-medified-backend:
+    build: 
+      context: backend
+      args:
+        NODE_ENV: "development"
     ports:
       - 5000:5000
-    env_file: ./.env 
-    environment:
-      - PORT=5000
-      - NODE_ENV=development
+    env_file: ./.env
     depends_on:
-      - adminapp-db
+      - adminapp-medified-db
     volumes:
      - ./backend:/usr/src/app
     command: npm run dev
-    container_name: adminapp-backend
+    container_name: adminapp-medified-backend
     
-  adminapp-frontend:
-    build: frontend
+  adminapp-medified-frontend:
+    build: 
+      context: frontend
+      args:
+        NODE_ENV: "development"
     ports:
       - 3000:3000
     depends_on:
-      - adminapp-backend
+      - adminapp-medified-backend
     volumes:
       - ./frontend:/usr/src/app
     command: npm start
-    container_name: adminapp-frontend
+    container_name: adminapp-medified-frontend
 
 volumes:
   database-data:

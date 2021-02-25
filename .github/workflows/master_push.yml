@@ -1,0 +1,64 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: MASTER PUSH
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - name: setup actions
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: install, build and test frontend
+      run: |
+        cd frontend
+        npm install
+        npm run build
+        npm run test --watchAll=false   
+        npm run lint
+
+    - name: install, build and test backend
+      run: |
+        cd backend
+        npm install
+        npm run test
+        npm run lint
+    
+    - name: Dockerhub login
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
+    - name: Dockerhub frontend deploy latest
+      run: |
+        cd frontend
+        docker build -t frontend .
+        docker tag frontend ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
+        docker push ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
+
+    - name: Dockerhub backend deploy latest
+      run: |
+        cd backend
+        docker build -t backend .
+        docker tag backend ${{secrets.DOCKER_USERNAME}}/adminapp-medified-backend:latest
+        docker push ${{secrets.DOCKER_USERNAME}}/adminapp-medified-backend:latest
