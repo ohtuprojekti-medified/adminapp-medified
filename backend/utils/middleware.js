@@ -31,7 +31,7 @@ const authenticateToken = (req, res, next) => {
     console.log('token=' + idTokenFromClient)
 
     //id token sent to AWS and asked if it's valid or not
-    cognitoExpress.validate(idTokenFromClient, (err) => {
+    cognitoExpress.validate(idTokenFromClient, (err, response) => {
       if (err) {
         res.status(403).send({ error: 'Invalid token!' })
         /*
