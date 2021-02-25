@@ -1,11 +1,11 @@
 const logger = require('./logger')
 const CognitoExpress = require('cognito-express')
+const config = require('./config');
 
 //instructions used with authenticating token: https://www.npmjs.com/package/cognito-express
 const cognitoExpress = new CognitoExpress({
-  region: 'eu-west-1',
-  //hide userPoolId? found from .env in frontend
-  cognitoUserPoolId: 'FILL_IN_HERE',
+  region: 'eu-west-1',  
+  cognitoUserPoolId: config.REACT_APP_USER_POOL_ID,
   tokenUse: 'id', //Possible Values: access | id
   tokenExpiration: 3600000 //Up to default expiration of 1 hour (3600000 ms)
 })
