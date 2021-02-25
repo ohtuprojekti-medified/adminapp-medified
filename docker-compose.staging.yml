@@ -10,6 +10,7 @@ services:
       - POSTGRES_DB=adminapp
     volumes:
       - database-data:/var/lib/postgresql/data
+    container_name: adminapp-medified-db
 
   adminapp-medified-backend:
     image: ohtumedified/adminapp-medified-backend:latest
