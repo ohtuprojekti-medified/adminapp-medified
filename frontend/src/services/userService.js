@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // Needed for production environment
 const baseUrl = process.env.NODE_ENV === 'production'
-  ? 'http://localhost:3000/medified/api'
+  ? 'https://ohtup-staging.cs.helsinki.fi/medified/api' // STAGING
   : 'http://localhost:5000/api'
 
 

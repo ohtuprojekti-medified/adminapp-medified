@@ -1,45 +1,38 @@
-version: '3.8'
+version: '3.7'
 
 services:
-
   adminapp-medified-db:
     image: postgres:latest
     restart: unless-stopped
-    env_file: ./.env
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=adminapp
     volumes:
       - database-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
     container_name: adminapp-medified-db
 
   adminapp-medified-backend:
-    build: 
-      context: backend
-      args:
-        NODE_ENV: "development"
-    ports:
-      - 5000:5000
-    env_file: ./.env
+    image: ohtumedified/adminapp-medified-backend:latest
+    environment:
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=adminapp-medified-db
     depends_on:
       - adminapp-medified-db
-    volumes:
-     - ./backend:/usr/src/app
-    command: npm run dev
+    command: npm start
     container_name: adminapp-medified-backend
-    
+
   adminapp-medified-frontend:
-    build: 
-      context: frontend
-      args:
-        NODE_ENV: "development"
-    ports:
-      - 3000:3000
+    image: ohtumedified/adminapp-medified-frontend:latest
     depends_on:
       - adminapp-medified-backend
-    volumes:
-      - ./frontend:/usr/src/app
-    command: npm start
     container_name: adminapp-medified-frontend
 
 volumes:
   database-data:
+
+networks:
+  default:
+    external:
+      name: ohtup
