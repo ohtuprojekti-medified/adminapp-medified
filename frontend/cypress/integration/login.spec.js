@@ -41,7 +41,7 @@ describe('Login', function () {
     login(testUsername, testPassword)
 
     // Patients page is shown
-    cy.contains('Patients moods listed')
+    cy.contains('Application users:')
   })
 
   it('shows logout-button after successfull login', function () {
@@ -78,7 +78,7 @@ describe('Login', function () {
     cy.contains('username:')
     cy.contains('password:')
     cy.contains('login')
-    cy.get('body').should('not.contain', 'Patients moods listed')
+    cy.get('body').should('not.contain', 'Application users:')
     cy.get('body').should('not.contain', 'log out')
   })
 
@@ -89,7 +89,7 @@ describe('Login', function () {
     cy.contains('username:')
     cy.contains('password:')
     cy.contains('login')
-    cy.get('body').should('not.contain', 'Patients moods listed')
+    cy.get('body').should('not.contain', 'Application users:')
     cy.get('body').should('not.contain', 'log out')
   })
 
@@ -100,7 +100,7 @@ describe('Login', function () {
     cy.contains('username:')
     cy.contains('password:')
     cy.contains('login')
-    cy.get('body').should('not.contain', 'Patients moods listed')
+    cy.get('body').should('not.contain', 'Application users:')
     cy.get('body').should('not.contain', 'log out')
   })
 })
