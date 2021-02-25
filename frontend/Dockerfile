@@ -21,7 +21,7 @@ RUN if [ "${NODE_ENV}" != "development" ]; then \
     npm install -g serve; \
     fi
 
-# RUN chown -R node:node /usr/src/app
-# USER node
+RUN chown -R node:node /usr/src/app
+USER node
 
 CMD serve -s build -l 3000
