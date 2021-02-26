@@ -42,6 +42,9 @@ jobs:
         npm install
         npm run test
         npm run lint
+      env: 
+        REACT_APP_USER_POOL_ID: ${{ secrets.REACT_APP_USER_POOL_ID }}   
+          
     
     - name: Dockerhub login
       uses: docker/login-action@v1
@@ -62,6 +65,4 @@ jobs:
         docker build -t backend .
         docker tag backend ${{secrets.DOCKER_USERNAME}}/adminapp-medified-backend:latest
         docker push ${{secrets.DOCKER_USERNAME}}/adminapp-medified-backend:latest
-      env: 
-        REACT_APP_USER_POOL_ID: ${{ secrets.REACT_APP_USER_POOL_ID }}   
-        
+      
