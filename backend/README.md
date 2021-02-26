@@ -19,3 +19,5 @@ Notifies about code style
 `npm run lint-fix`
 
 Cleans code
+### Run server in test environment
+`npm run start:test`

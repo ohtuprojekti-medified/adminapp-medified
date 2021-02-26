@@ -16,3 +16,9 @@
 
 ### Clean code
 `npm run lint-fix`
+
+### Open Cypress UI
+`npm run cypress:open`
+
+### Run Cypress tests in console
+`npm run test:e2e`

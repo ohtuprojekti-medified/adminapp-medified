@@ -8,6 +8,8 @@
 
 # testing
 /coverage
+frontend/cypress/videos
+frontend/cypress/screenshots
 
 /backend/requests
 
@@ -36,6 +38,8 @@ yarn-error.log*
 
 # environment variables
 backend/.env
+frontend/.env
+.env
 
 # database
 

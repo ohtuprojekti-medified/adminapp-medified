@@ -5,7 +5,9 @@
   "homepage": "/medified/",
   "dependencies": {
     "@testing-library/user-event": "^12.6.0",
+    "aws-amplify": "^3.3.17",
     "axios": "^0.21.1",
+    "dotenv": "^8.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -18,7 +20,9 @@
     "test-coverage": "CI=true npm test -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
+    "lint-fix": "eslint . --fix",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -41,6 +45,9 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
+    "cypress": "^6.4.0",
+    "cypress-dotenv": "^1.2.2",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-jest": "^24.1.3"
   }
 }
