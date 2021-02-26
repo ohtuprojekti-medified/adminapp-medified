@@ -1,15 +1,18 @@
 import './App.css'
 
 import userService from './services/userService'
+import caregiverService from './services/caregiverService'
 import React, { useEffect, useState } from 'react'
 import Amplify from 'aws-amplify'
 import Users from './components/Users'
+import Caregivers from './components/Caregivers'
 import LoginForm from './components/LoginForm'
 
 
 
 const App = () => {
   const [appUsers, setAppUsers] = useState([])
+  const [caregivers, setCaregivers] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
@@ -38,6 +41,8 @@ const App = () => {
     if (user) {
       userService.setToken(user.signInUserSession.idToken.jwtToken)
       userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
+      caregiverService.setToken(user.signInUserSession.idToken.jwtToken)
+      caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
     }
   }, [user])
 
@@ -49,10 +54,17 @@ const App = () => {
       <h1>Adminapp for monitoring moods</h1>
       <LoginForm username={username} setUsername={setUsername} password={password}
         setPassword={setPassword} user={user} setUser={setUser} />
-      {user ? <Users users={appUsers} />
-        : null
+      {user
+        ?
+        <div>
+          <Users users={appUsers} />
+          <Caregivers caregivers={caregivers} />
+        </div>
+        :
+        null
       }
     </div>
-  )}
+  )
+}
 
 export default App
