@@ -42,3 +42,5 @@ jobs:
         npm install
         npm run test
         npm run lint
+      env: 
+        REACT_APP_USER_POOL_ID: ${{ secrets.REACT_APP_USER_POOL_ID }}   
