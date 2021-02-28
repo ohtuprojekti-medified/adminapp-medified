@@ -58,6 +58,14 @@ The development environment is entirely configured in the docker-compose.yml fil
 
 #### First time install
 Run `install.sh` script for running `npm install` locally for both frontend and backend. You can also do this manually.
+
+The project uses PrimeReact libraries. You might have to install the used libraries into the frontend-folder if you are using the app locally. The following installs are recommendated:
+
+```
+npm install primereact --save
+npm install primeicons --save
+npm install primeflex --save
+```
 #### Start the development environment
 `docker-compose up`
 
@@ -74,4 +82,8 @@ docker exec -u postgres adminapp-db psql -c "DROP DATABASE \"adminapp\""
 docker exec -u postgres adminapp-db psql -c "CREATE DATABASE \"adminapp\""
 docker exec -i -u postgres adminapp-db psql adminapp < PATH_TO_DUMP
 ```
+
+You can go inside docker container to check that data is there:
+
+`docker exec -it -u postgres adminapp-medified-db psql -d adminapp`
 
