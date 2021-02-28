@@ -65,6 +65,7 @@ The project uses PrimeReact libraries. You might have to install the used librar
 npm install primereact --save
 npm install primeicons --save
 npm install primeflex --save
+npm install react-transition-group --save
 ```
 #### Start the development environment
 `docker-compose up`
