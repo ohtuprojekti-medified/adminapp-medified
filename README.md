@@ -58,6 +58,14 @@ The development environment is entirely configured in the docker-compose.yml fil
 
 #### First time install
 Run `install.sh` script for running `npm install` locally for both frontend and backend. You can also do this manually.
+
+The project uses PrimeReact libraries. You might have to install the used libraries into the frontend-folder if you are using the app locally. The following installs are recommendated:
+
+```
+npm install primereact --save
+npm install primeicons --save
+npm install primeflex --save
+```
 #### Start the development environment
 `docker-compose up`
 

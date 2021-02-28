@@ -1,3 +1,8 @@
+// Muut mahdolliset teemat: saga ja arya, ja värit: orange, green, blue
+import 'primereact/resources/themes/vela-purple/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+
 import './App.css'
 
 import userService from './services/userService'
