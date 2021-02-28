@@ -58,6 +58,10 @@ jobs:
         docker build -t frontend .
         docker tag frontend ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
         docker push ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
+      env:
+        REACT_APP_USER_POOL_ID: ${{ secrets.REACT_APP_USER_POOL_ID }}
+        REACT_APP_WEB_CLIENT_ID: ${{ secrets.REACT_APP_WEB_CLIENT_ID }}
+        REACT_APP_AUTHENTICATION_TYPE: ${{ secrets.REACT_APP_AUTHENTICATION_TYPE }}
 
     - name: Dockerhub backend deploy latest
       run: |
