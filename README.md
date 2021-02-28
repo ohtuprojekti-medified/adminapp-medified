@@ -83,3 +83,7 @@ docker exec -u postgres adminapp-db psql -c "CREATE DATABASE \"adminapp\""
 docker exec -i -u postgres adminapp-db psql adminapp < PATH_TO_DUMP
 ```
 
+You can go inside docker container to check that data is there:
+
+`docker exec -it -u postgres adminapp-medified-db psql -d adminapp`
+

@@ -15,8 +15,14 @@ const getAll = async () => {
   const config = {
     headers: { Authorization: token }
   }
-  const response = await axios.get(`${baseUrl}/caregivers`, config)
-  return response.data
+  try {
+    const response = await axios.get(`${baseUrl}/caregivers`, config)
+    return response.data
+  } catch (error) {
+    console.log(error)
+    return []
+  }
+
 }
 
 export default { getAll, setToken }
