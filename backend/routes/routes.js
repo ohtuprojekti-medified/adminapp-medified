@@ -10,7 +10,7 @@ router.get('/users', async (req, res) => {
 })
 
 router.get('/caregivers', async (req, res) => {
-  const caregivers = await controller.findAllUserCaregivers()
+  const caregivers = await controller.findAllAccessCodes()
   res.json(caregivers)
 })
 
