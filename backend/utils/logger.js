@@ -1,5 +1,6 @@
 /**
  * Prints messages
+ *
  * @param  {...any} messages - Messages to be printed
  */
 const log = (...messages) => {
@@ -8,6 +9,7 @@ const log = (...messages) => {
 
 /**
  * Prints errors
+ *
  * @param  {...any} errors - Errors to be printed
  */
 const logError = (...errors) => {

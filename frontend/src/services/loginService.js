@@ -2,6 +2,7 @@ import { Auth } from 'aws-amplify'
 
 /**
  * Logs user into AWS
+ *
  * @param {*} credentials - Contains username and password
  * @returns {*} - Returns object with token
  */
