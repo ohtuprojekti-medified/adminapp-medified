@@ -51,3 +51,7 @@ db/
 
 coverage/
 
+# documentation
+
+frontend/out
+backend/out
