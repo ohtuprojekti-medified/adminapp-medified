@@ -10,7 +10,9 @@
     "cov": "NODE_ENV=test jest --coverage --verbose --runInBand --forceExit",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "start:test": "NODE_ENV=test node index.js"
+    "start:test": "NODE_ENV=test node index.js",
+    "jsdoc": "jsdoc -c ./.jsdoc.conf.json",
+    "jsdoc:open": "npm run jsdoc && sensible-browser docs/index.html &"
   },
   "repository": {
     "type": "git",

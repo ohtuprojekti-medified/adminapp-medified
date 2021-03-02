@@ -25,7 +25,9 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "cypress:open": "cypress open",
-    "test:e2e": "cypress run"
+    "test:e2e": "cypress run",
+    "jsdoc": "jsdoc -c ./.jsdoc.conf.json",
+    "jsdoc:open": "npm run jsdoc && sensible-browser docs/index.html &"
   },
   "eslintConfig": {
     "extends": [
