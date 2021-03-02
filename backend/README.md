@@ -21,3 +21,9 @@ Notifies about code style
 Cleans code
 ### Run server in test environment
 `npm run start:test`
+
+### Generate jsdoc documentation
+`npm run jsdoc`
+
+### Generate jsdoc documentation and open in default browser
+`npm run jsdoc:open`

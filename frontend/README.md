@@ -22,3 +22,9 @@
 
 ### Run Cypress tests in console
 `npm run test:e2e`
+
+### Generate jsdoc documentation
+`npm run jsdoc`
+
+### Generate jsdoc documentation and open in default browser
+`npm run jsdoc:open`
