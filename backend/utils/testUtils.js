@@ -2,6 +2,11 @@ const sinon = require('sinon')
 let app
 let middlewares
 
+/**
+ * Creates backend without AWS authentication
+ *
+ * @returns {object} - App without authentication
+ */
 const appWithMockAuth = () => {
   middlewares = require('./middleware')
   sinon.stub(middlewares, 'authenticateToken')
@@ -12,6 +17,9 @@ const appWithMockAuth = () => {
   return app
 }
 
+/**
+ * Restores authentication in app if disabled
+ */
 const restoreAuth = () => {
   middlewares.authenticateToken.restore()
 }
