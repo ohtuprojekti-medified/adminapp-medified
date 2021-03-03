@@ -1,7 +1,7 @@
 /**
  * Tests for unknownEndpoint middleware
  *
- * @module unknownEndpoint_test
+ * @module tests/unknownEndpoint_test
  * @requires node-mocks-http
  * @requires sinon
  * @requires utils/middleware
@@ -33,7 +33,7 @@ let mockSend
  *
  * @name beforeEach
  * @function
- * @memberof module:unknownEndpoint_test
+ * @memberof module:tests/unknownEndpoint_test
  * @inner
  * @param {object} functionBeforeEach - Function to be executed before each test
  */
@@ -55,7 +55,7 @@ beforeEach(() => {
  *
  * @name unknownEndpoint
  * @function
- * @memberof module:unknownEndpoint_test
+ * @memberof module:tests/unknownEndpoint_test
  * @inner
  * @param {string} name - Name of the test
  * @param {object} test - Test code

@@ -1,7 +1,7 @@
 /**
  * Tests for errorHandler middleware
  *
- * @module errorHandler_Test
+ * @module tests/errorHandler_Test
  * @requires node-mocks-http
  * @requires sinon
  * @requires utils/middleware
@@ -33,7 +33,7 @@ let mockSend, mockJson
  *
  * @name beforeEach
  * @function
- * @memberof module:errorHandler_Test
+ * @memberof module:tests/errorHandler_Test
  * @inner
  * @param {object} functionBeforeEach - Function to be executed before each test
  */
@@ -58,7 +58,7 @@ beforeEach(() => {
  *
  * @name errorHandler_when_no_error
  * @function
- * @memberof module:errorHandler_Test
+ * @memberof module:tests/errorHandler_Test
  * @inner
  * @param {string} name - Name of the test
  * @param {object} test - Test code
@@ -74,7 +74,7 @@ test('errorHandler calls next when no error', async () => {
  *
  * @name errorHandler_when_CastError
  * @function
- * @memberof module:errorHandler_Test
+ * @memberof module:tests/errorHandler_Test
  * @inner
  * @param {string} name - Name of the test
  * @param {object} test - Test code
@@ -93,7 +93,7 @@ test('errorHandler sends error when CastError is made', async () => {
  *
  * @name errorHandler_when_ValidationError
  * @function
- * @memberof module:errorHandler_Test
+ * @memberof module:tests/errorHandler_Test
  * @inner
  * @param {string} name - Name of the test
  * @param {object} test - Test code

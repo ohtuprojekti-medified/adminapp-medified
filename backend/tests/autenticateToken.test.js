@@ -1,7 +1,7 @@
 /**
  * Tests for authenticateToken middleware
  *
- * @module authenticateToken_test
+ * @module tests/authenticateToken_test
  * @requires node-mocks-http
  * @requires sinon
  * @requires utils/middleware
@@ -31,7 +31,7 @@ let mockReq, mockRes, mockNext
  *
  * @name beforeEach
  * @function
- * @memberof module:authenticateToken_test
+ * @memberof module:tests/authenticateToken_test
  * @inner
  * @param {object} functionBeforeEach - Function to be executed before each test
  */
@@ -46,7 +46,7 @@ beforeEach(() => {
  *
  * @name authenticateToken_without_token
  * @function
- * @memberof module:authenticateToken_test
+ * @memberof module:tests/authenticateToken_test
  * @inner
  * @param {string} name - Name of the test
  * @param {object} test - Test code
@@ -62,7 +62,7 @@ test('authenticateToken does not call next when no token', async () => {
  *
  * @name authenticateToken_with_fake_token
  * @function
- * @memberof module:authenticateToken_test
+ * @memberof module:tests/authenticateToken_test
  * @inner
  * @param {string} name - Name of the test
  * @param {object} test - Test code

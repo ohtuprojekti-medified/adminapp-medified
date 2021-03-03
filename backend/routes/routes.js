@@ -1,7 +1,7 @@
 /**
  * Express router for all paths
  *
- * @module Router
+ * @module routes/routes
  * @requires express
  * @requires controllers/controller
  * @requires express-async-errors
@@ -33,7 +33,7 @@ require('express-async-errors')
  *
  * @name get_users
  * @function
- * @memberof module:Router~router
+ * @memberof module:routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -48,7 +48,7 @@ router.get('/users', async (req, res) => {
  *
  * @name get_caregivers
  * @function
- * @memberof module:Router~router
+ * @memberof module:routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path

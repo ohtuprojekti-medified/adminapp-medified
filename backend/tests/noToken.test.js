@@ -1,7 +1,7 @@
 /**
  * Tests for requests to backend when no token is present
  *
- * @module noToken_test
+ * @module tests/noToken_test
  * @requires mongoose
  * @requires supertest
  * @requires app
@@ -48,7 +48,7 @@ const api = supertest(app)
  *
  * @name no_users_without_token
  * @function
- * @memberof module:noToken_test
+ * @memberof module:tests/noToken_test
  * @inner
  * @param {string} name - Name of the test
  * @param {object} test - Test code
@@ -63,7 +63,7 @@ test('users are not returned without token', async () => {
  *
  * @name afterAll
  * @function
- * @memberof module:noToken_test
+ * @memberof module:tests/noToken_test
  * @inner
  * @param {object} functionAfterAll - Function to be executed after all tests
  */

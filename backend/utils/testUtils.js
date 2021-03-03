@@ -1,3 +1,12 @@
+/**
+ * Utils for testing
+ *
+ * @module utils/testUtils
+ * @requires sinon
+ * @requires utils/middlewares
+ * @requires app
+ */
+
 const sinon = require('sinon')
 let app
 let middlewares
@@ -5,6 +14,11 @@ let middlewares
 /**
  * Creates backend without AWS authentication
  *
+ * @name appWithMockAuth
+ * @memberof module:utils/testUtils
+ * @inner
+ * @function
+ * @constant
  * @returns {object} - App without authentication
  */
 const appWithMockAuth = () => {
@@ -19,6 +33,12 @@ const appWithMockAuth = () => {
 
 /**
  * Restores authentication in app if disabled
+ *
+ * @name restoreAuth
+ * @memberof module:utils/testUtils
+ * @inner
+ * @function
+ * @constant
  */
 const restoreAuth = () => {
   middlewares.authenticateToken.restore()

@@ -1,5 +1,37 @@
+/**
+ * Middlewares for backend
+ *
+ * @module utils/middlewares
+ * @requires utils/logger
+ * @requires cognito-express
+ * @requires utils/config
+ */
+
+/**
+ * Logger for logging messages and errors
+ *
+ * @type {object}
+ * @constant
+ * @namespace logger
+ */
 const logger = require('./logger')
+
+/**
+ * CognitoExpress for validating token given by frontend
+ *
+ * @type {object}
+ * @constant
+ * @namespace CognitoExpress
+ */
 const CognitoExpress = require('cognito-express')
+
+/**
+ * Config for retrieving environment variables in backend
+ *
+ * @type {object}
+ * @constant
+ * @namespace config
+ */
 const config = require('./config')
 
 //instructions used with authenticating token: https://www.npmjs.com/package/cognito-express
@@ -13,6 +45,11 @@ const cognitoExpress = new CognitoExpress({
 /**
  * Authenticating token in aws here
  *
+ * @name authenticateToken
+ * @memberof module:utils/middlewares
+ * @inner
+ * @function
+ * @constant
  * @param {object} req - Request
  * @param {object} res - Response
  * @param {object} next - Next-function
@@ -84,6 +121,11 @@ const authenticateToken = (req, res, next) => {
 /**
  * Sends 404 to unknown paths
  *
+ * @name unknownEndpoint
+ * @memberof module:utils/middlewares
+ * @inner
+ * @function
+ * @constant
  * @param {object} req - Request
  * @param {object} res - Response
  */
@@ -94,6 +136,11 @@ const unknownEndpoint = (req, res) => {
 /**
  * Handles errors
  *
+ * @name errorHandler
+ * @memberof module:utils/middlewares
+ * @inner
+ * @function
+ * @constant
  * @param {object} error -Errors
  * @param {object} req - Request
  * @param {object} res - Response
