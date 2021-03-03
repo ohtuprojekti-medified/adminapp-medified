@@ -1,5 +1,5 @@
 /**
- * Tests for LoginForm component
+ * Tests for Users component
  *
  * @module src/components/Users_test
  * @requires react
