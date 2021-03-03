@@ -58,9 +58,9 @@ test('authenticateToken does not call next when no token', async () => {
 })
 
 /**
- * Tests that middleware doesn't allow access without token
+ * Tests that middleware doesn't allow access with fake token
  *
- * @name authenticateToken_without_token
+ * @name authenticateToken_with_fake_token
  * @function
  * @memberof module:authenticateToken_test
  * @inner
