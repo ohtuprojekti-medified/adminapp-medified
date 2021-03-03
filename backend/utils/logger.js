@@ -1,14 +1,14 @@
 /**
  * Module for logging
  *
- * @module /utilslogger
+ * @module utils/logger
  */
 
 /**
  * Prints messages
  *
  * @name log
- * @memberof module:utils/loggers
+ * @memberof module:utils/logger
  * @inner
  * @function
  * @constant
@@ -22,7 +22,7 @@ const log = (...messages) => {
  * Prints errors
  *
  * @name logError
- * @memberof module:/utilsloggers
+ * @memberof module:utils/logger
  * @inner
  * @function
  * @constant
