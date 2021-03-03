@@ -1,5 +1,11 @@
 import { Auth } from 'aws-amplify'
 
+/**
+ * Logs user into AWS
+ *
+ * @param {*} credentials - Contains username and password
+ * @returns {*} - Returns object with token
+ */
 const login = async credentials => {
   console.log(credentials.username)
   console.log(credentials.password)
@@ -15,6 +21,9 @@ const login = async credentials => {
   }
 }
 
+/**
+ * Logs user out of AWS
+ */
 const logOut = async () => {
   try {
     Auth.signOut()

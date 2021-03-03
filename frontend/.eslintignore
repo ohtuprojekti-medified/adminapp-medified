@@ -5,3 +5,7 @@ src/reportWebVitals.js
 
 # Cypress
 cypress/plugins
+
+# jsdoc
+out
+docs
