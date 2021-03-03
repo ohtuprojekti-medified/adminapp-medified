@@ -1,14 +1,58 @@
+/**
+ * Express router for all paths
+ *
+ * @module Router
+ * @requires express
+ * @requires controllers/controller
+ * @requires express-async-errors
+ */
+
+/**
+ * Router for all paths
+ *
+ * @type {object}
+ * @constant
+ * @namespace router
+ */
 const router = require('express').Router()
+
+/**
+ * Controller for database
+ *
+ * @type {object}
+ * @constant
+ * @namespace controller
+ */
 const controller = require('../controllers/controller')
 
 // handle errors if database-queries fail
 require('express-async-errors')
 
+/**
+ * Route request for users
+ *
+ * @name get_users
+ * @function
+ * @memberof module:Router~router
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
 router.get('/users', async (req, res) => {
   const users = await controller.findAllUsers()
   res.json(users)
 })
 
+/**
+ * Route request for caregivers
+ *
+ * @name get_caregivers
+ * @function
+ * @memberof module:Router~router
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
 router.get('/caregivers', async (req, res) => {
   const caregivers = await controller.findAllUserCaregivers()
   res.json(caregivers)
