@@ -1,6 +1,18 @@
 import React from 'react'
 import loginService from '../services/loginService'
 
+/**
+ * Component that creates a form for login and button for logout
+ *
+ * @param {object} param0 - Object with params
+ * @param {string} param0.username - Value of username in form
+ * @param {Function} param0.setUsername - Function to set the value of username
+ * @param {string} param0.password - Value of password in form
+ * @param {Function} param0.setPassword - Function to set the value of password
+ * @param {object} param0.user - Object that contains details about current logged user
+ * @param {Function} param0.setUser - Function that sets the value of user
+ * @returns {object} - Returns form for login and button for logout in JSX
+ */
 const LoginForm = ({ username, setUsername, password, setPassword, user, setUser }) => {
 
   const handleLogin = async (event) => {

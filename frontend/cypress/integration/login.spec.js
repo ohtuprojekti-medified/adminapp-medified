@@ -1,12 +1,21 @@
 const testUsername = Cypress.env('USERNAME')
 const testPassword = Cypress.env('PASSWORD')
 
-// Helper functions
+/**
+ * Logs in with website UI
+ *
+ * @param {string} username - Username typed into website
+ * @param {string} password - Password typed into website
+ */
 const login = (username, password) => {
   cy.get('#username').type(username)
   cy.get('#password').type(password)
   cy.contains('login').click()
 }
+
+/**
+ * Logs out with website UI
+ */
 const logout = () => {
   cy.contains('log out').click()
 }

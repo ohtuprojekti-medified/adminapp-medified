@@ -1,7 +1,12 @@
 import React from 'react'
 
-// Component listing registered caregivers
-
+/**
+ * Component listing registered caregivers
+ *
+ * @param {object} param0 - Object with params
+ * @param {Array} param0.caregivers - Array of all caregivers
+ * @returns {object} - Returns a JSX component that counts amount of caregivers
+ */
 const Caregivers = ({ caregivers }) => {
   return (
     <div>

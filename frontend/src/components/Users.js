@@ -1,7 +1,12 @@
 import React from 'react'
 
-// Component listing App users
-
+/**
+ * Component listing App users
+ *
+ * @param {object} param0 - Object with users
+ * @param {Array} param0.users - Array of all users
+ * @returns {object} - Returns a JSX component that counts amount of users
+ */
 const Users = ({ users }) => {
   return (
     <div>
