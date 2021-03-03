@@ -14,7 +14,11 @@ import Caregivers from './components/Caregivers'
 import LoginForm from './components/LoginForm'
 
 
-
+/**
+ * Creates a single page application
+ *
+ * @returns {object} - A single page application in JSX
+ */
 const App = () => {
   const [appUsers, setAppUsers] = useState([])
   const [caregivers, setCaregivers] = useState([])
