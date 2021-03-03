@@ -13,7 +13,18 @@
 // the project's config changing)
 
 /**
+ * Run this code when project is opened
+ * 
+ * @module cypress/plugins/index
+ * @requires cypress
+ * @requires cypress-dotenv
+ */
+
+/**
+ * Give cypress access to environment variables in .env
+ * 
  * @type {Cypress.PluginConfig}
+ * @constant
  */
 const dotenvPlugin = require('cypress-dotenv');
 module.exports = (on, config) => {
