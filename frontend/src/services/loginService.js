@@ -1,9 +1,22 @@
+/**
+ * Service for retrieving caregiver data from backend
+ *
+ * @module src/services/loginService
+ * @requires aws-amplify
+ */
 import { Auth } from 'aws-amplify'
 
 /**
  * Logs user into AWS
  *
- * @param {*} credentials - Contains username and password
+ * @type {object}
+ * @function
+ * @constant
+ * @memberof module:src/services/loginService
+ * @inner
+ * @param {object} credentials - Contains username and password
+ * @param {string} credentials.username - Username
+ * @param {string} credentials.password - Password
  * @returns {*} - Logged user details
  */
 const login = async credentials => {
@@ -23,6 +36,12 @@ const login = async credentials => {
 
 /**
  * Logs user out of AWS
+ *
+ * @type {object}
+ * @function
+ * @constant
+ * @memberof module:src/services/loginService
+ * @inner
  */
 const logOut = async () => {
   try {
