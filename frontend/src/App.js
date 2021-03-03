@@ -1,7 +1,7 @@
 /**
  * Frontend app
  *
- * @module src/app
+ * @module src/App
  * @requires primereact/resources/themes/vela-purple/theme.css
  * @requires primereact/resources/primereact.min.css
  * @requires primeicons/primeicons.css
