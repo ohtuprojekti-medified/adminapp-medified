@@ -7,10 +7,20 @@ const baseUrl = process.env.NODE_ENV === 'production'
 
 let token = undefined
 
+/**
+ * Sets Bearer for given token
+ *
+ * @param {string} newToken - Token from AWS
+ */
 const setToken = newToken => {
   token = `Bearer ${newToken}`
 }
 
+/**
+ * Sends a GET-request for caregivers
+ *
+ * @returns {Array} - All caregivers in array
+ */
 const getAll = async () => {
   const config = {
     headers: { Authorization: token }

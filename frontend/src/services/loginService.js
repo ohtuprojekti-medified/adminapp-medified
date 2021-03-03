@@ -4,7 +4,7 @@ import { Auth } from 'aws-amplify'
  * Logs user into AWS
  *
  * @param {*} credentials - Contains username and password
- * @returns {*} - Returns object with token
+ * @returns {*} - Logged user details
  */
 const login = async credentials => {
   console.log(credentials.username)

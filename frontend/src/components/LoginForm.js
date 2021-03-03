@@ -11,7 +11,7 @@ import loginService from '../services/loginService'
  * @param {Function} param0.setPassword - Function to set the value of password
  * @param {object} param0.user - Object that contains details about current logged user
  * @param {Function} param0.setUser - Function that sets the value of user
- * @returns {object} - Returns form for login and button for logout in JSX
+ * @returns {object} - Form for login and button for logout in JSX
  */
 const LoginForm = ({ username, setUsername, password, setPassword, user, setUser }) => {
 

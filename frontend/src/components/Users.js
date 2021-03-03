@@ -5,7 +5,7 @@ import React from 'react'
  *
  * @param {object} param0 - Object with users
  * @param {Array} param0.users - Array of all users
- * @returns {object} - Returns a JSX component that counts amount of users
+ * @returns {object} - JSX component that counts amount of users
  */
 const Users = ({ users }) => {
   return (

@@ -5,7 +5,7 @@ import React from 'react'
  *
  * @param {object} param0 - Object with params
  * @param {Array} param0.caregivers - Array of all caregivers
- * @returns {object} - Returns a JSX component that counts amount of caregivers
+ * @returns {object} - JSX component that counts amount of caregivers
  */
 const Caregivers = ({ caregivers }) => {
   return (
