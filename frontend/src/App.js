@@ -1,3 +1,21 @@
+/**
+ * Frontend app
+ *
+ * @module src/app
+ * @requires primereact/resources/themes/vela-purple/theme.css
+ * @requires primereact/resources/primereact.min.css
+ * @requires primeicons/primeicons.css
+ * @requires src/App.css
+ * @requires src/services/userService
+ * @requires src/services/caregiverService
+ * @requires react
+ * @requires aws-amplify
+ * @requires src/components/Users
+ * @requires src/components/Caregivers
+ * @requires src/components/LoginForm
+ * @requires dotenv
+ */
+
 // Muut mahdolliset teemat: saga ja arya, ja värit: orange, green, blue
 import 'primereact/resources/themes/vela-purple/theme.css'
 import 'primereact/resources/primereact.min.css'
@@ -17,6 +35,10 @@ import LoginForm from './components/LoginForm'
 /**
  * Creates a single page application
  *
+ * @type {object}
+ * @function
+ * @memberof module:src/App
+ * @inner
  * @returns {object} - A single page application in JSX
  */
 const App = () => {
@@ -26,7 +48,14 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
 
-  // configure amplify authorization and check if user is logged in
+  /**
+   * Configure amplify authorization and check if user is logged in
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/App
+   * @inner
+   */
   useEffect(() => {
     require('dotenv').config()
     Amplify.configure({
@@ -45,7 +74,14 @@ const App = () => {
     }
   }, [])
 
-  // set token for user service and GET data if user logs in or is logged in
+  /**
+   * Set token for user service and GET data if user logs in or is logged in
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/App
+   * @inner
+   */
   useEffect(() => {
     if (user) {
       userService.setToken(user.signInUserSession.idToken.jwtToken)

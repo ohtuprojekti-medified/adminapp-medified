@@ -1,9 +1,29 @@
+/**
+ * Index file for running the app
+ *
+ * @module src/index
+ * @requires react
+ * @requires react-dom
+ * @requires src/index.css
+ * @requires src/App
+ * @requires src/reportWebVitals
+ */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
+/**
+ * Run the app
+ *
+ * @type {object}
+ * @function
+ * @memberof module:src/index
+ * @inner
+ * @param {object} JSXApp - pass the app to be rendered
+ * @param {object} root - pass root to react
+ */
 ReactDOM.render(
   <React.StrictMode>
     <App />

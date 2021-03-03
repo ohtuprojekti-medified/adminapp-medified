@@ -33,7 +33,7 @@ describe('<LoginForm />', () => {
   const testPassword = 'PasswordInForm'
 
   /**
-   * Render Loginform select items from it and create mocks for its functions before each test
+   * Render Loginform, select items from it and create mocks for its functions before each test
    *
    * @type {object}
    * @function
@@ -67,7 +67,7 @@ describe('<LoginForm />', () => {
    * @function
    * @memberof module:src/components/LoginForm_test
    * @inner
-   * @param {string} description - renders form
+   * @param {string} description - Renders form
    * @param {object} TestCode - Code that runs the test
    */
   test('renders form', () => {
