@@ -4,7 +4,6 @@
  * @module utils/middlewares
  * @requires utils/logger
  * @requires cognito-express
- * @requires utils/config
  */
 
 /**
@@ -26,23 +25,14 @@ const logger = require('./logger')
 const CognitoExpress = require('cognito-express')
 
 /**
- * Config for retrieving environment variables in backend
- *
- * @type {object}
- * @constant
- * @namespace config
- */
-const config = require('./config')
-
-/**
  * Take CognitoExpress in use
- * see: https://www.npmjs.com/package/cognito-express 
+ * see: https://www.npmjs.com/package/cognito-express
  */
 const cognitoExpress = new CognitoExpress({
   region: 'eu-west-1',
-  cognitoUserPoolId: config.REACT_APP_USER_POOL_ID,
-  tokenUse: 'id', 
-  tokenExpiration: 300000 
+  cognitoUserPoolId: 'eu-west-1_sAj8nsLY6',
+  tokenUse: 'id',
+  tokenExpiration: 300000
 })
 
 /**
@@ -63,7 +53,7 @@ const authenticateToken = (req, res, next) => {
   } else {
 
     const bearer = req.get('authorization')
-  
+
     if (bearer === undefined || bearer.indexOf('Bearer ') !== 0) {
       res.status(403).send({ error: 'Invalid token!' })
     }
@@ -75,7 +65,7 @@ const authenticateToken = (req, res, next) => {
     cognitoExpress.validate(idTokenFromClient, (err) => {
       if (err) {
         res.status(403).send({ error: 'Invalid token!' })
-        
+
       } else {
         next()
       }
