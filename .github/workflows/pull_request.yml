@@ -28,15 +28,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: install, build and test frontend
+    - name: install and test frontend
       run: |
         cd frontend
         npm ci
-        npm run build
         npm run test --watchAll=false   
         npm run lint
 
-    - name: install, build and test backend
+    - name: install and test backend
       run: |
         cd backend
         npm ci

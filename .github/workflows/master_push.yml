@@ -32,7 +32,6 @@ jobs:
       run: |
         cd frontend
         npm ci
-        npm run build
         npm run test --watchAll=false   
         npm run lint
 
@@ -42,7 +41,7 @@ jobs:
         npm ci
         npm run test
         npm run lint
-          
+    
     - name: Dockerhub login
       uses: docker/login-action@v1
       with:
