@@ -8,13 +8,13 @@ USER node
 COPY package.json .
 COPY package-lock.json .
 
-RUN npm ci
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 # ARG API_URL
 # ENV API_URL=${API_URL}
 
+RUN npm ci
 COPY . .
 
 EXPOSE 3000

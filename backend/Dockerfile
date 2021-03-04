@@ -8,10 +8,10 @@ USER node
 COPY package.json .
 COPY package-lock.json .
 
-RUN npm ci
-
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
+
+RUN npm ci
 
 COPY . .
 
