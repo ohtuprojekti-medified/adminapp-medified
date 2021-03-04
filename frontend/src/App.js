@@ -7,6 +7,8 @@ import './App.css'
 
 import userService from './services/userService'
 import caregiverService from './services/caregiverService'
+import pingService from './services/pingService'
+import loginService from './services/loginService'
 import React, { useEffect, useState } from 'react'
 import Amplify from 'aws-amplify'
 import Users from './components/Users'
@@ -43,11 +45,34 @@ const App = () => {
 
   // set token for user service and GET data if user logs in or is logged in
   useEffect(() => {
+    const refreshToken = async () => {
+      try {
+        Auth.currentSession()
+        const cognitoUser = await Auth.currentAuthenticatedUser()
+        setUser(cognitoUser)
+        window.localStorage.setItem(
+          'loggedUser', JSON.stringify(cognitoUser)
+        )
+      } catch (error) {
+        console.log('error refreshing token', error)
+      }
+    }
+
     if (user) {
-      userService.setToken(user.signInUserSession.idToken.jwtToken)
-      userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
-      caregiverService.setToken(user.signInUserSession.idToken.jwtToken)
-      caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
+      if (pingService.securePing() === '403') {
+        refreshToken()
+        if (pingService.securePing() === '403') {
+          loginService.logOut()
+          setUser(undefined)
+        }
+      }
+
+      if (user) {
+        userService.setToken(user.signInUserSession.idToken.jwtToken)
+        userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
+        caregiverService.setToken(user.signInUserSession.idToken.jwtToken)
+        caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
+      }
     }
   }, [user])
 

@@ -14,4 +14,8 @@ router.get('/caregivers', async (req, res) => {
   res.json(caregivers)
 })
 
+router.get('/ping', async (req, res) => {
+  res.sendStatus(200)
+})
+
 module.exports = router
