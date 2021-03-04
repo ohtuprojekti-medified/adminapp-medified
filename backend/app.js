@@ -13,7 +13,8 @@ const app = express()
 // JSON to readable form
 app.use(express.json())
 
-app.use(middleware.authenticateToken)
+//REMEMBER TO UNCOMMENT THIS
+//app.use(middleware.authenticateToken)
 
 // Morgan-logs for HTTP-requests
 morgan.token('body', (req) => JSON.stringify(req.body))

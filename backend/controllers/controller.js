@@ -1,3 +1,5 @@
+const { addDays } = require('date-fns')
+const { Sequelize } = require('../models')
 const db = require('../models')
 const user_profiles = db.user_profiles
 const access_codes = db.acces_codes
@@ -11,9 +13,87 @@ const user_activities = db.user_activities
 const user_answers = db.user_answers
 const user_care_giver_activities = db.user_care_giver_activities
 
-const findAllOrgs = async () => {
-  const allOrganisations = await organisations.findAll()
-  return allOrganisations
+
+/**
+ * Returns all user activities in app today
+ *
+ * @returns  {...any} userActivitiesToday - list of user activities today
+ */
+
+const findUserActivitiesToday = async () => {
+  const Op = Sequelize.Op
+  const TODAY_START = new Date(new Date().setHours(0, 0, 0, 0))
+  const NOW = new Date()
+  const userActivitiesToday = await user_activities.findAll({
+    where: {
+      created_at: {
+        [Op.gt]: TODAY_START,
+        [Op.lt]: NOW
+      }
+    }
+  })
+  return userActivitiesToday
+}
+
+/**
+ * Returns new users within week
+ *
+ * @returns  {...any} usersCreatedAt - list of new users registered in the last week
+ */
+
+const findNewUsers = async () => {
+  const Op = Sequelize.Op
+  const NOW = new Date()
+  const WEEK_AGO = new Date(new Date() - 604800000)
+
+  const usersCreatedAt = await user_profiles.findAll({
+    where: {
+      created_at: {
+        [Op.gt]: WEEK_AGO,
+        [Op.lt]: NOW
+      }
+    },
+    attributes: ['user_id', 'created_at', 'updated_at', 'added_organisation']
+  })
+
+  return usersCreatedAt
+}
+
+/**
+ * Returns total cumulative new users week by week
+ *
+ * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
+ */
+
+const findCumulativeNewUsers = async () => {
+  const usersCreatedAt = await user_profiles.findAll({
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['created_at']
+  })
+
+  const createdDates = usersCreatedAt.map(user => user.dataValues)
+
+  const first = createdDates[0].created_at.getTime()
+  const last = createdDates[createdDates.length - 1].created_at.getTime()
+  let timeFrame = first + 604800000
+  let counter = 0
+  let week = [new Date(first), addDays(first, 7)]
+  let entries = []
+  while (timeFrame < last + 604800000) {
+    while(createdDates[counter].created_at <= timeFrame && counter < createdDates.length - 1) {
+      counter++
+    }
+    const object = { week: week, entries: counter+1 }
+    entries = [...entries, object]
+    const temp = week[1]
+    week = [temp, addDays(temp, 7)]
+    timeFrame = timeFrame + 604800000
+  }
+
+
+  return entries
 }
 
 const findAllAccessCodes = async () => {
@@ -21,6 +101,11 @@ const findAllAccessCodes = async () => {
     attributes: ['id', 'user_id', 'created_at', 'updated_at']
   })
   return accessCodes
+}
+
+const findAllOrgs = async () => {
+  const allOrganisations = await organisations.findAll()
+  return allOrganisations
 }
 
 const findAllUsers = async () => {
@@ -55,6 +140,8 @@ const findAllUserAnswers = async () => {
   const userAnswers = await user_answers.findAll({
     attributes: ['id', 'user_id', 'created_at', 'updated_at']
   })
+  console.log('TESTAILLAA TÄÄL')
+  console.log(userAnswers)
   return userAnswers
 }
 
@@ -96,5 +183,8 @@ module.exports = {
   findAllUserDiaryItems,
   findAllUserDiaryItemGroups,
   findAllUserProfessionalProfiles,
-  findAllUserSurveyAnswers
+  findAllUserSurveyAnswers,
+  findCumulativeNewUsers,
+  findNewUsers,
+  findUserActivitiesToday
 }
