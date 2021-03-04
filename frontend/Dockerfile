@@ -7,7 +7,6 @@ RUN chown -R node:node /usr/src/app
 COPY package.json .
 COPY package-lock.json .
 
-
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 # ARG API_URL
@@ -16,8 +15,6 @@ ENV NODE_ENV=${NODE_ENV}
 RUN npm ci
 
 COPY . .
-
-EXPOSE 3000
 
 RUN if [ "${NODE_ENV}" != "development" ]; then \
     npm run build && \
