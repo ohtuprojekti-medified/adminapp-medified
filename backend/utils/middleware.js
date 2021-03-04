@@ -4,7 +4,6 @@
  * @module utils/middlewares
  * @requires utils/logger
  * @requires cognito-express
- * @requires utils/config
  */
 
 /**
@@ -25,19 +24,10 @@ const logger = require('./logger')
  */
 const CognitoExpress = require('cognito-express')
 
-/**
- * Config for retrieving environment variables in backend
- *
- * @type {object}
- * @constant
- * @namespace config
- */
-const config = require('./config')
-
 //instructions used with authenticating token: https://www.npmjs.com/package/cognito-express
 const cognitoExpress = new CognitoExpress({
   region: 'eu-west-1',
-  cognitoUserPoolId: config.REACT_APP_USER_POOL_ID,
+  cognitoUserPoolId: 'eu-west-1_sAj8nsLY6',
   tokenUse: 'id', //Possible Values: access | id
   tokenExpiration: 3600000 //Up to default expiration of 1 hour (3600000 ms)
 })
