@@ -28,19 +28,16 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: install, build and test frontend
+    - name: install and test frontend
       run: |
         cd frontend
-        npm install
-        npm run build
+        npm ci
         npm run test --watchAll=false   
         npm run lint
 
-    - name: install, build and test backend
+    - name: install and test backend
       run: |
         cd backend
-        npm install
+        npm ci
         npm run test
         npm run lint
-      env: 
-        REACT_APP_USER_POOL_ID: ${{ secrets.REACT_APP_USER_POOL_ID }}   
