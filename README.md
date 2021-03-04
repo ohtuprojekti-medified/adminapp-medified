@@ -1,4 +1,4 @@
-![Github Actions](https://github.com/ohtuprojekti-medified/adminapp-medified/workflows/MASTER PUSH/badge.svg)
+![Github Actions](https://github.com/ohtuprojekti-medified/adminapp-medified/workflows/MASTER\ PUSH/badge.svg)
 
 # Medified adminapp - Software engineering project course, spring 2021
 
