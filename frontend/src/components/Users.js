@@ -1,7 +1,23 @@
+/**
+ * Component for users
+ *
+ * @module src/components/Users
+ * @requires react
+ */
 import React from 'react'
 
-// Component listing App users
-
+/**
+ * Component listing App users
+ *
+ * @type {object}
+ * @function
+ * @constant
+ * @memberof module:src/components/Users
+ * @inner
+ * @param {object} param0 - Object with users
+ * @param {Array} param0.users - Array of all users
+ * @returns {object} - JSX component that counts amount of users
+ */
 const Users = ({ users }) => {
   return (
     <div>
