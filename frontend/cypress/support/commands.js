@@ -57,9 +57,9 @@ const testUsername = Cypress.env('USERNAME')
  * @param {string} username - Retrieve password from environment variables
  */
 const testPassword = Cypress.env('PASSWORD')
-const react_app_user_pool_id = Cypress.env('REACT_APP_USER_POOL_ID')
-const react_app_web_client_id = Cypress.env('REACT_APP_WEB_CLIENT_ID')
-//const react_app_authentication_type = Cypress.env('REACT_APP_AUTHENTICATION_TYPE')
+const react_app_user_pool_id = 'eu-west-1_sAj8nsLY6'
+const react_app_web_client_id = '57bgrf7014uhtdu95jm8ci2ok5'
+//const react_app_authentication_type = 'USER_PASSWORD_AUTH'
 
 /**
  * Set nessessary params into config for AWS authentication request
