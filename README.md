@@ -78,9 +78,9 @@ Stop and restart docker-compose after running `npm install` in frontend/backend.
 #### Upload database-dump to development environment
 
 ```
-docker exec -u postgres adminapp-db psql -c "DROP DATABASE \"adminapp\""
-docker exec -u postgres adminapp-db psql -c "CREATE DATABASE \"adminapp\""
-docker exec -i -u postgres adminapp-db psql adminapp < PATH_TO_DUMP
+docker exec -u postgres adminapp-medified-db psql -c "DROP DATABASE \"adminapp\""
+docker exec -u postgres adminapp-medified-db psql -c "CREATE DATABASE \"adminapp\""
+docker exec -i -u postgres adminapp-medified-db psql adminapp < PATH_TO_DUMP
 ```
 
 You can go inside docker container to check that data is there:
