@@ -1,3 +1,13 @@
+
+/**
+ * Access codes model
+ *
+ * @module models/access_codes
+ *
+ * @param {...any} sequelize - ORM - object-relational mapper
+ * @param {DataTypes} DataTypes - sequelize database types
+ * @returns {...any} model for access_codes
+ */
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('access_codes', {
     id: {

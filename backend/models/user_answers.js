@@ -1,4 +1,12 @@
-
+/**
+ * User answers model
+ *
+ * @module models/user_answers
+ *
+ * @param {...any} sequelize - ORM - object-relational mapper
+ * @param {DataTypes} DataTypes - sequelize database types
+ * @returns {...any} model for user_anwers
+ */
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('user_answers', {
     id: {

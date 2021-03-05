@@ -1,9 +1,23 @@
 'use strict'
 
+/**
+ * Initialization for sequelize-database and models
+ *
+ * @module models/index
+ * @requires sequelize
+ * @requires config
+ */
+
+/**
+ * Sequelize ORM - object-relational mapper
+ */
 const Sequelize = require('sequelize')
 const config = require('../utils/config')
 const db = {}
 
+/**
+ * initialization for database
+ */
 const sequelize = new Sequelize(
   config.db_name,
   config.db_user,
