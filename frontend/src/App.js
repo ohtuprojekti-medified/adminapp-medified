@@ -60,9 +60,9 @@ const App = () => {
     require('dotenv').config()
     Amplify.configure({
       Auth: {
-        userPoolId: process.env.REACT_APP_USER_POOL_ID,
-        userPoolWebClientId: process.env.REACT_APP_WEB_CLIENT_ID,
-        authenticationFlowType: process.env.REACT_APP_AUTHENTICATION_TYPE
+        userPoolId: 'eu-west-1_sAj8nsLY6',
+        userPoolWebClientId: '57bgrf7014uhtdu95jm8ci2ok5',
+        authenticationFlowType: 'USER_PASSWORD_AUTH'
       }
     })
     console.log(Amplify.configure())
