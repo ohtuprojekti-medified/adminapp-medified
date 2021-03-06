@@ -192,8 +192,6 @@ const findAllUserAnswers = async () => {
   const userAnswers = await user_answers.findAll({
     attributes: ['id', 'user_id', 'created_at', 'updated_at']
   })
-  console.log('TESTAILLAA TÄÄL')
-  console.log(userAnswers)
   return userAnswers
 }
 
