@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('access_codes', {
-    id: {
+  return sequelize.define('user_consents', {
+    user_id: {
       type: DataTypes.STRING,
       primaryKey: true,
       autoIncrement: false
     },
-    user_id: DataTypes.STRING,
-    organisation_id: DataTypes.STRING
+    consent: DataTypes.BOOLEAN,
+    version: DataTypes.STRING
   }, {
     timestamps: false
   })
