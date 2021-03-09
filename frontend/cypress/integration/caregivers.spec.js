@@ -1,28 +1,28 @@
 /**
  * Cypress tests for logging in and out
  *
- * @module cypress/integration/patients_spec
+ * @module cypress/integration/caregivers_spec
  * @requires cypress
  */
 
 /**
- * Describe tests for patients page
+ * Describe tests for caregivers page
  *
- * @name Patients
+ * @name Caregivers
  * @type {object}
- * @memberof module:cypress/integration/patients_spec
+ * @memberof module:cypress/integration/caregivers_spec
  * @inner
- * @param {string} describe - Patients
+ * @param {string} describe - Caregivers
  * @param {object} tests - Test code
  */
-describe('Patients', function () {
+describe('Caregivers', function () {
 
   /**
    * Log in fast before each test
    *
    * @name beforeEach
    * @type {object}
-   * @memberof module:cypress/integration/patients_spec
+   * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {object} functionBeforeEach - Function to be run before each test
    */
@@ -35,7 +35,7 @@ describe('Patients', function () {
    *
    * @name afterEach
    * @type {object}
-   * @memberof module:cypress/integration/patients_spec
+   * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {object} functionAfterEach - Function to be run before each test
    */
@@ -44,18 +44,18 @@ describe('Patients', function () {
   })
 
   /**
-   * Test that patients page exists
+   * Test that caregivers page exists
    *
-   * @name Patients_exists
+   * @name Caregivers_exists
    * @type {object}
-   * @memberof module:cypress/integration/patients_spec
+   * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {string} describe - exists
    * @param {object} testFunction - Function that runs test
    */
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
-    cy.contains('App users')
-    cy.contains('Application users:')
+    cy.contains('Caregivers')
+    cy.contains('Registered caregivers:')
   })
 })
