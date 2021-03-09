@@ -16,20 +16,95 @@
  * @requires dotenv
  */
 
-// Muut mahdolliset teemat: saga ja arya, ja värit: orange, green, blue
-import 'primereact/resources/themes/vela-purple/theme.css'
+// Muut mahdolliset teemat: saga ja arya, ja värit: purple, orange, green, blue
+import 'primereact/resources/themes/vela-orange/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
+import 'react-transition-group'
 
 import './App.css'
 
 import userService from './services/userService'
 import caregiverService from './services/caregiverService'
 import React, { useEffect, useState } from 'react'
+import { PanelMenu } from 'primereact/panelmenu'
+// import { Splitter, SplitterPanel } from 'primereact/splitter'
 import Amplify from 'aws-amplify'
 import Users from './components/Users'
 import Caregivers from './components/Caregivers'
 import LoginForm from './components/LoginForm'
+import { Divider } from 'primereact/divider'
+
+/**
+ * Creates the base for the front page
+ *
+ */
+const sidepanel = [
+  {
+    label:'Frontpage',
+    icon:'pi pi-fw pi-file',
+  },
+  {
+    label:'App users',
+    icon:'pi pi-fw pi-user',
+    items:[
+      {
+        label:'All users',
+        icon:'pi pi-fw pi-user-plus'
+      },
+      {
+        label:'Search',
+        icon:'pi pi-fw pi-users',
+        items:[
+          {
+            label:'Filter',
+            icon:'pi pi-fw pi-filter',
+            items:[
+              {
+                label:'Print',
+                icon:'pi pi-fw pi-print'
+              }
+            ]
+          },
+          {
+            icon:'pi pi-fw pi-bars',
+            label:'List'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    label:'Caregivers',
+    icon:'pi pi-fw pi-user',
+    items:[
+      {
+        label:'Caregivers',
+        icon:'pi pi-fw pi-user',
+        items:[
+          {
+            label:'All caregivers',
+            icon:'pi pi-fw pi-user'
+          },
+          {
+            label:'Joku rajaus',
+            icon:'pi pi-fw pi-user'
+          }
+        ]
+      },
+      {
+        label:'Archieve',
+        icon:'pi pi-fw pi-calendar-times',
+        items:[
+          {
+            label:'Remove',
+            icon:'pi pi-fw pi-calendar-minus'
+          }
+        ]
+      }
+    ]
+  }
+]
 
 
 /**
@@ -99,15 +174,22 @@ const App = () => {
       <h1>Adminapp for monitoring moods</h1>
       <LoginForm username={username} setUsername={setUsername} password={password}
         setPassword={setPassword} user={user} setUser={setUser} />
-      {user
-        ?
+
+      <div className="p-d-flex">
         <div>
-          <Users users={appUsers} />
-          <Caregivers caregivers={caregivers} />
+          <PanelMenu model= { sidepanel } style={ { width:'300px' } }/>
         </div>
-        :
-        null
-      }
+        <Divider layout="vertical" />
+        {user
+          ?
+          <div>
+            <Users users={appUsers} />
+            <Caregivers caregivers={caregivers} />
+          </div>
+          :
+          null
+        }
+      </div>
     </div>
   )
 }

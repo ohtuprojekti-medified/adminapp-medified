@@ -8,6 +8,11 @@
  * @requires src/App
  * @requires src/reportWebVitals
  */
+// Muut mahdolliset teemat: saga ja arya, ja värit: purple, orange, green, blue
+import 'primereact/resources/themes/vela-orange/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+import 'react-transition-group'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
