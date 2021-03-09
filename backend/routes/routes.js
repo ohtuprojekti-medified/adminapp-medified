@@ -59,7 +59,7 @@ router.get('/caregivers', async (req, res) => {
 })
 
 router.get('/ping', async (req, res) => {
-  res.sendStatus(200)
+  res.status(200).json({ message: 'token ok' });
 })
 
 module.exports = router

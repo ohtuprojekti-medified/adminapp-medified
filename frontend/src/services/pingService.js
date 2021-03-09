@@ -17,11 +17,10 @@ const securePing = async () => {
   }
   try {
     const response = await axios.get(`${baseUrl}/ping`, config)
-    console.log('responsee', response.status)
     return response.status
   } catch (error) {
     console.log(error)
-    return []
+    return 403
   }
 
 }

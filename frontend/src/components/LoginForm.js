@@ -43,10 +43,13 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
     try {
       const user = await loginService.login({ username, password })
       if (user.user) {
-        console.log(user.user)
-        setUser(user.user)
+        const appUser = {
+          username: user.user.username,
+          idToken: user.user.signInUserSession.idToken.jwtToken
+        }
+        setUser(appUser)
         window.localStorage.setItem(
-          'loggedUser', JSON.stringify(user.user)
+          'loggedUser', JSON.stringify(appUser)
         )
       } else {
         setUser(undefined)
