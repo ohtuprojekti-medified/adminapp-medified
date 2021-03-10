@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: false
     },
-    user_id: DataTypes.STRING
+    user_id: DataTypes.STRING,
+    organisation_id: DataTypes.STRING
   }, {
     timestamps: false
   })
