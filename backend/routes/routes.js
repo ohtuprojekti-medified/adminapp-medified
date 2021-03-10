@@ -28,6 +28,11 @@ const controller = require('../controllers/controller')
 // handle errors if database-queries fail
 require('express-async-errors')
 
+router.get('/temp', async (req, res) => {
+  const lol = await controller.findRetentionRates()
+  res.json(lol)
+})
+
 /**
  * Route request for users
  *
