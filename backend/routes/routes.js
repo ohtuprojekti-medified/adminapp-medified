@@ -17,13 +17,15 @@
 const router = require('express').Router()
 
 /**
- * Controller for database
+ * Controllers for database
  *
  * @type {object}
  * @constant
  * @namespace controller
  */
 const controller = require('../controllers/controller')
+const retentionrateController = require('../controllers/retentionrateController')
+const userhistoryController = require('../controllers/userhistoryController')
 
 // handle errors if database-queries fail
 require('express-async-errors')
@@ -70,7 +72,7 @@ router.get('/caregivers', async (req, res) => {
  */
 
 router.get('/cumulative', async (req, res) => {
-  const cumulativeUsers = await controller.findCumulativeNewUsers()
+  const cumulativeUsers = await userhistoryController.findCumulativeNewUsers()
   res.json(cumulativeUsers)
 })
 
@@ -86,7 +88,7 @@ router.get('/cumulative', async (req, res) => {
  */
 
 router.get('/newusers', async (req, res) => {
-  const newUsers = await controller.findNewUsers()
+  const newUsers = await userhistoryController.findNewUsers()
   res.json(newUsers)
 })
 
@@ -102,8 +104,24 @@ router.get('/newusers', async (req, res) => {
  */
 
 router.get('/activitytoday', async (req, res) => {
-  const activity = await controller.findUserActivitiesToday()
+  const activity = await userhistoryController.findUserActivitiesToday()
   res.json(activity)
+})
+
+/**
+ * Route request for retention/using periods
+ *
+ * @name get_retention
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+
+router.get('/retention', async (req, res) => {
+  const retention = await retentionrateController.findRetentionRates()
+  res.json(retention)
 })
 
 module.exports = router
