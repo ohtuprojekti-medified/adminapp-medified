@@ -19,5 +19,4 @@ RUN if [ "${NODE_ENV}" != "development" ]; then \
     npm install -g serve; \
     fi
 
-
 CMD serve -s build -l 3000

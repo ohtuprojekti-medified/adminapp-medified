@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "start:test": "NODE_ENV=test node index.js",
-    "jsdoc": "jsdoc -c ./.jsdoc.conf.json",
+    "jsdoc": "jsdoc -c ./.jsdoc.conf.json ./README.md",
     "jsdoc:open": "npm run jsdoc && sensible-browser docs/index.html &"
   },
   "repository": {
