@@ -60,9 +60,20 @@ router.get('/caregivers', async (req, res) => {
   res.json(caregivers)
 })
 
+/**
+ * Route request for secure ping
+ *
+ * @name get_ping
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
 router.get('/ping', async (req, res) => {
   res.status(200).json({ message: 'token ok' })
 })
+
 /**
  * Route request for cumulative amount of users
  *

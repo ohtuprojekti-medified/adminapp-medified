@@ -59,6 +59,66 @@ test('users are not returned without token', async () => {
 })
 
 /**
+ * Tests that caregivers are not returned without token
+ *
+ * @name no_caregivers_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('users are not returned without token', async () => {
+  await api.get('/api/caregivers')
+    .expect(403)
+})
+
+/**
+ * Tests that cumulative amount of users is not returned without token
+ *
+ * @name no_cumulative_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('cumulative amount of users is not returned without token', async () => {
+  await api.get('/api/cumulative')
+    .expect(403)
+})
+
+/**
+ * Tests that user activity today is not returned without token
+ *
+ * @name no_activitytoday_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('user activity today is not returned without token', async () => {
+  await api.get('/api/activitytoday')
+    .expect(403)
+})
+
+/**
+ * Tests that retention rate is not returned without token
+ *
+ * @name no_retention_rate_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('retention rate is not returned without token', async () => {
+  await api.get('/api/retention')
+    .expect(403)
+})
+
+/**
  * Close connection after all tests have been executed
  *
  * @name afterAll
