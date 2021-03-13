@@ -1,13 +1,14 @@
 /**
- * Component for all new users, cumulative, week by week
+ * Component for all new users, cumulative
  *
  * @module src/components/Cumulative
  * @requires react
  */
 import React from 'react'
+import { Chart } from 'primereact/chart'
 
 /**
- * Component listing all new users, cumulative, week by week
+ * Component listing all new users, cumulative
  *
  * @type {object}
  * @function
@@ -20,20 +21,31 @@ import React from 'react'
  */
 
 const Cumulative = ({ cumulative }) => {
-  console.log(cumulative)
-
   if (cumulative.length === 0) {
-    console.log('foo')
     return null
+  }
+
+  const chartData = {
+    labels: [...cumulative.map(entry => new Date(entry.week[0]))],
+    datasets: [
+      {
+        data: [...cumulative.map(entry => entry.entries )]
+      }
+    ]
+  }
+
+  const chartOptions ={
+    scales: {
+      xAxes: [{
+        type: 'time',
+      }]
+    }
   }
 
   return (
     <div>
-      <h3>New users, cumulative, week by week</h3>
-      <p>Number of weeks in history: {cumulative.length} </p>
-      {cumulative.map(entry => <p key={entry.week[0]}>
-        week: {entry.week[0]} new users (cumulative): {entry.entries}
-      </p>)}
+      <h3>New users, cumulative</h3>
+      <Chart type='line' data={chartData} options={chartOptions} />
     </div>
   )
 }
