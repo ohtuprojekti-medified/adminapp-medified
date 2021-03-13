@@ -28,6 +28,8 @@ import './App.css'
 import userService from './services/userService'
 import caregiverService from './services/caregiverService'
 import retentionService from './services/retentionService'
+import pingService from './services/pingService'
+import loginService from './services/loginService'
 import React, { useEffect, useState } from 'react'
 import Amplify from 'aws-amplify'
 import Users from './components/Users'
@@ -71,7 +73,6 @@ const App = () => {
         authenticationFlowType: 'USER_PASSWORD_AUTH'
       }
     })
-    console.log(Amplify.configure())
 
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
     if (loggedUserJSON) {
@@ -81,7 +82,7 @@ const App = () => {
   }, [])
 
   /**
-   * Set token for user service and GET data if user logs in or is logged in
+   * Set token or refresh token and GET data if user logs in or is logged in. If secure ping fails twice user is logged out.
    *
    * @type {object}
    * @function
@@ -89,15 +90,71 @@ const App = () => {
    * @inner
    */
   useEffect(() => {
-    if (user) {
-      userService.setToken(user.signInUserSession.idToken.jwtToken)
-      userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
-      caregiverService.setToken(user.signInUserSession.idToken.jwtToken)
-      caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
-      retentionService.setToken(user.signInUserSession.idToken.jwtToken)
-      retentionService.getAll().then(retentionRates => setRetentionRates(retentionRates))
-      retentionService.getAverage().then(average => setAverageRetention(average))
+    const refreshToken = async () => {
+      try {
+        await Amplify.Auth.currentSession()
+        const cognitoUser = await Amplify.Auth.currentAuthenticatedUser()
+        const refreshedUser = {
+          username: cognitoUser.username,
+          idToken: cognitoUser.signInUserSession.idToken.jwtToken
+        }
+        window.localStorage.setItem(
+          'loggedUser', JSON.stringify(refreshedUser)
+        )
+        return refreshedUser
+      } catch (error) {
+        console.log('error refreshing token', error)
+      }
     }
+
+    const securePing = async () => {
+      try {
+        const pingStatus = await pingService.securePing()
+        return pingStatus
+      } catch (error) {
+        console.log('secure ping error', error)
+      }
+    }
+
+    const logOut = async () => {
+      try {
+        await loginService.logOut()
+        setUser(undefined)
+      } catch (exception) {
+        console.log('An error occured')
+      }
+    }
+
+    const fetchData = async () => {
+      if (user) {
+        pingService.setToken(user.idToken)
+        const ping1 = await securePing()
+        if (ping1 === 403) {
+          const refreshedUser = await refreshToken()
+          pingService.setToken(refreshedUser.idToken)
+          const ping2 = await securePing()
+          if (ping2 === 403) {
+            await logOut()
+          } else {
+            setUser(refreshedUser)
+            return
+          }
+        }
+
+        if (user) {
+          userService.setToken(user.idToken)
+          userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
+          caregiverService.setToken(user.idToken)
+          caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
+          retentionService.setToken(user.signInUserSession.idToken.jwtToken)
+          retentionService.getAll().then(retentionRates => setRetentionRates(retentionRates))
+          retentionService.getAverage().then(average => setAverageRetention(average))
+        }
+      }
+    }
+
+    fetchData()
+
   }, [user])
 
   return (
@@ -115,7 +172,7 @@ const App = () => {
           <Caregivers caregivers={caregivers} />
           <RetentionRate
             retentionRates={retentionRates}
-            average={averageRetention}/>
+            average={averageRetention} />
         </div>
         :
         null
