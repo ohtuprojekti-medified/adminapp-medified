@@ -10,6 +10,7 @@ import React from 'react'
 import { Chart } from 'primereact/chart'
 
 const RetentionRate = ({ retentionRates, average }) => {
+  console.log(retentionRates)
   const daysUsed = retentionRates.map(obj => obj.daysUsed)
   const data = [average, ...daysUsed]
 
