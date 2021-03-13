@@ -64,16 +64,22 @@ const findRetentionRates = async () => {
       earlier = usersActivity[i].created_at
     }
   }
-  const daysUsed = usingPeriods.map(obj => obj.daysUsed)
-  const sum = daysUsed.reduce((a, b) => a + b, 0)
-  const averageUsingPeriod = sum / daysUsed.length
-
-  usingPeriods = [...usingPeriods, { averageUsagePeriod: averageUsingPeriod }]
 
   return usingPeriods
 
 }
 
+const findAverageRetentionRate = async () => {
+  const allRates = await findRetentionRates()
+  const daysUsed = allRates.map(obj => obj.daysUsed)
+  const sum = daysUsed.reduce((a, b) => a + b, 0)
+  const averageUsingPeriod = sum / daysUsed.length
+
+  return averageUsingPeriod
+
+}
+
 module.exports = {
-  findRetentionRates
+  findRetentionRates,
+  findAverageRetentionRate
 }
