@@ -1,14 +1,15 @@
 /**
- * Component for all new users, cumulative
+ * Component for graphing all new users, cumulative
  *
  * @module src/components/Cumulative
  * @requires react
+ * @requires primereact/chart
  */
 import React from 'react'
 import { Chart } from 'primereact/chart'
 
 /**
- * Component listing all new users, cumulative
+ * Component for graphing all new users, cumulative
  *
  * @type {object}
  * @function
@@ -19,7 +20,6 @@ import { Chart } from 'primereact/chart'
  * @param {Array} param0.cumulative - Array of all cumulative users
  * @returns {object} - JSX component that lists amount of new users in a cumulative manner
  */
-
 const Cumulative = ({ cumulative }) => {
   if (cumulative.length === 0) {
     return null
