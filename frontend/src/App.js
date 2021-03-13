@@ -146,7 +146,7 @@ const App = () => {
           userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
           caregiverService.setToken(user.idToken)
           caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
-          retentionService.setToken(user.signInUserSession.idToken.jwtToken)
+          retentionService.setToken(user.idToken)
           retentionService.getAll().then(retentionRates => setRetentionRates(retentionRates))
           retentionService.getAverage().then(average => setAverageRetention(average))
         }
