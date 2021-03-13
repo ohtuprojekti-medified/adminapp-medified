@@ -124,4 +124,9 @@ router.get('/retention', async (req, res) => {
   res.json(retention)
 })
 
+router.get('/avgretention', async (req, res) => {
+  const avg = await retentionrateController.findAverageRetentionRate()
+  res.json(avg)
+})
+
 module.exports = router
