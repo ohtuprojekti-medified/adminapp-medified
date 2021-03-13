@@ -8,11 +8,13 @@
  * @requires src/App.css
  * @requires src/services/userService
  * @requires src/services/caregiverService
+ * @requires src/services/retentionService
  * @requires react
  * @requires aws-amplify
  * @requires src/components/Users
  * @requires src/components/Caregivers
  * @requires src/components/LoginForm
+ * @requires src/components/RetentionRate
  * @requires dotenv
  */
 
@@ -25,11 +27,13 @@ import './App.css'
 
 import userService from './services/userService'
 import caregiverService from './services/caregiverService'
+import retentionService from './services/retentionService'
 import React, { useEffect, useState } from 'react'
 import Amplify from 'aws-amplify'
 import Users from './components/Users'
 import Caregivers from './components/Caregivers'
 import LoginForm from './components/LoginForm'
+import RetentionRate from './components/RetentionRate'
 
 
 /**
@@ -44,6 +48,8 @@ import LoginForm from './components/LoginForm'
 const App = () => {
   const [appUsers, setAppUsers] = useState([])
   const [caregivers, setCaregivers] = useState([])
+  const [retentionRates, setRetentionRates] = useState([])
+  const [averageRetention, setAverageRetention] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
@@ -88,6 +94,9 @@ const App = () => {
       userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
       caregiverService.setToken(user.signInUserSession.idToken.jwtToken)
       caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
+      retentionService.setToken(user.signInUserSession.idToken.jwtToken)
+      retentionService.getAll().then(retentionRates => setRetentionRates(retentionRates))
+      retentionService.getAverage().then(average => setAverageRetention(average))
     }
   }, [user])
 
@@ -104,6 +113,9 @@ const App = () => {
         <div>
           <Users users={appUsers} />
           <Caregivers caregivers={caregivers} />
+          <RetentionRate
+            retentionRates={retentionRates}
+            average={averageRetention}/>
         </div>
         :
         null
