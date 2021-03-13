@@ -101,7 +101,7 @@ app.use(express.json())
  * @param {object} middleware - Middleware that verifies token
  */
 
-//app.use(middleware.authenticateToken)
+app.use(middleware.authenticateToken)
 
 // Morgan-logs for HTTP-requests
 morgan.token('body', (req) => JSON.stringify(req.body))
