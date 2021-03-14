@@ -6,17 +6,6 @@
  */
 import axios from 'axios'
 
-/**
- * Needed for production environment
- *
- * @type {string}
- * @memberof module:src/services/userService
- * @inner
- */
-const baseUrl = process.env.NODE_ENV === 'production'
-  ? 'https://ohtup-staging.cs.helsinki.fi/medified/api' // STAGING
-  : 'http://localhost:5000/api'
-
 let token = undefined
 
 /**
@@ -48,7 +37,7 @@ const getAll = async () => {
     headers: { Authorization: token }
   }
   try {
-    const response = await axios.get(`${baseUrl}/users`, config)
+    const response = await axios.get('users', config)
     return response.data
   } catch (error) {
     console.log(error)
