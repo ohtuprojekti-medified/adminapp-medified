@@ -9,12 +9,14 @@
  * @requires src/services/userService
  * @requires src/services/caregiverService
  * @requires src/services/cumulativeService
+ * @requires src/services/retentionService
  * @requires react
  * @requires aws-amplify
  * @requires src/components/Users
  * @requires src/components/Caregivers
  * @requires src/components/LoginForm
  * @requires src/components/Cumulative
+ * @requires src/components/RetentionRate
  * @requires dotenv
  */
 
@@ -27,6 +29,7 @@ import './App.css'
 
 import userService from './services/userService'
 import caregiverService from './services/caregiverService'
+import retentionService from './services/retentionService'
 import pingService from './services/pingService'
 import loginService from './services/loginService'
 import cumulativeService from './services/cumulativeService'
@@ -36,6 +39,7 @@ import Users from './components/Users'
 import Caregivers from './components/Caregivers'
 import LoginForm from './components/LoginForm'
 import Cumulative from './components/Cumulative'
+import RetentionRate from './components/RetentionRate'
 
 
 /**
@@ -51,6 +55,8 @@ const App = () => {
   const [appUsers, setAppUsers] = useState([])
   const [caregivers, setCaregivers] = useState([])
   const [cumulativeUsers, setCumulative] = useState([])
+  const [retentionRates, setRetentionRates] = useState([])
+  const [averageRetention, setAverageRetention] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
@@ -147,6 +153,9 @@ const App = () => {
           caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
           cumulativeService.setToken(user.idToken)
           cumulativeService.getAll().then(cumulativeUsers => setCumulative(cumulativeUsers))
+          retentionService.setToken(user.idToken)
+          retentionService.getAll().then(retentionRates => setRetentionRates(retentionRates))
+          retentionService.getAverage().then(average => setAverageRetention(average))
         }
       }
     }
@@ -169,6 +178,9 @@ const App = () => {
           <Users users={appUsers} />
           <Caregivers caregivers={caregivers} />
           <Cumulative cumulative={cumulativeUsers} />
+          <RetentionRate
+            retentionRates={retentionRates}
+            average={averageRetention} />
         </div>
         :
         null
