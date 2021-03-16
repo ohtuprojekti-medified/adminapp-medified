@@ -29,12 +29,12 @@ const Cumulative = ({ cumulative }) => {
     labels: [...cumulative.map(entry => new Date(entry.week[0]))],
     datasets: [
       {
-        data: [...cumulative.map(entry => entry.entries )]
+        data: [...cumulative.map(entry => entry.entries)]
       }
     ]
   }
 
-  const chartOptions ={
+  const chartOptions = {
     scales: {
       xAxes: [{
         type: 'time',
