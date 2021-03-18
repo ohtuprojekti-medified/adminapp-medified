@@ -6,10 +6,8 @@
  * @requires primereact/resources/primereact.min.css
  * @requires primeicons/primeicons.css
  * @requires src/App.css
- * @requires src/services/userService
- * @requires src/services/caregiverService
- * @requires src/services/cumulativeService
- * @requires src/services/retentionService
+ * @requires src/services/dataService
+ * @requires src/services/loginService
  * @requires react
  * @requires aws-amplify
  * @requires src/components/Users
