@@ -4,7 +4,7 @@
  * @module src/services/cumulativeService
  * @requires axios
  */
-import axios from 'axios'
+import API from '../api'
 
 /**
  * Needed for production environment
@@ -13,9 +13,7 @@ import axios from 'axios'
  * @memberof module:src/services/cumulativeService
  * @inner
  */
-const baseUrl = process.env.NODE_ENV === 'production'
-  ? 'https://ohtup-staging.cs.helsinki.fi/medified/api' // STAGING
-  : 'http://localhost:5000/api'
+
 
 let token = undefined
 
@@ -48,7 +46,7 @@ const getAll = async () => {
     headers: { Authorization: token }
   }
   try {
-    const response = await axios.get(`${baseUrl}/cumulative`, config)
+    const response = await API.get('/cumulative', config)
     return response.data
   } catch (error) {
     console.log(error)

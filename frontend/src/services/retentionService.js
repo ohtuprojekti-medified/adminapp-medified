@@ -4,7 +4,7 @@
  * @module src/services/retentionService
  * @requires axios
  */
-import axios from 'axios'
+import API from '../api'
 
 let token = undefined
 
@@ -37,7 +37,7 @@ const getAll = async () => {
     headers: { Authorization: token }
   }
   try {
-    const response = await axios.get('retention', config)
+    const response = await API.get('retention', config)
     return response.data
   } catch (error) {
     console.log(error)
@@ -50,7 +50,7 @@ const getAverage = async () => {
     headers: { Authorization: token }
   }
   try {
-    const response = await axios.get('avgretention', config)
+    const response = await API.get('avgretention', config)
     return response.data
   } catch (error) {
     console.log(error)

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import API from '../api'
 
 let token = undefined
 
@@ -11,7 +11,7 @@ const securePing = async () => {
     headers: { Authorization: token }
   }
   try {
-    const response = await axios.get('ping', config)
+    const response = await API.get('ping', config)
     return response.status
   } catch (error) {
     console.log(error)

@@ -4,7 +4,7 @@
  * @module src/services/userService
  * @requires axios
  */
-import axios from 'axios'
+import API from '../api'
 
 let token = undefined
 
@@ -37,7 +37,7 @@ const getAll = async () => {
     headers: { Authorization: token }
   }
   try {
-    const response = await axios.get('users', config)
+    const response = await API.get('users', config)
     return response.data
   } catch (error) {
     console.log(error)
