@@ -57,4 +57,29 @@ const getAll = async () => {
 
 }
 
-export default { getAll, setToken }
+/**
+ * Sends a GET-request for active users
+ *
+ * @type {object}
+ * @function
+ * @constant
+ * @memberof module:src/services/cumulativeService
+ * @inner
+ * @returns {Array} - All cumulative users in array
+ */
+const getActiveUsers = async () => {
+  const config = {
+    headers: { Authorization: token }
+  }
+  try {
+    const response = await axios.get(`${baseUrl}/activeusers`, config)
+    return response.data
+  } catch (error) {
+    console.log(error)
+    return []
+  }
+
+}
+
+
+export default { getAll, getActiveUsers, setToken }

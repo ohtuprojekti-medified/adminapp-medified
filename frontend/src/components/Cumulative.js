@@ -18,9 +18,10 @@ import { Chart } from 'primereact/chart'
  * @inner
  * @param {object} param0 - Object with weekly cumulative users
  * @param {Array} param0.cumulative - Array of all cumulative users
+ * @param {Array} param0.activeUsers - Array of all active users
  * @returns {object} - JSX component that lists amount of new users in a cumulative manner
  */
-const Cumulative = ({ cumulative }) => {
+const Cumulative = ({ cumulative, activeUsers }) => {
   if (cumulative.length === 0) {
     return null
   }
@@ -29,12 +30,15 @@ const Cumulative = ({ cumulative }) => {
     labels: [...cumulative.map(entry => new Date(entry.week[0]))],
     datasets: [
       {
-        data: [...cumulative.map(entry => entry.entries )]
+        data: [...cumulative.map(entry => entry.entries)]
+      },
+      {
+        data: [...activeUsers.map(entry => entry.entries)]
       }
     ]
   }
 
-  const chartOptions ={
+  const chartOptions = {
     scales: {
       xAxes: [{
         type: 'time',

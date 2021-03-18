@@ -85,8 +85,44 @@ const findCumulativeNewUsers = async () => {
   return entries
 }
 
+/**
+ * Returns active users week by week
+ *
+ * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
+ */
+const findActiveUsers = async () => {
+  const userActivities = await user_activities.findAll({
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['id', 'user_id', 'created_at']
+  })
+  const allActivities = userActivities.map(activity => activity.dataValues)
+
+  const first = allActivities[0].created_at.getTime()
+  //const last = allActivities[allActivities.length - 1].created_at.getTime()
+  let currentWeek = first + 604800000
+  let week = [new Date(first), addDays(first, 7)]
+  let activeUsersThisWeek = []
+  let entries = []
+  for (let activity in allActivities) {
+    while (activity.created_at >= currentWeek + 7 * 604800000) {
+      const object = { week: week, entries: activeUsersThisWeek }
+      entries = [...entries, object]
+      activeUsersThisWeek = []
+      currentWeek = currentWeek + 7 * 604800000
+      week = [new Date(currentWeek), addDays(currentWeek, 7)]
+    }
+    if (!activeUsersThisWeek.contains(activity.user_id)) {
+      activeUsersThisWeek = [...activeUsersThisWeek, activity.user_id]
+    }
+  }
+  return entries
+}
+
 module.exports = {
   findCumulativeNewUsers,
   findNewUsers,
-  findUserActivitiesToday
+  findUserActivitiesToday,
+  findActiveUsers
 }
