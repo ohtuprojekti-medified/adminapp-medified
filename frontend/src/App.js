@@ -40,7 +40,7 @@ import Caregivers from './components/Caregivers'
 import LoginForm from './components/LoginForm'
 import Cumulative from './components/Cumulative'
 import RetentionRate from './components/RetentionRate'
-
+import { setApiToken } from './apiConnection'
 
 /**
  * Creates a single page application
@@ -132,11 +132,11 @@ const App = () => {
 
     const fetchData = async () => {
       if (user) {
-        pingService.setToken(user.idToken)
+        setApiToken(user.idToken)
         const ping1 = await securePing()
         if (ping1 === 403) {
           const refreshedUser = await refreshToken()
-          pingService.setToken(refreshedUser.idToken)
+          setApiToken(refreshedUser.idToken)
           const ping2 = await securePing()
           if (ping2 === 403) {
             await logOut()
@@ -147,13 +147,9 @@ const App = () => {
         }
 
         if (user) {
-          userService.setToken(user.idToken)
           userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
-          caregiverService.setToken(user.idToken)
           caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
-          cumulativeService.setToken(user.idToken)
           cumulativeService.getAll().then(cumulativeUsers => setCumulative(cumulativeUsers))
-          retentionService.setToken(user.idToken)
           retentionService.getAll().then(retentionRates => setRetentionRates(retentionRates))
           retentionService.getAverage().then(average => setAverageRetention(average))
         }

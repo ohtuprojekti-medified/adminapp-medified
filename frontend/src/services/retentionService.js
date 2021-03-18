@@ -4,23 +4,7 @@
  * @module src/services/retentionService
  * @requires axios
  */
-import API from '../api'
-
-let token = undefined
-
-/**
- * Sets Bearer for given token
- *
- * @type {object}
- * @function
- * @constant
- * @memberof module:src/services/userService
- * @inner
- * @param {string} newToken - Token from AWS
- */
-const setToken = newToken => {
-  token = `Bearer ${newToken}`
-}
+import { api } from '../apiConnection'
 
 /**
  * Sends a GET-request for retention rates
@@ -33,11 +17,8 @@ const setToken = newToken => {
  * @returns {Array} - Retention rates and average usage period in array
  */
 const getAll = async () => {
-  const config = {
-    headers: { Authorization: token }
-  }
   try {
-    const response = await API.get('retention', config)
+    const response = await api.get('retention')
     return response.data
   } catch (error) {
     console.log(error)
@@ -46,11 +27,8 @@ const getAll = async () => {
 }
 
 const getAverage = async () => {
-  const config = {
-    headers: { Authorization: token }
-  }
   try {
-    const response = await API.get('avgretention', config)
+    const response = await api.get('avgretention')
     return response.data
   } catch (error) {
     console.log(error)
@@ -58,4 +36,4 @@ const getAverage = async () => {
   }
 }
 
-export default { getAll, getAverage, setToken }
+export default { getAll, getAverage }

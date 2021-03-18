@@ -4,23 +4,7 @@
  * @module src/services/userService
  * @requires axios
  */
-import API from '../api'
-
-let token = undefined
-
-/**
- * Sets Bearer for given token
- *
- * @type {object}
- * @function
- * @constant
- * @memberof module:src/services/userService
- * @inner
- * @param {string} newToken - Token from AWS
- */
-const setToken = newToken => {
-  token = `Bearer ${newToken}`
-}
+import { api } from '../apiConnection'
 
 /**
  * Sends a GET-request for users
@@ -33,11 +17,8 @@ const setToken = newToken => {
  * @returns {Array} - All users in array
  */
 const getAll = async () => {
-  const config = {
-    headers: { Authorization: token }
-  }
   try {
-    const response = await API.get('users', config)
+    const response = await api.get('users')
     return response.data
   } catch (error) {
     console.log(error)
@@ -46,4 +27,4 @@ const getAll = async () => {
 
 }
 
-export default { getAll, setToken }
+export default { getAll }

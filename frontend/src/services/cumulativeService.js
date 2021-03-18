@@ -4,32 +4,7 @@
  * @module src/services/cumulativeService
  * @requires axios
  */
-import API from '../api'
-
-/**
- * Needed for production environment
- *
- * @type {string}
- * @memberof module:src/services/cumulativeService
- * @inner
- */
-
-
-let token = undefined
-
-/**
- * Sets Bearer for given token
- *
- * @type {object}
- * @function
- * @constant
- * @memberof module:src/services/cumulativeService
- * @inner
- * @param {string} newToken - Token from AWS
- */
-const setToken = newToken => {
-  token = `Bearer ${newToken}`
-}
+import { api } from '../apiConnection'
 
 /**
  * Sends a GET-request for cumulative users
@@ -42,11 +17,8 @@ const setToken = newToken => {
  * @returns {Array} - All cumulative users in array
  */
 const getAll = async () => {
-  const config = {
-    headers: { Authorization: token }
-  }
   try {
-    const response = await API.get('/cumulative', config)
+    const response = await api.get('/cumulative')
     return response.data
   } catch (error) {
     console.log(error)
@@ -55,4 +27,4 @@ const getAll = async () => {
 
 }
 
-export default { getAll, setToken }
+export default { getAll }
