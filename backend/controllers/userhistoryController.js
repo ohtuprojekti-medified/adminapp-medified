@@ -105,16 +105,16 @@ const findActiveUsers = async () => {
   let week = [new Date(first), addDays(first, 7)]
   let activeUsersThisWeek = []
   let entries = []
-  for (let activity in allActivities) {
-    while (activity.created_at >= currentWeek + 7 * 604800000) {
+  for (let i = 0; i < allActivities.length; i++) {
+    while (allActivities[i].created_at >= currentWeek + 7 * 604800000) {
       const object = { week: week, entries: activeUsersThisWeek }
       entries = [...entries, object]
       activeUsersThisWeek = []
       currentWeek = currentWeek + 7 * 604800000
       week = [new Date(currentWeek), addDays(currentWeek, 7)]
     }
-    if (!activeUsersThisWeek.contains(activity.user_id)) {
-      activeUsersThisWeek = [...activeUsersThisWeek, activity.user_id]
+    if (!activeUsersThisWeek.contains(allActivities[i].user_id)) {
+      activeUsersThisWeek = [...activeUsersThisWeek, allActivities[i].user_id]
     }
   }
   return entries
