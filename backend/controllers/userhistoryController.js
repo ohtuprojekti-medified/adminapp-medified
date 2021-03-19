@@ -64,6 +64,9 @@ const findCumulativeNewUsers = async () => {
 
   const createdDates = usersCreatedAt.map(user => user.dataValues)
 
+  console.log(createdDates[createdDates.length-1])
+  console.log(createdDates[0])
+
   const first = createdDates[0].created_at.getTime()
   const last = createdDates[createdDates.length - 1].created_at.getTime()
   let timeFrame = first + 604800000
@@ -98,7 +101,8 @@ const findActiveUsers = async () => {
     attributes: ['id', 'user_id', 'created_at']
   })
   const allActivities = userActivities.map(activity => activity.dataValues)
-
+  console.log(allActivities[allActivities.length-1])
+  console.log(allActivities[0])
   const first = allActivities[0].created_at.getTime()
   //const last = allActivities[allActivities.length - 1].created_at.getTime()
   let currentWeek = first + 604800000
@@ -106,17 +110,18 @@ const findActiveUsers = async () => {
   let activeUsersThisWeek = []
   let entries = []
   for (let i = 0; i < allActivities.length; i++) {
-    while (allActivities[i].created_at >= currentWeek + 7 * 604800000) {
-      const object = { week: week, entries: activeUsersThisWeek }
+    while (allActivities[i].created_at >= currentWeek + 604800000) {
+      const object = { week: week, entries: activeUsersThisWeek.length }
       entries = [...entries, object]
       activeUsersThisWeek = []
-      currentWeek = currentWeek + 7 * 604800000
+      currentWeek = currentWeek + 604800000
       week = [new Date(currentWeek), addDays(currentWeek, 7)]
     }
-    if (!activeUsersThisWeek.contains(allActivities[i].user_id)) {
+    if (!activeUsersThisWeek.includes(allActivities[i].user_id)) {
       activeUsersThisWeek = [...activeUsersThisWeek, allActivities[i].user_id]
     }
   }
+  //console.log(entries)
   return entries
 }
 
