@@ -8,6 +8,7 @@
         "docker:logs": "docker-compose logs -f",
         "docker:up": "docker-compose up -d",
         "initial": "./scripts/run.sh",
+        "lint": "./scripts/lint.sh",
         "start": "npm run docker:up && npm run docker:logs",
         "stop": "npm run docker:down",
         "test": "npm run test:unit && npm run test:e2e",
