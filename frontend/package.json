@@ -7,13 +7,15 @@
     "@testing-library/user-event": "^12.6.0",
     "aws-amplify": "^3.3.17",
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "dotenv": "^8.2.0",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
-    "primereact": "^6.0.2",
+    "primereact": "^6.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
+    "react-scripts": "4.0.0",
+    "react-transition-group": "^4.4.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -24,7 +26,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "jsdoc": "jsdoc -c ./.jsdoc.conf.json",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run",
+    "jsdoc": "jsdoc -c ./.jsdoc.conf.json ./README.md",
     "jsdoc:open": "npm run jsdoc && sensible-browser docs/index.html &"
   },
   "eslintConfig": {

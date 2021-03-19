@@ -1,7 +1,7 @@
 /**
  * Middlewares for backend
  *
- * @module utils/middlewares
+ * @module utils/middleware
  * @requires utils/logger
  * @requires cognito-express
  */

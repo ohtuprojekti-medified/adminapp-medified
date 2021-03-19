@@ -66,6 +66,17 @@ const cors = require('cors')
  */
 const app = express()
 
+/**
+ * Middleware for allowing cross origin requests
+ *
+ * @name cors
+ * @function
+ * @memberof module:app
+ * @inner
+ * @param {object} middleware - Middleware for cross origin requests
+ */
+app.use(cors())
+
 // Needed if frontend is builded into /public
 //app.use(express.static('build'))
 
@@ -89,6 +100,7 @@ app.use(express.json())
  * @inner
  * @param {object} middleware - Middleware that verifies token
  */
+
 app.use(middleware.authenticateToken)
 
 // Morgan-logs for HTTP-requests
@@ -116,16 +128,7 @@ app.use(morgan('tiny'))
  */
 app.use(morgan(':body'))
 
-/**
- * Middleware for allowing cross origin requests
- *
- * @name cors
- * @function
- * @memberof module:app
- * @inner
- * @param {object} middleware - Middleware for cross origin requests
- */
-app.use(cors())
+
 
 const db = require('./models')
 

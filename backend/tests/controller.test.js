@@ -92,7 +92,7 @@ jest.mock('../models/user_activities', () => () => {
 
   return dbMock.define('user_activities', {
     id: 87,
-    user_id: 'fdd8sklla',
+    user_id: 'fdd8sklla'
   })
 })
 
@@ -232,4 +232,3 @@ describe('user_survey_answers', () => {
     expect(surveyAnswers[0].name).toEqual('1a2y')
   })
 })
-

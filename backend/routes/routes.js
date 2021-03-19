@@ -17,13 +17,15 @@
 const router = require('express').Router()
 
 /**
- * Controller for database
+ * Controllers for database
  *
  * @type {object}
  * @constant
  * @namespace controller
  */
 const controller = require('../controllers/controller')
+const retentionrateController = require('../controllers/retentionrateController')
+const userhistoryController = require('../controllers/userhistoryController')
 
 // handle errors if database-queries fail
 require('express-async-errors')
@@ -56,6 +58,89 @@ router.get('/users', async (req, res) => {
 router.get('/caregivers', async (req, res) => {
   const caregivers = await controller.findAllAccessCodes()
   res.json(caregivers)
+})
+
+/**
+ * Route request for secure ping
+ *
+ * @name get_ping
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+router.get('/ping', async (req, res) => {
+  res.status(200).json({ message: 'token ok' })
+})
+
+/**
+ * Route request for cumulative amount of users
+ *
+ * @name get_cumulative
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+
+router.get('/cumulative', async (req, res) => {
+  const cumulativeUsers = await userhistoryController.findCumulativeNewUsers()
+  res.json(cumulativeUsers)
+})
+
+/**
+ * Route request for new users within week
+ *
+ * @name get_newusers
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+
+router.get('/newusers', async (req, res) => {
+  const newUsers = await userhistoryController.findNewUsers()
+  res.json(newUsers)
+})
+
+/**
+ * Route request for user activity today
+ *
+ * @name get_activitytoday
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+
+router.get('/activitytoday', async (req, res) => {
+  const activity = await userhistoryController.findUserActivitiesToday()
+  res.json(activity)
+})
+
+/**
+ * Route request for retention/using periods
+ *
+ * @name get_retention
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+
+router.get('/retention', async (req, res) => {
+  const retention = await retentionrateController.findRetentionRates()
+  res.json(retention)
+})
+
+router.get('/avgretention', async (req, res) => {
+  const avg = await retentionrateController.findAverageRetentionRate()
+  res.json(avg)
 })
 
 module.exports = router

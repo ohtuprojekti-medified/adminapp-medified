@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "start:test": "NODE_ENV=test node index.js",
-    "jsdoc": "jsdoc -c ./.jsdoc.conf.json",
+    "jsdoc": "jsdoc -c ./.jsdoc.conf.json ./README.md",
     "jsdoc:open": "npm run jsdoc && sensible-browser docs/index.html &"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "body-parser": "^1.19.0",
     "cognito-express": "^2.0.18",
     "cors": "^2.8.5",
+    "date-fns": "^2.18.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
