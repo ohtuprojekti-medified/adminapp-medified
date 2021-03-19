@@ -3,17 +3,16 @@
     "version": "1.0.0",
     "main": "",
     "scripts": {
-        "cli": "./scripts/run.sh",
         "cypress:open": "cypress open",
         "docker:down": "docker-compose down",
         "docker:logs": "docker-compose logs -f",
         "docker:up": "docker-compose up -d",
-        "initial": "./scripts/install.sh && ./scripts/populate-db.sh",
+        "initial": "./scripts/run.sh",
         "start": "npm run docker:up && npm run docker:logs",
         "stop": "npm run docker:down",
+        "test": "npm run test:unit && npm run test:e2e",
         "test:e2e": "npm run docker:up && cypress run && npm run docker:down",
-        "test:unit": "./scripts/unit-test.sh",
-        "test": "npm run test:unit && npm run test:e2e"
+        "test:unit": "./scripts/unit-test.sh"
     },
     "repository": {
         "type": "git",
