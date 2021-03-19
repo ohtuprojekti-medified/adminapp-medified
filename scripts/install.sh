@@ -8,6 +8,8 @@ install_local_npm_packages () {
     echo $PWD
     npm install
     cd ..
+    echo $PWD
+    npm install
 }
 
 echo "Install local npm packages"
