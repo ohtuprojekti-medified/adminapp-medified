@@ -25,6 +25,7 @@ const Cumulative = ({ cumulative, activeUsers }) => {
   if (cumulative.length === 0) {
     return null
   }
+  console.log(cumulative, activeUsers)
 
   const chartData = {
     labels: [...cumulative.map(entry => new Date(entry.week[0]))],
