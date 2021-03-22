@@ -68,7 +68,7 @@ const RetentionRate = ({ retentionRates, average }) => {
     <div>
       <div className="card" style={cardStyle}>
         <h3>Retention rates</h3>
-        <p>Average using period {average.toFixed(2)} days</p>
+        <p>Average using period {parseFloat(average).toFixed(2)} days</p>
         <p><b>Average period and single periods:</b></p>
         <div className="chart-container" style={divStyle}>
           <Chart type="bar" data={barChart} options={options}></Chart>
