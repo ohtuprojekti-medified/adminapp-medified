@@ -94,14 +94,6 @@ const findCumulativeNewUsers = async () => {
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
 const findActiveUsers = async () => {
-  const usersCreatedAt = await user_profiles.findAll({
-    order: [
-      ['created_at', 'ASC']
-    ],
-    attributes: ['created_at']
-  })
-  const createdDates = usersCreatedAt.map(user => user.dataValues)
-
   const userActivities = await user_activities.findAll({
     order: [
       ['created_at', 'ASC']
@@ -112,8 +104,7 @@ const findActiveUsers = async () => {
 
   console.log(allActivities[allActivities.length - 1])
   console.log(allActivities[0])
-  const first = createdDates[0].created_at.getTime()
-  const last = createdDates[createdDates.length - 1].created_at.getTime()
+  const first = allActivities[0].created_at.getTime()
   //const last = allActivities[allActivities.length - 1].created_at.getTime()
   let currentWeek = first + 604800000
   let week = [new Date(first), addDays(first, 7)]
@@ -131,13 +122,9 @@ const findActiveUsers = async () => {
       activeUsersThisWeek = [...activeUsersThisWeek, allActivities[i].user_id]
     }
   }
-  while (currentWeek <= last + 604800000) {
-    const object = { week: week, entries: activeUsersThisWeek.length }
-    entries = [...entries, object]
-    activeUsersThisWeek = []
-    currentWeek = currentWeek + 604800000
-    week = [new Date(currentWeek), addDays(currentWeek, 7)]
-  }
+  const object = { week: week, entries: activeUsersThisWeek.length }
+  entries = [...entries, object]
+
   //console.log(entries)
   return entries
 }
