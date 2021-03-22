@@ -113,7 +113,7 @@ const findActiveUsers = async () => {
       currentWeek = currentWeek + 7 * 604800000
       week = [new Date(currentWeek), addDays(currentWeek, 7)]
     }
-    if (!activeUsersThisWeek.contains(allActivities[i].user_id)) {
+    if (!activeUsersThisWeek.includes(allActivities[i].user_id)) {
       activeUsersThisWeek = [...activeUsersThisWeek, allActivities[i].user_id]
     }
   }
