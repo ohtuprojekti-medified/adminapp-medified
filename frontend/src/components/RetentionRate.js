@@ -59,9 +59,14 @@ const RetentionRate = ({ retentionRates, average }) => {
     width: '50vw'
   }
 
+  const cardStyle = {
+    margin: '20px',
+    padding: '20px'
+  }
+
   return (
     <div>
-      <div className="card">
+      <div className="card" style={cardStyle}>
         <h3>Retention rates</h3>
         <p>Average using period {average} days</p>
         <p><b>Average period and single periods:</b></p>
