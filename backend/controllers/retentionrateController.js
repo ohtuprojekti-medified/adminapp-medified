@@ -1,4 +1,4 @@
-const { subDays, differenceInCalendarDays } = require('date-fns')
+const { differenceInCalendarDays } = require('date-fns')
 const db = require('../models')
 const user_profiles = db.user_profiles
 const user_activities = db.user_activities
@@ -6,7 +6,7 @@ const user_activities = db.user_activities
 /**
  * Returns retention rates as in how long does user use app actively
  *
- * @returns  {...any} usingPeriods - number of activities and number of days per using period and averageUsingPeriod at the bottom of the json
+ * @returns  {...any} usingPeriods - number of days per using period
  */
 
 const findRetentionRates = async () => {
@@ -26,48 +26,41 @@ const findRetentionRates = async () => {
     attributes: ['user_id', 'created_at']
   })
   const allUserProfiles = userProfiles.map(profile => profile.dataValues)
-
   const activeUsers = allUserProfiles.filter(user => userIds.includes(user.user_id))
 
   let usingPeriods = []
 
   for (let user of activeUsers) {
-    const TODAY = new Date(new Date().setHours(0, 0, 0, 0))
-    const WEEK_AGO = subDays(TODAY, 7)
-
     const usersActivity = allActivities.filter(activity => activity.user_id === user.user_id)
-    if (usersActivity[usersActivity.length - 1] > WEEK_AGO || usersActivity.length < 2) {
-      continue
-    }
-    let numberOfActivities = 2
-    let earlier = usersActivity[0].created_at
-    let start = earlier
+    let first = usersActivity[0].created_at
 
-    for (let i = 1; i < usersActivity.length; i++) {
+    for (let i=1; i<usersActivity.length; i++) {
 
-      if (differenceInCalendarDays(usersActivity[i].created_at, earlier) > 7) {
-        if (numberOfActivities === 0 || differenceInCalendarDays(usersActivity[i].created_at, start) === 0) {
+      if(differenceInCalendarDays(usersActivity[i].created_at, usersActivity[i-1].created_at) > 7) {
+
+        if(differenceInCalendarDays(usersActivity[i-1].created_at, first) === 0) {
           continue
         }
-        const object = {
-          activities: numberOfActivities,
-          daysUsed: differenceInCalendarDays(usersActivity[i].created_at, start)
-        }
+
+        const object = { daysUsed: differenceInCalendarDays(usersActivity[i-1].created_at, first) }
         usingPeriods = [...usingPeriods, object]
-        numberOfActivities = 0
-        if (i < usersActivity.length - 1) {
-          start = usersActivity[i + 1].created_at
+
+        if(i+1 >= usersActivity.length) {
+          break
         }
-      } else {
-        numberOfActivities++
+        first = usersActivity[i].created_at
       }
-      earlier = usersActivity[i].created_at
     }
   }
 
   return usingPeriods
-
 }
+
+/**
+ * Returns average retention rate
+ *
+ * @returns  {...any} averageUsingPeriod - average app using period
+ */
 
 const findAverageRetentionRate = async () => {
   const allRates = await findRetentionRates()
