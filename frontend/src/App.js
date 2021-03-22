@@ -6,10 +6,8 @@
  * @requires primereact/resources/primereact.min.css
  * @requires primeicons/primeicons.css
  * @requires src/App.css
- * @requires src/services/userService
- * @requires src/services/caregiverService
- * @requires src/services/cumulativeService
- * @requires src/services/retentionService
+ * @requires src/services/dataService
+ * @requires src/services/loginService
  * @requires react
  * @requires aws-amplify
  * @requires src/components/Users
@@ -27,12 +25,6 @@ import 'primeicons/primeicons.css'
 
 import './App.css'
 
-import userService from './services/userService'
-import caregiverService from './services/caregiverService'
-import retentionService from './services/retentionService'
-import pingService from './services/pingService'
-import loginService from './services/loginService'
-import cumulativeService from './services/cumulativeService'
 import React, { useEffect, useState } from 'react'
 import Amplify from 'aws-amplify'
 import Users from './components/Users'
@@ -40,7 +32,8 @@ import Caregivers from './components/Caregivers'
 import LoginForm from './components/LoginForm'
 import Cumulative from './components/Cumulative'
 import RetentionRate from './components/RetentionRate'
-
+import dataService from './services/dataService.js'
+import loginService from './services/loginService'
 
 /**
  * Creates a single page application
@@ -115,7 +108,7 @@ const App = () => {
 
     const securePing = async () => {
       try {
-        const pingStatus = await pingService.securePing()
+        const pingStatus = await dataService.getAll('ping')
         return pingStatus
       } catch (error) {
         console.log('secure ping error', error)
@@ -133,11 +126,11 @@ const App = () => {
 
     const fetchData = async () => {
       if (user) {
-        pingService.setToken(user.idToken)
+        dataService.setToken(user.idToken)
         const ping1 = await securePing()
         if (ping1 === 403) {
           const refreshedUser = await refreshToken()
-          pingService.setToken(refreshedUser.idToken)
+          dataService.setToken(refreshedUser.idToken)
           const ping2 = await securePing()
           if (ping2 === 403) {
             await logOut()
@@ -148,16 +141,12 @@ const App = () => {
         }
 
         if (user) {
-          userService.setToken(user.idToken)
-          userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
-          caregiverService.setToken(user.idToken)
-          caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
-          cumulativeService.setToken(user.idToken)
-          cumulativeService.getAll().then(cumulativeUsers => setCumulative(cumulativeUsers))
-          cumulativeService.getActiveUsers().then(activeUsers => setActive(activeUsers))
-          retentionService.setToken(user.idToken)
-          retentionService.getAll().then(retentionRates => setRetentionRates(retentionRates))
-          retentionService.getAverage().then(average => setAverageRetention(average))
+          dataService.getAll('users').then(usersAtBeginning => setAppUsers(usersAtBeginning))
+          dataService.getAll('caregivers').then(caregivs => setCaregivers(caregivs))
+          dataService.getAll('cumulative').then(cumulativeUsers => setCumulative(cumulativeUsers))
+          dataService.getAll('retention').then(retentionRates => setRetentionRates(retentionRates))
+          dataService.getAll('avgretention').then(average => setAverageRetention(average))
+          dataService.getAll('activeusers').then(active => setActive(active))
         }
       }
     }
