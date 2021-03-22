@@ -1,5 +1,5 @@
 /**
- * Cypress tests for logging in and out
+ * Cypress tests for patients
  *
  * @module cypress/integration/patients_spec
  * @requires cypress

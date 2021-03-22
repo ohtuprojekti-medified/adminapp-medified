@@ -119,6 +119,21 @@ test('retention rate is not returned without token', async () => {
 })
 
 /**
+ * Tests that average retention rate is not returned without token
+ *
+ * @name no_average_retention_rate_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('average retention rate is not returned without token', async () => {
+  await api.get('/api/avgretention')
+    .expect(403)
+})
+
+/**
  * Close connection after all tests have been executed
  *
  * @name afterAll
