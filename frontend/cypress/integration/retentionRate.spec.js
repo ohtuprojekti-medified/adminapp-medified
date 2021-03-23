@@ -1,28 +1,28 @@
 /**
- * Cypress tests for caregivers
+ * Cypress tests for retention rate
  *
- * @module cypress/integration/caregivers_spec
+ * @module cypress/integration/retentionRate_spec
  * @requires cypress
  */
 
 /**
- * Describe tests for caregivers page
+ * Describe tests for retention rate page
  *
- * @name Caregivers
+ * @name RetentionRate
  * @type {object}
- * @memberof module:cypress/integration/caregivers_spec
+ * @memberof module:cypress/integration/retentionRate_spec
  * @inner
- * @param {string} describe - Caregivers
+ * @param {string} describe - Retention rate
  * @param {object} tests - Test code
  */
-describe('Caregivers', function () {
+describe('Retention rate', function () {
 
   /**
    * Log in fast before each test
    *
    * @name beforeEach
    * @type {object}
-   * @memberof module:cypress/integration/caregivers_spec
+   * @memberof module:cypress/integration/retentionRate_spec
    * @inner
    * @param {object} functionBeforeEach - Function to be run before each test
    */
@@ -35,7 +35,7 @@ describe('Caregivers', function () {
    *
    * @name afterEach
    * @type {object}
-   * @memberof module:cypress/integration/caregivers_spec
+   * @memberof module:cypress/integration/retentionRate_spec
    * @inner
    * @param {object} functionAfterEach - Function to be run before each test
    */
@@ -44,18 +44,19 @@ describe('Caregivers', function () {
   })
 
   /**
-   * Test that caregivers page exists
+   * Test that retention rate page exists
    *
-   * @name Caregivers_exists
+   * @name RetentionRate_exists
    * @type {object}
-   * @memberof module:cypress/integration/caregivers_spec
+   * @memberof module:cypress/integration/retentionRate_spec
    * @inner
    * @param {string} describe - exists
    * @param {object} testFunction - Function that runs test
    */
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
-    cy.contains('Caregivers')
-    cy.contains('Registered caregivers:')
+    cy.contains('Retention rates')
+    cy.contains('Average using period days')
+    cy.contains('Average period and single periods:')
   })
 })

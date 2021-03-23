@@ -1,5 +1,5 @@
 /**
- * Service for retrieving caregiver data from backend
+ * Service for handling login with AWS Cognito
  *
  * @module src/services/loginService
  * @requires aws-amplify
