@@ -48,6 +48,7 @@ const App = () => {
   const [appUsers, setAppUsers] = useState([])
   const [caregivers, setCaregivers] = useState([])
   const [cumulativeUsers, setCumulative] = useState([])
+  const [activeUsers, setActive] = useState([])
   const [retentionRates, setRetentionRates] = useState([])
   const [averageRetention, setAverageRetention] = useState([])
   const [username, setUsername] = useState('')
@@ -145,6 +146,7 @@ const App = () => {
           dataService.getAll('cumulative').then(cumulativeUsers => setCumulative(cumulativeUsers))
           dataService.getAll('retention').then(retentionRates => setRetentionRates(retentionRates))
           dataService.getAll('avgretention').then(average => setAverageRetention(average))
+          dataService.getAll('activeusers').then(active => setActive(active))
         }
       }
     }
@@ -166,7 +168,7 @@ const App = () => {
         <div>
           <Users users={appUsers} />
           <Caregivers caregivers={caregivers} />
-          <Cumulative cumulative={cumulativeUsers} />
+          <Cumulative cumulative={cumulativeUsers} activeUsers={activeUsers} />
           <RetentionRate
             retentionRates={retentionRates}
             average={averageRetention} />
