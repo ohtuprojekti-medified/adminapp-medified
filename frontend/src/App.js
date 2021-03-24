@@ -153,9 +153,9 @@ const App = () => {
 
   useEffect(() => {
     if (user) {
-      userService.setToken(user.signInUserSession.idToken.jwtToken)
+      userService.setToken(user.idToken)
       userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
-      caregiverService.setToken(user.signInUserSession.idToken.jwtToken)
+      caregiverService.setToken(user.idToken)
       caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
     }
   }, [user])
