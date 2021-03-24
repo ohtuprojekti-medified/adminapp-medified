@@ -68,7 +68,7 @@ test('users are not returned without token', async () => {
  * @param {string} name - Name of the test
  * @param {object} test - Test code
  */
-test('users are not returned without token', async () => {
+test('caregivers are not returned without token', async () => {
   await api.get('/api/caregivers')
     .expect(403)
 })
