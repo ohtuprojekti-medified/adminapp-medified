@@ -1,34 +1,39 @@
-const { DataTypes } = require('sequelize')
 const sinon = require('sinon')
-const { sequelize } = require('../models')
 let retentionrateController
-let user_activities, user_profiles
+let db
 let user_activities_stub, user_profiles_stub
 
 const retentionrateControllerMocked = () => {
-  user_activities = require('../models/user_activities')
-  user_activities_stub = sinon.stub(user_activities(sequelize, DataTypes), 'findAll')
+  db = require('../models')
+  user_activities_stub = sinon.stub(db, 'user_activities')
     .callsFake(() => {
       return {
-        dataValues: {
-          id: 21,
-          user_id: 'user21'
+        findAll: () => {
+          return {
+            dataValues: {
+              id: 21,
+              user_id: 'user21'
+            }
+          }
         }
       }
     })
-  user_profiles = require('../models/user_profiles')
-  user_profiles_stub = sinon.stub(user_profiles(sequelize, DataTypes), 'findAll')
+  user_profiles_stub = sinon.stub(db, 'user_profiles')
     .callsFake(() => {
       return {
-        dataValues: {
-          user_id: 'user21',
-          height: '',
-          weight: '',
-          sex: null,
-          birth_date: null,
-          first_name: 'Matti',
-          last_name: 'Ittam',
-          added_organisation: 'OHTU'
+        findAll: () => {
+          return {
+            dataValues: {
+              user_id: 'user21',
+              height: '',
+              weight: '',
+              sex: null,
+              birth_date: null,
+              first_name: 'Matti',
+              last_name: 'Ittam',
+              added_organisation: 'OHTU'
+            }
+          }
         }
       }
     })
