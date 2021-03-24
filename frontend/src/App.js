@@ -157,8 +157,8 @@ const App = () => {
   }, [user, caregiverFilterForAllUsers])
 
   /**
-  * Event handler for changing the status of caregiveFilterForAllUsers
   *
+  * Event handler for changing the status of caregiveFilterForAllUsers
   */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)

@@ -18,6 +18,8 @@ import Filter from './Filter'
  * @inner
  * @param {object} param0 - Object with users
  * @param {Array} param0.users - Array of all users
+ * @param {boolean} param0.checked - Boolean value of checkbox
+ * @param {Function} param0.handleFilterChange - event handler for filter change
  * @returns {object} - JSX component that counts amount of users
  */
 const Users = ({ users, checked, handleFilterChange }) => {
