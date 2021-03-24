@@ -46,7 +46,7 @@ export const AppConfig = (props) => {
     return !(config.current.isSameNode(event.target) || config.current.contains(event.target))
   }
 
-  const toggleConfigurator = (event) => {
+  const toggleConfigurator = () => {
     setActive(prevState => !prevState)
   }
 
