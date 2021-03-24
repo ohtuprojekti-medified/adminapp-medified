@@ -58,7 +58,7 @@ const findAllUsers = async (withCaregiver) => {
   if (withCaregiver === true) {
     const userProfilesFiltered = sequelize.query('SELECT DISTINCT user_profiles.user_id, user_profiles.created_at, user_profiles.first_name, user_profiles.last_name, user_profiles.updated_at, user_profiles.added_organisation FROM user_profiles, user_care_givers WHERE user_profiles.user_id = user_care_givers.user_id', { type: sequelize.QueryTypes.SELECT })
     return userProfilesFiltered
-  
+
   } else {
     return userProfiles
   }
