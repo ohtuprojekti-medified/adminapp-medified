@@ -19,7 +19,7 @@ const user_diary_item_groups = db.user_diary_item_groups
 const user_activities = db.user_activities
 const user_answers = db.user_answers
 const user_care_giver_activities = db.user_care_giver_activities
-
+const sequelize = db.sequelize
 /**
  * Returns all access codes from database
  *
