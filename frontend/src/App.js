@@ -54,6 +54,7 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
+  const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -141,7 +142,7 @@ const App = () => {
         }
 
         if (user) {
-          dataService.getAll('users').then(usersAtBeginning => setAppUsers(usersAtBeginning))
+          dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
           dataService.getAll('caregivers').then(caregivs => setCaregivers(caregivs))
           dataService.getAll('cumulative').then(cumulativeUsers => setCumulative(cumulativeUsers))
           dataService.getAll('retention').then(retentionRates => setRetentionRates(retentionRates))
@@ -153,7 +154,16 @@ const App = () => {
 
     fetchData()
 
-  }, [user])
+  }, [user, caregiverFilterForAllUsers])
+
+  /**
+  * Event handler for changing the status of caregiveFilterForAllUsers
+  *
+  */
+  const handleFilterChange = () => {
+    setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
+  }
+
 
   return (
     <div className="App">
@@ -166,7 +176,7 @@ const App = () => {
       {user
         ?
         <div>
-          <Users users={appUsers} />
+          <Users users={appUsers} checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
           <Caregivers caregivers={caregivers} />
           <Cumulative cumulative={cumulativeUsers} activeUsers={activeUsers} />
           <RetentionRate
