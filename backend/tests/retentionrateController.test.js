@@ -47,6 +47,6 @@ describe('retentionrate controller', () => {
 
   afterEach(() => {
     user_activities_stub.restore()
-    user_profiles_stub.restore
+    user_profiles_stub.restore()
   })
 })
