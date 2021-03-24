@@ -56,7 +56,7 @@ describe('Retention rate', function () {
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Retention rates')
-    cy.contains('Average using period days')
+    cy.contains('Average using period 0.00 days')
     cy.contains('Average period and single periods:')
   })
 })

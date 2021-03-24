@@ -55,6 +55,6 @@ describe('Cumulative users', function () {
    */
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
-    cy.contains('New users, cumulative')
+    cy.contains('New users, cumulative and active users weekly')
   })
 })

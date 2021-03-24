@@ -64,6 +64,15 @@ const RetentionRate = ({ retentionRates, average }) => {
     padding: '20px'
   }
 
+  console.log('AVERAGE ON TÄÄL')
+  console.log(average)
+
+  if(average === null || average.length === 0 ) {
+    console.log('käydään tääl')
+    average = 0.00
+  }
+  console.log(parseFloat(average).toFixed(2))
+
   return (
     <div>
       <div className="card" style={cardStyle}>
