@@ -44,9 +44,12 @@ import PrimeReact from 'primereact/api'
 // import { Divider } from 'primereact/divider'
 
 /**
+ *
  * Creates the base for the front page
  *
+ * @returns App-component
  */
+
 // const sidepanel = [
 //   {
 //     label:'Frontpage',
@@ -159,9 +162,9 @@ const App = () => {
 
   useEffect(() => {
     if (user) {
-      userService.setToken(user.signInUserSession.idToken.jwtToken)
+      userService.setToken(user.idToken)
       userService.getAll().then(usersAtBeginning => setAppUsers(usersAtBeginning))
-      caregiverService.setToken(user.signInUserSession.idToken.jwtToken)
+      caregiverService.setToken(user.idToken)
       caregiverService.getAll().then(caregivs => setCaregivers(caregivs))
     }
   }, [user])
@@ -191,6 +194,7 @@ const App = () => {
   const onColorModeChange = (mode) => {
     setLayoutColorMode(mode)
   }
+
   const onWrapperClick = () => {
     if (!menuClick) {
       setOverlayMenuActive(false)
@@ -344,9 +348,6 @@ const App = () => {
 
 
 
-
-
-
   const isSidebarVisible = () => {
     // if (isDesktop()) {
     //   if (layoutMode === 'static')
@@ -385,29 +386,43 @@ const App = () => {
  */
 
   return (
-    // <div className="App">
-    <div className={wrapperClass} onClick={onWrapperClick}>
-      {/* // {user ? <h3>{user.username} logged in</h3> */}
-      {/* //   : null */}
-      {/* // } */}
-      <AppTopbar onToggleMenu={onToggleMenu} />
-      <CSSTransition classNames="layout-sidebar" timeout={{ enter: 200, exit: 200 }} in={isSidebarVisible()} unmountOnExit>
-        <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
-          <div className="layout-logo">
-            <img alt="Logo" src={logo} />
+
+  //     // <div className="App">
+  //     <div className={wrapperClass} onClick={onWrapperClick}>
+  //       {/* // {user ? <h3>{user.username} logged in</h3> */}
+  //       {/* //   : null */}
+  //       {/* // } */}
+  //       <AppTopbar onToggleMenu={onToggleMenu} />
+  //       <CSSTransition classNames="layout-sidebar" timeout={{ enter: 200, exit: 200 }} in={isSidebarVisible()} unmountOnExit>
+  //         <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
+  //           <div className="layout-logo">
+  //             <img alt="Logo" src={logo} />
+
+
+    <div className="App">
+      <div className={wrapperClass} onClick={onWrapperClick}>
+        {user ? <h3>{user.username} logged in</h3>
+          : null
+        }
+        <AppTopbar onToggleMenu={onToggleMenu} />
+        <CSSTransition classNames="layout-sidebar" timeout={{ enter: 200, exit: 200 }} in={isSidebarVisible()} unmountOnExit>
+          <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
+            <div className="layout-logo">
+              <img alt="Logo" src={logo} />
+            </div>
+            {/* <AppProfile /> */}
+            <AppMenu model={menu} onMenuItemClick={onMenuItemClick} />
+
           </div>
-          {/* <AppProfile /> */}
-          <AppMenu model={menu} onMenuItemClick={onMenuItemClick} />
-        </div>
-      </CSSTransition>
-      <AppConfig rippleEffect={ripple} onRippleEffect={onRipple} inputStyle={inputStyle} onInputStyleChange={onInputStyleChange}
-        layoutMode={layoutMode} onLayoutModeChange={onLayoutModeChange} layoutColorMode={layoutColorMode} onColorModeChange={onColorModeChange} />
+        </CSSTransition>
+        <AppConfig rippleEffect={ripple} onRippleEffect={onRipple} inputStyle={inputStyle} onInputStyleChange={onInputStyleChange}
+          layoutMode={layoutMode} onLayoutModeChange={onLayoutModeChange} layoutColorMode={layoutColorMode} onColorModeChange={onColorModeChange} />
 
-      <h1>Adminapp for monitoring moods</h1>
-      <LoginForm username={username} setUsername={setUsername} password={password}
-        setPassword={setPassword} user={user} setUser={setUser} />
+        <h1>Adminapp for monitoring moods</h1>
+        <LoginForm username={username} setUsername={setUsername} password={password}
+          setPassword={setPassword} user={user} setUser={setUser} />
 
-      {/* <div className="p-d-flex">
+        {/* <div className="p-d-flex">
         <div>
           <PanelMenu model= { sidepanel } style={ { width:'300px' } }/>
         </div>
@@ -422,9 +437,10 @@ const App = () => {
           null
         }
       </div> */}
-      <Users users={appUsers} />
-      <Caregivers caregivers={caregivers} />
-      <AppFooter />
+        <Users users={appUsers} />
+        <Caregivers caregivers={caregivers} />
+        <AppFooter />
+      </div>
     </div>
   )
 }
