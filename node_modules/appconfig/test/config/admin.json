@@ -1,0 +1,9 @@
+{
+  "authenticated": true,
+
+  "production": {
+    "authenticated": false,
+    "user": "admin",
+    "pass": "3cbd9cf2ac846c7230686e51edc93e2c"
+  }
+}

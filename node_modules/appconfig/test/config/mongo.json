@@ -1,0 +1,3 @@
+{
+  "test": "mongodb://localhost/test"
+}

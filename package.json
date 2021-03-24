@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "appconfig": "^0.0.1",
+    "react-router-dom": "^5.2.0"
+  }
+}
