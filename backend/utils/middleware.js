@@ -35,6 +35,8 @@ const cognitoExpress = new CognitoExpress({
   tokenExpiration: 300000
 })
 
+const jsonWebToken = require('jsonwebtoken')
+
 /**
  * Authenticating token in aws here
  *
@@ -60,14 +62,23 @@ const authenticateToken = (req, res, next) => {
     const idTokenFromClient = bearer !== undefined
       ? bearer.substr('Bearer '.length)
       : ''
-    console.log('token=' + idTokenFromClient)
-
+    
     cognitoExpress.validate(idTokenFromClient, (err) => {
       if (err) {
         res.status(403).send({ error: 'Invalid token!' })
 
       } else {
-        next()
+        console.log('*****************************************************************************')
+        const decoded = jsonWebToken.decode(idTokenFromClient)
+        if (decoded['custom:admin']) {
+          console.log('admin spotted')
+          console.log('organisation requested(optional): ' ,req.get('organisation-requested'))
+          next()
+        } else {
+          req.headers['organisation-requested'] = decoded['custom:organisation']
+          console.log('organisation set from aws: ',req.get('organisation-requested'))
+          next()
+        }
       }
     })
   }
