@@ -79,7 +79,7 @@ const authenticateToken = (req, res, next) => {
             console.log('organisation set from aws: ',req.get('organisation-requested'))
             next()
           } else {
-            res.status(403).send({ error: 'Organisation undefined!' })
+            res.status(403).send({ error: 'Organisation undefined in amazon!' })
           }
         }
       }

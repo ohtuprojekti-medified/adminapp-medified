@@ -26,22 +26,34 @@ const user_care_giver_activities = db.user_care_giver_activities
  * @returns  {...any} accessCodes - list of access codes
  */
 
-const findAllAccessCodes = async () => {
-  const accessCodes = await access_codes.findAll({
-    attributes: ['id', 'user_id', 'created_at', 'updated_at']
-  })
+const findAllAccessCodes = async (organisation) => {
+  let accessCodes = undefined
+  if(organisation == 'undefined') {
+    accessCodes = await access_codes.findAll({
+      attributes: ['id', 'user_id', 'created_at', 'updated_at']
+    })
+  } else {
+    // database query that filters organisation here
+  }
+  
   return accessCodes
 }
 
 /**
- * Returns all organisations from database
+ * Returns all organisations from database for admin
  *
  * @returns  {...any} allOrganisations - list of organisations
  */
 
-const findAllOrgs = async () => {
-  const allOrganisations = await organisations.findAll()
-  return allOrganisations
+const findAllOrgs = async (organisation) => {
+  // only admin can send requests with undefined organisation
+  if (organisation == 'undefined') {
+    const allOrganisations = await organisations.findAll()
+    return allOrganisations
+  } else {
+    return null
+  }
+  
 }
 
 /**
@@ -50,10 +62,17 @@ const findAllOrgs = async () => {
  * @returns  {...any} userProfiles - list of users
  */
 
-const findAllUsers = async () => {
-  const userProfiles = await user_profiles.findAll({
-    attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
-  })
+const findAllUsers = async (organisation) => {
+  console.log('organisation from controller=', organisation)
+  let userProfiles
+  if(organisation == 'undefined') {
+    userProfiles = await user_profiles.findAll({
+      attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
+    })
+  } else {
+    // database query that filters organisation here
+  }
+
   return userProfiles
 }
 
