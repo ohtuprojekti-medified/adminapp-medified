@@ -3,14 +3,17 @@ let retentionrateController
 let db
 let user_activities_stub, user_profiles_stub
 
+/**
+ * Helper function for creating new Date objects
+ *
+ * @function
+ */
+const newDates = require('./newDatesAroundLastMidnight')
+
 const retentionrateControllerMocked = () => {
   db = require('../models')
-  const TIME6 = new Date(new Date() - 604800000)
-  const TIME5 = new Date(new Date() - 1512000010)
-  const TIME4 = new Date(new Date() - 2177280020)
-  const TIME3 = new Date(new Date() - 2782080030)
-  const TIME2 = new Date(new Date() - 3386880040)
-  const TIME1 = new Date(new Date() - 3991680050)
+  const TIMES1 = newDates([-46.7, -39.6, -32.5, -25.4, -17.6, -7])
+  const TIMES2 = newDates([-25.4, -17.6, -7])
 
   user_activities_stub = sinon.stub(db.user_activities, 'findAll')
     .callsFake(() => {
@@ -19,63 +22,63 @@ const retentionrateControllerMocked = () => {
           dataValues: {
             id: 21,
             user_id: 'user21',
-            created_at: TIME1
+            created_at: TIMES1[1]
           }
         },
         {
           dataValues: {
             id: 22,
             user_id: 'user21',
-            created_at: TIME2
+            created_at: TIMES1[2]
           }
         },
         {
           dataValues: {
             id: 23,
             user_id: 'user21',
-            created_at: TIME3
+            created_at: TIMES1[3]
           }
         },
         {
           dataValues: {
             id: 24,
             user_id: 'user21',
-            created_at: TIME4
+            created_at: TIMES1[4]
           }
         },
         {
           dataValues: {
             id: 25,
             user_id: 'user21',
-            created_at: TIME5
+            created_at: TIMES1[5]
           }
         },
         {
           dataValues: {
             id: 26,
             user_id: 'user21',
-            created_at: TIME6
+            created_at: TIMES1[6]
           }
         },
         {
           dataValues: {
             id: 27,
             user_id: 'user22',
-            created_at: TIME4
+            created_at: TIMES2[1]
           }
         },
         {
           dataValues: {
             id: 28,
             user_id: 'user22',
-            created_at: TIME5
+            created_at: TIMES2[2]
           }
         },
         {
           dataValues: {
             id: 29,
             user_id: 'user22',
-            created_at: TIME6
+            created_at: TIMES2[3]
           }
         }
       ]
@@ -117,11 +120,11 @@ describe('retentionrate controller', () => {
   })
 
   test('findRetentionRates returns correct data', async () => {
-    expect(await retentionrateController.findRetentionRates()).toEqual([{ daysUsed: 28 }, { daysUsed: 7 }])
+    expect(await retentionrateController.findRetentionRates()).toEqual([{ daysUsed: 14 }])
   })
 
   test('findAverageRetentionRate returns correct average', async () => {
-    expect(await retentionrateController.findAverageRetentionRate()).toEqual(17.5)
+    expect(await retentionrateController.findAverageRetentionRate()).toEqual(14)
   })
 
   afterEach(() => {
