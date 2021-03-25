@@ -62,7 +62,6 @@ const authenticateToken = (req, res, next) => {
     const idTokenFromClient = bearer !== undefined
       ? bearer.substr('Bearer '.length)
       : ''
-    
     cognitoExpress.validate(idTokenFromClient, (err) => {
       if (err) {
         res.status(403).send({ error: 'Invalid token!' })
@@ -81,8 +80,7 @@ const authenticateToken = (req, res, next) => {
             next()
           } else {
             res.status(403).send({ error: 'Organisation undefined!' })
-          }
-          
+          } 
         }
       }
     })
