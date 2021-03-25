@@ -38,7 +38,7 @@ const cognitoExpress = new CognitoExpress({
 const jsonWebToken = require('jsonwebtoken')
 
 /**
- * Authenticating token in aws here
+ * Authenticating token in aws here. If token is verified, check user organisation from aws
  *
  * @name authenticateToken
  * @memberof module:utils/middlewares
@@ -66,18 +66,23 @@ const authenticateToken = (req, res, next) => {
     cognitoExpress.validate(idTokenFromClient, (err) => {
       if (err) {
         res.status(403).send({ error: 'Invalid token!' })
-
       } else {
-        console.log('*****************************************************************************')
+        // if token is verified, decode the token containing user info
         const decoded = jsonWebToken.decode(idTokenFromClient)
         if (decoded['custom:admin']) {
           console.log('admin spotted')
           console.log('organisation requested(optional): ' ,req.get('organisation-requested'))
           next()
         } else {
-          req.headers['organisation-requested'] = decoded['custom:organisation']
-          console.log('organisation set from aws: ',req.get('organisation-requested'))
-          next()
+          const organisation = decoded['custom:organisation']
+          if (organisation) {
+            req.headers['organisation-requested'] = organisation
+            console.log('organisation set from aws: ',req.get('organisation-requested'))
+            next()
+          } else {
+            res.status(403).send({ error: 'Organisation undefined!' })
+          }
+          
         }
       }
     })
