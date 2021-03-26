@@ -46,9 +46,9 @@ To run adminapp locally, you will need:
 
 _All commands mentioned are run in project root._
 
-Install project locally and/or add datadump to database (if you have it) with
+Install project locally and/or add datadump (if you have it) to database with
 
-`npm run initial`
+`npm run initial` and follow instructions.
 
 Add correct env variables by copying `.tmp.env` file as `.env` and filling out missing values.
 ## Development environment
@@ -77,9 +77,9 @@ which is the same as `docker-compose down`.
 
 Run all tests with
 
-`npm test`
+`npm test` and follow instructions.
 
-while project is running.
+(E2E tests require that project is running in the background)
 
 ### Other commands
 
