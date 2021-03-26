@@ -26,7 +26,6 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "cypress:open": "cypress open",
     "test:e2e": "cypress run",
     "jsdoc": "jsdoc -c ./.jsdoc.conf.json ./README.md",
     "jsdoc:open": "npm run jsdoc && sensible-browser docs/index.html &"

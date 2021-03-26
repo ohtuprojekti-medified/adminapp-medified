@@ -11,7 +11,7 @@
         "lint": "./scripts/lint.sh",
         "start": "npm run docker:up && npm run docker:logs",
         "stop": "npm run docker:down",
-        "test": "npm run test:unit && npm run test:e2e",
+        "test": "./scripts/test.sh",
         "test:e2e": "cypress run",
         "test:unit": "./scripts/unit-test.sh"
     },
