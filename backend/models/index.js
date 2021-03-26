@@ -38,7 +38,7 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-db.acces_codes = require('../models/access_codes')(sequelize, Sequelize)
+db.access_codes = require('../models/access_codes')(sequelize, Sequelize)
 db.organisations = require('../models/organisations')(sequelize, Sequelize)
 db.user_profiles = require('../models/user_profiles')(sequelize, Sequelize)
 db.user_care_givers = require('../models/user_care_givers')(sequelize, Sequelize)

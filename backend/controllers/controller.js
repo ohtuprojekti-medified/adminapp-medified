@@ -9,7 +9,7 @@
 
 const db = require('../models')
 const user_profiles = db.user_profiles
-const access_codes = db.acces_codes
+const access_codes = db.access_codes
 const organisations = db.organisations
 const user_care_givers = db.user_care_givers
 const user_survey_answers = db.user_survey_answers
@@ -27,13 +27,19 @@ const user_care_giver_activities = db.user_care_giver_activities
  */
 
 const findAllAccessCodes = async (organisation) => {
+  console.log(access_codes)
   let accessCodes = undefined
   if(organisation == 'undefined') {
     accessCodes = await access_codes.findAll({
-      attributes: ['id', 'user_id', 'created_at', 'updated_at']
+      attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at']
     })
   } else {
-    // database query that filters organisation here
+    accessCodes = await access_codes.findAll({
+      attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
+      where: {
+        organisation_id: organisation
+      }
+    })
   }
   
   return accessCodes
@@ -53,7 +59,6 @@ const findAllOrgs = async (organisation) => {
   } else {
     return null
   }
-  
 }
 
 /**
@@ -63,14 +68,18 @@ const findAllOrgs = async (organisation) => {
  */
 
 const findAllUsers = async (organisation) => {
-  console.log('organisation from controller=', organisation)
   let userProfiles
   if(organisation == 'undefined') {
     userProfiles = await user_profiles.findAll({
       attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
     })
   } else {
-    // database query that filters organisation here
+    userProfiles = await user_profiles.findAll({
+      attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+      where: {
+        added_organisation: organisation
+      }
+    })
   }
 
   return userProfiles

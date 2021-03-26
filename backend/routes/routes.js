@@ -102,7 +102,7 @@ router.get('/cumulative', async (req, res) => {
  */
 
 router.get('/activeusers', async (req, res) => {
-  const activeUsers = await userhistoryController.findActiveUsers()
+  const activeUsers = await userhistoryController.findActiveUsers(req.get('organisation-requested'))
   res.json(activeUsers)
 })
 
