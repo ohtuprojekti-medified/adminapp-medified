@@ -56,6 +56,7 @@ const authenticateToken = (req, res, next) => {
 
     if (bearer === undefined || bearer.indexOf('Bearer ') !== 0) {
       res.status(403).send({ error: 'Invalid token!' })
+      return
     }
     const idTokenFromClient = bearer !== undefined
       ? bearer.substr('Bearer '.length)
