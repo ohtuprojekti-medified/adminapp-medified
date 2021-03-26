@@ -91,6 +91,22 @@ router.get('/cumulative', async (req, res) => {
 })
 
 /**
+ * Route request for amount of active users
+ *
+ * @name get_activeusers
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+
+router.get('/activeusers', async (req, res) => {
+  const activeUsers = await userhistoryController.findActiveUsers()
+  res.json(activeUsers)
+})
+
+/**
  * Route request for new users within week
  *
  * @name get_newusers
