@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -51,9 +50,10 @@ jobs:
     - name: Dockerhub frontend deploy latest
       run: |
         cd frontend
-        docker build -t frontend .
+        docker build -t frontend . --build-arg REACT_APP_API_URL="https://ohtup-staging.cs.helsinki.fi/medified/api/"
         docker tag frontend ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
         docker push ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
+
 
     - name: Dockerhub backend deploy latest
       run: |

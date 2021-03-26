@@ -1,28 +1,28 @@
 /**
- * Cypress tests for caregivers
+ * Cypress tests for cumulative users
  *
- * @module cypress/integration/caregivers_spec
+ * @module cypress/integration/Cumulative_spec
  * @requires cypress
  */
 
 /**
- * Describe tests for caregivers page
+ * Describe tests for cumulative users page
  *
- * @name Caregivers
+ * @name Cumulative
  * @type {object}
- * @memberof module:cypress/integration/caregivers_spec
+ * @memberof module:cypress/integration/cumulative_spec
  * @inner
- * @param {string} describe - Caregivers
+ * @param {string} describe - Cumulative users
  * @param {object} tests - Test code
  */
-describe('Caregivers', function () {
+describe('Cumulative users', function () {
 
   /**
    * Log in fast before each test
    *
    * @name beforeEach
    * @type {object}
-   * @memberof module:cypress/integration/caregivers_spec
+   * @memberof module:cypress/integration/cumulative_spec
    * @inner
    * @param {object} functionBeforeEach - Function to be run before each test
    */
@@ -35,7 +35,7 @@ describe('Caregivers', function () {
    *
    * @name afterEach
    * @type {object}
-   * @memberof module:cypress/integration/caregivers_spec
+   * @memberof module:cypress/integration/cumulative_spec
    * @inner
    * @param {object} functionAfterEach - Function to be run before each test
    */
@@ -44,18 +44,17 @@ describe('Caregivers', function () {
   })
 
   /**
-   * Test that caregivers page exists
+   * Test that cumulative users page exists
    *
-   * @name Caregivers_exists
+   * @name Cumulative_exists
    * @type {object}
-   * @memberof module:cypress/integration/caregivers_spec
+   * @memberof module:cypress/integration/cumulative_spec
    * @inner
    * @param {string} describe - exists
    * @param {object} testFunction - Function that runs test
    */
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
-    cy.contains('Caregivers')
-    cy.contains('Registered caregivers:')
+    cy.contains('New users, cumulative')
   })
 })

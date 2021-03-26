@@ -68,7 +68,7 @@ test('users are not returned without token', async () => {
  * @param {string} name - Name of the test
  * @param {object} test - Test code
  */
-test('users are not returned without token', async () => {
+test('caregivers are not returned without token', async () => {
   await api.get('/api/caregivers')
     .expect(403)
 })
@@ -115,6 +115,21 @@ test('user activity today is not returned without token', async () => {
  */
 test('retention rate is not returned without token', async () => {
   await api.get('/api/retention')
+    .expect(403)
+})
+
+/**
+ * Tests that average retention rate is not returned without token
+ *
+ * @name no_average_retention_rate_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('average retention rate is not returned without token', async () => {
+  await api.get('/api/avgretention')
     .expect(403)
 })
 
