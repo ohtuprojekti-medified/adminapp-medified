@@ -35,7 +35,7 @@ describe('<Cumulative />', () => {
    * @param {object} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
-    component = render(<Cumulative cumulative={[]} />)
+    component = render(<Cumulative cumulative={[]} activeUsers={[]} />)
   })
 
   /**
@@ -50,7 +50,9 @@ describe('<Cumulative />', () => {
    */
   test('renders Cumulative', () => {
     waitFor(() => {
-      expect(component.container).toHaveTextContent('New users, cumulative')
+      expect(component.container).toHaveTextContent('New users, cumulative and active users weekly')
+      expect(component.container).toHaveTextContent('cumulative new users')
+      expect(component.container).toHaveTextContent('active users weekly')
     })
   })
 })
