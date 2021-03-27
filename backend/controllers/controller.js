@@ -19,6 +19,8 @@ const user_diary_item_groups = db.user_diary_item_groups
 const user_activities = db.user_activities
 const user_answers = db.user_answers
 const user_care_giver_activities = db.user_care_giver_activities
+const { Sequelize } = require('../models')
+const Op = Sequelize.Op
 
 /**
  * Returns all access codes from database
@@ -74,10 +76,25 @@ const findAllUsers = async (organisation) => {
       attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
     })
   } else {
+    // find users based on organisational caregiver-user relationships
+    const accessCodesOrganisation = await findAllAccessCodes(organisation)
+
+    const organisationAccessCodesIdArray = accessCodesOrganisation.map(accessCode => accessCode.id)
+    const caregiverUserRelationshipsOrganisation = await user_care_givers.findAll({
+      where: {
+        access_code_id: organisationAccessCodesIdArray
+      }
+    })
+    const userIdsLinkedToOrganisationalCaregivers = caregiverUserRelationshipsOrganisation.map(relationship => relationship.user_id)
+    let uniqueIds = [...new Set(userIdsLinkedToOrganisationalCaregivers)];
+
     userProfiles = await user_profiles.findAll({
       attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
       where: {
-        added_organisation: organisation
+        [Op.or]: [
+          { user_id: uniqueIds },
+          { added_organisation: organisation }
+        ]
       }
     })
   }
