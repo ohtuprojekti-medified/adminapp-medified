@@ -15,7 +15,7 @@ const Filter = ({ description, checked, handleFilterChange }) => {
   return (
     <div>
       <form>
-        <p><input type="checkbox" checked={checked} onChange={handleFilterChange}></input> {description}</p>
+        <p><input type="checkbox" data-testid="filter-checkbox" checked={checked} onChange={handleFilterChange}></input> {description}</p>
       </form>
     </div>
   )
