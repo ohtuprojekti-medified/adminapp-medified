@@ -15,32 +15,39 @@
  * @requires src/components/LoginForm
  * @requires dotenv
  */
+import userService from './services/userService'
+import caregiverService from './services/caregiverService'
+
+import React, { useEffect, useState, useRef } from 'react'
+import classNames from 'classnames'
+// import { Router, Route, Switch } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
+
+import { AppTopbar } from './AppTopbar'
+import { AppFooter } from './AppFooter'
+import { AppMenu } from './AppMenu'
+import { AppConfig } from './AppConfig'
+
+import Amplify from 'aws-amplify'
+import Users from './components/Users'
+import Caregivers from './components/Caregivers'
+import LoginForm from './components/LoginForm'
+
+import { EmptyPage } from './pages/EmptyPage'
+
+import PrimeReact from 'primereact/api'
 
 // Muut mahdolliset teemat: saga ja arya, ja värit: purple, orange, green, blue
 import 'primereact/resources/themes/vela-orange/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import 'react-transition-group'
+import 'primeflex/primeflex.css'
+// import 'prismjs/themes/prism-coy.css'
 
 import './App.css'
 
-import classNames from 'classnames'
-import userService from './services/userService'
-import caregiverService from './services/caregiverService'
-import React, { useEffect, useState, useRef } from 'react'
-import { CSSTransition } from 'react-transition-group'
-
-// import { PanelMenu } from 'primereact/panelmenu'
-import { AppTopbar } from './AppTopbar'
-import { AppFooter } from './AppFooter'
-import { AppMenu } from './AppMenu'
-import { AppConfig } from './AppConfig'
-// import { Splitter, SplitterPanel } from 'primereact/splitter'
-import Amplify from 'aws-amplify'
-import Users from './components/Users'
-import Caregivers from './components/Caregivers'
-import LoginForm from './components/LoginForm'
-import PrimeReact from 'primereact/api'
 // import { Divider } from 'primereact/divider'
 
 /**
@@ -349,15 +356,15 @@ const App = () => {
 
 
   const isSidebarVisible = () => {
-    // if (isDesktop()) {
-    //   if (layoutMode === 'static')
-    //     return !staticMenuInactive
-    //   else if (layoutMode === 'overlay')
-    //     return overlayMenuActive
-    //   else
-    //     return true
-    // }
-    // return true
+    if (isDesktop()) {
+      if (layoutMode === 'static')
+        return !staticMenuInactive
+      else if (layoutMode === 'overlay')
+        return overlayMenuActive
+      else
+        return true
+    }
+    return true
   }
 
   const logo = layoutColorMode === 'dark' ? 'assets/layout/images/logo-white.svg' : 'assets/layout/images/logo.svg'
@@ -376,35 +383,21 @@ const App = () => {
     'layout-sidebar-light': layoutColorMode === 'light'
   })
   /**
- * Creates a single page application
- *
- * @type {object}
- * @function
- * @memberof module:src/App
- * @inner
- * @returns {object} - A single page application in JSX
- */
+   * Creates a single page application
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/App
+   * @inner
+   * @returns {object} - A single page application in JSX
+   */
 
   return (
 
-  //     // <div className="App">
-  //     <div className={wrapperClass} onClick={onWrapperClick}>
-  //       {/* // {user ? <h3>{user.username} logged in</h3> */}
-  //       {/* //   : null */}
-  //       {/* // } */}
-  //       <AppTopbar onToggleMenu={onToggleMenu} />
-  //       <CSSTransition classNames="layout-sidebar" timeout={{ enter: 200, exit: 200 }} in={isSidebarVisible()} unmountOnExit>
-  //         <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
-  //           <div className="layout-logo">
-  //             <img alt="Logo" src={logo} />
-
-
     <div className="App">
       <div className={wrapperClass} onClick={onWrapperClick}>
-        {user ? <h3>{user.username} logged in</h3>
-          : null
-        }
         <AppTopbar onToggleMenu={onToggleMenu} />
+
         <CSSTransition classNames="layout-sidebar" timeout={{ enter: 200, exit: 200 }} in={isSidebarVisible()} unmountOnExit>
           <div ref={sidebar} className={sidebarClassName} onClick={onSidebarClick}>
             <div className="layout-logo">
@@ -412,36 +405,36 @@ const App = () => {
             </div>
             {/* <AppProfile /> */}
             <AppMenu model={menu} onMenuItemClick={onMenuItemClick} />
-
           </div>
         </CSSTransition>
+
         <AppConfig rippleEffect={ripple} onRippleEffect={onRipple} inputStyle={inputStyle} onInputStyleChange={onInputStyleChange}
           layoutMode={layoutMode} onLayoutModeChange={onLayoutModeChange} layoutColorMode={layoutColorMode} onColorModeChange={onColorModeChange} />
 
-        <h1>Adminapp for monitoring moods</h1>
-        <LoginForm username={username} setUsername={setUsername} password={password}
-          setPassword={setPassword} user={user} setUser={setUser} />
-
-        {/* <div className="p-d-flex">
-        <div>
-          <PanelMenu model= { sidepanel } style={ { width:'300px' } }/>
+        <div className="layout-main">
+          <h1>Adminapp for monitoring moods</h1>
+          <LoginForm username={username} setUsername={setUsername} password={password}
+            setPassword={setPassword} user={user} setUser={setUser} />
+          {user ? <h3>{user.username} logged in</h3>
+            : null
+          }
+          {/* <Router>
+            <Switch>
+              <Route path="/empty" component={EmptyPage} />
+            </Switch>
+          </Router> */}
+          <Switch>
+            <Route path="/empty" component={EmptyPage} />
+          </Switch>
+          <Users users={appUsers} />
+          <Caregivers caregivers={caregivers} />
         </div>
-        <Divider layout="vertical" />
-        {user
-          ?
-          <div>
-            <Users users={appUsers} />
-            <Caregivers caregivers={caregivers} />
-          </div>
-          :
-          null
-        }
-      </div> */}
-        <Users users={appUsers} />
-        <Caregivers caregivers={caregivers} />
         <AppFooter />
+
       </div>
+
     </div>
+
   )
 }
 
