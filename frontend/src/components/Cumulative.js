@@ -23,10 +23,30 @@ import { Chart } from 'primereact/chart'
  */
 const Cumulative = ({ cumulative, activeUsers }) => {
 
-  if (cumulative.length === 0 || activeUsers.length === 0) {
-    return null
+  const chartContainerStyle = {
+    position: 'relative',
+    height: '25vh',
+    width: '50vw'
   }
-  console.log(cumulative, activeUsers)
+
+  const cardStyle = {
+    padding: '10px',
+    marginTop: '20px',
+    marginBottom: '250px'
+  }
+
+  if (cumulative.length === 0 || activeUsers.length === 0) {
+    return (
+      <div>
+        <div className="card" style={cardStyle}>
+          <h3>New users, cumulative</h3>
+          <div className="chart-container" style={chartContainerStyle}>
+            <Chart type='line' />
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const firstActive = activeUsers[0].week
 
@@ -64,24 +84,12 @@ const Cumulative = ({ cumulative, activeUsers }) => {
     }
   }
 
-  const chartContainerStyle = {
-    position: 'relative',
-    height: '25vh',
-    width: '50vw'
-  }
-
-  const cardStyle = {
-    padding: '10px',
-    marginTop: '20px',
-    marginBottom: '250px'
-  }
-
   return (
     <div>
       <div className="card" style={cardStyle}>
-        <h3>New users, cumulative</h3>
+        <h3>New users, cumulative and active users weekly</h3>
         <div className="chart-container" style={chartContainerStyle}>
-          <Chart type='line' data={chartData} options={chartOptions} />
+          <Chart type='line' data={chartData} options={chartOptions}/>
         </div>
       </div>
     </div>
