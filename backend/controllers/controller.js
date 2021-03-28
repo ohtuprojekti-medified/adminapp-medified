@@ -19,7 +19,7 @@ const user_diary_item_groups = db.user_diary_item_groups
 const user_activities = db.user_activities
 const user_answers = db.user_answers
 const user_care_giver_activities = db.user_care_giver_activities
-
+const sequelize = db.sequelize
 /**
  * Returns all access codes from database
  *
@@ -50,11 +50,19 @@ const findAllOrgs = async () => {
  * @returns  {...any} userProfiles - list of users
  */
 
-const findAllUsers = async () => {
+const findAllUsers = async (withCaregiver) => {
   const userProfiles = await user_profiles.findAll({
     attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
   })
-  return userProfiles
+
+  if (withCaregiver === true) {
+    const userProfilesFiltered = sequelize.query('SELECT DISTINCT user_profiles.user_id, user_profiles.created_at, user_profiles.first_name, user_profiles.last_name, user_profiles.updated_at, user_profiles.added_organisation FROM user_profiles, user_care_givers WHERE user_profiles.user_id = user_care_givers.user_id', { type: sequelize.QueryTypes.SELECT })
+    return userProfilesFiltered
+
+  } else {
+    return userProfiles
+  }
+
 }
 
 /**
