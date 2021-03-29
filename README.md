@@ -20,7 +20,7 @@ Adminapp is a wed-application for organizations to be able to easily view data c
 * [Code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/backend)
 * Production (coming soon)
 
-### Documentation
+## Documentation
 
 [Product backlog and sprint backlogs](https://docs.google.com/spreadsheets/d/12SjSfmpHuiBGJR2jTG2uMZ6Wvu--zwmGLkGJ7036ziA/edit#gid=0)
 
@@ -36,56 +36,63 @@ Adminapp is a wed-application for organizations to be able to easily view data c
 
 This project is licensed under the terms of the [MIT license](https://github.com/ohtuprojekti-medified/adminapp-medified/blob/master/LICENSE)
 
-### Clone project locally
+## Requirements
+To run adminapp locally, you will need:
 
-`git clone git@github.com:ohtuprojekti-medified/adminapp-medified.git`
+1. [Docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/)
+2. Local copy of this repository
 
-#### Requirements
+## Installation
 
-#### Run
+_All commands mentioned are run in project root._
 
-adminapp-medified/frontend
+Install project locally and/or add datadump (if you have it) to database with
 
-`npm start`
+`npm run initial` and follow instructions.
 
-adminapp-medified/backend
-
-`npm start`
-
-### Development Environment
+Add correct env variables by copying `.tmp.env` file as `.env` and filling out missing values.
+## Development environment
 The development environment is entirely configured in the docker-compose.yml file located in this repository. The file defines the containers/environments for:
 
 - Frontend
 - Backend
 
-#### First time install
-Run `install.sh` script for running `npm install` locally for both frontend and backend. You can also do this manually.
+### Start development environment
 
-The project uses PrimeReact libraries. You might have to install the used libraries into the frontend-folder if you are using the app locally. The following installs are recommendated:
+Run development environment locally with
 
-```
-npm install primereact --save
-npm install primeicons --save
-npm install primeflex --save
-```
-#### Start the development environment
-`docker-compose up`
+`npm start`
 
-#### Stop the development environment
-`docker-compose down`
+This runs `docker-compose up`.
 
-#### Add new npm package
-Stop and restart docker-compose after running `npm install` in frontend/backend.
+### Stop development environment
 
-#### Upload database-dump to development environment
+Stop dev env from another terminal with
 
-```
-docker exec -u postgres adminapp-medified-db psql -c "DROP DATABASE \"adminapp\""
-docker exec -u postgres adminapp-medified-db psql -c "CREATE DATABASE \"adminapp\""
-docker exec -i -u postgres adminapp-medified-db psql adminapp < PATH_TO_DUMP
-```
+`npm stop`
 
-You can go inside docker container to check that data is there:
+which is the same as `docker-compose down`.
 
-`docker exec -it -u postgres adminapp-medified-db psql -d adminapp`
+### Run tests
+
+Run all tests with
+
+`npm test` and follow instructions.
+
+(E2E tests require that project is running in the background)
+
+### Other commands
+
+- `npm run lint` fixes linting for the project
+- `npm run test:e2e` runs e2e tests (cypress)
+- `npm run test:unit` runs unit tests
+
+Check out `package.json` in root for all commands.
+
+
+### Add new npm package
+
+Stop and restart project after running `npm install` in frontend/backend.
+
+
 

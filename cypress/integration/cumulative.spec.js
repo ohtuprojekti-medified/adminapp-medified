@@ -1,28 +1,28 @@
 /**
- * Cypress tests for retention rate
+ * Cypress tests for cumulative users
  *
- * @module cypress/integration/retentionRate_spec
+ * @module cypress/integration/Cumulative_spec
  * @requires cypress
  */
 
 /**
- * Describe tests for retention rate page
+ * Describe tests for cumulative users page
  *
- * @name RetentionRate
+ * @name Cumulative
  * @type {object}
- * @memberof module:cypress/integration/retentionRate_spec
+ * @memberof module:cypress/integration/cumulative_spec
  * @inner
- * @param {string} describe - Retention rate
+ * @param {string} describe - Cumulative users
  * @param {object} tests - Test code
  */
-describe('Retention rate', function () {
+describe('Cumulative users', function () {
 
   /**
    * Log in fast before each test
    *
    * @name beforeEach
    * @type {object}
-   * @memberof module:cypress/integration/retentionRate_spec
+   * @memberof module:cypress/integration/cumulative_spec
    * @inner
    * @param {object} functionBeforeEach - Function to be run before each test
    */
@@ -35,7 +35,7 @@ describe('Retention rate', function () {
    *
    * @name afterEach
    * @type {object}
-   * @memberof module:cypress/integration/retentionRate_spec
+   * @memberof module:cypress/integration/cumulative_spec
    * @inner
    * @param {object} functionAfterEach - Function to be run before each test
    */
@@ -44,19 +44,17 @@ describe('Retention rate', function () {
   })
 
   /**
-   * Test that retention rate page exists
+   * Test that cumulative users page exists
    *
-   * @name RetentionRate_exists
+   * @name Cumulative_exists
    * @type {object}
-   * @memberof module:cypress/integration/retentionRate_spec
+   * @memberof module:cypress/integration/cumulative_spec
    * @inner
    * @param {string} describe - exists
    * @param {object} testFunction - Function that runs test
    */
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
-    cy.contains('Retention rates')
-    cy.contains('Average using period days')
-    cy.contains('Average period and single periods:')
+    cy.contains('New users, cumulative and active users weekly')
   })
 })

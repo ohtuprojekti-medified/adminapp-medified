@@ -3,11 +3,13 @@
 install_local_npm_packages () {
     cd ./frontend
     echo $PWD
-    npm ci
+    npm install
     cd ../backend
     echo $PWD
-    npm ci
+    npm install
     cd ..
+    echo $PWD
+    npm install
 }
 
 echo "Install local npm packages"

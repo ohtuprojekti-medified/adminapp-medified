@@ -9,8 +9,9 @@ node_modules
 
 # testing
 /coverage
-frontend/cypress/videos
-frontend/cypress/screenshots
+/cypress/videos
+/cypress/screenshots
+/frontend/cypress/videos
 
 /backend/requests
 

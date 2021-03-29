@@ -22,6 +22,7 @@ const user_care_giver_activities = db.user_care_giver_activities
 const { Sequelize } = require('../models')
 const Op = Sequelize.Op
 
+const sequelize = db.sequelize
 /**
  * Returns all access codes from database
  *

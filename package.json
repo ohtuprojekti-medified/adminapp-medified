@@ -1,0 +1,33 @@
+{
+    "name": "adminapp-medified",
+    "version": "1.0.0",
+    "main": "",
+    "scripts": {
+        "cypress:open": "cypress open",
+        "docker:down": "docker-compose down",
+        "docker:logs": "docker-compose logs -f",
+        "docker:up": "docker-compose up -d",
+        "initial": "./scripts/run.sh",
+        "lint": "./scripts/lint.sh",
+        "start": "npm run docker:up && npm run docker:logs",
+        "stop": "npm run docker:down",
+        "test": "./scripts/test.sh",
+        "test:e2e": "cypress run",
+        "test:unit": "./scripts/unit-test.sh"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ohtuprojekti-medified/adminapp-medified.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ohtuprojekti-medified/adminapp-medified/issues"
+    },
+    "homepage": "https://github.com/ohtuprojekti-medified#readme",
+    "devDependencies": {
+        "aws-amplify": "^3.3.17",
+        "cypress": "^6.4.0",
+        "cypress-dotenv": "^1.2.2"
+    }
+}
