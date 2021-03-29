@@ -69,14 +69,19 @@ const findAllOrgs = async (organisation) => {
  * @returns  {...any} userProfiles - list of users
  */
 
-const findAllUsers = async (organisation) => {
+const findAllUsers = async (organisation, withCaregiver) => {
   let userProfiles
   if(organisation == 'undefined') {
-    userProfiles = await user_profiles.findAll({
-      attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
-    })
+    // admin request from all data
+    if (withCaregiver === true) {
+      userProfiles = sequelize.query('SELECT DISTINCT user_profiles.user_id, user_profiles.created_at, user_profiles.first_name, user_profiles.last_name, user_profiles.updated_at, user_profiles.added_organisation FROM user_profiles, user_care_givers WHERE user_profiles.user_id = user_care_givers.user_id', { type: sequelize.QueryTypes.SELECT })
+    } else {
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
+      })
+    }
   } else {
-    // find users based on organisational caregiver-user relationships
+    // find organisational users based on organisational caregiver-user relationships
     const accessCodesOrganisation = await findAllAccessCodes(organisation)
 
     const organisationAccessCodesIdArray = accessCodesOrganisation.map(accessCode => accessCode.id)
@@ -88,15 +93,25 @@ const findAllUsers = async (organisation) => {
     const userIdsLinkedToOrganisationalCaregivers = caregiverUserRelationshipsOrganisation.map(relationship => relationship.user_id)
     let uniqueIds = [...new Set(userIdsLinkedToOrganisationalCaregivers)];
 
-    userProfiles = await user_profiles.findAll({
-      attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-      where: {
-        [Op.or]: [
-          { user_id: uniqueIds },
-          { added_organisation: organisation }
-        ]
-      }
-    })
+    if(withCaregiver === true) {
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+        where: {
+          user_id: uniqueIds
+        }
+      })
+    } else {
+      // includes also users from organisation that don't have a caregiver 
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+        where: {
+          [Op.or]: [
+            { user_id: uniqueIds },
+            { added_organisation: organisation }
+          ]
+        }
+      })
+    }
   }
 
   return userProfiles

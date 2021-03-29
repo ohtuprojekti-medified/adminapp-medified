@@ -41,7 +41,8 @@ require('express-async-errors')
  * @param {object} middleware - Handle request to path
  */
 router.get('/users', async (req, res) => {
-  const users = await controller.findAllUsers(req.get('organisation-requested'))
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const users = await controller.findAllUsers(req.get('organisation-requested'), withCaregiver)
   res.json(users)
 })
 
