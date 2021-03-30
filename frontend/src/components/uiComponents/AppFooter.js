@@ -5,7 +5,13 @@ const footerText = 'Admin applikaatio depressiopotilailta kerätyn datan tarkast
 
 const footerStyle = {
   position: 'absolute',
-  width: '100%'
+  bottom: 0,
+  width: '100%',
+  marginTop: '10vh'
+}
+
+const toolbarStyle = {
+  backgroundColor: '#d1e8e6'
 }
 
 const leftContents = (
@@ -17,7 +23,7 @@ const leftContents = (
 const AppFooter = () => {
   return (
     <div style={footerStyle}>
-      <Toolbar left={leftContents} />
+      <Toolbar left={leftContents} style={toolbarStyle} />
     </div>
   )
 }

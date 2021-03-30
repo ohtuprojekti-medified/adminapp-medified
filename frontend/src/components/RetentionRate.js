@@ -54,28 +54,19 @@ const RetentionRate = ({ retentionRates, average }) => {
     }
   }
 
-  const divStyle = {
-    // position: 'relative',
-    // height: '25vh',
-    // width: '50vw'
+  const containerStyle = {
+    backgroundColor: '#ffffff'
   }
 
-  const cardStyle = {
-    // margin: '20px',
-    // padding: '20px'
-  }
 
   return (
-    <div>
-      <div className="card" style={cardStyle}>
+    <div className="p-col-12 p-lg-8" style={containerStyle} >
+      <div className="card">
         <h3>Retention rates</h3>
-        <p>Average using period {parseFloat(average).toFixed(2)} days</p>
-        <p><b>Average period and single periods:</b></p>
-        <div className="chart-container" style={divStyle}>
-          <Chart type="bar" data={barChart} options={options}></Chart>
-        </div>
+        <Chart type="bar" data={barChart} options={options}></Chart>
       </div>
     </div>
+
   )
 }
 

@@ -31,6 +31,10 @@ const AppTopbar = ({ user, setUser }) => {
     margin: '5px'
   }
 
+  const toolbarStyle = {
+    backgroundColor: '#beede7'
+  }
+
   const leftContents = (
     <React.Fragment>
       <h2 style={titleStyle}> Adminapp for monitoring moods </h2>
@@ -53,7 +57,7 @@ const AppTopbar = ({ user, setUser }) => {
 
   return (
     <div className="p-component">
-      <Toolbar left={leftContents} right={rightContents} />
+      <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
     </div>
   )
 }

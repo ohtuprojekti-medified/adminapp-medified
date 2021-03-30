@@ -11,10 +11,14 @@ import RetentionRate from '../RetentionRate'
 
 const containerStyle = {
   position: 'relative',
-  top: '0vh',
-  bottom: '100vh'
+  minHeight: '100vh',
+  backgroundColor: '#fafafa',
+  paddingBottom: '100px'
 }
 
+const subContainer1 = {
+  marginTop: '10px'
+}
 
 export const AppContainer = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
   username, setUsername, password, setPassword, setUser }) => {
@@ -34,17 +38,23 @@ export const AppContainer = ({ user, appUsers, caregiverFilterForAllUsers, handl
       {user
         ?
         <div>
-          <Users users={appUsers} checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
-          <Caregivers caregivers={caregivers} />
+          <div className="p-grid p-fluid dashboard" style={subContainer1}>
+            <Users users={appUsers} checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
+            <Caregivers caregivers={caregivers} />
+          </div>
           <Cumulative cumulative={cumulativeUsers} activeUsers={activeUsers} />
-          <RetentionRate
-            retentionRates={retentionRates}
-            average={averageRetention} />
+          <div >
+            <RetentionRate
+              retentionRates={retentionRates}
+              average={averageRetention} />
+          </div>
         </div>
         :
         null}
       <div>
-        < AppFooter />
+      </div>
+      <div>
+        <AppFooter />
       </div>
     </div>
   )
