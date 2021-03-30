@@ -30,5 +30,9 @@
         "cypress": "^6.4.0",
         "cypress-dotenv": "^1.2.2",
         "dotenv": "^8.2.0"
+    },
+    "dependencies": {
+        "primefaces": "^10.0.0",
+        "primereact": "^6.2.1"
     }
 }

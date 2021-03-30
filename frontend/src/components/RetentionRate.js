@@ -10,6 +10,7 @@ import React from 'react'
 import { Chart } from 'primereact/chart'
 
 const RetentionRate = ({ retentionRates, average }) => {
+
   const daysUsed = retentionRates.map(obj => obj.daysUsed)
   const data = [average, ...daysUsed]
 
@@ -54,14 +55,14 @@ const RetentionRate = ({ retentionRates, average }) => {
   }
 
   const divStyle = {
-    position: 'relative',
-    height: '25vh',
-    width: '50vw'
+    // position: 'relative',
+    // height: '25vh',
+    // width: '50vw'
   }
 
   const cardStyle = {
-    margin: '20px',
-    padding: '20px'
+    // margin: '20px',
+    // padding: '20px'
   }
 
   return (

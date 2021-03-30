@@ -61,29 +61,9 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
     }
   }
 
-  /**
-   * Handle logout button presses
-   *
-   * @type {object}
-   * @function
-   * @constant
-   * @memberof module:src/components/LoginForm
-   * @inner
-   * @param {object} event - Contains event
-   */
-  const handleLogOut = async (event) => {
-    event.preventDefault()
-    try {
-      await loginService.logOut()
-      setUser(undefined)
-    } catch (exception) {
-      console.log('An error occured')
-    }
-  }
-
   return (
     user
-      ? <button id='logOut' onClick={handleLogOut}>log out</button>
+      ? null
       : <div>
         <h3>Login:</h3>
         <form onSubmit={handleLogin}>
