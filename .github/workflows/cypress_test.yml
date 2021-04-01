@@ -16,6 +16,9 @@ jobs:
       - name: Env
         run: touch .env
 
+      - name: Install npm packages
+        run: npm install
+
       - name: Run docker-compose
         run: npm start
 
