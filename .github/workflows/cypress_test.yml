@@ -10,6 +10,8 @@ jobs:
   start-server:
     - name: Env
       run: touch .env
+
+    - name: Run docker-compose
       run: npm start
 
   cypress-run:
