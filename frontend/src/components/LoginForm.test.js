@@ -71,7 +71,7 @@ describe('<LoginForm />', () => {
    * @param {object} TestCode - Code that runs the test
    */
   test('renders form', () => {
-    expect(component.container).toHaveTextContent('Login:')
+    expect(component.container).toHaveTextContent('Login')
     expect(component.container).toHaveTextContent('username:')
     expect(component.container).toHaveTextContent('password:')
     expect(component.container).toHaveTextContent('login')
