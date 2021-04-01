@@ -20,7 +20,7 @@ jobs:
         run: ./scripts/install.sh
 
       - name: Run docker-compose
-        run: npm start
+        run: npm docker:up
 
   cypress-run:
     needs: start-server
