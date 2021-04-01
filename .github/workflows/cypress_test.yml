@@ -8,11 +8,12 @@ on:
 
 jobs:
   start-server:
-    - name: Env
-      run: touch .env
+    -steps:
+      - name: Env
+        run: touch .env
 
-    - name: Run docker-compose
-      run: npm start
+      - name: Run docker-compose
+        run: npm start
 
   cypress-run:
     needs: start-server
