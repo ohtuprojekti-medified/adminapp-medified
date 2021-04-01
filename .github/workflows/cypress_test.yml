@@ -8,9 +8,9 @@ on:
 
 jobs:
   start-server:
-      - name: Env
-        run: touch .env
-        run : npm start
+    - name: Env
+      run: touch .env
+      run: npm start
 
   cypress-run:
     needs: start-server
