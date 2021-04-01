@@ -12,12 +12,21 @@ import RetentionRate from '../RetentionRate'
 const containerStyle = {
   position: 'relative',
   minHeight: '100vh',
-  backgroundColor: '#fafafa',
+  backgroundColor: '#f2f2f2',
   paddingBottom: '100px'
 }
 
 const subContainer1 = {
-  marginTop: '10px'
+  marginTop: '10px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+}
+
+const subContainer2 = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
 }
 
 export const AppContainer = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
@@ -42,11 +51,15 @@ export const AppContainer = ({ user, appUsers, caregiverFilterForAllUsers, handl
             <Users users={appUsers} checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
             <Caregivers caregivers={caregivers} />
           </div>
-          <Cumulative cumulative={cumulativeUsers} activeUsers={activeUsers} />
-          <div >
-            <RetentionRate
-              retentionRates={retentionRates}
-              average={averageRetention} />
+          <div>
+            <div style={subContainer2} >
+              <Cumulative cumulative={cumulativeUsers} activeUsers={activeUsers} />
+            </div>
+            <div style={subContainer2}>
+              <RetentionRate
+                retentionRates={retentionRates}
+                average={averageRetention} />
+            </div>
           </div>
         </div>
         :

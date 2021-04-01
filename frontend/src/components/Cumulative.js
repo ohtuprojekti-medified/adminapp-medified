@@ -23,18 +23,6 @@ import { Chart } from 'primereact/chart'
  */
 const Cumulative = ({ cumulative, activeUsers }) => {
 
-  // const chartContainerStyle = {
-  //   position: 'relative',
-  //   height: '25vh',
-  //   width: '50vw'
-  // }
-
-  // const cardStyle = {
-  //   padding: '10px',
-  //   marginTop: '20px',
-  //   marginBottom: '250px'
-  // }
-
   if (cumulative.length === 0 || activeUsers.length === 0) {
     return (
       <div>
@@ -87,13 +75,25 @@ const Cumulative = ({ cumulative, activeUsers }) => {
     marginBottom: '20px'
   }
 
+  const cardStyle = {
+    paddingTop: '5px',
+    paddingBottom: '20px',
+    marginLeft: '20px',
+    marginRight: '20px'
+  }
+
   return (
-    <div className="p-col-12 p-lg-8" style={containerStyle}>
-      <div className="card">
-        <h3>New users, cumulative and active users weekly</h3>
-        <Chart type='line' data={chartData} options={chartOptions} />
+
+    <div className="p-col-12 p-lg-8" >
+      <div className="p-shadow-1" style={containerStyle}>
+        <div className="card" style={cardStyle}>
+          <h3>New users, cumulative and active users weekly</h3>
+          <Chart type='line' data={chartData} options={chartOptions} />
+        </div>
       </div>
+
     </div>
+
   )
 }
 

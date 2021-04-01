@@ -3,6 +3,8 @@ import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
 import loginService from '../../services/loginService'
 
+import AppMenu from './AppMenu'
+
 const AppTopbar = ({ user, setUser }) => {
 
   /**
@@ -37,6 +39,12 @@ const AppTopbar = ({ user, setUser }) => {
 
   const leftContents = (
     <React.Fragment>
+      {user
+        ?
+        <div>
+          <AppMenu />
+        </div>
+        : null}
       <h2 style={titleStyle}> Adminapp for monitoring moods </h2>
     </React.Fragment>
   )
@@ -47,7 +55,7 @@ const AppTopbar = ({ user, setUser }) => {
         ?
         <div>
           <Button label={user.username} icon="pi pi-user" className="p-mr-2" />
-          <Button label="Log out" icon="pi pi-power-off" className="p-button-danger" onClick={handleLogOut}/>
+          <Button label="Log out" icon="pi pi-power-off" className="p-button-danger" onClick={handleLogOut} />
         </div>
         :
         null}

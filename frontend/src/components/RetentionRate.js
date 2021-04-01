@@ -58,12 +58,21 @@ const RetentionRate = ({ retentionRates, average }) => {
     backgroundColor: '#ffffff'
   }
 
+  const cardStyle = {
+    paddingTop: '5px',
+    paddingBottom: '20px',
+    marginLeft: '20px',
+    marginRight: '20px'
+  }
+
 
   return (
-    <div className="p-col-12 p-lg-8" style={containerStyle} >
-      <div className="card">
-        <h3>Retention rates</h3>
-        <Chart type="bar" data={barChart} options={options}></Chart>
+    <div className="p-col-12 p-lg-8" >
+      <div className="p-shadow-1" style={containerStyle}>
+        <div className="card" style={cardStyle}>
+          <h3>Retention rates</h3>
+          <Chart type="bar" data={barChart} options={options}></Chart>
+        </div>
       </div>
     </div>
 

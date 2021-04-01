@@ -1,7 +1,7 @@
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'
 
-const footerText = 'Admin applikaatio depressiopotilailta kerätyn datan tarkasteluun, Helsingin yliopiston ohjelmistotuotantoprojekti, kevät 2021'
+const footerText = 'medified-adminapp, Software engineering project, University of Helsinki, spring 2021'
 
 const footerStyle = {
   position: 'absolute',
