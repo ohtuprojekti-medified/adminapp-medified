@@ -2,6 +2,7 @@ const { differenceInCalendarDays } = require('date-fns')
 const db = require('../models')
 const user_profiles = db.user_profiles
 const user_activities = db.user_activities
+const controller = require('./controller')
 
 /**
  * Returns retention rates as in how long does user use app actively
@@ -9,22 +10,49 @@ const user_activities = db.user_activities
  * @returns  {...any} usingPeriods - number of days per using period
  */
 
-const findRetentionRates = async () => {
-  const userActivities = await user_activities.findAll({
-    order: [
-      ['created_at', 'ASC']
-    ],
-    attributes: ['id', 'user_id', 'created_at']
-  })
+const findRetentionRates = async (organisation) => {
+  let userActivities
+  let userProfiles
+  if(organisation == 'undefined') {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at']
+    })
+    userProfiles = await user_profiles.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['user_id', 'created_at']
+    })
+  } else {
+    const userIdsOrganisation = await controller.findAllUsers(organisation, true)
+    const userIdsOrganisationArray = userIdsOrganisation.map(user => user.user_id)
+    userActivities = await user_activities.findAll({
+      where: {
+        user_id: userIdsOrganisationArray
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at']
+    })
+    userProfiles = await user_profiles.findAll({
+      where: {
+        user_id: userIdsOrganisationArray
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['user_id', 'created_at']
+    })
+  }
+
   const allActivities = userActivities.map(activity => activity.dataValues)
   const userIds = allActivities.map(obj => obj.user_id)
 
-  const userProfiles = await user_profiles.findAll({
-    order: [
-      ['created_at', 'ASC']
-    ],
-    attributes: ['user_id', 'created_at']
-  })
+
   const allUserProfiles = userProfiles.map(profile => profile.dataValues)
   const activeUsers = allUserProfiles.filter(user => userIds.includes(user.user_id))
 
@@ -62,8 +90,8 @@ const findRetentionRates = async () => {
  * @returns  {...any} averageUsingPeriod - average app using period
  */
 
-const findAverageRetentionRate = async () => {
-  const allRates = await findRetentionRates()
+const findAverageRetentionRate = async (organisation) => {
+  const allRates = await findRetentionRates(organisation)
   const daysUsed = allRates.map(obj => obj.daysUsed)
   const sum = daysUsed.reduce((a, b) => a + b, 0)
   const averageUsingPeriod = sum / daysUsed.length

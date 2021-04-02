@@ -23,6 +23,8 @@ const { Sequelize } = require('../models')
 const Op = Sequelize.Op
 
 const sequelize = db.sequelize
+
+
 /**
  * Returns all access codes from database
  *
