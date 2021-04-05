@@ -3,9 +3,19 @@ import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
 import loginService from '../../services/loginService'
 
-import AppMenu from './AppMenu'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
 
-const AppTopbar = ({ user, setUser }) => {
+import Header from './AppHeader'
+
+import AppContent from './AppContent'
+import RetentionRate from '../RetentionRate'
+import Cumulative from '../Cumulative'
+
+const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
+  username, setUsername, password, setPassword, setUser }) => {
 
   /**
    * Handle logout button presses
@@ -39,13 +49,13 @@ const AppTopbar = ({ user, setUser }) => {
 
   const leftContents = (
     <React.Fragment>
+      <h2 style={titleStyle}> Adminapp for monitoring moods </h2>
       {user
         ?
         <div>
-          <AppMenu />
+          <Header />
         </div>
         : null}
-      <h2 style={titleStyle}> Adminapp for monitoring moods </h2>
     </React.Fragment>
   )
 
@@ -63,9 +73,63 @@ const AppTopbar = ({ user, setUser }) => {
     </React.Fragment>
   )
 
+  const centered = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+
   return (
     <div className="p-component">
-      <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
+      <Router>
+        <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
+        <Route exact path='/'>
+          <AppContent user={user}
+            appUsers={appUsers}
+            caregivers={caregivers}
+            caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+            handleFilterChange={handleFilterChange}
+            cumulativeUsers={cumulativeUsers}
+            activeUsers={activeUsers}
+            retentionRates={retentionRates}
+            averageRetention={averageRetention}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            setUser={setUser} />
+
+        </Route>
+        <Route exact path='/home'>
+          <AppContent user={user}
+            appUsers={appUsers}
+            caregivers={caregivers}
+            caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+            handleFilterChange={handleFilterChange}
+            cumulativeUsers={cumulativeUsers}
+            activeUsers={activeUsers}
+            retentionRates={retentionRates}
+            averageRetention={averageRetention}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            setUser={setUser} />
+        </Route>
+        <Route exact path='/retention'>
+          <div style={centered}>
+            <RetentionRate retentionRates={retentionRates}
+              averageRetention={averageRetention} />
+          </div>
+        </Route>
+        <Route exact path='/cumulative'>
+          <div style={centered}>
+            <Cumulative cumulative={cumulativeUsers}
+              activeUsers={activeUsers} />
+          </div>
+        </Route>
+      </Router>
+
     </div>
   )
 }

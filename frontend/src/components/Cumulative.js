@@ -84,7 +84,7 @@ const Cumulative = ({ cumulative, activeUsers }) => {
 
   return (
 
-    <div className="p-col-12 p-lg-8" >
+    <div className="p-col-12 p-lg-8">
       <div className="p-shadow-1" style={containerStyle}>
         <div className="card" style={cardStyle}>
           <h3>New users, cumulative and active users weekly</h3>
