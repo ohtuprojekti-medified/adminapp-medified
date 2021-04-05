@@ -5,6 +5,7 @@
  * @requires react
  */
 import React from 'react'
+import { Card } from 'primereact/card'
 
 /**
  * Component listing registered caregivers
@@ -20,10 +21,11 @@ import React from 'react'
  */
 const Caregivers = ({ caregivers }) => {
   return (
-    <div>
-      <h3>Caregivers</h3>
-      {/* <ul>{users.map(user => <li key={user.user_id}> {user.first_name} {user.last_name}</li>)}</ul> */}
-      <p>Registered caregivers: {caregivers.length} </p>
+    <div className="p-col-12 p-md-6 p-xl-3">
+      <Card title="Caregivers">
+        <p>Registered caregivers: {caregivers.length} </p>
+        <p></p>
+      </Card>
     </div>
   )
 }

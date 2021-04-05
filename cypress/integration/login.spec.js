@@ -56,7 +56,7 @@ const login = (username, password) => {
  * @inner
  */
 const logout = () => {
-  cy.contains('log out').click()
+  cy.contains('Log out').click()
 }
 
 /**
@@ -155,7 +155,7 @@ describe('Login', function () {
   it('shows logout-button after successfull login', function () {
     login(testUsername, testPassword)
 
-    cy.contains('log out')
+    cy.contains('Log out')
   })
 
   /**
@@ -169,7 +169,7 @@ describe('Login', function () {
    * @param {object} testFunction - Function that runs test
    */
   it('does not show logout-button before login', function () {
-    cy.get('body').should('not.contain', 'log out')
+    cy.get('body').should('not.contain', 'Log out')
   })
 
   /**
@@ -206,7 +206,7 @@ describe('Login', function () {
     login(testUsername, testPassword)
     logout()
 
-    cy.get('body').should('not.contain', 'log out')
+    cy.get('body').should('not.contain', 'Log out')
   })
 
   /**
@@ -227,7 +227,7 @@ describe('Login', function () {
     cy.contains('password:')
     cy.contains('login')
     cy.get('body').should('not.contain', 'Application users:')
-    cy.get('body').should('not.contain', 'log out')
+    cy.get('body').should('not.contain', 'Log out')
   })
 
   /**
@@ -248,7 +248,7 @@ describe('Login', function () {
     cy.contains('password:')
     cy.contains('login')
     cy.get('body').should('not.contain', 'Application users:')
-    cy.get('body').should('not.contain', 'log out')
+    cy.get('body').should('not.contain', 'Log out')
   })
 
   /**
@@ -269,6 +269,6 @@ describe('Login', function () {
     cy.contains('password:')
     cy.contains('login')
     cy.get('body').should('not.contain', 'Application users:')
-    cy.get('body').should('not.contain', 'log out')
+    cy.get('body').should('not.contain', 'Log out')
   })
 })

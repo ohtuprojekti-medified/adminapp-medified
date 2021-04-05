@@ -19,7 +19,7 @@
  */
 
 // Muut mahdolliset teemat: saga ja arya, ja värit: orange, green, blue
-import 'primereact/resources/themes/vela-purple/theme.css'
+import 'primereact/resources/themes/saga-blue/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 
@@ -27,13 +27,19 @@ import './App.css'
 
 import React, { useEffect, useState } from 'react'
 import Amplify from 'aws-amplify'
-import Users from './components/Users'
-import Caregivers from './components/Caregivers'
-import LoginForm from './components/LoginForm'
-import Cumulative from './components/Cumulative'
-import RetentionRate from './components/RetentionRate'
 import dataService from './services/dataService.js'
 import loginService from './services/loginService'
+
+import 'primereact/resources/themes/saga-blue/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+import 'react-transition-group'
+import 'primeflex/primeflex.css'
+
+// import PrimeReact from 'primereact/api'
+
+import { AppContainer } from './components/uiComponents/AppContainer'
+
 
 /**
  * Creates a single page application
@@ -164,28 +170,28 @@ const App = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
-
   return (
-    <div className="App">
-      {user ? <h3>{user.username} logged in</h3>
-        : null
-      }
-      <h1>Adminapp for monitoring moods</h1>
-      <LoginForm username={username} setUsername={setUsername} password={password}
-        setPassword={setPassword} user={user} setUser={setUser} />
-      {user
-        ?
-        <div>
-          <Users users={appUsers} checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
-          <Caregivers caregivers={caregivers} />
-          <Cumulative cumulative={cumulativeUsers} activeUsers={activeUsers} />
-          <RetentionRate
-            retentionRates={retentionRates}
-            average={averageRetention} />
+    <div>
+      <div className="App">
+        <div> <AppContainer
+          user={user}
+          appUsers={appUsers}
+          caregivers={caregivers}
+          caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+          handleFilterChange={handleFilterChange}
+          cumulativeUsers={cumulativeUsers}
+          activeUsers={activeUsers}
+          retentionRates={retentionRates}
+          averageRetention={averageRetention}
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+          setUser={setUser}
+        />
         </div>
-        :
-        null
-      }
+
+      </div>
     </div>
   )
 }
