@@ -94,7 +94,7 @@ describe('<App />', () => {
    * @param {object} TestCode - Code that runs the test
    */
   test('renders login form', () => {
-    expect(component.container).toHaveTextContent('Login:')
+    expect(component.container).toHaveTextContent('Login')
     expect(component.container).toHaveTextContent('username:')
     expect(component.container).toHaveTextContent('password:')
   })

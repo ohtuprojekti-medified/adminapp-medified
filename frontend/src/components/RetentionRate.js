@@ -10,6 +10,7 @@ import React from 'react'
 import { Chart } from 'primereact/chart'
 
 const RetentionRate = ({ retentionRates, average }) => {
+
   const daysUsed = retentionRates.map(obj => obj.daysUsed)
   const data = [average, ...daysUsed]
 
@@ -53,28 +54,30 @@ const RetentionRate = ({ retentionRates, average }) => {
     }
   }
 
-  const divStyle = {
-    position: 'relative',
-    height: '25vh',
-    width: '50vw'
+  const containerStyle = {
+    backgroundColor: '#ffffff'
   }
 
   const cardStyle = {
-    margin: '20px',
-    padding: '20px'
+    paddingTop: '5px',
+    paddingBottom: '20px',
+    marginLeft: '20px',
+    marginRight: '20px'
   }
 
+
   return (
-    <div>
-      <div className="card" style={cardStyle}>
-        <h3>Retention rates</h3>
-        <p>Average using period {parseFloat(average).toFixed(2)} days</p>
-        <p><b>Average period and single periods:</b></p>
-        <div className="chart-container" style={divStyle}>
+    <div className="p-col-12 p-lg-8" >
+      <div className="p-shadow-1" style={containerStyle}>
+        <div className="card" style={cardStyle}>
+          <h3>Retention rates</h3>
+          <p> Average using period {parseFloat(average).toFixed(2)} days</p>
+          <p> Average period and single periods:</p>
           <Chart type="bar" data={barChart} options={options}></Chart>
         </div>
       </div>
     </div>
+
   )
 }
 
