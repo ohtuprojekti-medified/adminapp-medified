@@ -1,0 +1,75 @@
+name: RELEASE
+
+on:
+  release:
+    branches: [ master ]
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - name: setup actions
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: install, build and test frontend
+      run: |
+        cd frontend
+        npm ci
+        npm run test --watchAll=false   
+        npm run lint
+
+    - name: install, build and test backend
+      run: |
+        cd backend
+        npm ci
+        npm run test
+        npm run lint
+
+    - name: setup and install cypress
+      run: |
+        echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env
+        echo 'POSTGRES_DB=${{ secrets.POSTGRES_DB }}' >> .env
+        echo 'DB_USERNAME=${{ secrets.DB_USERNAME }}' >> .env
+        echo 'DB_PASSWORD=${{ secrets.DB_PASSWORD }}' >> .env
+        echo 'DB_HOST=${{ secrets.DB_HOST }}' >> .env
+        echo 'CYPRESS_USERNAME=${{ secrets.CYPRESS_USERNAME }}' >> .env
+        echo 'CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }}' >> .env
+        npm ci
+        npm run docker:up
+
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+    
+    - name: Dockerhub login
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
+ name: Dockerhub frontend deploy latest
+      run: |
+        cd frontend
+        docker build -t frontend . --build-arg REACT_APP_API_URL="https://ohtup-staging.cs.helsinki.fi/medified/api/"
+        docker tag frontend ${{secrets.DOCKER_ORGANIZATION}}/adminapp-production-frontend:latest
+        docker push ${{secrets.DOCKER_ORGAZNIZATION}}/adminapp-production-frontend:latest
+
+
+    - name: Dockerhub backend deploy latest
+      run: |
+        cd backend
+        docker build -t backend .
+        docker tag backend ${{secrets.DOCKER_ORGANIZATION}}/adminapp-production-backend:latest
+        docker push ${{secrets.DOCKER_ORGANIZATION}}/adminapp-production-backend:latest
