@@ -1,41 +1,51 @@
+/**
+ * Component containing all UI components on the home page
+ *
+ * @module src/components/uiComponents/AppContent
+ * @requires react
+ * @requires components/LoginForm
+ * @requires components/Users
+ * @requires components/Caregivers
+ * @requires components/Cumulative
+ * @requires components/RetentionRate
+ */
 import React from 'react'
-import AppTopbar from './AppTopbar'
-import AppFooter from './AppFooter'
 
 import LoginForm from '../LoginForm'
-
 import Users from '../Users'
 import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
 
-const containerStyle = {
-  position: 'relative',
-  minHeight: '100vh',
-  backgroundColor: '#f2f2f2',
-  paddingBottom: '100px'
-}
-
-const subContainer1 = {
-  marginTop: '10px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
-}
-
-const subContainer2 = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center'
-}
-
-export const AppContainer = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
+/**
+ * Component containing all UI components on the home page
+ * @param {*} param0 - all props from App.js
+ * @returns {object} - JSX component containing all sub components
+ */
+const AppContent = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
   username, setUsername, password, setPassword, setUser }) => {
+
+  const containerStyle = {
+    position: 'relative',
+    minHeight: '100vh',
+    backgroundColor: '#f2f2f2',
+    paddingBottom: '100px'
+  }
+
+  const subContainer1 = {
+    marginTop: '10px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+
+  const subContainer2 = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
   return (
     <div style={containerStyle}>
-      <div>
-        <AppTopbar user={user} setUser={setUser} />
-      </div>
       {user
         ? null
         : <div>
@@ -66,9 +76,8 @@ export const AppContainer = ({ user, appUsers, caregiverFilterForAllUsers, handl
         null}
       <div>
       </div>
-      <div>
-        <AppFooter />
-      </div>
     </div>
   )
 }
+
+export default AppContent

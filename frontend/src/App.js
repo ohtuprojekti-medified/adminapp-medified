@@ -15,6 +15,8 @@
  * @requires src/components/LoginForm
  * @requires src/components/Cumulative
  * @requires src/components/RetentionRate
+ * @requires src/components/uiComponents/AppTopbar
+ * @requires src/components/uiComponents/AppFooter
  * @requires dotenv
  */
 
@@ -36,9 +38,8 @@ import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
 
-// import PrimeReact from 'primereact/api'
-
-import { AppContainer } from './components/uiComponents/AppContainer'
+import AppTopbar from './components/uiComponents/AppTopbar'
+import AppFooter from './components/uiComponents/AppFooter'
 
 
 /**
@@ -172,30 +173,38 @@ const App = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
+  const containerStyle = {
+    position: 'relative',
+    minHeight: '100vh',
+    backgroundColor: '#f2f2f2',
+    paddingBottom: '100px'
+  }
+
   return (
     <div>
       <div className="App">
-        <div> <AppContainer
-          user={user}
-          appUsers={appUsers}
-          caregivers={caregivers}
-          caregiverFilterForAllUsers={caregiverFilterForAllUsers}
-          handleFilterChange={handleFilterChange}
-          cumulativeUsers={cumulativeUsers}
-          activeUsers={activeUsers}
-          retentionRates={retentionRates}
-          averageRetention={averageRetention}
-          username={username}
-          setUsername={setUsername}
-          password={password}
-          setPassword={setPassword}
-          setUser={setUser}
-        />
+        <div style={containerStyle}>
+          <AppTopbar user={user}
+            appUsers={appUsers}
+            caregivers={caregivers}
+            caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+            handleFilterChange={handleFilterChange}
+            cumulativeUsers={cumulativeUsers}
+            activeUsers={activeUsers}
+            retentionRates={retentionRates}
+            averageRetention={averageRetention}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            setUser={setUser} />
+          <AppFooter />
         </div>
-
       </div>
     </div>
   )
 }
 
 export default App
+
+
