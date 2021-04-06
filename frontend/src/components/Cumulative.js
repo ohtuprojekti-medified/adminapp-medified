@@ -39,7 +39,7 @@ const Cumulative = ({ cumulative, activeUsers }) => {
     return (
       <div>
         <div className="card" style={cardStyle}>
-          <h3>New users, cumulative</h3>
+          <h3>New users, cumulative and active users weekly</h3>
           <div className="chart-container" style={chartContainerStyle}>
             <Chart type='line' />
           </div>
