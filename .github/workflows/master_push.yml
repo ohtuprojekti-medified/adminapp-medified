@@ -68,14 +68,14 @@ jobs:
         docker build -t frontend . \
           --build-arg REACT_APP_API_URL="${{ secrets.STAGING_URL }}api/" \
           --build-arg PUBLIC_URL="${{ secrets.STAGING_URL }}"
-        docker tag frontend ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
-        docker push ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
+        docker tag frontend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-frontend:latest
+        docker push ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-frontend:latest
 
 
     - name: Dockerhub backend deploy latest
       run: |
         cd backend
         docker build -t backend .
-        docker tag backend ${{secrets.DOCKER_USERNAME}}/adminapp-medified-backend:latest
-        docker push ${{secrets.DOCKER_USERNAME}}/adminapp-medified-backend:latest
+        docker tag backend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-backend:latest
+        docker push ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-backend:latest
       
