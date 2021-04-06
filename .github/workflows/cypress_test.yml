@@ -13,8 +13,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Env
-        run: echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env && echo 'POSTGRES_DB=${{ secrets.POSTGRES_DB }}' >> .env && echo 'DB_USERNAME=${{ secrets.DB_USERNAME }}' >> .env && echo 'DB_PASSWORD=${{ secrets.DB_PASSWORD }}' >> .env && echo 'DB_HOST=${{ secrets.DB_HOST }}' >> .env && echo 'CYPRESS_USERNAME=${{ secrets.CYPRESS_USERNAME }}' >> .env && echo 'CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }}' >> .env
+      - name: Add postgres password to .env
+        run: echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env 
+        
+      - name: Add postgres db name to .env
+        run: echo 'POSTGRES_DB=${{ secrets.POSTGRES_DB }}' >> .env 
+        
+      - name: Add db username to .env
+        run: echo 'DB_USERNAME=${{ secrets.DB_USERNAME }}' >> .env
+        
+      - name: Add db password to .env
+        run: echo 'DB_PASSWORD=${{ secrets.DB_PASSWORD }}' >> .env
+        
+      - name: Add db host to .env
+        run: echo 'DB_HOST=${{ secrets.DB_HOST }}' >> .env
+
+      - name: Add cypress username to .env
+        run: echo 'CYPRESS_USERNAME=${{ secrets.CYPRESS_USERNAME }}' >> .env
+        
+      - name: Add cypress password to .env
+        run: echo 'CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }}' >> .env
 
       - name: Install npm packages
         run: ./scripts/install.sh
