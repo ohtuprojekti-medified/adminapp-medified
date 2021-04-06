@@ -23,7 +23,7 @@ const AppTopbar = ({ user, setUser }) => {
       await loginService.logOut()
       setUser(undefined)
     } catch (exception) {
-      console.log('An error occured')
+      return
     }
   }
 

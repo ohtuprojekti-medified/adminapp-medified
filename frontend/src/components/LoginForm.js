@@ -60,7 +60,7 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
       setUsername('')
       setPassword('')
     } catch (exception) {
-      console.log(exception)
+      return
     }
   }
 
