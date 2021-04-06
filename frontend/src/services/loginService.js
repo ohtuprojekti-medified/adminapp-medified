@@ -22,7 +22,7 @@ import { Auth } from 'aws-amplify'
 const login = async credentials => {
   console.log(credentials.username)
   console.log(credentials.password)
-  //console.log(Auth.configure())
+  console.log(Auth.configure())
   let user
   try {
     user = await Auth.signIn(credentials.username, credentials.password)
