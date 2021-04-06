@@ -13,9 +13,6 @@ const controller = require('./controller')
 const findRetentionRates = async (organisation, withCaregiver) => {
     const userIds = await controller.findAllUsers(organisation, withCaregiver)
     const userIdsArray = userIds.map(user => user.user_id)
-    console.log('**********')
-    console.log(userIdsArray)
-    console.log('**********')
     const userActivities = await user_activities.findAll({
       where: {
         user_id: userIdsArray
