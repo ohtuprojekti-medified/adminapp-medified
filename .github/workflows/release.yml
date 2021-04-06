@@ -64,13 +64,13 @@ jobs:
       run: |
         cd frontend
         docker build -t frontend . --build-arg REACT_APP_API_URL="https://ohtup-staging.cs.helsinki.fi/medified/api/"
-        docker tag frontend ${{secrets.DOCKER_ORGANIZATION}}/adminapp-production-frontend:latest
-        docker push ${{secrets.DOCKER_ORGAZNIZATION}}/adminapp-production-frontend:latest
+        docker tag frontend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-production-frontend:latest
+        docker push ${{ secrets.DOCKER_ORGAZNIZATION }}/adminapp-production-frontend:latest
 
 
     - name: Dockerhub backend deploy latest
       run: |
         cd backend
         docker build -t backend .
-        docker tag backend ${{secrets.DOCKER_ORGANIZATION}}/adminapp-production-backend:latest
-        docker push ${{secrets.DOCKER_ORGANIZATION}}/adminapp-production-backend:latest
+        docker tag backend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-production-backend:latest
+        docker push ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-production-backend:latest
