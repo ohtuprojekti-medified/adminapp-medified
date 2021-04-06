@@ -65,7 +65,9 @@ jobs:
     - name: Dockerhub frontend deploy latest
       run: |
         cd frontend
-        docker build -t frontend . --build-arg REACT_APP_API_URL="https://ohtup-staging.cs.helsinki.fi/medified/api/"
+        docker build -t frontend . \
+          --build-arg REACT_APP_API_URL="${{ secrets.STAGING_URL }}api/" \
+          --build-arg PUBLIC_URL="${{ secrets.STAGING_URL }}"
         docker tag frontend ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
         docker push ${{secrets.DOCKER_USERNAME}}/adminapp-medified-frontend:latest
 
