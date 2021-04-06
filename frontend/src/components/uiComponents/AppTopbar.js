@@ -1,11 +1,40 @@
+/**
+ * Component for applications UI topbar
+ *
+ * @module src/components/uiComponents/AppTopbar
+ * @requires react
+ * @requires primereact/toolbar
+ * @requires primereact/button
+ * @requires react-router-dom
+ * @requires services/loginService
+ * @requires components/uiComponents/AppHeader
+ * @requires components/uiComponents/AppContent
+ * @requires components/RetentionRate
+ * @requires components/Cumulative
+ */
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
 import loginService from '../../services/loginService'
 
-import AppMenu from './AppMenu'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
 
-const AppTopbar = ({ user, setUser }) => {
+import Header from './AppHeader'
+import AppContent from './AppContent'
+import RetentionRate from '../RetentionRate'
+import Cumulative from '../Cumulative'
+
+/**
+ * Component for applications UI topbar
+ *
+ * @param {*} param0 - all props from App.js
+ * @returns {object} - JSX Topbar component
+ */
+const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
+  username, setUsername, password, setPassword, setUser }) => {
 
   /**
    * Handle logout button presses
@@ -37,18 +66,24 @@ const AppTopbar = ({ user, setUser }) => {
     backgroundColor: '#beede7'
   }
 
+  /**
+   * Contents for the left side of primereact's toolbar
+   */
   const leftContents = (
     <React.Fragment>
+      <h2 style={titleStyle}> Adminapp for monitoring moods </h2>
       {user
         ?
         <div>
-          <AppMenu />
+          <Header />
         </div>
         : null}
-      <h2 style={titleStyle}> Adminapp for monitoring moods </h2>
     </React.Fragment>
   )
 
+  /**
+   * Contents for the right side of primereact's toolbar
+   */
   const rightContents = (
     <React.Fragment>
       {user
@@ -63,9 +98,63 @@ const AppTopbar = ({ user, setUser }) => {
     </React.Fragment>
   )
 
+  const centered = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+
   return (
     <div className="p-component">
-      <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
+      <Router>
+        <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
+        <Route exact path='/'>
+          <AppContent user={user}
+            appUsers={appUsers}
+            caregivers={caregivers}
+            caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+            handleFilterChange={handleFilterChange}
+            cumulativeUsers={cumulativeUsers}
+            activeUsers={activeUsers}
+            retentionRates={retentionRates}
+            averageRetention={averageRetention}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            setUser={setUser} />
+
+        </Route>
+        <Route exact path='/home'>
+          <AppContent user={user}
+            appUsers={appUsers}
+            caregivers={caregivers}
+            caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+            handleFilterChange={handleFilterChange}
+            cumulativeUsers={cumulativeUsers}
+            activeUsers={activeUsers}
+            retentionRates={retentionRates}
+            averageRetention={averageRetention}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            setUser={setUser} />
+        </Route>
+        <Route exact path='/retention'>
+          <div style={centered}>
+            <RetentionRate retentionRates={retentionRates}
+              averageRetention={averageRetention} />
+          </div>
+        </Route>
+        <Route exact path='/cumulative'>
+          <div style={centered}>
+            <Cumulative cumulative={cumulativeUsers}
+              activeUsers={activeUsers} />
+          </div>
+        </Route>
+      </Router>
+
     </div>
   )
 }
