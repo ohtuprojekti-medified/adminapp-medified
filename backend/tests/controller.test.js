@@ -18,7 +18,7 @@ jest.mock('../models/user_profiles', () => () => {
 
 describe('user_profiles', () => {
   it('can be found from database', async () => {
-    const users = await controller.findAllUsers()
+    const users = await controller.findAllUsers('undefined')
     expect(users.length).toEqual(1)
     expect(users[0].first_name).toEqual('Mikko')
   })
@@ -41,7 +41,7 @@ jest.mock('../models/organisations', () => () => {
 
 describe('organisations', () => {
   it('can be found from database', async () => {
-    const orgs = await controller.findAllOrgs()
+    const orgs = await controller.findAllOrgs('undefined')
     expect(orgs.length).toEqual(1)
     expect(orgs[0].id).toEqual('OHTU')
   })

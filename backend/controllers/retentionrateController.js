@@ -10,52 +10,38 @@ const controller = require('./controller')
  * @returns  {...any} usingPeriods - number of days per using period
  */
 
-const findRetentionRates = async (organisation) => {
-  let userActivities
-  let userProfiles
-  if(organisation == 'undefined') {
-    userActivities = await user_activities.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at']
-    })
-    userProfiles = await user_profiles.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['user_id', 'created_at']
-    })
-  } else {
-    const userIdsOrganisation = await controller.findAllUsers(organisation, true)
-    const userIdsOrganisationArray = userIdsOrganisation.map(user => user.user_id)
-    userActivities = await user_activities.findAll({
+const findRetentionRates = async (organisation, withCaregiver) => {
+    const userIds = await controller.findAllUsers(organisation, withCaregiver)
+    const userIdsArray = userIds.map(user => user.user_id)
+    console.log('**********')
+    console.log(userIdsArray)
+    console.log('**********')
+    const userActivities = await user_activities.findAll({
       where: {
-        user_id: userIdsOrganisationArray
+        user_id: userIdsArray
       },
       order: [
         ['created_at', 'ASC']
       ],
       attributes: ['id', 'user_id', 'created_at']
     })
-    userProfiles = await user_profiles.findAll({
+    const userProfiles = await user_profiles.findAll({
       where: {
-        user_id: userIdsOrganisationArray
+        user_id: userIdsArray
       },
       order: [
         ['created_at', 'ASC']
       ],
       attributes: ['user_id', 'created_at']
     })
-  }
+  
 
   const allActivities = userActivities.map(activity => activity.dataValues)
-  const userIds = allActivities.map(obj => obj.user_id)
+  const userIdsActivities = allActivities.map(obj => obj.user_id)
 
 
   const allUserProfiles = userProfiles.map(profile => profile.dataValues)
-  const activeUsers = allUserProfiles.filter(user => userIds.includes(user.user_id))
-
+  const activeUsers = allUserProfiles.filter(user => userIdsActivities.includes(user.user_id))
   let usingPeriods = []
 
   for (let user of activeUsers) {
@@ -90,8 +76,8 @@ const findRetentionRates = async (organisation) => {
  * @returns  {...any} averageUsingPeriod - average app using period
  */
 
-const findAverageRetentionRate = async (organisation) => {
-  const allRates = await findRetentionRates(organisation)
+const findAverageRetentionRate = async (organisation, withCaregiver) => {
+  const allRates = await findRetentionRates(organisation, withCaregiver)
   const daysUsed = allRates.map(obj => obj.daysUsed)
   const sum = daysUsed.reduce((a, b) => a + b, 0)
   const averageUsingPeriod = sum / daysUsed.length

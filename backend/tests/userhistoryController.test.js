@@ -135,13 +135,13 @@ describe('userhistory controller', () => {
   })
 
   test('findCumulativeNewUsers returns correct data', async () => {
-    const cumulativeUserActivities = await userhistoryController.findCumulativeNewUsers()
+    const cumulativeUserActivities = await userhistoryController.findCumulativeNewUsers('undefined')
     expect(cumulativeUserActivities[0].entries).toEqual(2)
     expect(cumulativeUserActivities[1].entries).toEqual(3)
   })
 
   test('findUserActivities returns correct data', async () => {
-    const activeUsers = await userhistoryController.findActiveUsers()
+    const activeUsers = await userhistoryController.findActiveUsers('undefined')
     expect(activeUsers[0].entries).toEqual(1)
     expect(activeUsers[activeUsers.length-1].entries).toEqual(2)
   })
@@ -167,7 +167,7 @@ jest.mock('../models/user_activities', () => () => {
 
 describe('user_activities today', () => {
   it('are returned correctly', async () => {
-    const activitiesToday = await controller.findUserActivitiesToday()
+    const activitiesToday = await controller.findUserActivitiesToday('undefined')
     const createdAt = (activitiesToday[0].createdAt).setHours(0, 0, 0)
     const timeNow = new Date().setHours(0, 0, 0, 0)
     expect(activitiesToday.length).toEqual(1)
@@ -193,7 +193,7 @@ jest.mock('../models/user_profiles', () => () => {
 
 describe('new users from the last seven days', () => {
   it('are returned correctly', async () => {
-    const newUsers = await controller.findNewUsers()
+    const newUsers = await controller.findNewUsers('undefined')
     const createdAt = (newUsers[0].createdAt).setHours(0, 0, 0)
     const timeNow = new Date().setHours(0, 0, 0, 0)
     expect(newUsers.length).toEqual(1)

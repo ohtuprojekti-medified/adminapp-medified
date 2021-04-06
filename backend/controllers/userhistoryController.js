@@ -11,32 +11,20 @@ const controller = require('./controller')
  * @returns  {...any} userActivitiesToday - list of user activities today
  */
 
-const findUserActivitiesToday = async (organisation) => {
+const findUserActivitiesToday = async (organisation, withCaregiver) => {
   const Op = Sequelize.Op
   const TODAY_START = new Date(new Date().setHours(0, 0, 0, 0))
   const NOW = new Date()
-  let userActivitiesToday
-  if(organisation == 'undefined') {
-    userActivitiesToday = await user_activities.findAll({
-      where: {
-        created_at: {
-          [Op.gt]: TODAY_START,
-          [Op.lt]: NOW
-        }
-      }
-    })
-  } else {
-    const userIds = await controller.findAllUsers(organisation, true)
-    userActivitiesToday = await user_activities.findAll({
-      where: {
-        created_at: {
-          [Op.gt]: TODAY_START,
-          [Op.lt]: NOW
-        },
-        user_id: userIds.map(user => user.user_id)
-      }
-    })
-  }
+  const userIds = await controller.findAllUsers(organisation, withCaregiver)
+  const userActivitiesToday = await user_activities.findAll({
+    where: {
+      created_at: {
+        [Op.gt]: TODAY_START,
+        [Op.lt]: NOW
+      },
+      user_id: userIds.map(user => user.user_id)
+    }
+  })
   return userActivitiesToday
 }
 
@@ -46,35 +34,23 @@ const findUserActivitiesToday = async (organisation) => {
  * @returns  {...any} usersCreatedAt - list of new users registered in the last week
  */
 
-const findNewUsers = async (organisation) => {
+const findNewUsers = async (organisation, withCaregiver) => {
   const Op = Sequelize.Op
   const NOW = new Date()
   const WEEK_AGO = new Date(new Date() - 604800000)
 
-  let usersCreatedAt
-  if(organisation == 'undefined') {
-    usersCreatedAt = await user_profiles.findAll({
-      where: {
-        created_at: {
-          [Op.gt]: WEEK_AGO,
-          [Op.lt]: NOW
-        }
+  const userIds = await controller.findAllUsers(organisation, withCaregiver)
+  const usersCreatedAt = await user_profiles.findAll({
+    where: {
+      created_at: {
+        [Op.gt]: WEEK_AGO,
+        [Op.lt]: NOW
       },
-      attributes: ['user_id', 'created_at', 'updated_at', 'added_organisation']
-    })
-  } else {
-    const userIds = await controller.findAllUsers(organisation, true)
-    usersCreatedAt = await user_profiles.findAll({
-      where: {
-        created_at: {
-          [Op.gt]: WEEK_AGO,
-          [Op.lt]: NOW
-        },
-        user_id: userIds.map(user => user.user_id)
-      },
-      attributes: ['user_id', 'created_at', 'updated_at', 'added_organisation']
-    })
-  }
+      user_id: userIds.map(user => user.user_id)
+    },
+    attributes: ['user_id', 'created_at', 'updated_at', 'added_organisation']
+  })
+  
   
   return usersCreatedAt
 }
@@ -85,28 +61,17 @@ const findNewUsers = async (organisation) => {
  * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
  */
 
-const findCumulativeNewUsers = async (organisation) => {
-  let usersCreatedAt
-
-  if(organisation == 'undefined') {
-    usersCreatedAt = await user_profiles.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['created_at']
-    })
-  } else {
-    const userIds = await controller.findAllUsers(organisation, true)
-    usersCreatedAt = await user_profiles.findAll({
-      where: {
-        user_id: userIds.map(user => user.user_id)
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['created_at']
-    })
-  }
+const findCumulativeNewUsers = async (organisation, withCaregiver) => {
+  const userIds = await controller.findAllUsers(organisation, withCaregiver)
+  const usersCreatedAt = await user_profiles.findAll({
+    where: {
+      user_id: userIds.map(user => user.user_id)
+    },
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['created_at']
+  })
   
   const createdDates = usersCreatedAt.map(user => user.dataValues)
 
@@ -135,27 +100,17 @@ const findCumulativeNewUsers = async (organisation) => {
  *
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
-const findActiveUsers = async (organisation) => {
-  let userActivities
-  if(organisation == 'undefined') {
-    userActivities = await user_activities.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at']
-    })
-  } else {
-    const userIds = await controller.findAllUsers(organisation, true)
-    userActivities = await user_activities.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at'],
-      where: {
-        user_id: userIds.map(user => user.user_id)
-      }
-    })
-  }
+const findActiveUsers = async (organisation, withCaregiver) => {
+  const userIds = await controller.findAllUsers(organisation, withCaregiver)
+  const userActivities = await user_activities.findAll({
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['id', 'user_id', 'created_at'],
+    where: {
+      user_id: userIds.map(user => user.user_id)
+    }
+  })
   
   const allActivities = userActivities.map(activity => activity.dataValues)
 

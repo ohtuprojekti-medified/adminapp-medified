@@ -48,7 +48,9 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
       if (user.user) {
         const appUser = {
           username: user.user.username,
-          idToken: user.user.signInUserSession.idToken.jwtToken
+          idToken: user.user.signInUserSession.idToken.jwtToken,
+          organisation: user.user.attributes['custom:organisation'],
+          admin: user.user.attributes['custom:admin']
         }
         setUser(appUser)
         window.localStorage.setItem(

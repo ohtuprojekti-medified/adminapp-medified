@@ -87,7 +87,8 @@ router.get('/ping', async (req, res) => {
  */
 
 router.get('/cumulative', async (req, res) => {
-  const cumulativeUsers = await userhistoryController.findCumulativeNewUsers(req.get('organisation-requested'))
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const cumulativeUsers = await userhistoryController.findCumulativeNewUsers(req.get('organisation-requested'), withCaregiver)
   res.json(cumulativeUsers)
 })
 
@@ -103,7 +104,8 @@ router.get('/cumulative', async (req, res) => {
  */
 
 router.get('/activeusers', async (req, res) => {
-  const activeUsers = await userhistoryController.findActiveUsers(req.get('organisation-requested'))
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const activeUsers = await userhistoryController.findActiveUsers(req.get('organisation-requested'), withCaregiver)
   res.json(activeUsers)
 })
 
@@ -119,7 +121,8 @@ router.get('/activeusers', async (req, res) => {
  */
 
 router.get('/newusers', async (req, res) => {
-  const newUsers = await userhistoryController.findNewUsers(req.get('organisation-requested'))
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const newUsers = await userhistoryController.findNewUsers(req.get('organisation-requested'), withCaregiver)
   res.json(newUsers)
 })
 
@@ -135,7 +138,8 @@ router.get('/newusers', async (req, res) => {
  */
 
 router.get('/activitytoday', async (req, res) => {
-  const activity = await userhistoryController.findUserActivitiesToday(req.get('organisation-requested'))
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const activity = await userhistoryController.findUserActivitiesToday(req.get('organisation-requested'), withCaregiver)
   res.json(activity)
 })
 
@@ -151,12 +155,14 @@ router.get('/activitytoday', async (req, res) => {
  */
 
 router.get('/retention', async (req, res) => {
-  const retention = await retentionrateController.findRetentionRates(req.get('organisation-requested'))
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const retention = await retentionrateController.findRetentionRates(req.get('organisation-requested'), withCaregiver)
   res.json(retention)
 })
 
 router.get('/avgretention', async (req, res) => {
-  const avg = await retentionrateController.findAverageRetentionRate(req.get('organisation-requested'))
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const avg = await retentionrateController.findAverageRetentionRate(req.get('organisation-requested'), withCaregiver)
   res.json(avg)
 })
 

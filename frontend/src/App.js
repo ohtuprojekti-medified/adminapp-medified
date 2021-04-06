@@ -102,7 +102,9 @@ const App = () => {
         const cognitoUser = await Amplify.Auth.currentAuthenticatedUser()
         const refreshedUser = {
           username: cognitoUser.username,
-          idToken: cognitoUser.signInUserSession.idToken.jwtToken
+          idToken: cognitoUser.signInUserSession.idToken.jwtToken,
+          organisation: cognitoUser.attributes['custom:organisation'],
+          admin: cognitoUser.attributes['custom:admin']
         }
         window.localStorage.setItem(
           'loggedUser', JSON.stringify(refreshedUser)
@@ -149,11 +151,11 @@ const App = () => {
 
         if (user) {
           dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
-          dataService.getAll('caregivers').then(caregivs => setCaregivers(caregivs))
-          dataService.getAll('cumulative').then(cumulativeUsers => setCumulative(cumulativeUsers))
-          dataService.getAll('retention').then(retentionRates => setRetentionRates(retentionRates))
-          dataService.getAll('avgretention').then(average => setAverageRetention(average))
-          dataService.getAll('activeusers').then(active => setActive(active))
+          dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}`).then(caregivs => setCaregivers(caregivs))
+          dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
+          dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}`).then(retentionRates => setRetentionRates(retentionRates))
+          dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}`).then(average => setAverageRetention(average))
+          dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}`).then(active => setActive(active))
         }
       }
     }
