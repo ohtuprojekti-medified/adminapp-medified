@@ -15,6 +15,8 @@
  * @requires src/components/LoginForm
  * @requires src/components/Cumulative
  * @requires src/components/RetentionRate
+ * @requires src/components/uiComponents/AppTopbar
+ * @requires src/components/uiComponents/AppFooter
  * @requires dotenv
  */
 
@@ -35,8 +37,6 @@ import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
-
-// import PrimeReact from 'primereact/api'
 
 import AppTopbar from './components/uiComponents/AppTopbar'
 import AppFooter from './components/uiComponents/AppFooter'

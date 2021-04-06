@@ -1,3 +1,14 @@
+/**
+ * Component containing all UI components on the home page
+ *
+ * @module src/components/uiComponents/AppContent
+ * @requires react
+ * @requires components/LoginForm
+ * @requires components/Users
+ * @requires components/Caregivers
+ * @requires components/Cumulative
+ * @requires components/RetentionRate
+ */
 import React from 'react'
 
 import LoginForm from '../LoginForm'
@@ -6,6 +17,11 @@ import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
 
+/**
+ * Component containing all UI components on the home page
+ * @param {*} param0 - all props from App.js
+ * @returns {object} - JSX component containing all sub components
+ */
 const AppContent = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
   username, setUsername, password, setPassword, setUser }) => {
 

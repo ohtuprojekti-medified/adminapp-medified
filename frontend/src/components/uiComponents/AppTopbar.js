@@ -1,3 +1,17 @@
+/**
+ * Component for applications UI topbar
+ *
+ * @module src/components/uiComponents/AppTopbar
+ * @requires react
+ * @requires primereact/toolbar
+ * @requires primereact/button
+ * @requires react-router-dom
+ * @requires services/loginService
+ * @requires components/uiComponents/AppHeader
+ * @requires components/uiComponents/AppContent
+ * @requires components/RetentionRate
+ * @requires components/Cumulative
+ */
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
@@ -9,11 +23,16 @@ import {
 } from 'react-router-dom'
 
 import Header from './AppHeader'
-
 import AppContent from './AppContent'
 import RetentionRate from '../RetentionRate'
 import Cumulative from '../Cumulative'
 
+/**
+ * Component for applications UI topbar
+ *
+ * @param {*} param0 - all props from App.js
+ * @returns {object} - JSX Topbar component
+ */
 const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
   username, setUsername, password, setPassword, setUser }) => {
 
@@ -47,6 +66,9 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
     backgroundColor: '#beede7'
   }
 
+  /**
+   * Contents for the left side of primereact's toolbar
+   */
   const leftContents = (
     <React.Fragment>
       <h2 style={titleStyle}> Adminapp for monitoring moods </h2>
@@ -59,6 +81,9 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
     </React.Fragment>
   )
 
+  /**
+   * Contents for the right side of primereact's toolbar
+   */
   const rightContents = (
     <React.Fragment>
       {user

@@ -1,7 +1,14 @@
+/**
+ * Component for applications UI footer
+ *
+ * @module src/components/uiComponents/AppFooter
+ * @requires react
+ * @requires primereact/toolbar
+ */
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'
 
-const footerText = 'medified-adminapp, Software engineering project, University of Helsinki, spring 2021'
+const footerText = 'Medified Adminapp, Software engineering project, University of Helsinki, spring 2021'
 
 const footerStyle = {
   position: 'absolute',
@@ -20,6 +27,11 @@ const leftContents = (
   </React.Fragment>
 )
 
+/**
+ * Component for applications UI footer
+ *
+ * @returns {object} - JSX Footer component
+ */
 const AppFooter = () => {
   return (
     <div style={footerStyle}>
