@@ -11,27 +11,27 @@ const controller = require('./controller')
  */
 
 const findRetentionRates = async (organisation, withCaregiver) => {
-    const userIds = await controller.findAllUsers(organisation, withCaregiver)
-    const userIdsArray = userIds.map(user => user.user_id)
-    const userActivities = await user_activities.findAll({
-      where: {
-        user_id: userIdsArray
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at']
-    })
-    const userProfiles = await user_profiles.findAll({
-      where: {
-        user_id: userIdsArray
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['user_id', 'created_at']
-    })
-  
+  const userIds = await controller.findAllUsers(organisation, withCaregiver)
+  const userIdsArray = userIds.map(user => user.user_id)
+  const userActivities = await user_activities.findAll({
+    where: {
+      user_id: userIdsArray
+    },
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['id', 'user_id', 'created_at']
+  })
+  const userProfiles = await user_profiles.findAll({
+    where: {
+      user_id: userIdsArray
+    },
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['user_id', 'created_at']
+  })
+
 
   const allActivities = userActivities.map(activity => activity.dataValues)
   const userIdsActivities = allActivities.map(obj => obj.user_id)

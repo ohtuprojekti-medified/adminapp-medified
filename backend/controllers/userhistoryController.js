@@ -50,8 +50,8 @@ const findNewUsers = async (organisation, withCaregiver) => {
     },
     attributes: ['user_id', 'created_at', 'updated_at', 'added_organisation']
   })
-  
-  
+
+
   return usersCreatedAt
 }
 
@@ -72,7 +72,7 @@ const findCumulativeNewUsers = async (organisation, withCaregiver) => {
     ],
     attributes: ['created_at']
   })
-  
+
   const createdDates = usersCreatedAt.map(user => user.dataValues)
 
   const first = createdDates[0].created_at.getTime()
@@ -98,6 +98,8 @@ const findCumulativeNewUsers = async (organisation, withCaregiver) => {
 /**
  * Returns active users week by week
  *
+ * @param organisation
+ * @param withCaregiver
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
 const findActiveUsers = async (organisation, withCaregiver) => {
@@ -111,7 +113,7 @@ const findActiveUsers = async (organisation, withCaregiver) => {
       user_id: userIds.map(user => user.user_id)
     }
   })
-  
+
   const allActivities = userActivities.map(activity => activity.dataValues)
 
   const first = allActivities[0].created_at.getTime()
