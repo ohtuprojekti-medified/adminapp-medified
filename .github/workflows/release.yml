@@ -59,7 +59,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
- name: Dockerhub frontend deploy latest
+    - name: Dockerhub frontend deploy latest
       run: |
         cd frontend
         docker build -t frontend . --build-arg REACT_APP_API_URL="https://ohtup-staging.cs.helsinki.fi/medified/api/"
