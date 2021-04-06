@@ -7,6 +7,7 @@
  */
 import React from 'react'
 import Filter from './Filter'
+import { Card } from 'primereact/card'
 
 /**
  * Component listing App users
@@ -24,13 +25,13 @@ import Filter from './Filter'
  */
 const Users = ({ users, checked, handleFilterChange }) => {
   return (
-    <div>
-      <h3>App users</h3>
-      <p>Application users: {users.length} </p>
-      <Filter handleFilterChange={handleFilterChange} checked={checked} description='Show only app users with caregiver' />
+    <div className="p-col-12 p-md-6 p-xl-3">
+      <Card title="App users">
+        <p>Application users: {users.length} </p>
+        <Filter handleFilterChange={handleFilterChange} checked={checked} description=' Show only app users with caregiver' />
+      </Card>
     </div>
   )
 }
 
 export default Users
-

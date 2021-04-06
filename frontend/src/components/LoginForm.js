@@ -7,6 +7,9 @@
  */
 import React from 'react'
 import loginService from '../services/loginService'
+import { InputText } from 'primereact/inputtext'
+import { Password } from 'primereact/password'
+import { Button } from 'primereact/button'
 
 /**
  * Component that creates a form for login and button for logout
@@ -61,40 +64,40 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
     }
   }
 
-  /**
-   * Handle logout button presses
-   *
-   * @type {object}
-   * @function
-   * @constant
-   * @memberof module:src/components/LoginForm
-   * @inner
-   * @param {object} event - Contains event
-   */
-  const handleLogOut = async (event) => {
-    event.preventDefault()
-    try {
-      await loginService.logOut()
-      setUser(undefined)
-    } catch (exception) {
-      console.log('An error occured')
-    }
+  const containerStyle = {
+    position: 'relative',
+    top: '2vh',
+    right: '-3vh',
+    width: '35vh',
+    height: '30vh'
   }
 
   return (
     user
-      ? <button id='logOut' onClick={handleLogOut}>log out</button>
-      : <div>
-        <h3>Login:</h3>
+      ? null
+      : <div style={containerStyle}>
+        <h2>Login</h2>
         <form onSubmit={handleLogin}>
-          <div>username: <input id='username' type='text' value={username} name='Username'
-            onChange={({ target }) => setUsername(target.value)} /></div>
-          <div>password: <input id='password' type='password' value={password} name='Password'
-            onChange={({ target }) => setPassword(target.value)} /></div>
-          <button type='submit'>login</button>
+          <div>
+            <div>
+              username:
+              <InputText id="username" type="text" value={username} name='Username' onChange={({ target }) => setUsername(target.value)} />
+            </div>
+            <div>
+              password:
+              <Password id="password" value={password} feedback={false} name="Password" onChange={({ target }) => setPassword(target.value)} />
+            </div>
+          </div>
+          <Button label="login" type='submit' />
         </form>
       </div>
   )
 }
 
 export default LoginForm
+
+{/* <input id='username' type='text' value={username} name='Username'
+onChange={({ target }) => setUsername(target.value)} /> */}
+
+{/* <div>password: <input id='password' type='password' value={password} name='Password'
+            onChange={({ target }) => setPassword(target.value)} /></div> */}
