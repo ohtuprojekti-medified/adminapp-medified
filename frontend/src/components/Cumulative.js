@@ -26,11 +26,9 @@ const Cumulative = ({ cumulative, activeUsers }) => {
   if (cumulative.length === 0 || activeUsers.length === 0) {
     return (
       <div>
-        <div className="card" style={cardStyle}>
-          <h3>New users, cumulative and active users weekly</h3>
-          <div className="chart-container">
-            <Chart type='line' />
-          </div>
+        <h3>New users, cumulative and active users weekly</h3>
+        <div className="chart-container" >
+          <Chart type='line' />
         </div>
       </div>
     )
