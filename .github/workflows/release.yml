@@ -2,7 +2,7 @@ name: RELEASE
 
 on:
   release:
-    branches: [ master ]
+    branches: [ production_workflow ]
     paths-ignore:
       - 'README.md'
 
