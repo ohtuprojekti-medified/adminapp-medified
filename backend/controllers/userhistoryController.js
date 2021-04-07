@@ -98,8 +98,8 @@ const findCumulativeNewUsers = async (organisation, withCaregiver) => {
 /**
  * Returns active users week by week
  *
- * @param organisation
- * @param withCaregiver
+ * @param {string} organisation - string id used to identify organisation
+ * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
 const findActiveUsers = async (organisation, withCaregiver) => {
