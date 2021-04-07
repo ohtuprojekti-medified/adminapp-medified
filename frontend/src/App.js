@@ -112,7 +112,7 @@ const App = () => {
         )
         return refreshedUser
       } catch (error) {
-        console.log('error refreshing token', error)
+        return
       }
     }
 
@@ -121,7 +121,7 @@ const App = () => {
         const pingStatus = await dataService.getAll('ping')
         return pingStatus
       } catch (error) {
-        console.log('secure ping error', error)
+        return
       }
     }
 
@@ -130,7 +130,7 @@ const App = () => {
         await loginService.logOut()
         setUser(undefined)
       } catch (exception) {
-        console.log('An error occured')
+        return
       }
     }
 

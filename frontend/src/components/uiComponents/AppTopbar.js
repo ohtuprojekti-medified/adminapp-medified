@@ -52,7 +52,7 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
       await loginService.logOut()
       setUser(undefined)
     } catch (exception) {
-      console.log('An error occured')
+      return
     }
   }
 

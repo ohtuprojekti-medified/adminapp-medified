@@ -52,11 +52,9 @@ const getAll = async (endpoint) => {
     const response = await axios.get(endpoint, getConfig())
     return response.data
   } catch (error) {
-    console.log(error.message)
     if(error.message.includes('403')) {
       return 403
     }
-    console.log(error)
     return []
   }
 }
