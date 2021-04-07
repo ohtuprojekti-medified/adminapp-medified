@@ -1,10 +1,8 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: MASTER PUSH
+name: RELEASE
 
 on:
-  push:
+  release:
+    types: [ published ]
     branches: [ master ]
     paths-ignore:
       - 'README.md'
@@ -65,17 +63,14 @@ jobs:
     - name: Dockerhub frontend deploy latest
       run: |
         cd frontend
-        docker build -t frontend . \
-          --build-arg REACT_APP_API_URL="${{ secrets.STAGING_URL }}api/" \
-          --build-arg PUBLIC_URL="${{ secrets.STAGING_URL }}"
-        docker tag frontend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-frontend:latest
-        docker push ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-frontend:latest
+        docker build -t frontend . --build-arg REACT_APP_API_URL="${{ secrets.PRODUCTION_URL }}api/"
+        docker tag frontend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-production-frontend:latest
+        docker push ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-production-frontend:latest
 
 
     - name: Dockerhub backend deploy latest
       run: |
         cd backend
         docker build -t backend .
-        docker tag backend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-backend:latest
-        docker push ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-backend:latest
-      
+        docker tag backend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-production-backend:latest
+        docker push ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-production-backend:latest
