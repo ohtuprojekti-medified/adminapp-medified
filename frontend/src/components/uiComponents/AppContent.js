@@ -19,6 +19,7 @@ import RetentionRate from '../RetentionRate'
 
 /**
  * Component containing all UI components on the home page
+ *
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX component containing all sub components
  */
