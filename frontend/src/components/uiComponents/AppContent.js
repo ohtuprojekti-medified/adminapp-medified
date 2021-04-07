@@ -19,6 +19,7 @@ import RetentionRate from '../RetentionRate'
 
 /**
  * Component containing all UI components on the home page
+ *
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX component containing all sub components
  */
@@ -48,15 +49,15 @@ const AppContent = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCh
     <div style={containerStyle}>
       {user
         ? null
-        : <div>
+        : <React.Fragment>
           <LoginForm username={username} setUsername={setUsername} password={password}
             setPassword={setPassword} user={user} setUser={setUser} />
-        </div>
+        </React.Fragment>
       }
 
       {user
         ?
-        <div>
+        <React.Fragment>
           <div className="p-grid p-fluid dashboard" style={subContainer1}>
             <Users users={appUsers} checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
             <Caregivers caregivers={caregivers} />
@@ -71,7 +72,7 @@ const AppContent = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCh
                 average={averageRetention} />
             </div>
           </div>
-        </div>
+        </React.Fragment>
         :
         null}
       <div>
