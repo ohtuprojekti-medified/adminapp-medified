@@ -9,7 +9,7 @@
 
 const db = require('../models')
 const user_profiles = db.user_profiles
-const access_codes = db.acces_codes
+const access_codes = db.access_codes
 const organisations = db.organisations
 const user_care_givers = db.user_care_givers
 const user_survey_answers = db.user_survey_answers
@@ -19,29 +19,51 @@ const user_diary_item_groups = db.user_diary_item_groups
 const user_activities = db.user_activities
 const user_answers = db.user_answers
 const user_care_giver_activities = db.user_care_giver_activities
+const { Sequelize } = require('../models')
+const Op = Sequelize.Op
+
 const sequelize = db.sequelize
+
+
 /**
  * Returns all access codes from database
  *
  * @returns  {...any} accessCodes - list of access codes
  */
 
-const findAllAccessCodes = async () => {
-  const accessCodes = await access_codes.findAll({
-    attributes: ['id', 'user_id', 'created_at', 'updated_at']
-  })
+const findAllAccessCodes = async (organisation) => {
+  console.log(access_codes)
+  let accessCodes = undefined
+  if(organisation === 'undefined') {
+    accessCodes = await access_codes.findAll({
+      attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at']
+    })
+  } else {
+    accessCodes = await access_codes.findAll({
+      attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
+      where: {
+        organisation_id: organisation
+      }
+    })
+  }
+
   return accessCodes
 }
 
 /**
- * Returns all organisations from database
+ * Returns all organisations from database for admin
  *
  * @returns  {...any} allOrganisations - list of organisations
  */
 
-const findAllOrgs = async () => {
-  const allOrganisations = await organisations.findAll()
-  return allOrganisations
+const findAllOrgs = async (organisation) => {
+  // only admin can send requests with undefined organisation
+  if (organisation === 'undefined') {
+    const allOrganisations = await organisations.findAll()
+    return allOrganisations
+  } else {
+    return null
+  }
 }
 
 /**
@@ -50,19 +72,52 @@ const findAllOrgs = async () => {
  * @returns  {...any} userProfiles - list of users
  */
 
-const findAllUsers = async (withCaregiver) => {
-  const userProfiles = await user_profiles.findAll({
-    attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
-  })
-
-  if (withCaregiver === true) {
-    const userProfilesFiltered = sequelize.query('SELECT DISTINCT user_profiles.user_id, user_profiles.created_at, user_profiles.first_name, user_profiles.last_name, user_profiles.updated_at, user_profiles.added_organisation FROM user_profiles, user_care_givers WHERE user_profiles.user_id = user_care_givers.user_id', { type: sequelize.QueryTypes.SELECT })
-    return userProfilesFiltered
-
+const findAllUsers = async (organisation, withCaregiver) => {
+  let userProfiles
+  if(organisation === 'undefined') {
+    // admin request from all data
+    if (withCaregiver === true) {
+      userProfiles = sequelize.query('SELECT DISTINCT user_profiles.user_id, user_profiles.created_at, user_profiles.first_name, user_profiles.last_name, user_profiles.updated_at, user_profiles.added_organisation FROM user_profiles, user_care_givers WHERE user_profiles.user_id = user_care_givers.user_id', { type: sequelize.QueryTypes.SELECT })
+    } else {
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
+      })
+    }
   } else {
-    return userProfiles
+    // find organisational users based on organisational caregiver-user relationships
+    const accessCodesOrganisation = await findAllAccessCodes(organisation)
+
+    const organisationAccessCodesIdArray = accessCodesOrganisation.map(accessCode => accessCode.id)
+    const caregiverUserRelationshipsOrganisation = await user_care_givers.findAll({
+      where: {
+        access_code_id: organisationAccessCodesIdArray
+      }
+    })
+    const userIdsLinkedToOrganisationalCaregivers = caregiverUserRelationshipsOrganisation.map(relationship => relationship.user_id)
+    let uniqueIds = [...new Set(userIdsLinkedToOrganisationalCaregivers)]
+
+    if(withCaregiver === true) {
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+        where: {
+          user_id: uniqueIds
+        }
+      })
+    } else {
+      // includes also users from organisation that don't have a caregiver
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+        where: {
+          [Op.or]: [
+            { user_id: uniqueIds },
+            { added_organisation: organisation }
+          ]
+        }
+      })
+    }
   }
 
+  return userProfiles
 }
 
 /**
