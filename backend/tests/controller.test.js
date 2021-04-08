@@ -22,6 +22,16 @@ describe('user_profiles', () => {
     expect(users.length).toEqual(1)
     expect(users[0].first_name).toEqual('Mikko')
   })
+
+  it('are returned correctly by organisation', async () => {
+    const users = await controller.findAllUsers('OHTU')
+    expect(users.length).toEqual(1)
+  })
+
+  it('are returned correctly with organisation and cargiver filtering', async () => {
+    const users = await controller.findAllUsers('OHTU', true)
+    expect(users.length).toEqual(1)
+  })
 })
 
 jest.mock('../models/organisations', () => () => {
@@ -45,6 +55,11 @@ describe('organisations', () => {
     expect(orgs.length).toEqual(1)
     expect(orgs[0].id).toEqual('OHTU')
   })
+
+  it('are not returned if request is sent without admin access', async () => {
+    const orgs = await controller.findAllOrgs('OLEMATON')
+    expect(orgs).toBe(null)
+  })
 })
 
 jest.mock('../models/access_codes', () => () => {
@@ -53,15 +68,22 @@ jest.mock('../models/access_codes', () => () => {
 
   return dbMock.define('access_codes', {
     id: '45h743ffd',
-    user_id: '1a2b3c'
+    user_id: '1a2b3c',
+    organisation_id: 'OHTU'
   })
 })
 
 describe('access_codes', () => {
-  it('can be found from database', async () => {
-    const codes = await controller.findAllAccessCodes()
-    expect(codes.length).toEqual(1)
-    expect(codes[0].id).toEqual('45h743ffd')
+  it('are all returned if organisation is undefined', async () => {
+    const accessCodes = await controller.findAllAccessCodes('undefined')
+    expect(accessCodes.length).toEqual(1)
+    expect(accessCodes[0].id).toEqual('45h743ffd')
+  })
+
+  it('are returned correctly with defined organisation', async () => {
+    const accessCodes = await controller.findAllAccessCodes('OHTU')
+    expect(accessCodes.length).toEqual(1)
+    expect(accessCodes[0].organisation_id).toEqual('OHTU')
   })
 })
 
