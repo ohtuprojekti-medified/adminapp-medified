@@ -76,7 +76,7 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
       {user
         ?
         <div>
-          <Header />
+          <Header checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
         </div>
         : null}
     </React.Fragment>
