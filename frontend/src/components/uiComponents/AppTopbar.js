@@ -112,8 +112,9 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
         <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
         <Route path='/retention'>
           <div style={centered}>
-            <RetentionRate retentionRates={retentionRates}
-              averageRetention={averageRetention} />
+            <RetentionRate
+              retentionRates={retentionRates}
+              average={averageRetention} />
           </div>
         </Route>
         <Route path='/cumulative'>
