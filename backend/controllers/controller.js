@@ -21,6 +21,7 @@ const user_answers = db.user_answers
 const user_care_giver_activities = db.user_care_giver_activities
 const { Sequelize } = require('../models')
 const Op = Sequelize.Op
+const sequelize = db.sequelize
 
 
 /**
@@ -74,18 +75,7 @@ const findAllUsers = async (organisation, withCaregiver) => {
   if (organisation === 'undefined') {
     // admin request from all data
     if (withCaregiver === true) {
-      const caregivers = await user_care_givers.findAll()
-      const userIdsLinkedToCaregivers = caregivers.map(relationship => relationship.user_id)
-      console.log('VOITKO TULOSTAA TÄN')
-      console.log(userIdsLinkedToCaregivers)
-      let uniqueIds = [...new Set(userIdsLinkedToCaregivers)]
-
-      userProfiles = await user_profiles.findAll({
-        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-        where: {
-          userId: uniqueIds
-        }
-      })
+      userProfiles = sequelize.query('SELECT DISTINCT user_profiles.user_id, user_profiles.created_at, user_profiles.first_name, user_profiles.last_name, user_profiles.updated_at, user_profiles.added_organisation FROM user_profiles, user_care_givers WHERE user_profiles.user_id = user_care_givers.user_id', { type: sequelize.QueryTypes.SELECT })
     } else {
       userProfiles = await user_profiles.findAll({
         attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
