@@ -19,6 +19,7 @@ import loginService from '../../services/loginService'
 
 import {
   BrowserRouter as Router,
+  Redirect,
   Route
 } from 'react-router-dom'
 
@@ -109,6 +110,18 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
     <div className="p-component">
       <Router>
         <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
+        <Route path='/retention'>
+          <div style={centered}>
+            <RetentionRate retentionRates={retentionRates}
+              averageRetention={averageRetention} />
+          </div>
+        </Route>
+        <Route path='/cumulative'>
+          <div style={centered}>
+            <Cumulative cumulative={cumulativeUsers}
+              activeUsers={activeUsers} />
+          </div>
+        </Route>
         <Route path='/home'>
           <AppContent user={user}
             appUsers={appUsers}
@@ -125,33 +138,8 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
             setPassword={setPassword}
             setUser={setUser} />
         </Route>
-        <Route path='/retention'>
-          <div style={centered}>
-            <RetentionRate retentionRates={retentionRates}
-              averageRetention={averageRetention} />
-          </div>
-        </Route>
-        <Route path='/cumulative'>
-          <div style={centered}>
-            <Cumulative cumulative={cumulativeUsers}
-              activeUsers={activeUsers} />
-          </div>
-        </Route>
         <Route path='/'>
-          <AppContent user={user}
-            appUsers={appUsers}
-            caregivers={caregivers}
-            caregiverFilterForAllUsers={caregiverFilterForAllUsers}
-            handleFilterChange={handleFilterChange}
-            cumulativeUsers={cumulativeUsers}
-            activeUsers={activeUsers}
-            retentionRates={retentionRates}
-            averageRetention={averageRetention}
-            username={username}
-            setUsername={setUsername}
-            password={password}
-            setPassword={setPassword}
-            setUser={setUser} />
+          <Redirect to='/home' />
         </Route>
       </Router>
     </div>

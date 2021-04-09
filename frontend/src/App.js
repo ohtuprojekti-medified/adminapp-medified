@@ -41,7 +41,6 @@ import 'primeflex/primeflex.css'
 import AppTopbar from './components/uiComponents/AppTopbar'
 import AppFooter from './components/uiComponents/AppFooter'
 
-
 /**
  * Creates a single page application
  *
