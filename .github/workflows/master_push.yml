@@ -67,6 +67,7 @@ jobs:
         cd frontend
         docker build -t frontend . \
           --build-arg REACT_APP_API_URL="${{ secrets.STAGING_URL }}api/" \
+          --build-arg REACT_APP_ROUTER_BASENAME="${{ secrets.STAGING_BASENAME }}" \
           --build-arg PUBLIC_URL="${{ secrets.STAGING_URL }}"
         docker tag frontend ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-frontend:latest
         docker push ${{ secrets.DOCKER_ORGANIZATION }}/adminapp-staging-frontend:latest
