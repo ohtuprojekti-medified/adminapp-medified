@@ -61,6 +61,7 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
+  const [visible, setVisible] = useState(false)
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -196,7 +197,9 @@ const App = () => {
             setUsername={setUsername}
             password={password}
             setPassword={setPassword}
-            setUser={setUser} />
+            setUser={setUser}
+            visible={visible}
+            setVisible={setVisible} />
           <AppFooter />
         </div>
       </div>
