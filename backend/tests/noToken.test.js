@@ -187,6 +187,21 @@ test('average retention rate is not returned without token', async () => {
 })
 
 /**
+ * Tests that unknown url returns 403 without token
+ *
+ * @name unknown_url_returns_403_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('unknown url returns 403 without token', async () => {
+  await api.get(apiUrl + '/unknownurl')
+    .expect(403)
+})
+
+/**
  * Close connection after all tests have been executed
  *
  * @name afterAll
