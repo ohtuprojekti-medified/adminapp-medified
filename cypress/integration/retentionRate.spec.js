@@ -59,4 +59,22 @@ describe('Retention rate', function () {
     cy.contains('Average using period')
     cy.contains('Average period and single periods:')
   })
+
+  /**
+   * Test that retention rate page exists after checking only patients with caregiver
+   *
+   * @name RetentionRate_exists_after_checking_only_patients_with_caregiver
+   * @type {object}
+   * @memberof module:cypress/integration/retentionRate_spec
+   * @inner
+   * @param {string} describe - exists after checking only patients with caregiver
+   * @param {object} testFunction - Function that runs test
+   */
+  it('exists after checking only patients with caregivers', function () {
+    cy.get('[data-testid="filter-checkbox"]').check()
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Retention rates')
+    cy.contains('Average using period')
+    cy.contains('Average period and single periods:')
+  })
 })
