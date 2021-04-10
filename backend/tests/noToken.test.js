@@ -44,6 +44,14 @@ const app = require('../app')
 const api = supertest(app)
 
 /**
+ * Url for api requests
+ *
+ * @constant
+ * @type {string}
+ */
+const apiUrl = '/api'
+
+/**
  * Tests that users are not returned without token
  *
  * @name no_users_without_token
@@ -54,7 +62,7 @@ const api = supertest(app)
  * @param {object} test - Test code
  */
 test('users are not returned without token', async () => {
-  await api.get('/api/users')
+  await api.get(apiUrl + '/users')
     .expect(403)
 })
 
@@ -69,7 +77,7 @@ test('users are not returned without token', async () => {
  * @param {object} test - Test code
  */
 test('caregivers are not returned without token', async () => {
-  await api.get('/api/caregivers')
+  await api.get(apiUrl + '/caregivers')
     .expect(403)
 })
 
@@ -84,7 +92,7 @@ test('caregivers are not returned without token', async () => {
  * @param {object} test - Test code
  */
 test('cumulative amount of users is not returned without token', async () => {
-  await api.get('/api/cumulative')
+  await api.get(apiUrl + '/cumulative')
     .expect(403)
 })
 
@@ -99,7 +107,7 @@ test('cumulative amount of users is not returned without token', async () => {
  * @param {object} test - Test code
  */
 test('user activity today is not returned without token', async () => {
-  await api.get('/api/activitytoday')
+  await api.get(apiUrl + '/activitytoday')
     .expect(403)
 })
 
@@ -114,7 +122,7 @@ test('user activity today is not returned without token', async () => {
  * @param {object} test - Test code
  */
 test('retention rate is not returned without token', async () => {
-  await api.get('/api/retention')
+  await api.get(apiUrl + '/retention')
     .expect(403)
 })
 
@@ -129,7 +137,7 @@ test('retention rate is not returned without token', async () => {
  * @param {object} test - Test code
  */
 test('average retention rate is not returned without token', async () => {
-  await api.get('/api/avgretention')
+  await api.get(apiUrl + '/avgretention')
     .expect(403)
 })
 
