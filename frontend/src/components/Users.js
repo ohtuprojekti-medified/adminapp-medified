@@ -6,7 +6,6 @@
  * @requires src/components/Filter
  */
 import React from 'react'
-import Filter from './Filter'
 import { Card } from 'primereact/card'
 
 /**
@@ -19,16 +18,13 @@ import { Card } from 'primereact/card'
  * @inner
  * @param {object} param0 - Object with users
  * @param {Array} param0.users - Array of all users
- * @param {boolean} param0.checked - Boolean value of checkbox
- * @param {Function} param0.handleFilterChange - event handler for filter change
  * @returns {object} - JSX component that counts amount of users
  */
-const Users = ({ users, checked, handleFilterChange }) => {
+const Users = ({ users }) => {
   return (
     <div className="p-col-12 p-md-6 p-xl-3">
       <Card title="App users">
         <p>Application users: {users.length} </p>
-        <Filter handleFilterChange={handleFilterChange} checked={checked} description=' Show only app users with caregiver' />
       </Card>
     </div>
   )

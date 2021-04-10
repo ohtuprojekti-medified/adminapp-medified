@@ -7,6 +7,7 @@
  */
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Filter from '../Filter'
 
 
 /**
@@ -37,14 +38,18 @@ const HeaderLink = ({ page, title }) => {
 /**
  * Component containing all navigation links
  *
+ * @param {object} param0 - Checkbox value and filter handling function
+ * @param {object} param0.checked - Checkbox value
+ * @param {object} param0.handleFilterChange - Filter handling function
  * @returns {object} - JSX component containing all links
  */
-const Header = () => {
+const Header = ({ checked, handleFilterChange }) => {
   return (
     <div className='header'>
       <HeaderLink page='home' title='Home' />
       <HeaderLink page='retention' title='Retention rates' />
       <HeaderLink page='cumulative' title='New and active users' />
+      <Filter handleFilterChange={handleFilterChange} checked={checked} description=' Show only app users with caregiver' />
     </div>
   )
 }
