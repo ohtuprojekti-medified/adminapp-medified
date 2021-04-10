@@ -82,6 +82,21 @@ test('caregivers are not returned without token', async () => {
 })
 
 /**
+ * Tests that ping is not returned without token
+ *
+ * @name no_ping_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('caregivers are not returned without token', async () => {
+  await api.get(apiUrl + '/ping')
+    .expect(403)
+})
+
+/**
  * Tests that cumulative amount of users is not returned without token
  *
  * @name no_cumulative_without_token
@@ -93,6 +108,36 @@ test('caregivers are not returned without token', async () => {
  */
 test('cumulative amount of users is not returned without token', async () => {
   await api.get(apiUrl + '/cumulative')
+    .expect(403)
+})
+
+/**
+ * Tests that activeusers are not returned without token
+ *
+ * @name no_activeusers_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('caregivers are not returned without token', async () => {
+  await api.get(apiUrl + '/activeusers')
+    .expect(403)
+})
+
+/**
+ * Tests that newusers are not returned without token
+ *
+ * @name no_newusers_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @inner
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('caregivers are not returned without token', async () => {
+  await api.get(apiUrl + '/newusers')
     .expect(403)
 })
 
