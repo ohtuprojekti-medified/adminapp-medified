@@ -91,7 +91,7 @@ test('caregivers are not returned without token', async () => {
  * @param {string} name - Name of the test
  * @param {object} test - Test code
  */
-test('caregivers are not returned without token', async () => {
+test('ping is not returned without token', async () => {
   await api.get(apiUrl + '/ping')
     .expect(403)
 })
@@ -121,7 +121,7 @@ test('cumulative amount of users is not returned without token', async () => {
  * @param {string} name - Name of the test
  * @param {object} test - Test code
  */
-test('caregivers are not returned without token', async () => {
+test('active users are not returned without token', async () => {
   await api.get(apiUrl + '/activeusers')
     .expect(403)
 })
@@ -136,7 +136,7 @@ test('caregivers are not returned without token', async () => {
  * @param {string} name - Name of the test
  * @param {object} test - Test code
  */
-test('caregivers are not returned without token', async () => {
+test('new users are not returned without token', async () => {
   await api.get(apiUrl + '/newusers')
     .expect(403)
 })
