@@ -15,6 +15,7 @@
  * @namespace mocks
  */
 const mocks = require('node-mocks-http')
+
 /**
  * Mock for next-function in express
  *

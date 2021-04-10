@@ -1,7 +1,40 @@
+/**
+ * Tests for userhistoryController
+ *
+ * @module tests/userhistoryController_test
+ * @requires sinon
+ * @requires newDatesAroundLastMidnight
+ * @requires ../models
+ * @requires ../controllers/userhistoryController
+ */
+
+/**
+ * Mocks data for models
+ *
+ * @type {object}
+ * @constant
+ * @namespace sinon
+ */
 const sinon = require('sinon')
 let userhistoryController, db, user_activities_stub, user_profiles_stub
+
+/**
+ * Helper function for creating new Date objects
+ *
+ * @constant
+ * @function
+ */
 const newDates = require('./newDatesAroundLastMidnight')
 
+/**
+ * Creates userhistoryController with mock data
+ *
+ * @constant
+ * @function
+ * @memberof module:tests/userhistoryController_test
+ * @inner
+ * @returns {object} - userhistoryController with mock data
+ */
 const userhistoryControllerMocked = () => {
   db = require('../models')
 
@@ -129,6 +162,16 @@ const userhistoryControllerMocked = () => {
 
 }
 
+/**
+ * Run tests for userhistory controller
+ *
+ * @constant
+ * @function
+ * @memberof module:tests/userhistoryController_test
+ * @inner
+ * @param {string} description - userhistory controller
+ * @returns {object} - Function that runs tests
+ */
 describe('userhistory controller', () => {
   beforeEach(() => {
     userhistoryController = userhistoryControllerMocked()
@@ -143,7 +186,7 @@ describe('userhistory controller', () => {
   test('findUserActivities returns correct data', async () => {
     const activeUsers = await userhistoryController.findActiveUsers('undefined')
     expect(activeUsers[0].entries).toEqual(1)
-    expect(activeUsers[activeUsers.length-1].entries).toEqual(2)
+    expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
   })
 
   afterEach(() => {
@@ -154,6 +197,16 @@ describe('userhistory controller', () => {
 
 const controller = require('../controllers/userhistoryController')
 
+/**
+ * Creating mock data for user_activities
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/userhistoryController_test
+ * @inner
+ * @param {string} user_activities_model - user_activities_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_activities', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -164,7 +217,16 @@ jest.mock('../models/user_activities', () => () => {
   })
 })
 
-
+/**
+ * Run tests for user_activities today
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/userhistoryController_test
+ * @inner
+ * @param {string} description - user_activities today
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_activities today', () => {
   it('are returned correctly', async () => {
     const activitiesToday = await controller.findUserActivitiesToday('undefined')
@@ -175,6 +237,16 @@ describe('user_activities today', () => {
   })
 })
 
+/**
+ * Creating mock data for user_profiles
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/userhistoryController_test
+ * @inner
+ * @param {string} user_profiles_model - user_profiles_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_profiles', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -191,6 +263,16 @@ jest.mock('../models/user_profiles', () => () => {
   })
 })
 
+/**
+ * Run tests for new users from the last seven days
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/userhistoryController_test
+ * @inner
+ * @param {string} description - new users from the last seven days
+ * @param {object} tests - Function that runs tests
+ */
 describe('new users from the last seven days', () => {
   it('are returned correctly', async () => {
     const newUsers = await controller.findNewUsers('undefined')
