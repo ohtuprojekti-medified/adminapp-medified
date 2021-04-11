@@ -26,6 +26,7 @@ import App from './App'
 describe('<App />', () => {
   let component
   let usernameInput, passwordInput, loginForm
+  let onlyWithCaregiverCheckbox
 
   /**
    * @type {object}
@@ -67,6 +68,7 @@ describe('<App />', () => {
     usernameInput = component.container.querySelector('input[type=\'text\']')
     passwordInput = component.container.querySelector('input[type=\'password\']')
     loginForm = component.container.querySelector('form')
+    onlyWithCaregiverCheckbox = component.container.querySelector('input[data-testid=\'filter-checkbox\']')
   })
 
   /**
@@ -207,5 +209,55 @@ describe('<App />', () => {
     waitFor(() => fireEvent.click(logOutButton))
 
     waitFor(() => expect(component.container.not.toHaveTextContent('log out')))
+  })
+
+  /**
+   * Test that App renders after clicking only patients with caregiver checkbox
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/components/App_test
+   * @inner
+   * @param {string} description - Renders App after checking only patients with a caregiver
+   * @param {object} TestCode - Code that runs the test
+   */
+  test('renders App after checking only patients with a caregiver', () => {
+    login(testUsername, testPassword)
+    waitFor(() => fireEvent.click(onlyWithCaregiverCheckbox))
+
+    waitFor(() => {
+      expect(onlyWithCaregiverCheckbox.checked).toBe(true)
+      expect(component.container).toHaveTextContent('Adminapp for monitoring moods')
+      expect(component.container.toHaveTextContent('log out'))
+      expect(component.container).toHaveTextContent('Registered caregivers: 0')
+      expect(component.container).toHaveTextContent('New users, cumulative and active users weekly')
+      expect(component.container).toHaveTextContent('cumulative new users')
+      expect(component.container).toHaveTextContent('active users weekly')
+      expect(component.container).toHaveTextContent('Retention rates')
+      expect(component.container).toHaveTextContent('Average using period')
+      expect(component.container).toHaveTextContent('Average period and single periods:')
+    })
+  })
+
+  /**
+   * Test that App does not render login form after clicking only patients with caregiver checkbox
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/components/App_test
+   * @inner
+   * @param {string} description - Does not render login form after checking only patients with caregiver
+   * @param {object} TestCode - Code that runs the test
+   */
+  test('does not render login form after checking only patients with caregiver', () => {
+    login(testUsername, testPassword)
+    waitFor(() => fireEvent.click(onlyWithCaregiverCheckbox))
+
+    waitFor(() => {
+      expect(onlyWithCaregiverCheckbox.checked).toBe(true)
+      expect(component.container).not.toHaveTextContent('Login:')
+      expect(component.container).not.toHaveTextContent('username:')
+      expect(component.container).not.toHaveTextContent('password:')
+    })
   })
 })
