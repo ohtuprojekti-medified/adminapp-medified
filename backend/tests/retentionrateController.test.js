@@ -1,3 +1,20 @@
+/**
+ * Tests for retentionrateController
+ *
+ * @module tests/retentionrateController_test
+ * @requires sinon
+ * @requires newDatesAroundLastMidnight
+ * @requires ../models
+ * @requires ../controllers/retentionrateController
+ */
+
+/**
+ * Mocks data for models
+ *
+ * @type {object}
+ * @constant
+ * @namespace sinon
+ */
 const sinon = require('sinon')
 let retentionrateController
 let db
@@ -6,10 +23,20 @@ let user_activities_stub, user_profiles_stub
 /**
  * Helper function for creating new Date objects
  *
+ * @constant
  * @function
  */
 const newDates = require('./newDatesAroundLastMidnight')
 
+/**
+ * Creates retentionrateController with mock data
+ *
+ * @constant
+ * @function
+ * @memberof module:tests/retentionrateController_test
+ * @inner
+ * @returns {object} - retentionrateController with mock data
+ */
 const retentionrateControllerMocked = () => {
   db = require('../models')
   const TIMES1 = newDates([-46.7, -39.6, -32.5, -25.4, -17.6, -7])
@@ -114,6 +141,16 @@ const retentionrateControllerMocked = () => {
   return retentionrateController
 }
 
+/**
+ * Run tests for retentionrate controller
+ *
+ * @constant
+ * @function
+ * @memberof module:tests/retentionrateController_test
+ * @inner
+ * @param {string} description - retentionrate controller
+ * @returns {object} - Function that runs tests
+ */
 describe('retentionrate controller', () => {
   beforeEach(() => {
     retentionrateController = retentionrateControllerMocked()

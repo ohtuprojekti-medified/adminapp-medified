@@ -160,6 +160,17 @@ router.get('/retention', async (req, res) => {
   res.json(retention)
 })
 
+/**
+ * Route request for average retention rate
+ *
+ * @name get_avgretention
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+
 router.get('/avgretention', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
   const avg = await retentionrateController.findAverageRetentionRate(req.get('organisation-requested'), withCaregiver)
