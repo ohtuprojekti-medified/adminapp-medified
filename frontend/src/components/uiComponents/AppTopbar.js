@@ -17,6 +17,7 @@ import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
 import { Sidebar } from 'primereact/sidebar'
 import Filter from '../Filter'
+import Organisations from '../Organisations'
 import loginService from '../../services/loginService'
 
 import {
@@ -94,6 +95,7 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
         <div>
           <Sidebar position="right" className="ui-sidebar-sm" visible={visible} onHide={() => setVisible(false)}>
             <Filter handleFilterChange={handleFilterChange} checked={caregiverFilterForAllUsers} description=' Show only app users with caregiver' />
+            <Organisations/>
           </Sidebar>
 
           <Button label={'Filter'} icon="pi pi-filter" className="p-mr-2" onClick={() => setVisible(true)}/>

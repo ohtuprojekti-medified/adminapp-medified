@@ -62,6 +62,21 @@ router.get('/caregivers', async (req, res) => {
 })
 
 /**
+ * Route request for organisations
+ *
+ * @name get_organisations
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+ router.get('/organisations', async (req, res) => {
+  const organisations = await controller.findAllOrgs(req.get('organisation-requested'))
+  res.json(organisations)
+})
+
+/**
  * Route request for secure ping
  *
  * @name get_ping
