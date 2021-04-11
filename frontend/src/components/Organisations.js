@@ -31,15 +31,15 @@ const Organisations = () => {
   //   { name: organisations.logo }
   // ]
 
-  const onOrganisationChange = (e) => {
+  const handleOrganisationChange = (e) => {
     setOrganisations(e.value)
   }
   return (
     <div className="dropdown">
       <div className="card">
         <h5>Select Organisation</h5>
-        <Dropdown value={organisations} options={organisationList} onChange={onOrganisationChange} optionLabel="name" placeholder="Select an Organisation" />
-        {/* <Dropdown value={organisations} options={organisationList2} onChange={onOrganisationChange} optionLabel="name" placeholder="Select an Organisation" /> */}
+        <Dropdown value={organisations} options={organisationList} onChange={handleOrganisationChange} optionLabel="name" placeholder="Select an Organisation" />
+        {/* <Dropdown value={organisations} options={organisationList2} onChange={handleOrganisationChange} optionLabel="name" placeholder="Select an Organisation" /> */}
       </div>
     </div>
   )

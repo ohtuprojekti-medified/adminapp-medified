@@ -61,6 +61,7 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
+  const [organisationSelect, setOrganisation] = useState(null)
   const [visible, setVisible] = useState(false)
 
   /**
@@ -173,6 +174,14 @@ const App = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
+  /**
+   *
+   * Event handler for changing the selected organisation
+   */
+  const handleOrganisationChange = () => {
+    setOrganisation(!organisationSelect)
+  }
+
   const containerStyle = {
     position: 'relative',
     minHeight: '100vh',
@@ -188,7 +197,9 @@ const App = () => {
             appUsers={appUsers}
             caregivers={caregivers}
             caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+            organisationSelect={organisationSelect}
             handleFilterChange={handleFilterChange}
+            handleOrganisationChange={handleOrganisationChange}
             cumulativeUsers={cumulativeUsers}
             activeUsers={activeUsers}
             retentionRates={retentionRates}
