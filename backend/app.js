@@ -142,20 +142,25 @@ db.sequelize.sync()
 
 
 
-// Database url
-const usersUrl = '/api'
+/**
+ * Url for api requests
+ *
+ * @constant
+ * @type {string}
+ */
+const apiUrl = '/api'
 
 /**
- * Use router with usersUrl
+ * Use router with apiUrl
  *
  * @name router_with_url
  * @function
  * @memberof module:app
  * @inner
- * @param {string} usersUrl - Url for backend
- * @param {object} router - Router for requests to usersUrl
+ * @param {string} apiUrl - Url for backend
+ * @param {object} router - Router for requests to apiUrl
  */
-app.use(usersUrl, router)
+app.use(apiUrl, router)
 
 /**
  * Return 404 for undefined paths
