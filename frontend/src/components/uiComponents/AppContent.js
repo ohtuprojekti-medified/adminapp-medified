@@ -23,7 +23,7 @@ import RetentionRate from '../RetentionRate'
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX component containing all sub components
  */
-const AppContent = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
+const AppContent = ({ user, appUsers, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
   username, setUsername, password, setPassword, setUser }) => {
 
   const containerStyle = {
@@ -59,7 +59,7 @@ const AppContent = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCh
         ?
         <React.Fragment>
           <div className="p-grid p-fluid dashboard" style={subContainer1}>
-            <Users users={appUsers} checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
+            <Users users={appUsers} />
             <Caregivers caregivers={caregivers} />
           </div>
           <div>
