@@ -27,8 +27,9 @@ const Organisations = () => {
 
   // TÄHÄN BÄKKÄRISTÄ ASIAKKAIDEN HAKU
   // const organisationList2 = [
-  //   { name: organisations.any },
-  //   { name: organisations.logo }
+  //   for (var i=0; i < organisations.length; i++) {
+  //     organisations[i].name
+  //   }
   // ]
 
   const handleOrganisationChange = (e) => {
