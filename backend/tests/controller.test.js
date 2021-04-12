@@ -1,5 +1,23 @@
+/**
+ * Tests for controller
+ *
+ * @module tests/controller_test
+ * @requires controllers/controller
+ * @requires sequelize-mock
+ */
+
 const controller = require('../controllers/controller')
 
+/**
+ * Creating mock data for user_profiles
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_profiles_model - user_profiles_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_profiles', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -16,6 +34,16 @@ jest.mock('../models/user_profiles', () => () => {
   })
 })
 
+/**
+ * Run tests for user_profiles
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - user_profiles
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_profiles', () => {
   it('can be found from database', async () => {
     const users = await controller.findAllUsers('undefined')
@@ -34,6 +62,16 @@ describe('user_profiles', () => {
   })
 })
 
+/**
+ * Creating mock data for organisations
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} organisations_model - organisations_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/organisations', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -49,6 +87,16 @@ jest.mock('../models/organisations', () => () => {
   })
 })
 
+/**
+ * Run tests for organisations
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - organisations
+ * @param {object} tests - Function that runs tests
+ */
 describe('organisations', () => {
   it('can be found from database', async () => {
     const orgs = await controller.findAllOrgs('undefined')
@@ -62,6 +110,16 @@ describe('organisations', () => {
   })
 })
 
+/**
+ * Creating mock data for access_codes
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} access_codes_model - access_codes_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/access_codes', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -73,6 +131,16 @@ jest.mock('../models/access_codes', () => () => {
   })
 })
 
+/**
+ * Run tests for access_codes
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - access_codes
+ * @param {object} tests - Function that runs tests
+ */
 describe('access_codes', () => {
   it('are all returned if organisation is undefined', async () => {
     const accessCodes = await controller.findAllAccessCodes('undefined')
@@ -87,6 +155,16 @@ describe('access_codes', () => {
   })
 })
 
+/**
+ * Creating mock data for user_care_givers
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_care_givers_model - user_care_givers_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_care_givers', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -99,6 +177,16 @@ jest.mock('../models/user_care_givers', () => () => {
   })
 })
 
+/**
+ * Run tests for care_givers
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - care_givers
+ * @param {object} tests - Function that runs tests
+ */
 describe('care_givers', () => {
   it('can be found from database', async () => {
     const caregivers = await controller.findAllUserCaregivers()
@@ -108,6 +196,16 @@ describe('care_givers', () => {
   })
 })
 
+/**
+ * Creating mock data for user_activities
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_activities_model - user_activities_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_activities', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -118,6 +216,16 @@ jest.mock('../models/user_activities', () => () => {
   })
 })
 
+/**
+ * Run tests for user_activities
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - user_activities
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_activities', () => {
   it('can be found from database', async () => {
     const activities = await controller.findAllUserActivities()
@@ -127,6 +235,16 @@ describe('user_activities', () => {
   })
 })
 
+/**
+ * Creating mock data for user_answers
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_answers_model - user_answers_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_answers', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -137,6 +255,16 @@ jest.mock('../models/user_answers', () => () => {
   })
 })
 
+/**
+ * Run tests for user_answers
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - user_answers
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_answers', () => {
   it('can be found from database', async () => {
     const answers = await controller.findAllUserAnswers()
@@ -146,6 +274,16 @@ describe('user_answers', () => {
   })
 })
 
+/**
+ * Creating mock data for user_care_giver_activities
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_care_giver_activities_model - user_care_giver_activities_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_care_giver_activities', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -156,6 +294,16 @@ jest.mock('../models/user_care_giver_activities', () => () => {
   })
 })
 
+/**
+ * Run tests for user_care_giver_activities
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - user_care_giver_activities
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_care_giver_activities', () => {
   it('can be found from database', async () => {
     const caregiverActivities = await controller.findAllUserCaregiverActivities()
@@ -165,6 +313,16 @@ describe('user_care_giver_activities', () => {
   })
 })
 
+/**
+ * Creating mock data for user_diary_item_groups
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_diary_item_groups_model - user_diary_item_groups_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_diary_item_groups', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -176,6 +334,16 @@ jest.mock('../models/user_diary_item_groups', () => () => {
   })
 })
 
+/**
+ * Run tests for user_diary_item_groups
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - user_diary_item_groups
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_diary_item_groups', () => {
   it('can be found from database', async () => {
     const diaryItemGroups = await controller.findAllUserDiaryItemGroups()
@@ -185,6 +353,16 @@ describe('user_diary_item_groups', () => {
   })
 })
 
+/**
+ * Creating mock data for user_diary_items
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_diary_items_model - user_diary_items_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_diary_items', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -201,6 +379,16 @@ jest.mock('../models/user_diary_items', () => () => {
   })
 })
 
+/**
+ * Run tests for user_diary_items
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - user_diary_items
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_diary_items', () => {
   it('can be found from database', async () => {
     const diaryItems = await controller.findAllUserDiaryItems()
@@ -211,6 +399,16 @@ describe('user_diary_items', () => {
   })
 })
 
+/**
+ * Creating mock data for user_professional_profiles
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_professional_profiles_model - user_professional_profiles_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_professional_profiles', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -224,6 +422,16 @@ jest.mock('../models/user_professional_profiles', () => () => {
   })
 })
 
+/**
+ * Run tests for user_professional_profiles
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - user_professional_profiles
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_professional_profiles', () => {
   it('can be found from database', async () => {
     const professionalProfiles = await controller.findAllUserProfessionalProfiles()
@@ -234,6 +442,16 @@ describe('user_professional_profiles', () => {
   })
 })
 
+/**
+ * Creating mock data for user_survey_answers
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} user_survey_answers_model - user_survey_answers_model
+ * @param {object} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_survey_answers', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -247,6 +465,16 @@ jest.mock('../models/user_survey_answers', () => () => {
   })
 })
 
+/**
+ * Run tests for user_survey_answers
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @inner
+ * @param {string} description - user_survey_answers
+ * @param {object} tests - Function that runs tests
+ */
 describe('user_survey_answers', () => {
   it('can be found from database', async () => {
     const surveyAnswers = await controller.findAllUserSurveyAnswers()

@@ -58,4 +58,21 @@ describe('Caregivers', function () {
     cy.contains('Caregivers')
     cy.contains('Registered caregivers:')
   })
+
+  /**
+   * Test that caregivers page exists after checking only patients with caregiver
+   *
+   * @name Caregivers_exists_after_checking_only_patients_with_caregiver
+   * @type {object}
+   * @memberof module:cypress/integration/caregivers_spec
+   * @inner
+   * @param {string} describe - exists after checking only patients with caregiver
+   * @param {object} testFunction - Function that runs test
+   */
+  it('exists after checking only patients with caregivers', function () {
+    cy.get('[data-testid="filter-checkbox"]').check()
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Caregivers')
+    cy.contains('Registered caregivers:')
+  })
 })

@@ -119,7 +119,7 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
 
   return (
     <div className="p-component">
-      <Router>
+      <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
         <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
         <Route path='/retention'>
           <div style={centered}>
