@@ -46,7 +46,7 @@ jest.mock('../models/user_profiles', () => () => {
  */
 describe('user_profiles', () => {
   it('can be found from database', async () => {
-    const users = await controller.findAllUsers('undefined')
+    const users = await controller.findAllUsers('ALL')
     expect(users.length).toEqual(1)
     expect(users[0].first_name).toEqual('Mikko')
   })
@@ -99,7 +99,7 @@ jest.mock('../models/organisations', () => () => {
  */
 describe('organisations', () => {
   it('can be found from database', async () => {
-    const orgs = await controller.findAllOrgs('undefined')
+    const orgs = await controller.findAllOrgs('ALL')
     expect(orgs.length).toEqual(1)
     expect(orgs[0].id).toEqual('OHTU')
   })
@@ -142,8 +142,8 @@ jest.mock('../models/access_codes', () => () => {
  * @param {object} tests - Function that runs tests
  */
 describe('access_codes', () => {
-  it('are all returned if organisation is undefined', async () => {
-    const accessCodes = await controller.findAllAccessCodes('undefined')
+  it('are all returned if organisation is ALL', async () => {
+    const accessCodes = await controller.findAllAccessCodes('ALL')
     expect(accessCodes.length).toEqual(1)
     expect(accessCodes[0].id).toEqual('45h743ffd')
   })

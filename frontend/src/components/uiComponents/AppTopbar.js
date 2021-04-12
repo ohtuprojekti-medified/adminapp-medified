@@ -93,7 +93,7 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
       {user
         ?
         <div>
-          <Sidebar position="right" className="ui-sidebar-sm" visible={visible} onHide={() => setVisible(false)}>
+          <Sidebar position="right" className="ui-sidebar-sm"  visible={visible} onHide={() => setVisible(false)}>
             <Filter handleFilterChange={handleFilterChange} checked={caregiverFilterForAllUsers} description=' Show only app users with caregiver' />
             {user.admin
               ? <Organisations organisations={organisations} handleOrganisationChange={handleOrganisationChange} organisationSelect={organisationSelect} />

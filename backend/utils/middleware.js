@@ -71,13 +71,13 @@ const authenticateToken = (req, res, next) => {
         const decoded = jsonWebToken.decode(idTokenFromClient)
         if (decoded['custom:admin']) {
           console.log('admin spotted')
-          console.log('organisation requested(optional): ' ,req.get('organisation-requested'))
+          console.log('organisation requested: ' ,req.query.organisation)
           next()
         } else {
           const organisation = decoded['custom:organisation']
           if (organisation) {
-            req.headers['organisation-requested'] = organisation
-            console.log('organisation set from aws: ',req.get('organisation-requested'))
+            req.query.organisation = organisation
+            console.log('organisation set from aws: ',req.query.organisation)
             next()
           } else {
             res.status(403).send({ error: 'Organisation undefined in amazon!' })

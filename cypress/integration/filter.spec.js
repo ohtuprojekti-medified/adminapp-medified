@@ -55,6 +55,7 @@ describe('Filter', function () {
    */
   it('checkbox exists', function () {
     cy.contains('Adminapp for monitoring moods')
+    cy.contains('Filter').click()
     cy.contains('Show only app users with caregiver')
   })
 
@@ -71,6 +72,7 @@ describe('Filter', function () {
   it('checkbox can be checked and unchecked', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Application users:')
+    cy.contains('Filter').click()
     cy.get('[type="checkbox"]').check()
     cy.contains('Application users:')
     cy.get('[type="checkbox"]').uncheck()

@@ -61,7 +61,7 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
-  const [organisationSelect, setOrganisation] = useState(undefined)
+  const [organisationSelect, setOrganisation] = useState('ALL')
   const [visible, setVisible] = useState(false)
   const [organisations, setOrganisations] = useState(null)
 
@@ -154,16 +154,14 @@ const App = () => {
 
         if (user) {
           if (user.admin) {
-            dataService.setOrganisationRequest(undefined)
-            dataService.getAll('organisations').then(organisations => setOrganisations(organisations))
-            dataService.setOrganisationRequest(organisationSelect)
+            dataService.getAll('organisations?organisation=ALL').then(organisations => setOrganisations(organisations))
           }
-          dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
-          dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}`).then(caregivs => setCaregivers(caregivs))
-          dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
-          dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}`).then(retentionRates => setRetentionRates(retentionRates))
-          dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}`).then(average => setAverageRetention(average))
-          dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}`).then(active => setActive(active))
+          dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
+          dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(caregivs => setCaregivers(caregivs))
+          dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
+          dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(retentionRates => setRetentionRates(retentionRates))
+          dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(average => setAverageRetention(average))
+          dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(active => setActive(active))
         }
       }
     }

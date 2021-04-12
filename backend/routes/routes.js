@@ -42,7 +42,7 @@ require('express-async-errors')
  */
 router.get('/users', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const users = await controller.findAllUsers(req.get('organisation-requested'), withCaregiver)
+  const users = await controller.findAllUsers(req.query.organisation, withCaregiver)
   res.json(users)
 })
 
@@ -57,7 +57,7 @@ router.get('/users', async (req, res) => {
  * @param {object} middleware - Handle request to path
  */
 router.get('/caregivers', async (req, res) => {
-  const caregivers = await controller.findAllAccessCodes(req.get('organisation-requested'))
+  const caregivers = await controller.findAllAccessCodes(req.query.organisation)
   res.json(caregivers)
 })
 
@@ -72,7 +72,7 @@ router.get('/caregivers', async (req, res) => {
  * @param {object} middleware - Handle request to path
  */
 router.get('/organisations', async (req, res) => {
-  const organisations = await controller.findAllOrgs(req.get('organisation-requested'))
+  const organisations = await controller.findAllOrgs(req.query.organisation)
   res.json(organisations)
 })
 
@@ -103,7 +103,7 @@ router.get('/ping', async (req, res) => {
 
 router.get('/cumulative', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const cumulativeUsers = await userhistoryController.findCumulativeNewUsers(req.get('organisation-requested'), withCaregiver)
+  const cumulativeUsers = await userhistoryController.findCumulativeNewUsers(req.query.organisation, withCaregiver)
   res.json(cumulativeUsers)
 })
 
@@ -120,7 +120,7 @@ router.get('/cumulative', async (req, res) => {
 
 router.get('/activeusers', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const activeUsers = await userhistoryController.findActiveUsers(req.get('organisation-requested'), withCaregiver)
+  const activeUsers = await userhistoryController.findActiveUsers(req.query.organisation, withCaregiver)
   res.json(activeUsers)
 })
 
@@ -137,7 +137,7 @@ router.get('/activeusers', async (req, res) => {
 
 router.get('/newusers', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const newUsers = await userhistoryController.findNewUsers(req.get('organisation-requested'), withCaregiver)
+  const newUsers = await userhistoryController.findNewUsers(req.query.organisation, withCaregiver)
   res.json(newUsers)
 })
 
@@ -154,7 +154,7 @@ router.get('/newusers', async (req, res) => {
 
 router.get('/activitytoday', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const activity = await userhistoryController.findUserActivitiesToday(req.get('organisation-requested'), withCaregiver)
+  const activity = await userhistoryController.findUserActivitiesToday(req.query.organisation, withCaregiver)
   res.json(activity)
 })
 
@@ -171,7 +171,7 @@ router.get('/activitytoday', async (req, res) => {
 
 router.get('/retention', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const retention = await retentionrateController.findRetentionRates(req.get('organisation-requested'), withCaregiver)
+  const retention = await retentionrateController.findRetentionRates(req.query.organisation, withCaregiver)
   res.json(retention)
 })
 
@@ -188,7 +188,7 @@ router.get('/retention', async (req, res) => {
 
 router.get('/avgretention', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const avg = await retentionrateController.findAverageRetentionRate(req.get('organisation-requested'), withCaregiver)
+  const avg = await retentionrateController.findAverageRetentionRate(req.query.organisation, withCaregiver)
   res.json(avg)
 })
 

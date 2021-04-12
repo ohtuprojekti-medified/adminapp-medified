@@ -71,6 +71,7 @@ describe('Retention rate', function () {
    * @param {object} testFunction - Function that runs test
    */
   it('exists after checking only patients with caregivers', function () {
+    cy.contains('Filter').click()
     cy.get('[data-testid="filter-checkbox"]').check()
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Retention rates')
