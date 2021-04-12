@@ -61,8 +61,9 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
-  const [organisationSelect, setOrganisation] = useState(null)
+  const [organisationSelect, setOrganisation] = useState(undefined)
   const [visible, setVisible] = useState(false)
+  const [organisations, setOrganisations] = useState(null)
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -152,6 +153,11 @@ const App = () => {
         }
 
         if (user) {
+          if (user.admin) {
+            dataService.setOrganisationRequest(undefined)
+            dataService.getAll('organisations').then(organisations => setOrganisations(organisations))
+            dataService.setOrganisationRequest(organisationSelect)
+          }
           dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
           dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}`).then(caregivs => setCaregivers(caregivs))
           dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
@@ -164,7 +170,7 @@ const App = () => {
 
     fetchData()
 
-  }, [user, caregiverFilterForAllUsers])
+  }, [user, caregiverFilterForAllUsers, organisationSelect])
 
   /**
    *
@@ -177,9 +183,11 @@ const App = () => {
   /**
    *
    * Event handler for changing the selected organisation
+   *
+   * @param {string} organisation - Requested organisation
    */
-  const handleOrganisationChange = () => {
-    setOrganisation(!organisationSelect)
+  const handleOrganisationChange = (organisation) => {
+    setOrganisation(organisation)
   }
 
   const containerStyle = {
@@ -209,6 +217,7 @@ const App = () => {
             password={password}
             setPassword={setPassword}
             setUser={setUser}
+            organisations={organisations}
             visible={visible}
             setVisible={setVisible} />
           <AppFooter />

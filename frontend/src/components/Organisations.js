@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 // import React from 'react'
 import { Dropdown } from 'primereact/dropdown'
 
@@ -16,30 +16,22 @@ import { Dropdown } from 'primereact/dropdown'
  */
 
 
-const Organisations = () => {
-  const [organisations, setOrganisations] = useState(null)
-  // TÄMÄ ON VAIN MALLI
-  const organisationList = [
-    { name: 'Organisation1', code: 'C1' },
-    { name: 'Organisation2', code: 'C2' },
-    { name: 'Organisation3', code: 'C3' }
-  ]
-
-  // TÄHÄN BÄKKÄRISTÄ ASIAKKAIDEN HAKU
-  // const organisationList2 = [
-  //   for (var i=0; i < organisations.length; i++) {
-  //     organisations[i].name
-  //   }
-  // ]
-
-  const handleOrganisationChange = (e) => {
-    setOrganisations(e.value)
+const Organisations = ({ organisations, handleOrganisationChange, organisationSelect }) => {
+  const placeholder = organisationSelect ? organisationSelect : 'ALL'
+  const organisationArray = organisations.map(x => x.id)
+  organisationArray.unshift('ALL')
+  const setOrganisation = (e) => {
+    if(e.value === 'ALL') {
+      handleOrganisationChange(undefined)
+    } else {
+      handleOrganisationChange(e.value)
+    }
   }
   return (
     <div className="dropdown">
       <div className="card">
         <h5>Select Organisation</h5>
-        <Dropdown value={organisations} options={organisationList} onChange={handleOrganisationChange} optionLabel="name" placeholder="Select an Organisation" />
+        <Dropdown  options={organisationArray} onChange={setOrganisation} placeholder={placeholder} />
         {/* <Dropdown value={organisations} options={organisationList2} onChange={handleOrganisationChange} optionLabel="name" placeholder="Select an Organisation" /> */}
       </div>
     </div>

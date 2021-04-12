@@ -38,7 +38,7 @@ import Cumulative from '../Cumulative'
  * @returns {object} - JSX Topbar component
  */
 const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
-  username, setUsername, password, setPassword, setUser, visible, setVisible }) => {
+  username, setUsername, password, setPassword, setUser, visible, setVisible, organisations, handleOrganisationChange, organisationSelect }) => {
 
   /**
    * Handle logout button presses
@@ -95,7 +95,9 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
         <div>
           <Sidebar position="right" className="ui-sidebar-sm" visible={visible} onHide={() => setVisible(false)}>
             <Filter handleFilterChange={handleFilterChange} checked={caregiverFilterForAllUsers} description=' Show only app users with caregiver' />
-            <Organisations/>
+            {user.admin
+              ? <Organisations organisations={organisations} handleOrganisationChange={handleOrganisationChange} organisationSelect={organisationSelect} />
+              : null}
           </Sidebar>
 
           <Button label={'Filter'} icon="pi pi-filter" className="p-mr-2" onClick={() => setVisible(true)}/>
