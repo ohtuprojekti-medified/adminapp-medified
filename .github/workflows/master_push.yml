@@ -5,7 +5,7 @@ name: MASTER PUSH
 
 on:
   push:
-    branches: [ master, db_for_e2e ]
+    branches: [ master ]
     paths-ignore:
       - 'README.md'
 
