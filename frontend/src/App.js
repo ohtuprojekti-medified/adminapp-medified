@@ -35,6 +35,7 @@ import 'primeflex/primeflex.css'
 
 import AppTopbar from './components/uiComponents/AppTopbar'
 import AppFooter from './components/uiComponents/AppFooter'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 
 /**
@@ -177,25 +178,27 @@ const App = () => {
 
   return (
     <div>
-      <div className="App">
-        <div style={containerStyle}>
-          <AppTopbar user={user}
-            appUsers={appUsers}
-            caregivers={caregivers}
-            caregiverFilterForAllUsers={caregiverFilterForAllUsers}
-            handleFilterChange={handleFilterChange}
-            cumulativeUsers={cumulativeUsers}
-            activeUsers={activeUsers}
-            retentionRates={retentionRates}
-            averageRetention={averageRetention}
-            username={username}
-            setUsername={setUsername}
-            password={password}
-            setPassword={setPassword}
-            setUser={setUser} />
-          <AppFooter />
+      <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
+        <div className="App">
+          <div style={containerStyle}>
+            <AppTopbar user={user}
+              appUsers={appUsers}
+              caregivers={caregivers}
+              caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+              handleFilterChange={handleFilterChange}
+              cumulativeUsers={cumulativeUsers}
+              activeUsers={activeUsers}
+              retentionRates={retentionRates}
+              averageRetention={averageRetention}
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              setUser={setUser} />
+            <AppFooter />
+          </div>
         </div>
-      </div>
+      </Router>
     </div>
   )
 }
