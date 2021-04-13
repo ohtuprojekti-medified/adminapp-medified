@@ -56,7 +56,7 @@ jobs:
         echo 'CYPRESS_USERNAME=${{ secrets.CYPRESS_USERNAME }}' >> .env
         echo 'CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }}' >> .env
         npm ci
-        ./scripts.populate-db.sh
+        ./scripts/populate-db.sh
         npm run docker:up
 
     - name: Cypress run
