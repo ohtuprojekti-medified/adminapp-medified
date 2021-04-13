@@ -29,7 +29,8 @@ jobs:
 
     - name: Decrypt database for tests
       run: ./scripts/decrypt-db.sh
-      env: DB_GPG_PASSWORD: ${{ secrets.DB_GPG_PASSWORD }}
+      env:
+          DB_GPG_PASSWORD: ${{ secrets.DB_GPG_PASSWORD }}
 
     - name: install, build and test frontend
       run: |
