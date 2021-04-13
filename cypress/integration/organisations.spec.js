@@ -6,6 +6,72 @@
  */
 
 /**
+ * Retrieve username from enviromment variables for logging in
+ *
+ * @name testUsername
+ * @function
+ * @constant
+ * @memberof module:cypress/integration/organisations_spec
+ * @inner
+ * @param {string} username - Retrieve username from environment variables
+ */
+const testUsername = Cypress.env('USERNAME')
+
+/**
+ * Retrieve password from enviromment variables for logging in
+ *
+ * @name testPassword
+ * @function
+ * @constant
+ * @memberof module:cypress/integration/organisations_spec
+ * @inner
+ * @param {string} username - Retrieve password from environment variables
+ */
+const testPassword = Cypress.env('PASSWORD')
+
+/**
+ * Retrieve admin username from enviromment variables for logging in
+ *
+ * @name testAdminUsername
+ * @function
+ * @constant
+ * @memberof module:cypress/integration/organisations_spec
+ * @inner
+ * @param {string} username - Retrieve username from environment variables
+ */
+const testAdminUsername = Cypress.env('ADMINUSERNAME')
+
+/**
+ * Retrieve admin password from enviromment variables for logging in
+ *
+ * @name testAdminPassword
+ * @function
+ * @constant
+ * @memberof module:cypress/integration/organisations_spec
+ * @inner
+ * @param {string} password - Retrieve password from environment variables
+ */
+const testAdminPassword = Cypress.env('ADMINPASSWORD')
+
+/** Logs in with website UI
+ *
+ * @name login
+ * @type {object}
+ * @constant
+ * @memberof module:cypress/integration/organisations_spec
+ * @inner
+ * @param {string} username - Username typed into website
+ * @param {string} password - Password typed into website
+ */
+const login = (username, password) => {
+  cy.get('#username').type(username)
+  cy.get('#password').type(password)
+  cy.wait(500)
+  cy.contains('login').click()
+  cy.wait(500)
+}
+
+/**
  * Describe tests for organisations filter
  *
  * @name Organisations
@@ -27,7 +93,7 @@ describe('Organisations', function () {
    * @param {object} functionBeforeEach - Function to be run before each test
    */
   beforeEach(function () {
-    cy.loginAdmin()
+    cy.visit('http://localhost:3000')
   })
 
   /**
@@ -40,7 +106,8 @@ describe('Organisations', function () {
    * @param {object} functionAfterEach - Function to be run before each test
    */
   afterEach(function () {
-    cy.logOut()
+    cy.visit('http://localhost:3000')
+    cy.contains('Log out').click()
   })
 
   /**
@@ -54,27 +121,26 @@ describe('Organisations', function () {
    * @param {object} testFunction - Function that runs test
    */
   it('organisations filter exists', function () {
+    login(testAdminUsername, testAdminPassword)
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Filter').click()
-    cy.contains('OHTU')
+    cy.contains('Select Organisation')
   })
 
   /**
-   * Test that data can be filtered by organisation
+   * Test that organisation filter does not show for normal user
    *
-   * @name Organisations_filter_select
+   * @name Organisations_filter_not_showing_for_normal_user
    * @type {object}
    * @memberof module:cypress/integration/organisations_spec
    * @inner
-   * @param {string} describe - organisations can be selected
+   * @param {string} describe - organisation filter does not show for normal user
    * @param {object} testFunction - Function that runs test
    */
-  it('organisations can be selected', function () {
+  it('organisation filter does not show for normal user', function () {
+    login(testUsername, testPassword)
     cy.contains('Adminapp for monitoring moods')
-    cy.contains('Application users: 110')
-    cy.contains('Application users: 110')
-    cy.contains('Application users: 110')
-
+    cy.get('Select Organisation').should('not.exist')
   })
 
 })
