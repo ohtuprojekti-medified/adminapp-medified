@@ -33,7 +33,7 @@ const sequelize = db.sequelize
 const findAllAccessCodes = async (organisation) => {
 
   let accessCodes = undefined
-  if (organisation === 'undefined') {
+  if (organisation === 'ALL') {
     accessCodes = await access_codes.findAll({
       attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at']
     })
@@ -55,8 +55,8 @@ const findAllAccessCodes = async (organisation) => {
  */
 
 const findAllOrgs = async (organisation) => {
-  // only admin can send requests with undefined organisation
-  if (organisation === 'undefined') {
+  // only admin can send requests with 'ALL' organisation
+  if (organisation === 'ALL') {
     const allOrganisations = await organisations.findAll()
     return allOrganisations
   } else {
@@ -72,7 +72,7 @@ const findAllOrgs = async (organisation) => {
 
 const findAllUsers = async (organisation, withCaregiver) => {
   let userProfiles
-  if (organisation === 'undefined') {
+  if (organisation === 'ALL') {
     // admin request from all data
     if (withCaregiver === true) {
       userProfiles = sequelize.query('SELECT DISTINCT user_profiles.user_id, user_profiles.created_at, user_profiles.first_name, user_profiles.last_name, user_profiles.updated_at, user_profiles.added_organisation FROM user_profiles, user_care_givers WHERE user_profiles.user_id = user_care_givers.user_id', { type: sequelize.QueryTypes.SELECT })

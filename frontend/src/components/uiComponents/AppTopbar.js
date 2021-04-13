@@ -15,10 +15,14 @@
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
+import { Sidebar } from 'primereact/sidebar'
+import Filter from '../Filter'
+import Organisations from '../Organisations'
 import loginService from '../../services/loginService'
 
 import {
   BrowserRouter as Router,
+  Redirect,
   Route
 } from 'react-router-dom'
 
@@ -34,7 +38,7 @@ import Cumulative from '../Cumulative'
  * @returns {object} - JSX Topbar component
  */
 const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterChange, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention,
-  username, setUsername, password, setPassword, setUser }) => {
+  username, setUsername, password, setPassword, setUser, visible, setVisible, organisations, handleOrganisationChange, organisationSelect }) => {
 
   /**
    * Handle logout button presses
@@ -75,7 +79,7 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
       {user
         ?
         <div>
-          <Header checked={caregiverFilterForAllUsers} handleFilterChange={handleFilterChange} />
+          <Header />
         </div>
         : null}
     </React.Fragment>
@@ -89,6 +93,14 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
       {user
         ?
         <div>
+          <Sidebar position="right" className="ui-sidebar-sm"  visible={visible} onHide={() => setVisible(false)}>
+            <Filter handleFilterChange={handleFilterChange} checked={caregiverFilterForAllUsers} description=' Show only app users with caregiver' />
+            {user.admin
+              ? <Organisations organisations={organisations} handleOrganisationChange={handleOrganisationChange} organisationSelect={organisationSelect} />
+              : null}
+          </Sidebar>
+
+          <Button label={'Filter'} icon="pi pi-filter" className="p-mr-2" onClick={() => setVisible(true)}/>
           <Button label={user.admin ? 'admin' : user.organisation} icon="pi pi-globe" className="p-mr-2" />
           <Button label={user.username} icon="pi pi-user" className="p-mr-2" />
           <Button label="Log out" icon="pi pi-power-off" className="p-button-danger" onClick={handleLogOut} />
@@ -109,24 +121,11 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
     <div className="p-component">
       <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
         <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
-        <Route path='/home'>
-          <AppContent user={user}
-            appUsers={appUsers}
-            caregivers={caregivers}
-            cumulativeUsers={cumulativeUsers}
-            activeUsers={activeUsers}
-            retentionRates={retentionRates}
-            averageRetention={averageRetention}
-            username={username}
-            setUsername={setUsername}
-            password={password}
-            setPassword={setPassword}
-            setUser={setUser} />
-        </Route>
         <Route path='/retention'>
           <div style={centered}>
-            <RetentionRate retentionRates={retentionRates}
-              averageRetention={averageRetention} />
+            <RetentionRate
+              retentionRates={retentionRates}
+              average={averageRetention} />
           </div>
         </Route>
         <Route path='/cumulative'>
@@ -135,7 +134,7 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
               activeUsers={activeUsers} />
           </div>
         </Route>
-        <Route path='/'>
+        <Route path='/home'>
           <AppContent user={user}
             appUsers={appUsers}
             caregivers={caregivers}
@@ -150,6 +149,9 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
             password={password}
             setPassword={setPassword}
             setUser={setUser} />
+        </Route>
+        <Route path='/'>
+          <Redirect to='/home' />
         </Route>
       </Router>
     </div>
