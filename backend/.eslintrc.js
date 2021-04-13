@@ -5,11 +5,14 @@ module.exports = {
     'node': true,
     'jest': true
   },
-  'extends': ['eslint:recommended'],
+  'extends': ['eslint:recommended', 'plugin:jsdoc/recommended'],
   'parserOptions': {
     'ecmaVersion': 12,
     'sourceType': 'module'
   },
+  'plugins': [
+    'jsdoc'
+  ],
   'rules': {
     'indent': [
       'error',
