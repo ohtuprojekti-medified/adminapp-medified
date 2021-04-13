@@ -9,6 +9,7 @@
         "docker:up": "docker-compose up -d",
         "initial": "./scripts/run.sh",
         "lint": "./scripts/lint.sh",
+        "lint-fix": "eslint . --fix",
         "start": "npm run docker:up && npm run docker:logs",
         "stop": "npm run docker:down",
         "test": "./scripts/test.sh",
@@ -29,7 +30,11 @@
         "aws-amplify": "^3.3.17",
         "cypress": "^6.4.0",
         "cypress-dotenv": "^1.2.2",
-        "dotenv": "^8.2.0"
+        "dotenv": "^8.2.0",
+        "eslint": "^7.24.0",
+        "eslint-plugin-cypress": "^2.11.2",
+        "eslint-plugin-jsdoc": "^32.3.0",
+        "jsdoc": "^3.6.6"
     },
     "dependencies": {
         "primefaces": "^10.0.0",
