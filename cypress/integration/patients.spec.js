@@ -56,7 +56,7 @@ describe('Patients', function () {
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('App users')
-    cy.contains('Application users:')
+    cy.contains('Application users: 110')
   })
 
   /**
@@ -73,6 +73,6 @@ describe('Patients', function () {
     cy.get('[data-testid="filter-checkbox"]').check()
     cy.contains('Adminapp for monitoring moods')
     cy.contains('App users')
-    cy.contains('Application users:')
+    cy.contains('Application users: 7')
   })
 })

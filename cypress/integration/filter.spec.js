@@ -70,11 +70,11 @@ describe('Filter', function () {
    */
   it('checkbox can be checked and unchecked', function () {
     cy.contains('Adminapp for monitoring moods')
-    cy.contains('Application users:')
+    cy.contains('Application users: 110')
     cy.get('[type="checkbox"]').check()
-    cy.contains('Application users:')
+    cy.contains('Application users: 7')
     cy.get('[type="checkbox"]').uncheck()
-    cy.contains('Application users:')
+    cy.contains('Application users: 110')
 
   })
 
