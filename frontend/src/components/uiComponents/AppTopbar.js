@@ -87,20 +87,22 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
 
   /**
    * Contents for the right side of primereact's toolbar
+   *
+   * @returns {object} - JSX component containing right side of the top bar
    */
   const rightContents = (
     <React.Fragment>
       {user
         ?
         <div>
-          <Sidebar position="right" className="ui-sidebar-sm"  visible={visible} onHide={() => setVisible(false)}>
+          <Sidebar position="right" className="ui-sidebar-sm" visible={visible} onHide={() => setVisible(false)}>
             <Filter handleFilterChange={handleFilterChange} checked={caregiverFilterForAllUsers} description=' Show only app users with caregiver' />
             {user.admin
               ? <Organisations organisations={organisations} handleOrganisationChange={handleOrganisationChange} organisationSelect={organisationSelect} />
               : null}
           </Sidebar>
 
-          <Button label={'Filter'} icon="pi pi-filter" className="p-mr-2" onClick={() => setVisible(true)}/>
+          <Button label={'Filter'} icon="pi pi-filter" className="p-mr-2" onClick={() => setVisible(true)} />
           <Button label={user.admin ? 'admin' : user.organisation} icon="pi pi-globe" className="p-mr-2" />
           <Button label={user.username} icon="pi pi-user" className="p-mr-2" />
           <Button label="Log out" icon="pi pi-power-off" className="p-button-danger" onClick={handleLogOut} />
