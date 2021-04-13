@@ -56,7 +56,7 @@ describe('Caregivers', function () {
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Caregivers')
-    cy.contains('Registered caregivers:')
+    cy.contains('Registered caregivers: 5')
   })
 
   /**
@@ -74,6 +74,6 @@ describe('Caregivers', function () {
     cy.get('[data-testid="filter-checkbox"]').check()
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Caregivers')
-    cy.contains('Registered caregivers:')
+    cy.contains('Registered caregivers: 5')
   })
 })
