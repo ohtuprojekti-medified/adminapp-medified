@@ -109,20 +109,6 @@ const AppTopbar = ({ user, appUsers, caregiverFilterForAllUsers, handleFilterCha
     <div className="p-component">
       <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
         <Toolbar left={leftContents} right={rightContents} style={toolbarStyle} />
-        <Route path='/home'>
-          <AppContent user={user}
-            appUsers={appUsers}
-            caregivers={caregivers}
-            cumulativeUsers={cumulativeUsers}
-            activeUsers={activeUsers}
-            retentionRates={retentionRates}
-            averageRetention={averageRetention}
-            username={username}
-            setUsername={setUsername}
-            password={password}
-            setPassword={setPassword}
-            setUser={setUser} />
-        </Route>
         <Route path='/retention'>
           <div style={centered}>
             <RetentionRate retentionRates={retentionRates}
