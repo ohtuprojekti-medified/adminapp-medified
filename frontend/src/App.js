@@ -33,10 +33,7 @@ import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
 
-import AppTopbar from './components/uiComponents/AppTopbar'
-import AppFooter from './components/uiComponents/AppFooter'
-import { BrowserRouter as Router } from 'react-router-dom'
-
+import PageRouter from './components/PageRouter'
 
 /**
  * Creates a single page application
@@ -54,8 +51,6 @@ const App = () => {
   const [activeUsers, setActive] = useState([])
   const [retentionRates, setRetentionRates] = useState([])
   const [averageRetention, setAverageRetention] = useState([])
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
 
@@ -169,36 +164,20 @@ const App = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
-  const containerStyle = {
-    position: 'relative',
-    minHeight: '100vh',
-    backgroundColor: '#f2f2f2',
-    paddingBottom: '100px'
-  }
-
   return (
-    <div>
-      <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
-        <div className="App">
-          <div style={containerStyle}>
-            <AppTopbar user={user}
-              appUsers={appUsers}
-              caregivers={caregivers}
-              caregiverFilterForAllUsers={caregiverFilterForAllUsers}
-              handleFilterChange={handleFilterChange}
-              cumulativeUsers={cumulativeUsers}
-              activeUsers={activeUsers}
-              retentionRates={retentionRates}
-              averageRetention={averageRetention}
-              username={username}
-              setUsername={setUsername}
-              password={password}
-              setPassword={setPassword}
-              setUser={setUser} />
-            <AppFooter />
-          </div>
-        </div>
-      </Router>
+    <div className='App'>
+      <PageRouter user={user}
+        appUsers={appUsers}
+        caregivers={caregivers}
+        caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+        handleFilterChange={handleFilterChange}
+        cumulativeUsers={cumulativeUsers}
+        activeUsers={activeUsers}
+        retentionRates={retentionRates}
+        averageRetention={averageRetention}
+        setAppUsers={setAppUsers}
+        setCaregivers={setCaregivers}
+        setUser={setUser} />
     </div>
   )
 }
