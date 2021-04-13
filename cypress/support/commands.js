@@ -112,8 +112,6 @@ Auth.configure(AWSConfig)
  */
 const login = (username, password) => {
 
-  cy.log(testAdminUsername)
-  cy.log(testAdminPassword)
   cy.then(() => Auth.signIn(username, password)).then((cognitoUser) => {
     window.localStorage.setItem(
       'loggedUser', JSON.stringify(cognitoUser)
