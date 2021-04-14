@@ -105,29 +105,20 @@ const AWSConfig = {
 Auth.configure(AWSConfig)
 
 /**
- * Helper function for login
- *
- * @param {string} username - Username for login
- * @param {string} password - Password for login
- */
-const login = (username, password) => {
-
-  cy.then(() => Auth.signIn(username, password)).then((cognitoUser) => {
-    window.localStorage.setItem(
-      'loggedUser', JSON.stringify(cognitoUser)
-    )
-    cy.visit('http://localhost:3000')
-  })
-}
-
-/**
  * Add function for fast login to AWS without using UI
  *
  * @function
  * @param {string} name - Name of the login function
  * @param {object} login - Function that logs in
  */
-Cypress.Commands.add('login', () => login(testUsername, testPassword))
+Cypress.Commands.add('login', () => {
+  cy.then(() => Auth.signIn(testUsername, testPassword)).then((cognitoUser) => {
+    window.localStorage.setItem(
+      'loggedUser', JSON.stringify(cognitoUser)
+    )
+    cy.visit('http://localhost:3000')
+  })
+})
 
 /**
  * Add function for fast admin login to AWS without using UI
@@ -136,7 +127,14 @@ Cypress.Commands.add('login', () => login(testUsername, testPassword))
  * @param {string} name - Name of the login function
  * @param {object} login - Function that logs in
  */
-Cypress.Commands.add('loginAdmin', () => login(testAdminUsername, testAdminPassword))
+Cypress.Commands.add('loginAdmin', () => {
+  cy.then(() => Auth.signIn(testAdminUsername, testAdminPassword)).then((cognitoUser) => {
+    window.localStorage.setItem(
+      'loggedUser', JSON.stringify(cognitoUser)
+    )
+    cy.visit('http://localhost:3000')
+  })
+})
 
 /**
  * Add function for fast logout to AWS without using UI
