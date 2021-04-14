@@ -77,7 +77,7 @@ const findAllOrgs = async (organisation) => {
  * @returns  {...any} userProfiles - list of users
  */
 
-const findAllUsers = async (organisation, withCaregiver) => {
+const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => {
   let userProfiles
   if (organisation === 'ALL') {
     // admin request from all data
@@ -88,12 +88,18 @@ const findAllUsers = async (organisation, withCaregiver) => {
       userProfiles = await user_profiles.findAll({
         attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
         where: {
-          user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id)
+          user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id),
+          created_at: {
+            [Op.between]: [startDate, endDate]
+          }
         }
       })
     } else {
       userProfiles = await user_profiles.findAll({
-        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+        created_at: {
+          [Op.between]: [startDate, endDate]
+        }
       })
     }
   } else {
@@ -113,7 +119,10 @@ const findAllUsers = async (organisation, withCaregiver) => {
       userProfiles = await user_profiles.findAll({
         attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
         where: {
-          user_id: uniqueIds
+          user_id: uniqueIds,
+          created_at: {
+            [Op.between]: [startDate, endDate]
+          }
         }
       })
     } else {
@@ -124,7 +133,10 @@ const findAllUsers = async (organisation, withCaregiver) => {
           [Op.or]: [
             { user_id: uniqueIds },
             { added_organisation: organisation }
-          ]
+          ],
+          created_at: {
+            [Op.between]: [startDate, endDate]
+          }
         }
       })
     }
