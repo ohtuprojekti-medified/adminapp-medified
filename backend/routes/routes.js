@@ -120,7 +120,7 @@ router.get('/cumulative', async (req, res) => {
 
 router.get('/activeusers', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const activeUsers = await userhistoryController.findActiveUsers(req.query.organisation, withCaregiver)
+  const activeUsers = await userhistoryController.findActiveUsers(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate)
   res.json(activeUsers)
 })
 

@@ -1,6 +1,7 @@
 const { addDays } = require('date-fns')
 const db = require('../models')
 const { Sequelize } = require('../models')
+const { Op } = require('sequelize')
 const user_profiles = db.user_profiles
 const user_activities = db.user_activities
 const controller = require('./controller')
@@ -100,9 +101,11 @@ const findCumulativeNewUsers = async (organisation, withCaregiver) => {
  *
  * @param {string} organisation - string id used to identify organisation
  * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
+ * @param {object} startDate - Date object for limiting data from start
+ * @param {object} endDate - Date object for limiting data from last
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
-const findActiveUsers = async (organisation, withCaregiver) => {
+const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   const userActivities = await user_activities.findAll({
     order: [
@@ -110,11 +113,16 @@ const findActiveUsers = async (organisation, withCaregiver) => {
     ],
     attributes: ['id', 'user_id', 'created_at'],
     where: {
-      user_id: userIds.map(user => user.user_id)
+      user_id: userIds.map(user => user.user_id),
+      created_at: {
+        [Op.between]: [startDate, endDate]
+      }
     }
   })
 
   const allActivities = userActivities.map(activity => activity.dataValues)
+
+  console.log(allActivities)
 
   const first = allActivities[0].created_at.getTime()
   let currentWeek = first + 604800000
