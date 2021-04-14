@@ -23,7 +23,7 @@
 import './App.css'
 
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Amplify from 'aws-amplify'
 import dataService from './services/dataService.js'
 import loginService from './services/loginService'
@@ -212,16 +212,12 @@ const App = () => {
               setUser={setUser}
               caregiverFilterForAllUsers={caregiverFilterForAllUsers}
               handleFilterChange={handleFilterChange} />
-            <Switch>
-              <Route path="/" >
-                <LoginForm username={username}
-                  setUsername={setUsername}
-                  password={password}
-                  setPassword={setPassword}
-                  user={user}
-                  setUser={setUser} />
-              </Route>
-            </Switch>
+            <LoginForm username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              user={user}
+              setUser={setUser} />
           </>
         }
       </Router>
