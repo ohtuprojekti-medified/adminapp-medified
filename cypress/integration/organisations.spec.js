@@ -93,7 +93,7 @@ describe('Organisations', function () {
    * @param {object} functionBeforeEach - Function to be run before each test
    */
   beforeEach(function () {
-    cy.visit('http://localhost:3000')
+    cy.loginAdmin()
   })
 
   /**
@@ -106,6 +106,7 @@ describe('Organisations', function () {
    * @param {object} functionAfterEach - Function to be run before each test
    */
   afterEach(function () {
+    cy.logOut()
   })
 
   /**
@@ -123,8 +124,6 @@ describe('Organisations', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Filter').click()
     cy.contains('Select Organisation')
-    cy.visit('http://localhost:3000')
-    cy.contains('Log out').click()
   })
 
   /**
@@ -142,8 +141,6 @@ describe('Organisations', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Filter').click()
     cy.get('Select Organisation').should('not.exist')
-    cy.visit('http://localhost:3000')
-    cy.contains('Log out').click()
   })
 
 })
