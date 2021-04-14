@@ -61,6 +61,10 @@ const App = () => {
   const [organisationSelect, setOrganisation] = useState('ALL')
   const [visible, setVisible] = useState(false)
   const [organisations, setOrganisations] = useState(null)
+  const [startDateEnable, setStartDateEnable] = useState(false)
+  const [endDateEnable, setEndDateEnable] = useState(false)
+  const [startDate, setStartDate] = useState(null)
+  const [endDate, setEndDate] = useState(null)
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -185,6 +189,22 @@ const App = () => {
     setOrganisation(organisation)
   }
 
+  const handleStartDateEnableChange = () => {
+    setStartDateEnable(!startDateEnable)
+  }
+
+  const handleEndDateEnableChange = () => {
+    setEndDateEnable(!endDateEnable)
+  }
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date)
+  }
+
+  const handleEndDateChange = (date) => {
+    setEndDate(date)
+  }
+
   const containerStyle = {
     position: 'relative',
     minHeight: '100vh',
@@ -206,7 +226,15 @@ const App = () => {
                 visible={visible}
                 setVisible={setVisible}
                 organisationSelect={organisationSelect}
-                handleOrganisationChange={handleOrganisationChange} />
+                handleOrganisationChange={handleOrganisationChange}
+                startDateEnable={startDateEnable}
+                endDateEnable={endDateEnable}
+                startDate={startDate}
+                endDate={endDate}
+                handleStartDateEnableChange={handleStartDateEnableChange}
+                handleEndDateEnableChange={handleEndDateEnableChange}
+                handleStartDateChange={handleStartDateChange}
+                handleEndDateChange={handleEndDateChange} />
 
               <AppContent user={user}
                 appUsers={appUsers}
