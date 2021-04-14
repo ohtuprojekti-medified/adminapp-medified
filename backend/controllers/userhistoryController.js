@@ -62,11 +62,14 @@ const findNewUsers = async (organisation, withCaregiver) => {
  * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
  */
 
-const findCumulativeNewUsers = async (organisation, withCaregiver) => {
+const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   const usersCreatedAt = await user_profiles.findAll({
     where: {
-      user_id: userIds.map(user => user.user_id)
+      user_id: userIds.map(user => user.user_id),
+      created_at: {
+        [Op.between]: [startDate, endDate]
+      }
     },
     order: [
       ['created_at', 'ASC']

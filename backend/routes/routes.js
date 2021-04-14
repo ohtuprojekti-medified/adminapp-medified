@@ -42,7 +42,7 @@ require('express-async-errors')
  */
 router.get('/users', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const users = await controller.findAllUsers(req.query.organisation, withCaregiver)
+  const users = await controller.findAllUsers(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate)
   res.json(users)
 })
 
@@ -57,7 +57,7 @@ router.get('/users', async (req, res) => {
  * @param {object} middleware - Handle request to path
  */
 router.get('/caregivers', async (req, res) => {
-  const caregivers = await controller.findAllAccessCodes(req.query.organisation)
+  const caregivers = await controller.findAllAccessCodes(req.query.organisation, req.query.startDate, req.query.endDate)
   res.json(caregivers)
 })
 
@@ -103,7 +103,7 @@ router.get('/ping', async (req, res) => {
 
 router.get('/cumulative', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const cumulativeUsers = await userhistoryController.findCumulativeNewUsers(req.query.organisation, withCaregiver)
+  const cumulativeUsers = await userhistoryController.findCumulativeNewUsers(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate)
   res.json(cumulativeUsers)
 })
 
@@ -171,7 +171,7 @@ router.get('/activitytoday', async (req, res) => {
 
 router.get('/retention', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const retention = await retentionrateController.findRetentionRates(req.query.organisation, withCaregiver)
+  const retention = await retentionrateController.findRetentionRates(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate)
   res.json(retention)
 })
 
@@ -188,7 +188,7 @@ router.get('/retention', async (req, res) => {
 
 router.get('/avgretention', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const avg = await retentionrateController.findAverageRetentionRate(req.query.organisation, withCaregiver)
+  const avg = await retentionrateController.findAverageRetentionRate(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate)
   res.json(avg)
 })
 

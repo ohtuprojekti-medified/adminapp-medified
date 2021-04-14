@@ -30,18 +30,26 @@ const sequelize = db.sequelize
  * @returns  {...any} accessCodes - list of access codes
  */
 
-const findAllAccessCodes = async (organisation) => {
+const findAllAccessCodes = async (organisation, startDate, endDate) => {
 
   let accessCodes = undefined
   if (organisation === 'ALL') {
     accessCodes = await access_codes.findAll({
-      attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at']
+      attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
+      where: {
+        created_at: {
+          [Op.between]: [startDate, endDate]
+        }
+      }
     })
   } else {
     accessCodes = await access_codes.findAll({
       attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
       where: {
-        organisation_id: organisation
+        organisation_id: organisation,
+        created_at: {
+          [Op.between]: [startDate, endDate]
+        }
       }
     })
   }
