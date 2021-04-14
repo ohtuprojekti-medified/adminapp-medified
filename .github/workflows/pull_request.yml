@@ -28,6 +28,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Decrypt database for tests
+      run: ./scripts/decrypt-db.sh
+      env:
+          DB_GPG_PASSWORD: ${{ secrets.DB_GPG_PASSWORD }}
+
     - name: install and test frontend
       run: |
         cd frontend
@@ -41,3 +46,21 @@ jobs:
         npm ci
         npm run test
         npm run lint
+
+    - name: setup and install cypress
+      run: |
+        echo 'POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}' >> .env
+        echo 'POSTGRES_DB=${{ secrets.POSTGRES_DB }}' >> .env
+        echo 'DB_USERNAME=${{ secrets.DB_USERNAME }}' >> .env
+        echo 'DB_PASSWORD=${{ secrets.DB_PASSWORD }}' >> .env
+        echo 'DB_HOST=${{ secrets.DB_HOST }}' >> .env
+        echo 'CYPRESS_USERNAME=${{ secrets.CYPRESS_USERNAME }}' >> .env
+        echo 'CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }}' >> .env
+        echo 'CYPRESS_ADMIN_USERNAME=${{ secrets.CYPRESS_ADMIN_USERNAME }}' >> .env
+        echo 'CYPRESS_ADMIN_PASSWORD=${{ secrets.CYPRESS_ADMIN_PASSWORD }}' >> .env
+        npm ci
+        ./scripts/populate-db.sh
+        npm run docker:up
+
+    - name: Cypress run
+      uses: cypress-io/github-action@v2

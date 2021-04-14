@@ -74,6 +74,8 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
 
   /**
    * Contents for the right side of primereact's toolbar
+   *
+   * @returns {object} - JSX component containing right side of the top bar
    */
   const rightContents = (
     <React.Fragment>
