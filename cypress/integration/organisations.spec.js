@@ -39,7 +39,7 @@ const testPassword = Cypress.env('PASSWORD')
  * @inner
  * @param {string} username - Retrieve username from environment variables
  */
-const testAdminUsername = Cypress.env('ADMINUSERNAME')
+const testAdminUsername = Cypress.env('ADMIN_USERNAME')
 
 /**
  * Retrieve admin password from enviromment variables for logging in
@@ -51,7 +51,7 @@ const testAdminUsername = Cypress.env('ADMINUSERNAME')
  * @inner
  * @param {string} password - Retrieve password from environment variables
  */
-const testAdminPassword = Cypress.env('ADMINPASSWORD')
+const testAdminPassword = Cypress.env('ADMIN_PASSWORD')
 
 /** Logs in with website UI
  *

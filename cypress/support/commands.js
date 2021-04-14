@@ -68,7 +68,7 @@ const testPassword = Cypress.env('PASSWORD')
  * @inner
  * @param {string} username - Retrieve username from environment variables
  */
-const testAdminUsername = Cypress.env('ADMINUSERNAME')
+const testAdminUsername = Cypress.env('ADMIN_USERNAME')
 
 /**
  * Retrieve admin password from enviromment variables for logging in
@@ -80,7 +80,7 @@ const testAdminUsername = Cypress.env('ADMINUSERNAME')
  * @inner
  * @param {string} username - Retrieve password from environment variables
  */
-const testAdminPassword = Cypress.env('ADMINPASSWORD')
+const testAdminPassword = Cypress.env('ADMIN_PASSWORD')
 
 const react_app_user_pool_id = 'eu-west-1_sAj8nsLY6'
 const react_app_web_client_id = '57bgrf7014uhtdu95jm8ci2ok5'
