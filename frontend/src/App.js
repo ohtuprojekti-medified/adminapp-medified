@@ -2,21 +2,20 @@
  * Frontend app
  *
  * @module src/App
- * @requires primereact/resources/themes/vela-purple/theme.css
+ * @requires primereact/resources/themes/saga-blue/theme.css
  * @requires primereact/resources/primereact.min.css
  * @requires primeicons/primeicons.css
+ * @requires react-transition-group
+ * @requires primeflex/primeflex.css
  * @requires src/App.css
  * @requires src/services/dataService
  * @requires src/services/loginService
  * @requires react
  * @requires aws-amplify
- * @requires src/components/Users
- * @requires src/components/Caregivers
  * @requires src/components/LoginForm
- * @requires src/components/Cumulative
- * @requires src/components/RetentionRate
  * @requires src/components/uiComponents/AppTopbar
  * @requires src/components/uiComponents/AppFooter
+ * @requires src/components/uiComponents/AppContent
  * @requires dotenv
  */
 

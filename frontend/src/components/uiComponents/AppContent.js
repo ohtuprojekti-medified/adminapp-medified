@@ -3,7 +3,7 @@
  *
  * @module src/components/uiComponents/AppContent
  * @requires react
- * @requires components/LoginForm
+ * @requires react-router-dom
  * @requires components/Users
  * @requires components/Caregivers
  * @requires components/Cumulative

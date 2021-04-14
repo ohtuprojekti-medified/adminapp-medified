@@ -5,12 +5,8 @@
  * @requires react
  * @requires primereact/toolbar
  * @requires primereact/button
- * @requires react-router-dom
  * @requires services/loginService
  * @requires components/uiComponents/AppHeader
- * @requires components/uiComponents/AppContent
- * @requires components/RetentionRate
- * @requires components/Cumulative
  */
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'

@@ -4,6 +4,7 @@
  * @module src/components/uiComponents/AppHeader
  * @requires react
  * @requires react-router-dom
+ * @requires src/components/Filter
  */
 import React from 'react'
 import { Link } from 'react-router-dom'
