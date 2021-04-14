@@ -46,7 +46,7 @@ const HeaderLink = ({ page, title }) => {
 const Header = ({ checked, handleFilterChange }) => {
   return (
     <div className='header'>
-      <HeaderLink page='home' title='Home' />
+      <HeaderLink page='' title='Home' />
       <HeaderLink page='retention' title='Retention rates' />
       <HeaderLink page='cumulative' title='New and active users' />
       <Filter handleFilterChange={handleFilterChange} checked={checked} description=' Show only app users with caregiver' />
