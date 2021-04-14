@@ -106,8 +106,6 @@ describe('Organisations', function () {
    * @param {object} functionAfterEach - Function to be run before each test
    */
   afterEach(function () {
-    cy.visit('http://localhost:3000')
-    cy.contains('Log out').click()
   })
 
   /**
@@ -125,6 +123,8 @@ describe('Organisations', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Filter').click()
     cy.contains('Select Organisation')
+    cy.visit('http://localhost:3000')
+    cy.contains('Log out').click()
   })
 
   /**
@@ -140,7 +140,10 @@ describe('Organisations', function () {
   it('organisation filter does not show for normal user', function () {
     login(testUsername, testPassword)
     cy.contains('Adminapp for monitoring moods')
+    cy.contains('Filter').click()
     cy.get('Select Organisation').should('not.exist')
+    cy.visit('http://localhost:3000')
+    cy.contains('Log out').click()
   })
 
 })
