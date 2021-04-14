@@ -23,17 +23,21 @@
 import './App.css'
 
 import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Amplify from 'aws-amplify'
 import dataService from './services/dataService.js'
 import loginService from './services/loginService'
+
+import LoginForm from './components/LoginForm'
+import AppFooter from './components/uiComponents/AppFooter'
+import AppTopbar from './components/uiComponents/AppTopbar'
+import AppContent from './components/uiComponents/AppContent'
 
 import 'primereact/resources/themes/saga-blue/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
-
-import PageRouter from './components/PageRouter'
 
 /**
  * Creates a single page application
@@ -53,6 +57,8 @@ const App = () => {
   const [averageRetention, setAverageRetention] = useState([])
   const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -164,20 +170,61 @@ const App = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
+  const containerStyle = {
+    position: 'relative',
+    minHeight: '100vh',
+    backgroundColor: '#f2f2f2',
+    paddingBottom: '100px'
+  }
+
   return (
     <div className='App'>
-      <PageRouter user={user}
-        appUsers={appUsers}
-        caregivers={caregivers}
-        caregiverFilterForAllUsers={caregiverFilterForAllUsers}
-        handleFilterChange={handleFilterChange}
-        cumulativeUsers={cumulativeUsers}
-        activeUsers={activeUsers}
-        retentionRates={retentionRates}
-        averageRetention={averageRetention}
-        setAppUsers={setAppUsers}
-        setCaregivers={setCaregivers}
-        setUser={setUser} />
+      <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
+        {user ?
+          <div style={containerStyle}>
+            <div className='p-component'>
+              <AppTopbar user={user}
+                setUser={setUser}
+                caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+                handleFilterChange={handleFilterChange} />
+
+              <AppContent user={user}
+                appUsers={appUsers}
+                caregivers={caregivers}
+                caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+                handleFilterChange={handleFilterChange}
+                cumulativeUsers={cumulativeUsers}
+                activeUsers={activeUsers}
+                retentionRates={retentionRates}
+                averageRetention={averageRetention}
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+                setUser={setUser} />
+
+            </div>
+            <AppFooter />
+          </div>
+          :
+          <>
+            <AppTopbar user={user}
+              setUser={setUser}
+              caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+              handleFilterChange={handleFilterChange} />
+            <Switch>
+              <Route path="/" >
+                <LoginForm username={username}
+                  setUsername={setUsername}
+                  password={password}
+                  setPassword={setPassword}
+                  user={user}
+                  setUser={setUser} />
+              </Route>
+            </Switch>
+          </>
+        }
+      </Router>
     </div>
   )
 }
