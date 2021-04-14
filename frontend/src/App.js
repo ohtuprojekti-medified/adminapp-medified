@@ -58,6 +58,9 @@ const App = () => {
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [organisationSelect, setOrganisation] = useState('ALL')
+  const [visible, setVisible] = useState(false)
+  const [organisations, setOrganisations] = useState(null)
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -147,19 +150,22 @@ const App = () => {
         }
 
         if (user) {
-          dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
-          dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}`).then(caregivs => setCaregivers(caregivs))
-          dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
-          dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}`).then(retentionRates => setRetentionRates(retentionRates))
-          dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}`).then(average => setAverageRetention(average))
-          dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}`).then(active => setActive(active))
+          if (user.admin) {
+            dataService.getAll('organisations?organisation=ALL').then(organisations => setOrganisations(organisations))
+          }
+          dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
+          dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(caregivs => setCaregivers(caregivs))
+          dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
+          dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(retentionRates => setRetentionRates(retentionRates))
+          dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(average => setAverageRetention(average))
+          dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(active => setActive(active))
         }
       }
     }
 
     fetchData()
 
-  }, [user, caregiverFilterForAllUsers])
+  }, [user, caregiverFilterForAllUsers, organisationSelect])
 
   /**
    *
@@ -167,6 +173,16 @@ const App = () => {
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
+  }
+
+  /**
+   *
+   * Event handler for changing the selected organisation
+   *
+   * @param {string} organisation - Requested organisation
+   */
+  const handleOrganisationChange = (organisation) => {
+    setOrganisation(organisation)
   }
 
   const containerStyle = {
@@ -185,7 +201,12 @@ const App = () => {
               <AppTopbar user={user}
                 setUser={setUser}
                 caregiverFilterForAllUsers={caregiverFilterForAllUsers}
-                handleFilterChange={handleFilterChange} />
+                handleFilterChange={handleFilterChange}
+                organisations={organisations}
+                visible={visible}
+                setVisible={setVisible}
+                organisationSelect={organisationSelect}
+                handleOrganisationChange={handleOrganisationChange} />
 
               <AppContent user={user}
                 appUsers={appUsers}

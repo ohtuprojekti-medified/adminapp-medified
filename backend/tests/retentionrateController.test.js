@@ -157,11 +157,11 @@ describe('retentionrate controller', () => {
   })
 
   test('findRetentionRates returns correct data', async () => {
-    expect(await retentionrateController.findRetentionRates('undefined')).toEqual([{ daysUsed: 14 }])
+    expect(await retentionrateController.findRetentionRates('ALL')).toEqual([{ daysUsed: 14 }])
   })
 
   test('findAverageRetentionRate returns correct average', async () => {
-    expect(await retentionrateController.findAverageRetentionRate('undefined')).toEqual(14)
+    expect(await retentionrateController.findAverageRetentionRate('ALL')).toEqual(14)
   })
 
   afterEach(() => {

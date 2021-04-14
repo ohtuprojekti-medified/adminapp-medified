@@ -8,7 +8,6 @@ import axios from 'axios'
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/'
 let token = null
-let organisation = undefined
 
 /**
  * Sets new token to axios config
@@ -23,15 +22,9 @@ const setToken = newToken => {
   token = `Bearer ${newToken}`
 }
 
-const setOrganisationRequest = organisationReq => {
-  organisation = organisationReq
-}
-
-// organisation = 'OHTU'
 
 const getConfig = () => ({
-  headers: { Authorization: token,
-    'Organisation-Requested': organisation }
+  headers: { Authorization: token }
 })
 
 
@@ -59,4 +52,4 @@ const getAll = async (endpoint) => {
   }
 }
 
-export default { getAll, setToken, setOrganisationRequest }
+export default { getAll, setToken }
