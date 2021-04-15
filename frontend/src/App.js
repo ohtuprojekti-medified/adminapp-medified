@@ -63,8 +63,8 @@ const App = () => {
   const [organisations, setOrganisations] = useState(null)
   const [startDateEnable, setStartDateEnable] = useState(false)
   const [endDateEnable, setEndDateEnable] = useState(false)
-  const [startDate, setStartDate] = useState(null)
-  const [endDate, setEndDate] = useState(null)
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -169,7 +169,7 @@ const App = () => {
 
     fetchData()
 
-  }, [user, caregiverFilterForAllUsers, organisationSelect])
+  }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable])
 
   /**
    *
@@ -190,19 +190,35 @@ const App = () => {
   }
 
   const handleStartDateEnableChange = () => {
-    setStartDateEnable(!startDateEnable)
+    if (startDateEnable) {
+      setStartDateEnable(false)
+      setStartDate('')
+    } else {
+      setStartDateEnable(true)
+    }
   }
 
   const handleEndDateEnableChange = () => {
-    setEndDateEnable(!endDateEnable)
+    if (endDateEnable) {
+      setEndDateEnable(false)
+      setEndDate('')
+    } else {
+      setEndDateEnable(true)
+    }
   }
 
   const handleStartDateChange = (date) => {
-    setStartDate(date)
+    if (startDateEnable) {
+      setStartDate(date)
+      console.log('startDate', date)
+    }
   }
 
   const handleEndDateChange = (date) => {
-    setEndDate(date)
+    if (endDateEnable) {
+      setEndDate(date)
+      console.log('endDate', date)
+    }
   }
 
   const containerStyle = {
