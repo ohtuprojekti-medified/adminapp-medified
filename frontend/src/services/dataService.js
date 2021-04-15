@@ -22,6 +22,10 @@ const setToken = newToken => {
   token = `Bearer ${newToken}`
 }
 
+const destroyToken = () => {
+  token = null
+}
+
 
 const getConfig = () => ({
   headers: { Authorization: token }
@@ -52,4 +56,4 @@ const getAll = async (endpoint) => {
   }
 }
 
-export default { getAll, setToken }
+export default { getAll, setToken, destroyToken }
