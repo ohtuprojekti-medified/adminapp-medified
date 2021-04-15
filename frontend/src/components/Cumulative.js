@@ -29,16 +29,14 @@ const Cumulative = ({ cumulative, activeUsers }) => {
     const lastDay = new Date()
     return { week: [format(subDays(lastDay, 7), dateFormat), format(lastDay, dateFormat)], entries: 0 }
   }
-  console.log('emptyweek', emptyWeek())
 
-  if (cumulative.length === 0 && activeUsers.length === 0) {
-    cumulative = [emptyWeek()]
-    activeUsers = [emptyWeek()]
-  } else if (cumulative.length === 0) {
-    cumulative = [emptyWeek()]
-  } else if (activeUsers.length === 0) {
-    activeUsers = [emptyWeek()]
-  }
+  cumulative = cumulative.length === 0
+    ? [emptyWeek()]
+    : cumulative
+  activeUsers = activeUsers.length === 0
+    ? [emptyWeek()]
+    : activeUsers
+
 
   const firstActive = activeUsers[0].week
 
