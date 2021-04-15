@@ -198,7 +198,6 @@ describe('userhistory controller', () => {
   test('findActiveUsers returns correct data within timeframe where all users are active', async () => {
     console.log('all users are active')
     const activeUsers = await userhistoryController.findActiveUsers('ALL', false, TIMES1[2], TIMES1[5])
-    expect(activeUsers[0].entries).toEqual(2)
     expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
   })
 
