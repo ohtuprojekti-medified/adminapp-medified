@@ -42,7 +42,7 @@ require('express-async-errors')
  */
 router.get('/users', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const users = await controller.findAllUsers(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate)
+  const users = await controller.findAllUsers(req.query.organisation, withCaregiver)
   res.json(users)
 })
 
@@ -57,7 +57,7 @@ router.get('/users', async (req, res) => {
  * @param {object} middleware - Handle request to path
  */
 router.get('/caregivers', async (req, res) => {
-  const caregivers = await controller.findAllAccessCodes(req.query.organisation, req.query.startDate, req.query.endDate)
+  const caregivers = await controller.findAllAccessCodes(req.query.organisation)
   res.json(caregivers)
 })
 

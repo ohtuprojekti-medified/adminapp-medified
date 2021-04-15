@@ -207,7 +207,6 @@ const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) 
   }
 
   const allActivities = userActivities.map(activity => activity.dataValues)
-  console.log(allActivities)
   if (allActivities.length === 0) {
     return []
   }

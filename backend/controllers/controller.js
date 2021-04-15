@@ -29,82 +29,20 @@ const Op = Sequelize.Op
  * @returns  {...any} accessCodes - list of access codes
  */
 
-const findAllAccessCodes = async (organisation, startDate, endDate) => {
+const findAllAccessCodes = async (organisation) => {
 
   let accessCodes = undefined
   if (organisation === 'ALL') {
-    if (startDate === '' && endDate === '') {
-      accessCodes = await access_codes.findAll({
-        attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at']
-      })
-    } else if (startDate === '') {
-      accessCodes = await access_codes.findAll({
-        attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
-        where: {
-          created_at: {
-            [Op.lte]: endDate
-          }
-        }
-      })
-    } else if (endDate === '') {
-      accessCodes = await access_codes.findAll({
-        attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
-        where: {
-          created_at: {
-            [Op.gte]: startDate
-          }
-        }
-      })
-    } else {
-      accessCodes = await access_codes.findAll({
-        attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
-        where: {
-          created_at: {
-            [Op.between]: [startDate, endDate]
-          }
-        }
-      })
-    }
+    accessCodes = await access_codes.findAll({
+      attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at']
+    })
   } else {
-    if (startDate === '' && endDate === '') {
-      accessCodes = await access_codes.findAll({
-        attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
-        where: {
-          organisation_id: organisation
-        }
-      })
-    } else if (startDate === '') {
-      accessCodes = await access_codes.findAll({
-        attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
-        where: {
-          organisation_id: organisation,
-          created_at: {
-            [Op.lte]: endDate
-          }
-        }
-      })
-    } else if (endDate === '') {
-      accessCodes = await access_codes.findAll({
-        attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
-        where: {
-          organisation_id: organisation,
-          created_at: {
-            [Op.gte]: startDate
-          }
-        }
-      })
-    } else {
-      accessCodes = await access_codes.findAll({
-        attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
-        where: {
-          organisation_id: organisation,
-          created_at: {
-            [Op.between]: [startDate, endDate]
-          }
-        }
-      })
-    }
-
+    accessCodes = await access_codes.findAll({
+      attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
+      where: {
+        organisation_id: organisation
+      }
+    })
   }
   return accessCodes
 }
@@ -131,7 +69,7 @@ const findAllOrgs = async (organisation) => {
  * @returns  {...any} userProfiles - list of users
  */
 
-const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => {
+const findAllUsers = async (organisation, withCaregiver) => {
   let userProfiles
   if (organisation === 'ALL') {
     // admin request from all data
@@ -139,71 +77,16 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
       const userCaregivers = await user_care_givers.findAll({
         attributes: ['user_id', 'access_code_id', 'created_at', 'updated_at', 'consent']
       })
-      if (startDate === '' && endDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id)
-          }
-        })
-      } else if (startDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id),
-            created_at: {
-              [Op.lte]: endDate
-            }
-          }
-        })
-      } else if (endDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id),
-            created_at: {
-              [Op.gte]: startDate
-            }
-          }
-        })
-      } else {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id),
-            created_at: {
-              [Op.between]: [startDate, endDate]
-            }
-          }
-        })
-      }
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+        where: {
+          user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id)
+        }
+      })
     } else {
-      if (startDate === '' && endDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
-        })
-      } else if (startDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          created_at: {
-            [Op.lte]: endDate
-          }
-        })
-      } else if (endDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          created_at: {
-            [Op.gte]: startDate
-          }
-        })
-      } else {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          created_at: {
-            [Op.between]: [startDate, endDate]
-          }
-        })
-      }
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
+      })
     }
   } else {
     // find organisational users based on organisational caregiver-user relationships
@@ -219,109 +102,21 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
     let uniqueIds = [...new Set(userIdsLinkedToOrganisationalCaregivers)]
 
     if (withCaregiver === true) {
-      if (startDate === '' && endDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            user_id: uniqueIds,
-            created_at: {
-              [Op.between]: [startDate, endDate]
-            }
-          }
-        })
-      } else if (startDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            user_id: uniqueIds,
-            created_at: {
-              [Op.lte]: endDate
-            }
-          }
-        })
-      } else if (endDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            user_id: uniqueIds,
-            created_at: {
-              [Op.gte]: startDate
-            }
-          }
-        })
-      } else {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            user_id: uniqueIds,
-            created_at: {
-              [Op.between]: [startDate, endDate]
-            }
-          }
-        })
-      }
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+        where: {
+          user_id: uniqueIds
+        }
+      })
     } else {
       // includes also users from organisation that don't have a caregiver
-      if (startDate === '' && endDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            [Op.or]: [
-              { user_id: uniqueIds },
-              { added_organisation: organisation }
-            ]
-          }
-        })
-      } else if (startDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            [Op.or]: [
-              { user_id: uniqueIds },
-              { added_organisation: organisation }
-            ],
-            created_at: {
-              [Op.lte]: endDate
-            }
-          }
-        })
-      } else if (endDate === '') {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            [Op.or]: [
-              { user_id: uniqueIds },
-              { added_organisation: organisation }
-            ],
-            created_at: {
-              [Op.gte]: startDate
-            }
-          }
-        })
-      } else {
-        userProfiles = await user_profiles.findAll({
-          attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
-          where: {
-            [Op.or]: [
-              { user_id: uniqueIds },
-              { added_organisation: organisation }
-            ],
-            created_at: {
-              [Op.between]: [startDate, endDate]
-            }
-          }
-        })
-      }
       userProfiles = await user_profiles.findAll({
         attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
         where: {
           [Op.or]: [
             { user_id: uniqueIds },
             { added_organisation: organisation }
-          ],
-          created_at: {
-            [Op.between]: [startDate, endDate]
-          }
+          ]
         }
       })
     }
