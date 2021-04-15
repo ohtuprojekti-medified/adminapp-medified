@@ -210,14 +210,12 @@ const App = () => {
   const handleStartDateChange = (date) => {
     if (startDateEnable) {
       setStartDate(date)
-      console.log('startDate', date)
     }
   }
 
   const handleEndDateChange = (date) => {
     if (endDateEnable) {
       setEndDate(date)
-      console.log('endDate', date)
     }
   }
 
