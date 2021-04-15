@@ -20,14 +20,11 @@ import { Auth } from 'aws-amplify'
  * @returns {*} - Logged user details
  */
 const login = async credentials => {
-  let user
   try {
-    user = await Auth.signIn(credentials.username, credentials.password)
+    const user = await Auth.signIn(credentials.username, credentials.password)
+    return user
   } catch (error) {
     return []
-  }
-  return {
-    user
   }
 }
 
@@ -42,7 +39,7 @@ const login = async credentials => {
  */
 const logOut = async () => {
   try {
-    Auth.signOut()
+    await Auth.signOut()
     window.localStorage.clear()
   } catch (error) {
     return
