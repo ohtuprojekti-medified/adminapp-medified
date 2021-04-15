@@ -120,6 +120,9 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
 
   const createdDates = usersCreatedAt.map(user => user.dataValues)
 
+  if (createdDates.length === 0) {
+    return []
+  }
   const first = createdDates[0].created_at.getTime()
   const last = createdDates[createdDates.length - 1].created_at.getTime()
   let timeFrame = first + 604800000
@@ -204,7 +207,10 @@ const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) 
   }
 
   const allActivities = userActivities.map(activity => activity.dataValues)
-
+  console.log(allActivities)
+  if (allActivities.length === 0) {
+    return []
+  }
   const first = allActivities[0].created_at.getTime()
   let currentWeek = first + 604800000
   let week = [new Date(first), addDays(first, 7)]
