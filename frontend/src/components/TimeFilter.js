@@ -3,10 +3,10 @@ import React from 'react'
 const TimeFilter = ({ startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
   handleEndDateEnableChange, handleStartDateChange, handleEndDateChange }) => {
   const setStartDate = (e) => {
-    handleStartDateChange(e.target.valueAsDate)
+    handleStartDateChange(e.target.value)
   }
   const setEndDate = (e) => {
-    handleEndDateChange(e.target.valueAsDate)
+    handleEndDateChange(e.target.value)
   }
   return (
     <div>
