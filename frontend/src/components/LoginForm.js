@@ -5,11 +5,12 @@
  * @requires react
  * @requires src/services/loginService
  */
-import React from 'react'
-import loginService from '../services/loginService'
+import React, { useState } from 'react'
 import { InputText } from 'primereact/inputtext'
 import { Password } from 'primereact/password'
 import { Button } from 'primereact/button'
+import { useDispatch } from 'react-redux'
+import { handleLogin } from '../reducers/loginReducer'
 
 /**
  * Component that creates a form for login and button for logout
@@ -19,16 +20,13 @@ import { Button } from 'primereact/button'
  * @constant
  * @memberof module:src/components/LoginForm
  * @inner
- * @param {object} param0 - Object with params
- * @param {string} param0.username - Value of username in form
- * @param {Function} param0.setUsername - Function to set the value of username
- * @param {string} param0.password - Value of password in form
- * @param {Function} param0.setPassword - Function to set the value of password
- * @param {object} param0.user - Object that contains details about current logged user
- * @param {Function} param0.setUser - Function that sets the value of user
  * @returns {object} - Form for login and button for logout in JSX
  */
-const LoginForm = ({ username, setUsername, password, setPassword, user, setUser }) => {
+const LoginForm = () => {
+  const [ username, setUsername ] = useState('')
+  const [ password, setPassword ] = useState('')
+
+  const dispatch = useDispatch()
 
   /**
    * Handle login button presses
@@ -40,30 +38,11 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
    * @inner
    * @param {object} event - Contains event
    */
-  const handleLogin = async (event) => {
+  const loginUser = async (event) => {
     event.preventDefault()
-
-    try {
-      const user = await loginService.login({ username, password })
-      if (user.user) {
-        const appUser = {
-          username: user.user.username,
-          idToken: user.user.signInUserSession.idToken.jwtToken,
-          organisation: user.user.attributes['custom:organisation'],
-          admin: user.user.attributes['custom:admin']
-        }
-        setUser(appUser)
-        window.localStorage.setItem(
-          'loggedUser', JSON.stringify(appUser)
-        )
-      } else {
-        setUser(undefined)
-      }
-      setUsername('')
-      setPassword('')
-    } catch (exception) {
-      return
-    }
+    dispatch(handleLogin(username, password))
+    setUsername('')
+    setPassword('')
   }
 
   const containerStyle = {
@@ -75,24 +54,22 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
   }
 
   return (
-    user
-      ? null
-      : <div style={containerStyle}>
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
+    <div style={containerStyle}>
+      <h2>Login</h2>
+      <form onSubmit={loginUser}>
+        <div>
           <div>
-            <div>
               username:
-              <InputText id="username" type="text" value={username} name='Username' onChange={({ target }) => setUsername(target.value)} />
-            </div>
-            <div>
-              password:
-              <Password id="password" value={password} feedback={false} name="Password" onChange={({ target }) => setPassword(target.value)} />
-            </div>
+            <InputText id="username" type="text" value={username} name="Username" onChange={({ target }) => setUsername(target.value)} />
           </div>
-          <Button label="login" type='submit' />
-        </form>
-      </div>
+          <div>
+              password:
+            <Password id="password" value={password} feedback={false} name="Password" onChange={({ target }) => setPassword(target.value)} />
+          </div>
+        </div>
+        <Button label="login" type='submit' />
+      </form>
+    </div>
   )
 }
 
