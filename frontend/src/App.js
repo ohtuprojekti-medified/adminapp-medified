@@ -23,9 +23,7 @@ import './App.css'
 
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Amplify from 'aws-amplify'
 import dataService from './services/dataService.js'
-import loginService from './services/loginService'
 
 import LoginForm from './components/LoginForm'
 import AppFooter from './components/uiComponents/AppFooter'
@@ -37,6 +35,8 @@ import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { handleLogout, initUser, refreshToken } from './reducers/loginReducer'
 
 /**
  * Creates a single page application
@@ -48,13 +48,15 @@ import 'primeflex/primeflex.css'
  * @returns {object} - A single page application in JSX
  */
 const App = () => {
+  const dispatch = useDispatch()
+  const { user } = useSelector(state => state)
+
   const [appUsers, setAppUsers] = useState([])
   const [caregivers, setCaregivers] = useState([])
   const [cumulativeUsers, setCumulative] = useState([])
   const [activeUsers, setActive] = useState([])
   const [retentionRates, setRetentionRates] = useState([])
   const [averageRetention, setAverageRetention] = useState([])
-  const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -71,21 +73,8 @@ const App = () => {
    * @inner
    */
   useEffect(() => {
-    require('dotenv').config()
-    Amplify.configure({
-      Auth: {
-        userPoolId: 'eu-west-1_sAj8nsLY6',
-        userPoolWebClientId: '57bgrf7014uhtdu95jm8ci2ok5',
-        authenticationFlowType: 'USER_PASSWORD_AUTH'
-      }
-    })
-
-    const loggedUserJSON = window.localStorage.getItem('loggedUser')
-    if (loggedUserJSON) {
-      const loggedUser = JSON.parse(loggedUserJSON)
-      setUser(loggedUser)
-    }
-  }, [])
+    dispatch(initUser())
+  }, [dispatch])
 
   /**
    * Set token or refresh token and GET data if user logs in or is logged in. If secure ping fails twice user is logged out.
@@ -96,25 +85,6 @@ const App = () => {
    * @inner
    */
   useEffect(() => {
-    const refreshToken = async () => {
-      try {
-        await Amplify.Auth.currentSession()
-        const cognitoUser = await Amplify.Auth.currentAuthenticatedUser()
-        const refreshedUser = {
-          username: cognitoUser.username,
-          idToken: cognitoUser.signInUserSession.idToken.jwtToken,
-          organisation: cognitoUser.attributes['custom:organisation'],
-          admin: cognitoUser.attributes['custom:admin']
-        }
-        window.localStorage.setItem(
-          'loggedUser', JSON.stringify(refreshedUser)
-        )
-        return refreshedUser
-      } catch (error) {
-        return
-      }
-    }
-
     const securePing = async () => {
       try {
         const pingStatus = await dataService.getAll('ping')
@@ -124,28 +94,14 @@ const App = () => {
       }
     }
 
-    const logOut = async () => {
-      try {
-        await loginService.logOut()
-        setUser(undefined)
-      } catch (exception) {
-        return
-      }
-    }
-
     const fetchData = async () => {
       if (user) {
-        dataService.setToken(user.idToken)
         const ping1 = await securePing()
         if (ping1 === 403) {
-          const refreshedUser = await refreshToken()
-          dataService.setToken(refreshedUser.idToken)
+          dispatch(refreshToken)
           const ping2 = await securePing()
           if (ping2 === 403) {
-            await logOut()
-          } else {
-            setUser(refreshedUser)
-            return
+            dispatch(handleLogout)
           }
         }
 
@@ -199,7 +155,6 @@ const App = () => {
           <div style={containerStyle}>
             <div className='p-component'>
               <AppTopbar user={user}
-                setUser={setUser}
                 caregiverFilterForAllUsers={caregiverFilterForAllUsers}
                 handleFilterChange={handleFilterChange}
                 organisations={organisations}
@@ -220,8 +175,7 @@ const App = () => {
                 username={username}
                 setUsername={setUsername}
                 password={password}
-                setPassword={setPassword}
-                setUser={setUser} />
+                setPassword={setPassword} />
 
             </div>
             <AppFooter />
@@ -229,15 +183,13 @@ const App = () => {
           :
           <>
             <AppTopbar user={user}
-              setUser={setUser}
               caregiverFilterForAllUsers={caregiverFilterForAllUsers}
               handleFilterChange={handleFilterChange} />
             <LoginForm username={username}
               setUsername={setUsername}
               password={password}
               setPassword={setPassword}
-              user={user}
-              setUser={setUser} />
+              user={user} />
           </>
         }
       </Router>
