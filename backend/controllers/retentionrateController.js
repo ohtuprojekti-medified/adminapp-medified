@@ -18,7 +18,7 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   const userIdsArray = userIds.map(user => user.user_id)
   let userActivities
-  if (startDate === 'null' && endDate === 'null') {
+  if (startDate === '' && endDate === '') {
     userActivities = await user_activities.findAll({
       where: {
         user_id: userIdsArray
@@ -28,7 +28,7 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
       ],
       attributes: ['id', 'user_id', 'created_at']
     })
-  } else if (startDate === 'null') {
+  } else if (startDate === '') {
     userActivities = await user_activities.findAll({
       where: {
         user_id: userIdsArray,
@@ -41,7 +41,7 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
       ],
       attributes: ['id', 'user_id', 'created_at']
     })
-  } else if (endDate === 'null') {
+  } else if (endDate === '') {
     userActivities = await user_activities.findAll({
       where: {
         user_id: userIdsArray,

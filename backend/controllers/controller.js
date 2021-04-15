@@ -33,11 +33,11 @@ const findAllAccessCodes = async (organisation, startDate, endDate) => {
 
   let accessCodes = undefined
   if (organisation === 'ALL') {
-    if (startDate === 'null' && endDate === 'null') {
+    if (startDate === '' && endDate === '') {
       accessCodes = await access_codes.findAll({
         attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at']
       })
-    } else if (startDate === 'null') {
+    } else if (startDate === '') {
       accessCodes = await access_codes.findAll({
         attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
         where: {
@@ -46,7 +46,7 @@ const findAllAccessCodes = async (organisation, startDate, endDate) => {
           }
         }
       })
-    } else if (endDate === 'null') {
+    } else if (endDate === '') {
       accessCodes = await access_codes.findAll({
         attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
         where: {
@@ -66,14 +66,14 @@ const findAllAccessCodes = async (organisation, startDate, endDate) => {
       })
     }
   } else {
-    if (startDate === 'null' && endDate === 'null') {
+    if (startDate === '' && endDate === '') {
       accessCodes = await access_codes.findAll({
         attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
         where: {
           organisation_id: organisation
         }
       })
-    } else if (startDate === 'null') {
+    } else if (startDate === '') {
       accessCodes = await access_codes.findAll({
         attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
         where: {
@@ -83,7 +83,7 @@ const findAllAccessCodes = async (organisation, startDate, endDate) => {
           }
         }
       })
-    } else if (endDate === 'null') {
+    } else if (endDate === '') {
       accessCodes = await access_codes.findAll({
         attributes: ['id', 'user_id', 'organisation_id', 'created_at', 'updated_at'],
         where: {
@@ -139,14 +139,14 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
       const userCaregivers = await user_care_givers.findAll({
         attributes: ['user_id', 'access_code_id', 'created_at', 'updated_at', 'consent']
       })
-      if (startDate === 'null' && endDate === 'null') {
+      if (startDate === '' && endDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {
             user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id)
           }
         })
-      } else if (startDate === 'null') {
+      } else if (startDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {
@@ -156,7 +156,7 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
             }
           }
         })
-      } else if (endDate === 'null') {
+      } else if (endDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {
@@ -178,18 +178,18 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
         })
       }
     } else {
-      if (startDate === 'null' && endDate === 'null') {
+      if (startDate === '' && endDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']
         })
-      } else if (startDate === 'null') {
+      } else if (startDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           created_at: {
             [Op.lte]: endDate
           }
         })
-      } else if (endDate === 'null') {
+      } else if (endDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           created_at: {
@@ -219,7 +219,7 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
     let uniqueIds = [...new Set(userIdsLinkedToOrganisationalCaregivers)]
 
     if (withCaregiver === true) {
-      if (startDate === 'null' && endDate === 'null') {
+      if (startDate === '' && endDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {
@@ -229,7 +229,7 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
             }
           }
         })
-      } else if (startDate === 'null') {
+      } else if (startDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {
@@ -239,7 +239,7 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
             }
           }
         })
-      } else if (endDate === 'null') {
+      } else if (endDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {
@@ -262,7 +262,7 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
       }
     } else {
       // includes also users from organisation that don't have a caregiver
-      if (startDate === 'null' && endDate === 'null') {
+      if (startDate === '' && endDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {
@@ -272,7 +272,7 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
             ]
           }
         })
-      } else if (startDate === 'null') {
+      } else if (startDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {
@@ -285,7 +285,7 @@ const findAllUsers = async (organisation, withCaregiver, startDate, endDate) => 
             }
           }
         })
-      } else if (endDate === 'null') {
+      } else if (endDate === '') {
         userProfiles = await user_profiles.findAll({
           attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
           where: {

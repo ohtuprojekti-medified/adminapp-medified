@@ -65,7 +65,7 @@ const findNewUsers = async (organisation, withCaregiver) => {
 const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   let usersCreatedAt
-  if (startDate === 'null' && endDate === 'null') {
+  if (startDate === '' && endDate === '') {
     usersCreatedAt = await user_profiles.findAll({
       where: {
         user_id: userIds.map(user => user.user_id)
@@ -75,7 +75,7 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
       ],
       attributes: ['created_at']
     })
-  } else if (startDate === 'null') {
+  } else if (startDate === '') {
     usersCreatedAt = await user_profiles.findAll({
       where: {
         user_id: userIds.map(user => user.user_id),
@@ -89,7 +89,7 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
       attributes: ['created_at']
     })
   }
-  else if (endDate === 'null') {
+  else if (endDate === '') {
     usersCreatedAt = await user_profiles.findAll({
       where: {
         user_id: userIds.map(user => user.user_id),
@@ -152,7 +152,7 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
 const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   let userActivities
-  if (startDate === 'null' && endDate === 'null') {
+  if (startDate === '' && endDate === '') {
     userActivities = await user_activities.findAll({
       order: [
         ['created_at', 'ASC']
@@ -162,7 +162,7 @@ const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) 
         user_id: userIds.map(user => user.user_id)
       }
     })
-  } else if (startDate === 'null') {
+  } else if (startDate === '') {
     userActivities = await user_activities.findAll({
       order: [
         ['created_at', 'ASC']
@@ -175,7 +175,7 @@ const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) 
         }
       }
     })
-  } else if (endDate === 'null') {
+  } else if (endDate === '') {
     userActivities = await user_activities.findAll({
       order: [
         ['created_at', 'ASC']
