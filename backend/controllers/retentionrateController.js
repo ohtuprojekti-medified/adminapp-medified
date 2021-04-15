@@ -8,24 +8,66 @@ const controller = require('./controller')
 /**
  * Returns retention rates as in how long does user use app actively
  *
+ * @param {string} organisation - Organisation for filtering
+ * @param {boolean} withCaregiver - Show only users with caregiver filter value
+ * @param {string} startDate - Start date for filtering
+ * @param {string} endDate - End date for filtering
  * @returns  {...any} usingPeriods - number of days per using period
  */
-
 const findRetentionRates = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   const userIdsArray = userIds.map(user => user.user_id)
-  const userActivities = await user_activities.findAll({
-    where: {
-      user_id: userIdsArray,
-      created_at: {
-        [Op.between]: [startDate, endDate]
-      }
-    },
-    order: [
-      ['created_at', 'ASC']
-    ],
-    attributes: ['id', 'user_id', 'created_at']
-  })
+  let userActivities
+  if (startDate === 'null' && endDate === 'null') {
+    userActivities = await user_activities.findAll({
+      where: {
+        user_id: userIdsArray
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at']
+    })
+  } else if (startDate === 'null') {
+    userActivities = await user_activities.findAll({
+      where: {
+        user_id: userIdsArray,
+        created_at: {
+          [Op.lte]: endDate
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at']
+    })
+  } else if (endDate === 'null') {
+    userActivities = await user_activities.findAll({
+      where: {
+        user_id: userIdsArray,
+        created_at: {
+          [Op.gte]: startDate
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at']
+    })
+  } else {
+    userActivities = await user_activities.findAll({
+      where: {
+        user_id: userIdsArray,
+        created_at: {
+          [Op.between]: [startDate, endDate]
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at']
+    })
+  }
   const userProfiles = await user_profiles.findAll({
     where: {
       user_id: userIdsArray

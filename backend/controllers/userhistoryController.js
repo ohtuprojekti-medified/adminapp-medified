@@ -64,18 +64,59 @@ const findNewUsers = async (organisation, withCaregiver) => {
 
 const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
-  const usersCreatedAt = await user_profiles.findAll({
-    where: {
-      user_id: userIds.map(user => user.user_id),
-      created_at: {
-        [Op.between]: [startDate, endDate]
-      }
-    },
-    order: [
-      ['created_at', 'ASC']
-    ],
-    attributes: ['created_at']
-  })
+  let usersCreatedAt
+  if (startDate === 'null' && endDate === 'null') {
+    usersCreatedAt = await user_profiles.findAll({
+      where: {
+        user_id: userIds.map(user => user.user_id)
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['created_at']
+    })
+  } else if (startDate === 'null') {
+    usersCreatedAt = await user_profiles.findAll({
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.lte]: endDate
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['created_at']
+    })
+  }
+  else if (endDate === 'null') {
+    usersCreatedAt = await user_profiles.findAll({
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.gte]: startDate
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['created_at']
+    })
+  }
+  else {
+    usersCreatedAt = await user_profiles.findAll({
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.between]: [startDate, endDate]
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['created_at']
+    })
+  }
 
   const createdDates = usersCreatedAt.map(user => user.dataValues)
 
@@ -110,22 +151,59 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
  */
 const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
-  const userActivities = await user_activities.findAll({
-    order: [
-      ['created_at', 'ASC']
-    ],
-    attributes: ['id', 'user_id', 'created_at'],
-    where: {
-      user_id: userIds.map(user => user.user_id),
-      created_at: {
-        [Op.between]: [startDate, endDate]
+  let userActivities
+  if (startDate === 'null' && endDate === 'null') {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at'],
+      where: {
+        user_id: userIds.map(user => user.user_id)
       }
-    }
-  })
+    })
+  } else if (startDate === 'null') {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at'],
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.lte]: endDate
+        }
+      }
+    })
+  } else if (endDate === 'null') {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at'],
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.gte]: startDate
+        }
+      }
+    })
+  } else {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at'],
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.between]: [startDate, endDate]
+        }
+      }
+    })
+  }
 
   const allActivities = userActivities.map(activity => activity.dataValues)
-
-  console.log(allActivities)
 
   const first = allActivities[0].created_at.getTime()
   let currentWeek = first + 604800000
