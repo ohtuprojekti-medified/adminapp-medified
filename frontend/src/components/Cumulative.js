@@ -7,6 +7,7 @@
  */
 import React from 'react'
 import { Chart } from 'primereact/chart'
+import { subDays, format } from 'date-fns'
 
 /**
  * Component for graphing all new users, cumulative
@@ -23,15 +24,20 @@ import { Chart } from 'primereact/chart'
  */
 const Cumulative = ({ cumulative, activeUsers }) => {
 
-  if (cumulative.length === 0 || activeUsers.length === 0) {
-    return (
-      <div>
-        <h3>New users, cumulative and active users weekly</h3>
-        <div className="chart-container" >
-          <Chart type='line' />
-        </div>
-      </div>
-    )
+  const emptyWeek = () => {
+    const dateFormat = 'yyyy-MM-dd'
+    const lastDay = new Date()
+    return { week: [format(subDays(lastDay, 7), dateFormat), format(lastDay, dateFormat)], entries: 0 }
+  }
+  console.log('emptyweek', emptyWeek())
+
+  if (cumulative.length === 0 && activeUsers.length === 0) {
+    cumulative = [emptyWeek()]
+    activeUsers = [emptyWeek()]
+  } else if (cumulative.length === 0) {
+    cumulative = [emptyWeek()]
+  } else if (activeUsers.length === 0) {
+    activeUsers = [emptyWeek()]
   }
 
   const firstActive = activeUsers[0].week
