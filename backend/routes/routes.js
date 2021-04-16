@@ -26,9 +26,20 @@ const router = require('express').Router()
 const controller = require('../controllers/controller')
 const retentionrateController = require('../controllers/retentionrateController')
 const userhistoryController = require('../controllers/userhistoryController')
+const improvementController = require('../controllers/improvementController')
 
 // handle errors if database-queries fail
 require('express-async-errors')
+
+router.get('/moods', async (req, res) => {
+  const moods = await controller.findAllMoods()
+  res.json(moods)
+})
+
+router.get('/weeklyvalues', async (req, res) => {
+  const weeklyvalues = await improvementController.findImprovements()
+  res.json(weeklyvalues)
+})
 
 /**
  * Route request for users
