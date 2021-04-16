@@ -1,20 +1,82 @@
 const { addDays } = require('date-fns')
+const controller = require('./controller')
 const db = require('../models')
 const user_moods = db.user_moods
+const user_care_givers = db.user_care_givers
 
-const findImprovements = async (organisation, withCaregiver, variable) => {
+const findWeeklyValues = async (organisation, withCaregiver, variable) => {
 
   if (variable === 'MOOD') {
-    // TODO implement variable for request
-  }
+    let userMoodData = []
+    let moodsWeekly = []
 
-  const userMoodsData = await user_moods.findAll({
-    order: [
-      ['created_at', 'ASC'],
-      ['user_id', 'ASC']
-    ],
-    attributes: ['id', 'user_id', 'created_at', 'value']
-  })
+    if (organisation === 'ALL') {
+      if (withCaregiver === true) {
+        const userCaregivers = await user_care_givers.findAll({
+          attributes: ['user_id', 'access_code_id', 'created_at', 'updated_at', 'consent']
+        })
+        userMoodData = await user_moods.findAll({
+          attributes: ['id', 'user_id', 'created_at', 'value'],
+          where: {
+            user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id)
+          },
+          order: [
+            ['created_at', 'ASC'],
+            ['user_id', 'ASC']
+          ]
+        })
+
+        moodsWeekly = await findWeeklyMoods(userMoodData)
+      } else {
+        userMoodData = await user_moods.findAll({
+          order: [
+            ['created_at', 'ASC'],
+            ['user_id', 'ASC']
+          ],
+          attributes: ['id', 'user_id', 'created_at', 'value']
+        })
+
+        moodsWeekly = await findWeeklyMoods(userMoodData)
+      }
+    } else {
+      if (withCaregiver === true) {
+        const organisationalAccessCodes = await controller.findAllAccessCodes(organisation)
+        const organisationalAccessCodesIdArray = organisationalAccessCodes.map(accessCode => accessCode.id)
+
+        const caregiversInOrganisation = await user_care_givers.findAll({
+          where: {
+            access_code_id: organisationalAccessCodesIdArray
+          }
+        })
+        const userIdsLinkedToOrganisationalCaregivers = caregiversInOrganisation.map(caregiver => caregiver.user_id)
+        const uniqueIds = [...new Set(userIdsLinkedToOrganisationalCaregivers)]
+        userMoodData = await user_moods.findAll({
+          attributes: ['id', 'user_id', 'created_at', 'value'],
+          where: {
+            user_id: uniqueIds
+          }
+        })
+        moodsWeekly = await findWeeklyMoods(userMoodData)
+      } else {
+        const usersInOrganisation = await controller.findAllUsers(organisation, false)
+        const usersInOrganisationIdArray = usersInOrganisation.map(user => user.user_id)
+        userMoodData = await user_moods.findAll({
+          attributes: ['id', 'user_id', 'created_at', 'value'],
+          where: {
+            user_id: usersInOrganisationIdArray
+          }
+        })
+        moodsWeekly = await findWeeklyMoods(userMoodData)
+      }
+    }
+    return moodsWeekly
+  } else {
+    return null
+    // TO DO: implement bdi and phq-9 variables
+  }
+}
+
+const findWeeklyMoods = async (userMoodsData) => {
 
   const userMoods = userMoodsData.map(mood => mood.dataValues)
 
@@ -104,26 +166,9 @@ const findImprovements = async (organisation, withCaregiver, variable) => {
       valuesWeekly = [...valuesWeekly, averageValue]
     }
   }
-
-  // let totalMoodImprovements
-  // let weeklyMoodImprovements
-
-  if (organisation === 'ALL') {
-    // admin request for all data
-    if (withCaregiver === true) {
-      // TO DO filtered
-    } else {
-      // TODO not filtered
-    }
-  } else {
-    // TO DO organisational data
-  }
-
-
-  // To do BDI and PHQ-9
   return valuesWeekly
 }
 
 // TODO USER ID CONVERTER?
 
-module.exports = { findImprovements }
+module.exports = { findWeeklyValues }

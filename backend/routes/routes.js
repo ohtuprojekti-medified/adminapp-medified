@@ -31,13 +31,9 @@ const improvementController = require('../controllers/improvementController')
 // handle errors if database-queries fail
 require('express-async-errors')
 
-router.get('/moods', async (req, res) => {
-  const moods = await controller.findAllMoods()
-  res.json(moods)
-})
-
 router.get('/weeklyvalues', async (req, res) => {
-  const weeklyvalues = await improvementController.findImprovements()
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const weeklyvalues = await improvementController.findWeeklyValues(req.query.organisation, withCaregiver, req.query.variable)
   res.json(weeklyvalues)
 })
 
