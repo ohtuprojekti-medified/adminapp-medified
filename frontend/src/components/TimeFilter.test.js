@@ -1,20 +1,65 @@
+/**
+ * Tests for TimeFilter component
+ *
+ * @module src/components/TimeFilter_test
+ * @requires react
+ * @requires @testing-library/jest-dom/extend-expect
+ * @requires @testing-library/react
+ * @requires src/components/TimeFilter
+ */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, waitFor, fireEvent } from '@testing-library/react'
 import TimeFilter from './TimeFilter'
 
+/**
+ * Describe tests
+ *
+ * @type {object}
+ * @function
+ * @memberof module:src/components/TimeFilter_test
+ * @inner
+ * @param {string} description - Description of tests
+ * @param {object} testCode - Code for tests
+ */
 describe('<TimeFilter />', () => {
   let component
-  const handleStartDateEnableChange = jest.fn()
-  const handleEndDateEnableChange = jest.fn()
-  const handleStartDateChange = jest.fn()
-  const handleEndDateChange = jest.fn()
+  let handleStartDateEnableChange
+  let handleEndDateEnableChange
+  let handleStartDateChange
+  let handleEndDateChange
 
-  component = render(<TimeFilter startDateEnable={false} endDateEnable={false}
-    startDate={''} endDate={''} handleStartDateEnableChange={handleStartDateEnableChange}
-    handleEndDateEnableChange={handleEndDateEnableChange} handleStartDateChange={handleStartDateChange}
-    handleEndDateChange={handleEndDateChange} />)
+  /**
+   * Render TimeFilter with mock values
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/components/TimeFilter_test
+   * @inner
+   * @param {object} beforeEachCode - Code to be run before each test
+   */
+  beforeEach(() => {
+    handleStartDateEnableChange = jest.fn()
+    handleEndDateEnableChange = jest.fn()
+    handleStartDateChange = jest.fn()
+    handleEndDateChange = jest.fn()
+    component = render(<TimeFilter startDateEnable={false} endDateEnable={false}
+      startDate={''} endDate={''} handleStartDateEnableChange={handleStartDateEnableChange}
+      handleEndDateEnableChange={handleEndDateEnableChange} handleStartDateChange={handleStartDateChange}
+      handleEndDateChange={handleEndDateChange} />)
+  })
 
+
+  /**
+   * Test that TimeFilter is rendered
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/components/TimeFilter_test
+   * @inner
+   * @param {string} description - Renders filter
+   * @param {object} TestCode - Code that runs the test
+   */
   test('renders TimeFilter', () => {
     waitFor(() => {
       expect(component.container).toHaveTextContent('Start date')
@@ -22,6 +67,16 @@ describe('<TimeFilter />', () => {
     })
   })
 
+  /**
+   * Test that TimeFilter calls start date enable eventhandler
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/components/TimeFilter_test
+   * @inner
+   * @param {string} description - Calls start date enable eventhandler
+   * @param {object} TestCode - Code that runs the test
+   */
   test('checking start date checkbox calls eventhandler', () => {
     const checkbox = component.findByTestId('startDate-checkbox')
 
@@ -31,6 +86,16 @@ describe('<TimeFilter />', () => {
     })
   })
 
+  /**
+   * Test that TimeFilter calls end date enable eventhandler
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/components/TimeFilter_test
+   * @inner
+   * @param {string} description - Calls end date enable eventhandler
+   * @param {object} TestCode - Code that runs the test
+   */
   test('checking end date checkbox calls eventhandler', () => {
     const checkbox = component.findByTestId('endDate-checkbox')
 
@@ -40,6 +105,16 @@ describe('<TimeFilter />', () => {
     })
   })
 
+  /**
+   * Test that TimeFilter calls start date event handler
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/components/TimeFilter_test
+   * @inner
+   * @param {string} description - Calls start date eventhandler
+   * @param {object} TestCode - Code that runs the test
+   */
   test('typeing start date calls eventhandler', () => {
     const dateInput = component.findByTestId('startDate-date')
 
@@ -49,6 +124,16 @@ describe('<TimeFilter />', () => {
     })
   })
 
+  /**
+   * Test that TimeFilter calls end date eventhandler
+   *
+   * @type {object}
+   * @function
+   * @memberof module:src/components/TimeFilter_test
+   * @inner
+   * @param {string} description - Calls end date eventhandler
+   * @param {object} TestCode - Code that runs the test
+   */
   test('typeing end date calls eventhandler', () => {
     const dateInput = component.findByTestId('endDate-date')
 
