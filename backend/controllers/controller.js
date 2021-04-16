@@ -22,7 +22,6 @@ const user_care_giver_activities = db.user_care_giver_activities
 const user_moods = db.user_moods
 const { Sequelize } = require('../models')
 const Op = Sequelize.Op
-const sequelize = db.sequelize
 
 
 /**
@@ -76,7 +75,15 @@ const findAllUsers = async (organisation, withCaregiver) => {
   if (organisation === 'ALL') {
     // admin request from all data
     if (withCaregiver === true) {
-      userProfiles = sequelize.query('SELECT DISTINCT user_profiles.user_id, user_profiles.created_at, user_profiles.first_name, user_profiles.last_name, user_profiles.updated_at, user_profiles.added_organisation FROM user_profiles, user_care_givers WHERE user_profiles.user_id = user_care_givers.user_id', { type: sequelize.QueryTypes.SELECT })
+      const userCaregivers = await user_care_givers.findAll({
+        attributes: ['user_id', 'access_code_id', 'created_at', 'updated_at', 'consent']
+      })
+      userProfiles = await user_profiles.findAll({
+        attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation'],
+        where: {
+          user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id)
+        }
+      })
     } else {
       userProfiles = await user_profiles.findAll({
         attributes: ['user_id', 'created_at', 'first_name', 'last_name', 'updated_at', 'added_organisation']

@@ -2,44 +2,41 @@
  * Frontend app
  *
  * @module src/App
- * @requires primereact/resources/themes/vela-purple/theme.css
+ * @requires primereact/resources/themes/saga-blue/theme.css
  * @requires primereact/resources/primereact.min.css
  * @requires primeicons/primeicons.css
+ * @requires react-transition-group
+ * @requires primeflex/primeflex.css
  * @requires src/App.css
  * @requires src/services/dataService
  * @requires src/services/loginService
  * @requires react
  * @requires aws-amplify
- * @requires src/components/Users
- * @requires src/components/Caregivers
  * @requires src/components/LoginForm
- * @requires src/components/Cumulative
- * @requires src/components/RetentionRate
  * @requires src/components/uiComponents/AppTopbar
  * @requires src/components/uiComponents/AppFooter
+ * @requires src/components/uiComponents/AppContent
  * @requires dotenv
  */
-
-// Muut mahdolliset teemat: saga ja arya, ja värit: orange, green, blue
-import 'primereact/resources/themes/saga-blue/theme.css'
-import 'primereact/resources/primereact.min.css'
-import 'primeicons/primeicons.css'
 
 import './App.css'
 
 import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Amplify from 'aws-amplify'
 import dataService from './services/dataService.js'
 import loginService from './services/loginService'
+
+import LoginForm from './components/LoginForm'
+import AppFooter from './components/uiComponents/AppFooter'
+import AppTopbar from './components/uiComponents/AppTopbar'
+import AppContent from './components/uiComponents/AppContent'
 
 import 'primereact/resources/themes/saga-blue/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
-
-import AppTopbar from './components/uiComponents/AppTopbar'
-import AppFooter from './components/uiComponents/AppFooter'
 
 /**
  * Creates a single page application
@@ -57,10 +54,10 @@ const App = () => {
   const [activeUsers, setActive] = useState([])
   const [retentionRates, setRetentionRates] = useState([])
   const [averageRetention, setAverageRetention] = useState([])
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [organisationSelect, setOrganisation] = useState('ALL')
   const [visible, setVisible] = useState(false)
   const [organisations, setOrganisations] = useState(null)
@@ -196,31 +193,54 @@ const App = () => {
   }
 
   return (
-    <div>
-      <div className="App">
-        <div style={containerStyle}>
-          <AppTopbar user={user}
-            appUsers={appUsers}
-            caregivers={caregivers}
-            caregiverFilterForAllUsers={caregiverFilterForAllUsers}
-            organisationSelect={organisationSelect}
-            handleFilterChange={handleFilterChange}
-            handleOrganisationChange={handleOrganisationChange}
-            cumulativeUsers={cumulativeUsers}
-            activeUsers={activeUsers}
-            retentionRates={retentionRates}
-            averageRetention={averageRetention}
-            username={username}
-            setUsername={setUsername}
-            password={password}
-            setPassword={setPassword}
-            setUser={setUser}
-            organisations={organisations}
-            visible={visible}
-            setVisible={setVisible} />
-          <AppFooter />
-        </div>
-      </div>
+    <div className='App'>
+      <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
+        {user ?
+          <div style={containerStyle}>
+            <div className='p-component'>
+              <AppTopbar user={user}
+                setUser={setUser}
+                caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+                handleFilterChange={handleFilterChange}
+                organisations={organisations}
+                visible={visible}
+                setVisible={setVisible}
+                organisationSelect={organisationSelect}
+                handleOrganisationChange={handleOrganisationChange} />
+
+              <AppContent user={user}
+                appUsers={appUsers}
+                caregivers={caregivers}
+                caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+                handleFilterChange={handleFilterChange}
+                cumulativeUsers={cumulativeUsers}
+                activeUsers={activeUsers}
+                retentionRates={retentionRates}
+                averageRetention={averageRetention}
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+                setUser={setUser} />
+
+            </div>
+            <AppFooter />
+          </div>
+          :
+          <>
+            <AppTopbar user={user}
+              setUser={setUser}
+              caregiverFilterForAllUsers={caregiverFilterForAllUsers}
+              handleFilterChange={handleFilterChange} />
+            <LoginForm username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              user={user}
+              setUser={setUser} />
+          </>
+        }
+      </Router>
     </div>
   )
 }

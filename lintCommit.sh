@@ -1,4 +1,5 @@
 set -e;
+npm run lint-fix
 cd frontend;
 npm run lint-fix;
 cd ../backend;

@@ -22,7 +22,7 @@ describe('Filter', function () {
    *
    * @name beforeEach
    * @type {object}
-   * @memberof module:cypress/integration/caregivers_spec
+   * @memberof module:cypress/integration/filter_spec
    * @inner
    * @param {object} functionBeforeEach - Function to be run before each test
    */
@@ -35,7 +35,7 @@ describe('Filter', function () {
    *
    * @name afterEach
    * @type {object}
-   * @memberof module:cypress/integration/caregivers_spec
+   * @memberof module:cypress/integration/filter_spec
    * @inner
    * @param {object} functionAfterEach - Function to be run before each test
    */

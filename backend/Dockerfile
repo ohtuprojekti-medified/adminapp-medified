@@ -12,7 +12,4 @@ ENV NODE_ENV=${NODE_ENV}
 
 COPY . .
 
-RUN chown -R node:node /usr/src/app
-USER node
-
 CMD npm start

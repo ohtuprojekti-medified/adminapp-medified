@@ -59,3 +59,7 @@ frontend/out
 backend/out
 frontend/docs
 backend/docs
+
+# Vscode settings
+
+.vscode/
