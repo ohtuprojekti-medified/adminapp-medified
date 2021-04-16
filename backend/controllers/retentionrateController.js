@@ -116,6 +116,10 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
 /**
  * Returns average retention rate
  *
+ * @param {string} organisation - string id used to identify organisation
+ * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
+ * @param {string} startDate - Date object for limiting data from start
+ * @param {string} endDate - Date object for limiting data from last
  * @returns  {...any} averageUsingPeriod - average app using period
  */
 
