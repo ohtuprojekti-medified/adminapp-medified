@@ -13,6 +13,7 @@ import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
 import { Sidebar } from 'primereact/sidebar'
 import Filter from '../Filter'
+import TimeFilter from '../TimeFilter'
 import Organisations from '../Organisations'
 import loginService from '../../services/loginService'
 
@@ -25,7 +26,9 @@ import Header from './AppHeader'
  * @returns {object} - JSX Topbar component
  */
 const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChange,
-  visible, setVisible, organisations, handleOrganisationChange, organisationSelect }) => {
+  visible, setVisible, organisations, handleOrganisationChange, organisationSelect,
+  startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
+  handleEndDateEnableChange, handleStartDateChange, handleEndDateChange }) => {
 
   /**
    * Handle logout button presses
@@ -87,6 +90,14 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
             {user.admin
               ? <Organisations organisations={organisations} handleOrganisationChange={handleOrganisationChange} organisationSelect={organisationSelect} />
               : null}
+            <TimeFilter startDateEnable={startDateEnable}
+              endDateEnable={endDateEnable}
+              startDate={startDate}
+              endDate={endDate}
+              handleStartDateEnableChange={handleStartDateEnableChange}
+              handleEndDateEnableChange={handleEndDateEnableChange}
+              handleStartDateChange={handleStartDateChange}
+              handleEndDateChange={handleEndDateChange} />
           </Sidebar>
 
           <Button label={'Filter'} icon="pi pi-filter" className="p-mr-2" onClick={() => setVisible(true)} />
