@@ -57,6 +57,31 @@ const testUsername = Cypress.env('USERNAME')
  * @param {string} username - Retrieve password from environment variables
  */
 const testPassword = Cypress.env('PASSWORD')
+
+/**
+ * Retrieve admin username from enviromment variables for logging in
+ *
+ * @name testAdminUsername
+ * @function
+ * @constant
+ * @memberof module:cypress/support/commands
+ * @inner
+ * @param {string} username - Retrieve username from environment variables
+ */
+const testAdminUsername = Cypress.env('ADMIN_USERNAME')
+
+/**
+ * Retrieve admin password from enviromment variables for logging in
+ *
+ * @name testAdminPassword
+ * @function
+ * @constant
+ * @memberof module:cypress/support/commands
+ * @inner
+ * @param {string} username - Retrieve password from environment variables
+ */
+const testAdminPassword = Cypress.env('ADMIN_PASSWORD')
+
 const react_app_user_pool_id = 'eu-west-1_sAj8nsLY6'
 const react_app_web_client_id = '57bgrf7014uhtdu95jm8ci2ok5'
 //const react_app_authentication_type = 'USER_PASSWORD_AUTH'
@@ -88,6 +113,22 @@ Auth.configure(AWSConfig)
  */
 Cypress.Commands.add('login', () => {
   cy.then(() => Auth.signIn(testUsername, testPassword)).then((cognitoUser) => {
+    window.localStorage.setItem(
+      'loggedUser', JSON.stringify(cognitoUser)
+    )
+    cy.visit('http://localhost:3000')
+  })
+})
+
+/**
+ * Add function for fast admin login to AWS without using UI
+ *
+ * @function
+ * @param {string} name - Name of the login function
+ * @param {object} login - Function that logs in
+ */
+Cypress.Commands.add('loginAdmin', () => {
+  cy.then(() => Auth.signIn(testAdminUsername, testAdminPassword)).then((cognitoUser) => {
     window.localStorage.setItem(
       'loggedUser', JSON.stringify(cognitoUser)
     )

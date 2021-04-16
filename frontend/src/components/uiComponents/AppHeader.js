@@ -4,6 +4,7 @@
  * @module src/components/uiComponents/AppHeader
  * @requires react
  * @requires react-router-dom
+ * @requires src/components/Filter
  */
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -43,7 +44,7 @@ const HeaderLink = ({ page, title }) => {
 const Header = () => {
   return (
     <div className='header'>
-      <HeaderLink page='home' title='Home' />
+      <HeaderLink page='' title='Home' />
       <HeaderLink page='retention' title='Retention rates' />
       <HeaderLink page='cumulative' title='New and active users' />
     </div>

@@ -53,6 +53,8 @@ jobs:
         echo 'DB_HOST=${{ secrets.DB_HOST }}' >> .env
         echo 'CYPRESS_USERNAME=${{ secrets.CYPRESS_USERNAME }}' >> .env
         echo 'CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }}' >> .env
+        echo 'CYPRESS_ADMIN_USERNAME=${{ secrets.CYPRESS_ADMIN_USERNAME }}' >> .env
+        echo 'CYPRESS_ADMIN_PASSWORD=${{ secrets.CYPRESS_ADMIN_PASSWORD }}' >> .env
         npm ci
         ./scripts/populate-db.sh
         npm run docker:up
