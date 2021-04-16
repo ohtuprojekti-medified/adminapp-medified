@@ -10,8 +10,8 @@ const TimeFilter = ({ startDateEnable, endDateEnable, startDate, endDate, handle
   }
   return (
     <div>
-      <p><input type="date" value={startDate} onChange={setStartDate} /> Start date <input type="checkbox" checked={startDateEnable} onChange={handleStartDateEnableChange} /></p>
-      <p><input type="date" value={endDate} onChange={setEndDate} /> End date <input type="checkbox" checked={endDateEnable} onChange={handleEndDateEnableChange} /></p>
+      <p><input type="date" data-testid="startDate-date" value={startDate} onChange={setStartDate} /> Start date <input type="checkbox" data-testid="startDate-checkbox" checked={startDateEnable} onChange={handleStartDateEnableChange} /></p>
+      <p><input type="date" data-testid="endDate-date" value={endDate} onChange={setEndDate} /> End date <input type="checkbox" data-testid="endDate-checkbox" checked={endDateEnable} onChange={handleEndDateEnableChange} /></p>
     </div>
   )
 }

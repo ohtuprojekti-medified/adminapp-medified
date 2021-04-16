@@ -76,4 +76,30 @@ describe('Patients', function () {
     cy.contains('App users')
     cy.contains('Application users: 7')
   })
+
+  it('exists after selecting start date in filters', function () {
+    cy.contains('Filter').click()
+    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-date"]').type('2020-06-01')
+    cy.contains('App users')
+    cy.contains('Application users: 110')
+  })
+
+  it('exists after selecting end date in filters', function () {
+    cy.contains('Filter').click()
+    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-date"]').type('2020-11-01')
+    cy.contains('App users')
+    cy.contains('Application users: 110')
+  })
+
+  it('exists after selecting start date and end date in filters', function () {
+    cy.contains('Filter').click()
+    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-date"]').type('2020-06-01')
+    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-date"]').type('2020-11-01')
+    cy.contains('App users')
+    cy.contains('Application users: 110')
+  })
 })
