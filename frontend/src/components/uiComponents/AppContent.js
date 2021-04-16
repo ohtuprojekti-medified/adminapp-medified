@@ -16,6 +16,7 @@ import Users from '../Users'
 import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
+import MoodAverage from '../MoodAverage'
 
 /**
  * Component containing all UI components on the home page
@@ -23,7 +24,7 @@ import RetentionRate from '../RetentionRate'
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX component containing all sub components
  */
-const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention }) => {
+const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention, moodAverages }) => {
 
   const subContainer1 = {
     marginTop: '10px',
@@ -63,6 +64,12 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retent
           </div>
         </Route>
 
+        <Route path='/moodaverages'>
+          <div style={centered}>
+            <MoodAverage moodAverages={moodAverages} />
+          </div>
+        </Route>
+
         <Route path='/'>
           <div className="p-grid p-fluid dashboard" style={subContainer1}>
             <Users users={appUsers} />
@@ -76,6 +83,9 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retent
               <RetentionRate
                 retentionRates={retentionRates}
                 average={averageRetention} />
+            </div>
+            <div style={centered}>
+              <MoodAverage moodAverages={moodAverages} />
             </div>
           </div>
         </Route>
