@@ -1,7 +1,7 @@
 /**
  * Index file for running backend
  *
- * @module index
+ * @namespace Backend_index
  * @requires app
  * @requires http
  * @requires utils/config
@@ -13,7 +13,8 @@
  *
  * @type {object}
  * @constant
- * @namespace app
+ * @module app
+ * @memberof Backend_index
  */
 const app = require('./app')
 const http = require('http')
@@ -23,7 +24,8 @@ const http = require('http')
  *
  * @type {object}
  * @constant
- * @namespace config
+ * @module config
+ * @memberof Backend_index
  */
 const config = require('./utils/config')
 
@@ -32,7 +34,8 @@ const config = require('./utils/config')
  *
  * @type {object}
  * @constant
- * @namespace logger
+ * @module logger
+ * @memberof Backend_index
  */
 const logger = require('./utils/logger')
 
@@ -41,7 +44,8 @@ const logger = require('./utils/logger')
  *
  * @type {object}
  * @constant
- * @namespace server
+ * @module server
+ * @memberof Backend_index
  */
 const server = http.createServer(app)
 
@@ -50,7 +54,7 @@ const server = http.createServer(app)
  *
  * @name server_listen
  * @function
- * @memberof module:index
+ * @memberof Backend_index
  * @inner
  * @param {string} PORT - Port that backend listens to
  * @param {object} functionWhenServerStarts - Function that logs a message when server starts

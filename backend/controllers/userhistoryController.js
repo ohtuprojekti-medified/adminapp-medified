@@ -1,3 +1,16 @@
+/**
+ * Controller for userhistory queries
+ *
+ * @module controllers/userhistoryController
+ * @requires date-fns
+ * @requires models
+ * @requires sequelize
+ * @requires controllers/controller
+ * @exports findCumulativeNewUsers
+ * @exports findNewUsers
+ * @exports findUserActivitiesToday
+ * @exports findActiveUsers
+ */
 const { addDays } = require('date-fns')
 const db = require('../models')
 const { Sequelize } = require('../models')
@@ -11,6 +24,9 @@ const controller = require('./controller')
  *
  * @param {string} organisation - Organisation name for filtering
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
+ * @async
+ * @constant
+ * @memberof module:controllers/userhistoryController
  * @returns  {...any} userActivitiesToday - list of user activities today
  */
 
@@ -36,6 +52,9 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
  *
  * @param {string} organisation - Organisation name for filtering
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
+ * @async
+ * @constant
+ * @memberof module:controllers/userhistoryController
  * @returns  {...any} usersCreatedAt - list of new users registered in the last week
  */
 
@@ -67,6 +86,9 @@ const findNewUsers = async (organisation, withCaregiver) => {
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @param {string} startDate - Date object for limiting data from start
  * @param {string} endDate - Date object for limiting data from last
+ * @async
+ * @constant
+ * @memberof module:controllers/userhistoryController
  * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
  */
 
@@ -158,6 +180,9 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
  * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
  * @param {string} startDate - Date object for limiting data from start
  * @param {string} endDate - Date object for limiting data from last
+ * @async
+ * @constant
+ * @memberof module:controllers/userhistoryController
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
 const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {

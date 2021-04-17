@@ -1,3 +1,14 @@
+/**
+ * Controller for retentionRate queries
+ *
+ * @module controllers/retentionrateController
+ * @requires date-fns
+ * @requires models
+ * @requires sequelize
+ * @requires controllers/controller
+ * @exports findRetentionRates
+ * @exports findAverageRetentionRate
+ */
 const { differenceInCalendarDays } = require('date-fns')
 const db = require('../models')
 const { Op } = require('sequelize')
@@ -12,6 +23,9 @@ const controller = require('./controller')
  * @param {boolean} withCaregiver - Show only users with caregiver filter value
  * @param {string} startDate - Start date for filtering
  * @param {string} endDate - End date for filtering
+ * @async
+ * @constant
+ * @memberof module:controllers/retentionrateController
  * @returns  {...any} usingPeriods - number of days per using period
  */
 const findRetentionRates = async (organisation, withCaregiver, startDate, endDate) => {
@@ -120,6 +134,9 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
  * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
  * @param {string} startDate - Date object for limiting data from start
  * @param {string} endDate - Date object for limiting data from last
+ * @async
+ * @constant
+ * @memberof module:controllers/retentionrateController
  * @returns  {...any} averageUsingPeriod - average app using period
  */
 

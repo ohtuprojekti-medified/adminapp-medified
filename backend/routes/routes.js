@@ -4,6 +4,8 @@
  * @module routes/routes
  * @requires express
  * @requires controllers/controller
+ * @requires controllers/userhistoryController
+ * @requires controllers/retentionrateController
  * @requires express-async-errors
  */
 

@@ -3,5 +3,6 @@
  *
  * @param {Array} days - Array of float multipliers for days
  * @returns {Array} - Array of days around the midnight today based on days array
+ * @exports dateArray - New Dates in an array
  */
 module.exports = days => days.map(dayAmount => new Date(new Date().setHours(0, 0, 0, 0) + dayAmount * 86400000))
