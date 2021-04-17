@@ -4,6 +4,7 @@
  * @module src/components/Cumulative
  * @requires react
  * @requires primereact/chart
+ * @exports Cumulative
  */
 import React from 'react'
 import { Chart } from 'primereact/chart'
@@ -16,7 +17,6 @@ import { subDays, format } from 'date-fns'
  * @function
  * @constant
  * @memberof module:src/components/Cumulative
- * @inner
  * @param {object} param0 - Object with weekly cumulative users
  * @param {Array} param0.cumulative - Array of all cumulative users
  * @param {Array} param0.activeUsers - Array of all active users

@@ -18,7 +18,6 @@ import Cumulative from './Cumulative'
  * @type {object}
  * @function
  * @memberof module:src/components/Cumulative_test
- * @inner
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */

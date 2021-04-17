@@ -3,6 +3,8 @@
  *
  * @module src/services/loginService
  * @requires aws-amplify
+ * @exports login
+ * @exports logOut
  */
 import { Auth } from 'aws-amplify'
 
@@ -11,9 +13,9 @@ import { Auth } from 'aws-amplify'
  *
  * @type {object}
  * @function
+ * @async
  * @constant
  * @memberof module:src/services/loginService
- * @inner
  * @param {object} credentials - Contains username and password
  * @param {string} credentials.username - Username
  * @param {string} credentials.password - Password
@@ -36,9 +38,9 @@ const login = async credentials => {
  *
  * @type {object}
  * @function
+ * @async
  * @constant
  * @memberof module:src/services/loginService
- * @inner
  */
 const logOut = async () => {
   try {

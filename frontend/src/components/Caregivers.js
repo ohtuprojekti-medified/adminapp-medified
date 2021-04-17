@@ -3,6 +3,7 @@
  *
  * @module src/components/Caregivers
  * @requires react
+ * @exports Caregivers
  */
 import React from 'react'
 import { Card } from 'primereact/card'
@@ -14,7 +15,6 @@ import { Card } from 'primereact/card'
  * @function
  * @constant
  * @memberof module:src/components/Caregivers
- * @inner
  * @param {object} param0 - Object with params
  * @param {Array} param0.caregivers - Array of all caregivers
  * @returns {object} - JSX component that counts amount of caregivers

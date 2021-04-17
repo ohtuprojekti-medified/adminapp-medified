@@ -4,6 +4,7 @@
  * @module src/components/RetentionRate
  * @requires react
  * @requires primereact/chart
+ * @exports RetentionRate
  */
 
 import React from 'react'
@@ -12,6 +13,8 @@ import { Chart } from 'primereact/chart'
 /**
  * This creates a graph that shows the user retention rates and their average
  *
+ * @constant
+ * @function
  * @param {*} param0 - Contains retention rates as an array and average as integer
  * @returns {object} - JSX object
  */

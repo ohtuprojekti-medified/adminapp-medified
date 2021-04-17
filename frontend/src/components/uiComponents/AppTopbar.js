@@ -5,8 +5,12 @@
  * @requires react
  * @requires primereact/toolbar
  * @requires primereact/button
- * @requires services/loginService
- * @requires components/uiComponents/AppHeader
+ * @requires src/services/loginService
+ * @requires src/components/uiComponents/AppHeader
+ * @requires src/components/Filter
+ * @requires src/components/TimeFilter
+ * @requires src/components/Organisations
+ * @exports AppTopbar - Page topbar
  */
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'
@@ -22,6 +26,7 @@ import Header from './AppHeader'
 /**
  * Component for applications UI topbar
  *
+ * @memberof module:src/components/uiComponents/AppTopbar
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX Topbar component
  */
@@ -36,7 +41,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
    * @type {object}
    * @function
    * @constant
-   * @memberof module:src/components/LoginForm
+   * @memberof module:src/components/uiComponents/AppTopbar
    * @inner
    * @param {object} event - Contains event
    */
@@ -62,6 +67,10 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
 
   /**
    * Contents for the left side of primereact's toolbar
+   *
+   * @type {object}
+   * @memberof module:src/components/uiComponents/AppTopbar
+   * @inner
    */
   const leftContents = (
     <React.Fragment>
@@ -78,7 +87,9 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
   /**
    * Contents for the right side of primereact's toolbar
    *
-   * @returns {object} - JSX component containing right side of the top bar
+   * @type {object}
+   * @memberof module:src/components/uiComponents/AppTopbar
+   * @inner
    */
   const rightContents = (
     <React.Fragment>

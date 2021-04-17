@@ -17,6 +17,7 @@
  * @requires src/components/uiComponents/AppFooter
  * @requires src/components/uiComponents/AppContent
  * @requires dotenv
+ * @exports App - React application
  */
 
 import './App.css'
@@ -43,8 +44,8 @@ import 'primeflex/primeflex.css'
  *
  * @type {object}
  * @function
+ * @constant
  * @memberof module:src/App
- * @inner
  * @returns {object} - A single page application in JSX
  */
 const App = () => {
@@ -174,6 +175,10 @@ const App = () => {
   /**
    *
    * Event handler for changing the status of caregiveFilterForAllUsers
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
@@ -184,6 +189,9 @@ const App = () => {
    * Event handler for changing the selected organisation
    *
    * @param {string} organisation - Requested organisation
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleOrganisationChange = (organisation) => {
     setOrganisation(organisation)
@@ -191,6 +199,10 @@ const App = () => {
 
   /**
    * Event handler for enabling timeframe start filter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleStartDateEnableChange = () => {
     if (startDateEnable) {
@@ -203,6 +215,10 @@ const App = () => {
 
   /**
    * Event handler for enabling timeframe end filter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleEndDateEnableChange = () => {
     if (endDateEnable) {
@@ -217,6 +233,9 @@ const App = () => {
    * Event handler for changeing timeframe filter start value
    *
    * @param {string} date - Date where to begin showing data
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleStartDateChange = (date) => {
     if (startDateEnable) {
@@ -228,6 +247,9 @@ const App = () => {
    * Event handler for changeing timeframe filter end value
    *
    * @param {string} date - Date where to end showing data
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleEndDateChange = (date) => {
     if (endDateEnable) {

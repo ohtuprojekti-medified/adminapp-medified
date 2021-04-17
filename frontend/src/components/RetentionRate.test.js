@@ -18,7 +18,6 @@ import RetentionRate from './RetentionRate'
  * @type {object}
  * @function
  * @memberof module:src/components/RetentionRate_test
- * @inner
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */

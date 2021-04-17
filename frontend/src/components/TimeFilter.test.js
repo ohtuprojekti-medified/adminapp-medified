@@ -18,7 +18,6 @@ import TimeFilter from './TimeFilter'
  * @type {object}
  * @function
  * @memberof module:src/components/TimeFilter_test
- * @inner
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
