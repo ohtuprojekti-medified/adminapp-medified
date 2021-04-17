@@ -63,3 +63,7 @@ backend/docs
 # Vscode settings
 
 .vscode/
+
+# jsdoc
+
+/docs
