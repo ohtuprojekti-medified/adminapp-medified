@@ -1,6 +1,7 @@
 const { addDays } = require('date-fns')
 const db = require('../models')
 const { Sequelize } = require('../models')
+const { Op } = require('sequelize')
 const user_profiles = db.user_profiles
 const user_activities = db.user_activities
 const controller = require('./controller')
@@ -8,6 +9,8 @@ const controller = require('./controller')
 /**
  * Returns all user activities in app today from database
  *
+ * @param {string} organisation - Organisation name for filtering
+ * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @returns  {...any} userActivitiesToday - list of user activities today
  */
 
@@ -31,6 +34,8 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
 /**
  * Returns new users within week from database
  *
+ * @param {string} organisation - Organisation name for filtering
+ * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @returns  {...any} usersCreatedAt - list of new users registered in the last week
  */
 
@@ -58,23 +63,74 @@ const findNewUsers = async (organisation, withCaregiver) => {
 /**
  * Returns total cumulative new users week by week from database
  *
+ * @param {string} organisation - Organisation name for filtering
+ * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
+ * @param {string} startDate - Date object for limiting data from start
+ * @param {string} endDate - Date object for limiting data from last
  * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
  */
 
-const findCumulativeNewUsers = async (organisation, withCaregiver) => {
+const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
-  const usersCreatedAt = await user_profiles.findAll({
-    where: {
-      user_id: userIds.map(user => user.user_id)
-    },
-    order: [
-      ['created_at', 'ASC']
-    ],
-    attributes: ['created_at']
-  })
+  let usersCreatedAt
+  if (startDate === '' && endDate === '') {
+    usersCreatedAt = await user_profiles.findAll({
+      where: {
+        user_id: userIds.map(user => user.user_id)
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['created_at']
+    })
+  } else if (startDate === '') {
+    usersCreatedAt = await user_profiles.findAll({
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.lte]: endDate
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['created_at']
+    })
+  }
+  else if (endDate === '') {
+    usersCreatedAt = await user_profiles.findAll({
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.gte]: startDate
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['created_at']
+    })
+  }
+  else {
+    usersCreatedAt = await user_profiles.findAll({
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.between]: [startDate, endDate]
+        }
+      },
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['created_at']
+    })
+  }
 
   const createdDates = usersCreatedAt.map(user => user.dataValues)
 
+  if (createdDates.length === 0) {
+    return []
+  }
   const first = createdDates[0].created_at.getTime()
   const last = createdDates[createdDates.length - 1].created_at.getTime()
   let timeFrame = first + 604800000
@@ -100,22 +156,68 @@ const findCumulativeNewUsers = async (organisation, withCaregiver) => {
  *
  * @param {string} organisation - string id used to identify organisation
  * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
+ * @param {string} startDate - Date object for limiting data from start
+ * @param {string} endDate - Date object for limiting data from last
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
-const findActiveUsers = async (organisation, withCaregiver) => {
+const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
-  const userActivities = await user_activities.findAll({
-    order: [
-      ['created_at', 'ASC']
-    ],
-    attributes: ['id', 'user_id', 'created_at'],
-    where: {
-      user_id: userIds.map(user => user.user_id)
-    }
-  })
+  let userActivities
+  if (startDate === '' && endDate === '') {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at'],
+      where: {
+        user_id: userIds.map(user => user.user_id)
+      }
+    })
+  } else if (startDate === '') {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at'],
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.lte]: endDate
+        }
+      }
+    })
+  } else if (endDate === '') {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at'],
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.gte]: startDate
+        }
+      }
+    })
+  } else {
+    userActivities = await user_activities.findAll({
+      order: [
+        ['created_at', 'ASC']
+      ],
+      attributes: ['id', 'user_id', 'created_at'],
+      where: {
+        user_id: userIds.map(user => user.user_id),
+        created_at: {
+          [Op.between]: [startDate, endDate]
+        }
+      }
+    })
+  }
 
   const allActivities = userActivities.map(activity => activity.dataValues)
-
+  if (allActivities.length === 0) {
+    return []
+  }
   const first = allActivities[0].created_at.getTime()
   let currentWeek = first + 604800000
   let week = [new Date(first), addDays(first, 7)]

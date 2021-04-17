@@ -27,6 +27,7 @@ const Op = Sequelize.Op
 /**
  * Returns all access codes from database
  *
+ * @param {string} organisation - Organisation name for filtering
  * @returns  {...any} accessCodes - list of access codes
  */
 
@@ -51,7 +52,8 @@ const findAllAccessCodes = async (organisation) => {
 /**
  * Returns all organisations from database for admin
  *
- * @returns  {...any} allOrganisations - list of organisations
+ * @param {string} organisation - Organisation name for filtering
+ * @returns {...any} allOrganisations - list of organisations
  */
 
 const findAllOrgs = async (organisation) => {
@@ -67,6 +69,8 @@ const findAllOrgs = async (organisation) => {
 /**
  * Returns all users from database
  *
+ * @param {string} organisation - Organisation name for filtering
+ * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @returns  {...any} userProfiles - list of users
  */
 
