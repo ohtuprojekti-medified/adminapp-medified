@@ -1,6 +1,5 @@
-
 /**
- * Access codes model
+ * Access codes database model
  *
  * @module models/access_codes
  *

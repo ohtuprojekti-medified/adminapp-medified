@@ -38,6 +38,9 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
+/**
+ * Defining sequelize ORM database models
+ */
 db.access_codes = require('../models/access_codes')(sequelize, Sequelize)
 db.organisations = require('../models/organisations')(sequelize, Sequelize)
 db.user_profiles = require('../models/user_profiles')(sequelize, Sequelize)

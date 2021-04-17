@@ -1,5 +1,5 @@
 /**
- * User activities model
+ * User activities database model
  *
  * @module models/user_activities
  *

@@ -1,5 +1,5 @@
 /**
- * User caregiver activities model
+ * User caregiver activities database model
  *
  * @module models/user_care_giver_activities
  *

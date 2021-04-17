@@ -1,5 +1,5 @@
 /**
- * Organisations model
+ * Organisations database model
  *
  * @module models/organisations
  *

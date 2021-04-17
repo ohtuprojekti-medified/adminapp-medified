@@ -1,5 +1,5 @@
 /**
- * User profiles model
+ * User profiles database model
  *
  * @module models/user_profiles
  *
