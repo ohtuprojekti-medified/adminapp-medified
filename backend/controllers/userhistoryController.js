@@ -9,6 +9,8 @@ const controller = require('./controller')
 /**
  * Returns all user activities in app today from database
  *
+ * @param {string} organisation - Organisation name for filtering
+ * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @returns  {...any} userActivitiesToday - list of user activities today
  */
 
@@ -32,6 +34,8 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
 /**
  * Returns new users within week from database
  *
+ * @param {string} organisation - Organisation name for filtering
+ * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @returns  {...any} usersCreatedAt - list of new users registered in the last week
  */
 
@@ -59,6 +63,10 @@ const findNewUsers = async (organisation, withCaregiver) => {
 /**
  * Returns total cumulative new users week by week from database
  *
+ * @param {string} organisation - Organisation name for filtering
+ * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
+ * @param {string} startDate - Date object for limiting data from start
+ * @param {string} endDate - Date object for limiting data from last
  * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
  */
 
@@ -148,8 +156,8 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
  *
  * @param {string} organisation - string id used to identify organisation
  * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
- * @param {object} startDate - Date object for limiting data from start
- * @param {object} endDate - Date object for limiting data from last
+ * @param {string} startDate - Date object for limiting data from start
+ * @param {string} endDate - Date object for limiting data from last
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
 const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {
