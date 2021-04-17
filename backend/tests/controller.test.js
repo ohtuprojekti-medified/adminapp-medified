@@ -1,6 +1,7 @@
 /**
  * Tests for controller
  *
+ * @constant
  * @module tests/controller_test
  * @requires controllers/controller
  * @requires sequelize-mock
@@ -14,7 +15,6 @@ const controller = require('../controllers/controller')
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_profiles_model - user_profiles_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -40,22 +40,51 @@ jest.mock('../models/user_profiles', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - user_profiles
  * @param {object} tests - Function that runs tests
  */
 describe('user_profiles', () => {
+  /**
+   * Tests that user_profiles can be found from database
+   *
+   * @name user_profiles_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const users = await controller.findAllUsers('ALL')
     expect(users.length).toEqual(1)
     expect(users[0].first_name).toEqual('Mikko')
   })
 
+  /**
+   * Tests that user_profiles are returned correctly by organisation
+   *
+   * @name user_profiles_are_returned_correctly_by_organisation
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('are returned correctly by organisation', async () => {
     const users = await controller.findAllUsers('OHTU')
     expect(users.length).toEqual(1)
   })
 
+  /**
+   * Tests that user_profiles are returned correctly with organisation and cargiver filtering
+   *
+   * @name user_profiles_are_returned_correctly_with_organisation_and_cargiver_filtering
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('are returned correctly with organisation and cargiver filtering', async () => {
     const users = await controller.findAllUsers('OHTU', true)
     expect(users.length).toEqual(1)
@@ -68,7 +97,6 @@ describe('user_profiles', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} organisations_model - organisations_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -93,17 +121,36 @@ jest.mock('../models/organisations', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - organisations
  * @param {object} tests - Function that runs tests
  */
 describe('organisations', () => {
+  /**
+   * Tests that organisations can be found from database
+   *
+   * @name organisations_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const orgs = await controller.findAllOrgs('ALL')
     expect(orgs.length).toEqual(1)
     expect(orgs[0].id).toEqual('OHTU')
   })
 
+  /**
+   * Tests that organisations are not returned if request is sent without admin access
+   *
+   * @name organisations_are_not_returned_if_request_is_sent_without_admin_access
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('are not returned if request is sent without admin access', async () => {
     const orgs = await controller.findAllOrgs('OLEMATON')
     expect(orgs).toBe(null)
@@ -116,7 +163,6 @@ describe('organisations', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} access_codes_model - access_codes_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -137,17 +183,36 @@ jest.mock('../models/access_codes', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - access_codes
  * @param {object} tests - Function that runs tests
  */
 describe('access_codes', () => {
+  /**
+   * Tests that access_codes are all returned if organisation is ALL
+   *
+   * @name access_codes_are_all_returned_if_organisation_is_ALL
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('are all returned if organisation is ALL', async () => {
     const accessCodes = await controller.findAllAccessCodes('ALL')
     expect(accessCodes.length).toEqual(1)
     expect(accessCodes[0].id).toEqual('45h743ffd')
   })
 
+  /**
+   * Tests that access_codes are returned correctly with defined organisation
+   *
+   * @name access_codes_are_returned_correctly_with_defined_organisation
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('are returned correctly with defined organisation', async () => {
     const accessCodes = await controller.findAllAccessCodes('OHTU')
     expect(accessCodes.length).toEqual(1)
@@ -161,7 +226,6 @@ describe('access_codes', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_care_givers_model - user_care_givers_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -183,11 +247,20 @@ jest.mock('../models/user_care_givers', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - care_givers
  * @param {object} tests - Function that runs tests
  */
 describe('care_givers', () => {
+  /**
+   * Tests that care_givers can be found from database
+   *
+   * @name care_givers_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const caregivers = await controller.findAllUserCaregivers()
     expect(caregivers.length).toEqual(1)
@@ -202,7 +275,6 @@ describe('care_givers', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_activities_model - user_activities_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -222,11 +294,20 @@ jest.mock('../models/user_activities', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - user_activities
  * @param {object} tests - Function that runs tests
  */
 describe('user_activities', () => {
+  /**
+   * Tests that user_activities can be found from database
+   *
+   * @name user_activities_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const activities = await controller.findAllUserActivities()
     expect(activities.length).toEqual(1)
@@ -241,7 +322,6 @@ describe('user_activities', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_answers_model - user_answers_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -261,11 +341,20 @@ jest.mock('../models/user_answers', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - user_answers
  * @param {object} tests - Function that runs tests
  */
 describe('user_answers', () => {
+  /**
+   * Tests that user_answers can be found from database
+   *
+   * @name user_answers_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const answers = await controller.findAllUserAnswers()
     expect(answers.length).toEqual(1)
@@ -280,7 +369,6 @@ describe('user_answers', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_care_giver_activities_model - user_care_giver_activities_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -300,11 +388,20 @@ jest.mock('../models/user_care_giver_activities', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - user_care_giver_activities
  * @param {object} tests - Function that runs tests
  */
 describe('user_care_giver_activities', () => {
+  /**
+   * Tests that user_care_giver_activities can be found from database
+   *
+   * @name user_care_giver_activities_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const caregiverActivities = await controller.findAllUserCaregiverActivities()
     expect(caregiverActivities.length).toEqual(1)
@@ -319,7 +416,6 @@ describe('user_care_giver_activities', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_diary_item_groups_model - user_diary_item_groups_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -340,11 +436,20 @@ jest.mock('../models/user_diary_item_groups', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - user_diary_item_groups
  * @param {object} tests - Function that runs tests
  */
 describe('user_diary_item_groups', () => {
+  /**
+   * Tests that user_diary_item_groups can be found from database
+   *
+   * @name user_diary_item_groups_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const diaryItemGroups = await controller.findAllUserDiaryItemGroups()
     expect(diaryItemGroups.length).toEqual(1)
@@ -359,7 +464,6 @@ describe('user_diary_item_groups', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_diary_items_model - user_diary_items_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -385,11 +489,20 @@ jest.mock('../models/user_diary_items', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - user_diary_items
  * @param {object} tests - Function that runs tests
  */
 describe('user_diary_items', () => {
+  /**
+   * Tests that user_diary_items can be found from database
+   *
+   * @name user_diary_items_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const diaryItems = await controller.findAllUserDiaryItems()
     expect(diaryItems.length).toEqual(1)
@@ -405,7 +518,6 @@ describe('user_diary_items', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_professional_profiles_model - user_professional_profiles_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -428,11 +540,20 @@ jest.mock('../models/user_professional_profiles', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - user_professional_profiles
  * @param {object} tests - Function that runs tests
  */
 describe('user_professional_profiles', () => {
+  /**
+   * Tests that user_professional_profiles can be found from database
+   *
+   * @name user_professional_profiles_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const professionalProfiles = await controller.findAllUserProfessionalProfiles()
     expect(professionalProfiles.length).toEqual(1)
@@ -448,7 +569,6 @@ describe('user_professional_profiles', () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} user_survey_answers_model - user_survey_answers_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -471,11 +591,20 @@ jest.mock('../models/user_survey_answers', () => () => {
  * @type {object}
  * @function
  * @memberof module:tests/controller_test
- * @inner
  * @param {string} description - user_survey_answers
  * @param {object} tests - Function that runs tests
  */
 describe('user_survey_answers', () => {
+  /**
+   * Tests that user_survey_answers can be found from database
+   *
+   * @name user_survey_answers_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
   it('can be found from database', async () => {
     const surveyAnswers = await controller.findAllUserSurveyAnswers()
     expect(surveyAnswers.length).toEqual(1)

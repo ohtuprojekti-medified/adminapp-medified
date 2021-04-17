@@ -4,6 +4,9 @@
  * @module utils/middleware
  * @requires utils/logger
  * @requires cognito-express
+ * @exports unknownEndpoint
+ * @exports errorHandler
+ * @exports authenticateToken
  */
 
 /**
@@ -11,7 +14,7 @@
  *
  * @type {object}
  * @constant
- * @namespace logger
+ * @name logger
  */
 const logger = require('./logger')
 
@@ -20,7 +23,7 @@ const logger = require('./logger')
  *
  * @type {object}
  * @constant
- * @namespace CognitoExpress
+ * @name CognitoExpress
  */
 const CognitoExpress = require('cognito-express')
 
@@ -42,7 +45,6 @@ const jsonWebToken = require('jsonwebtoken')
  *
  * @name authenticateToken
  * @memberof module:utils/middlewares
- * @inner
  * @function
  * @constant
  * @param {object} req - Request
@@ -93,7 +95,6 @@ const authenticateToken = (req, res, next) => {
  *
  * @name unknownEndpoint
  * @memberof module:utils/middlewares
- * @inner
  * @function
  * @constant
  * @param {object} req - Request
@@ -108,7 +109,6 @@ const unknownEndpoint = (req, res) => {
  *
  * @name errorHandler
  * @memberof module:utils/middlewares
- * @inner
  * @function
  * @constant
  * @param {object} error -Errors

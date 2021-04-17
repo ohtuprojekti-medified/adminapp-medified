@@ -14,7 +14,9 @@
         "stop": "npm run docker:down",
         "test": "./scripts/test.sh",
         "test:e2e": "cypress run",
-        "test:unit": "./scripts/unit-test.sh"
+        "test:unit": "./scripts/unit-test.sh",
+        "jsdoc": "jsdoc -c ./.jsdoc.conf.json ./README.md",
+        "jsdoc:open": "npm run jsdoc && sensible-browser docs/index.html &"
     },
     "repository": {
         "type": "git",

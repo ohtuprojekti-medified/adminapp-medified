@@ -3,7 +3,11 @@
  *
  * @module src/components/LoginForm
  * @requires react
+ * @requires primereact/inputtext
+ * @requires primereact/password
+ * @requires primereact/button
  * @requires src/services/loginService
+ * @exports LoginForm
  */
 import React from 'react'
 import loginService from '../services/loginService'
@@ -18,7 +22,6 @@ import { Button } from 'primereact/button'
  * @function
  * @constant
  * @memberof module:src/components/LoginForm
- * @inner
  * @param {object} param0 - Object with params
  * @param {string} param0.username - Value of username in form
  * @param {Function} param0.setUsername - Function to set the value of username

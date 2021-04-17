@@ -18,7 +18,6 @@ import Filter from './Filter'
  * @type {object}
  * @function
  * @memberof module:src/components/Filter_test
- * @inner
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */

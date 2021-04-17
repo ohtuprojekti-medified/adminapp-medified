@@ -17,6 +17,7 @@
  * @requires src/components/uiComponents/AppFooter
  * @requires src/components/uiComponents/AppContent
  * @requires dotenv
+ * @exports App - React application
  */
 
 import './App.css'
@@ -43,8 +44,8 @@ import 'primeflex/primeflex.css'
  *
  * @type {object}
  * @function
+ * @constant
  * @memberof module:src/App
- * @inner
  * @returns {object} - A single page application in JSX
  */
 const App = () => {
@@ -61,6 +62,10 @@ const App = () => {
   const [organisationSelect, setOrganisation] = useState('ALL')
   const [visible, setVisible] = useState(false)
   const [organisations, setOrganisations] = useState(null)
+  const [startDateEnable, setStartDateEnable] = useState(false)
+  const [endDateEnable, setEndDateEnable] = useState(false)
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -155,21 +160,25 @@ const App = () => {
           }
           dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
           dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(caregivs => setCaregivers(caregivs))
-          dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
-          dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(retentionRates => setRetentionRates(retentionRates))
-          dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(average => setAverageRetention(average))
-          dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(active => setActive(active))
+          dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
+          dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
+          dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
+          dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
         }
       }
     }
 
     fetchData()
 
-  }, [user, caregiverFilterForAllUsers, organisationSelect])
+  }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable])
 
   /**
    *
    * Event handler for changing the status of caregiveFilterForAllUsers
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
@@ -180,9 +189,72 @@ const App = () => {
    * Event handler for changing the selected organisation
    *
    * @param {string} organisation - Requested organisation
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleOrganisationChange = (organisation) => {
     setOrganisation(organisation)
+  }
+
+  /**
+   * Event handler for enabling timeframe start filter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
+   */
+  const handleStartDateEnableChange = () => {
+    if (startDateEnable) {
+      setStartDateEnable(false)
+      setStartDate('')
+    } else {
+      setStartDateEnable(true)
+    }
+  }
+
+  /**
+   * Event handler for enabling timeframe end filter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
+   */
+  const handleEndDateEnableChange = () => {
+    if (endDateEnable) {
+      setEndDateEnable(false)
+      setEndDate('')
+    } else {
+      setEndDateEnable(true)
+    }
+  }
+
+  /**
+   * Event handler for changeing timeframe filter start value
+   *
+   * @param {string} date - Date where to begin showing data
+   * @function
+   * @constant
+   * @memberof module:src/App
+   */
+  const handleStartDateChange = (date) => {
+    if (startDateEnable) {
+      setStartDate(date)
+    }
+  }
+
+  /**
+   * Event handler for changeing timeframe filter end value
+   *
+   * @param {string} date - Date where to end showing data
+   * @function
+   * @constant
+   * @memberof module:src/App
+   */
+  const handleEndDateChange = (date) => {
+    if (endDateEnable) {
+      setEndDate(date)
+    }
   }
 
   const containerStyle = {
@@ -206,7 +278,15 @@ const App = () => {
                 visible={visible}
                 setVisible={setVisible}
                 organisationSelect={organisationSelect}
-                handleOrganisationChange={handleOrganisationChange} />
+                handleOrganisationChange={handleOrganisationChange}
+                startDateEnable={startDateEnable}
+                endDateEnable={endDateEnable}
+                startDate={startDate}
+                endDate={endDate}
+                handleStartDateEnableChange={handleStartDateEnableChange}
+                handleEndDateEnableChange={handleEndDateEnableChange}
+                handleStartDateChange={handleStartDateChange}
+                handleEndDateChange={handleEndDateChange} />
 
               <AppContent user={user}
                 appUsers={appUsers}

@@ -18,6 +18,7 @@
  * @module cypress/plugins/index
  * @requires cypress
  * @requires cypress-dotenv
+ * @exports config - Configurate dotenv plugin for cypress
  */
 
 /**

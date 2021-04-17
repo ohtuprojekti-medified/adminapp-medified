@@ -4,6 +4,7 @@
  * @module src/components/uiComponents/AppFooter
  * @requires react
  * @requires primereact/toolbar
+ * @exports AppFooter - Page footer
  */
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'
@@ -30,6 +31,7 @@ const leftContents = (
 /**
  * Component for applications UI footer
  *
+ * @memberof module:src/components/uiComponents/AppFooter
  * @returns {object} - JSX Footer component
  */
 const AppFooter = () => {

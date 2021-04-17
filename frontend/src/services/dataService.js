@@ -3,6 +3,8 @@
  *
  * @module src/services/dataService
  * @requires axios
+ * @exports getAll
+ * @exports setToken
  */
 import axios from 'axios'
 
@@ -16,7 +18,6 @@ let token = null
  * @function
  * @constant
  * @memberof module:src/services/dataService
- * @inner
  */
 const setToken = newToken => {
   token = `Bearer ${newToken}`
@@ -34,9 +35,9 @@ const getConfig = () => ({
  *
  * @type {object}
  * @function
+ * @async
  * @constant
  * @memberof module:src/services/dataService
- * @inner
  * @param {string} endpoint - API endpoint
  * @returns {*} - API response data
  */

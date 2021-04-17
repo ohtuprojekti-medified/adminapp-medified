@@ -2,6 +2,8 @@
  * Module for logging
  *
  * @module utils/logger
+ * @exports log
+ * @exports logError
  */
 
 /**
@@ -9,7 +11,6 @@
  *
  * @name log
  * @memberof module:utils/logger
- * @inner
  * @function
  * @constant
  * @param  {...any} messages - Messages to be printed
@@ -23,7 +24,6 @@ const log = (...messages) => {
  *
  * @name logError
  * @memberof module:utils/logger
- * @inner
  * @function
  * @constant
  * @param  {...any} errors - Errors to be printed

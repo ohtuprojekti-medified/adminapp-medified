@@ -3,6 +3,13 @@
  *
  * @module utils/config
  * @requires dotenv
+ * @exports PORT
+ * @exports db_host
+ * @exports db_user
+ * @exports db_password
+ * @exports db_name
+ * @exports dialect
+ * @exports pool
  */
 
 require('dotenv').config()

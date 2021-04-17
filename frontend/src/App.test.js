@@ -19,7 +19,6 @@ import App from './App'
  * @type {object}
  * @function
  * @memberof module:src/App_test
- * @inner
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */

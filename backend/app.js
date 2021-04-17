@@ -9,6 +9,7 @@
  * @requires morgan
  * @requires cors
  * @requires models
+ * @exports app
  */
 
 /**
@@ -16,7 +17,8 @@
  *
  * @type {object}
  * @constant
- * @namespace middleware
+ * @module middleware
+ * @memberof module:app
  */
 const middleware = require('./utils/middleware')
 
@@ -25,7 +27,8 @@ const middleware = require('./utils/middleware')
  *
  * @type {object}
  * @constant
- * @namespace router
+ * @module router
+ * @memberof module:app
  */
 const router = require('./routes/routes')
 
@@ -34,7 +37,8 @@ const router = require('./routes/routes')
  *
  * @type {object}
  * @constant
- * @namespace express
+ * @module express
+ * @memberof module:app
  */
 const express = require('express')
 require('express-async-errors')
@@ -44,7 +48,8 @@ require('express-async-errors')
  *
  * @type {object}
  * @constant
- * @namespace morgan
+ * @module morgan
+ * @memberof module:app
  */
 const morgan = require('morgan')
 
@@ -53,7 +58,8 @@ const morgan = require('morgan')
  *
  * @type {object}
  * @constant
- * @namespace cors
+ * @module cors
+ * @memberof module:app
  */
 const cors = require('cors')
 
@@ -62,7 +68,7 @@ const cors = require('cors')
  *
  * @type {object}
  * @constant
- * @namespace app
+ * @memberof module:app
  */
 const app = express()
 
@@ -72,7 +78,6 @@ const app = express()
  * @name cors
  * @function
  * @memberof module:app
- * @inner
  * @param {object} middleware - Middleware for cross origin requests
  */
 app.use(cors())
@@ -86,7 +91,6 @@ app.use(cors())
  * @name express_json
  * @function
  * @memberof module:app
- * @inner
  * @param {object} middleware - Middleware that converts data to JSON
  */
 app.use(express.json())
@@ -97,7 +101,6 @@ app.use(express.json())
  * @name authenticateToken
  * @function
  * @memberof module:app
- * @inner
  * @param {object} middleware - Middleware that verifies token
  */
 
@@ -112,7 +115,6 @@ morgan.token('body', (req) => JSON.stringify(req.body))
  * @name tiny_morgan
  * @function
  * @memberof module:app
- * @inner
  * @param {object} middleware - Middleware for tiny Morgan logging
  */
 app.use(morgan('tiny'))
@@ -123,13 +125,18 @@ app.use(morgan('tiny'))
  * @name morgan_body
  * @function
  * @memberof module:app
- * @inner
  * @param {object} middleware - Middleware for Morgan logging
  */
 app.use(morgan(':body'))
 
 
-
+/**
+ * Database connection
+ *
+ * @name models
+ * @constant
+ * @memberof module:app
+ */
 const db = require('./models')
 
 // Error-handling for failing database connection
@@ -156,7 +163,6 @@ const apiUrl = '/api'
  * @name router_with_url
  * @function
  * @memberof module:app
- * @inner
  * @param {string} apiUrl - Url for backend
  * @param {object} router - Router for requests to apiUrl
  */
@@ -168,7 +174,6 @@ app.use(apiUrl, router)
  * @name unknownEndpoint
  * @function
  * @memberof module:app
- * @inner
  * @param {object} middleware - Middleware for handling unknown endpoints
  */
 app.use(middleware.unknownEndpoint)
@@ -179,7 +184,6 @@ app.use(middleware.unknownEndpoint)
  * @name errorHandler
  * @function
  * @memberof module:app
- * @inner
  * @param {object} middleware - Middleware for handling errors
  */
 app.use(middleware.errorHandler)
