@@ -7,6 +7,7 @@
     "aws-amplify": "^3.3.17",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
+    "date-fns": "^2.21.1",
     "dotenv": "^8.2.0",
     "jsdoc": "^3.6.6",
     "primeflex": "^2.0.0",
