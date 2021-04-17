@@ -12,7 +12,6 @@
  * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} username - Retrieve username from environment variables
  */
 const testUsername = Cypress.env('USERNAME')
@@ -24,7 +23,6 @@ const testUsername = Cypress.env('USERNAME')
  * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} username - Retrieve password from environment variables
  */
 const testPassword = Cypress.env('PASSWORD')
@@ -36,7 +34,6 @@ const testPassword = Cypress.env('PASSWORD')
  * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} username - Retrieve username from environment variables
  */
 const testAdminUsername = Cypress.env('ADMIN_USERNAME')
@@ -48,7 +45,6 @@ const testAdminUsername = Cypress.env('ADMIN_USERNAME')
  * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} password - Retrieve password from environment variables
  */
 const testAdminPassword = Cypress.env('ADMIN_PASSWORD')
@@ -59,7 +55,6 @@ const testAdminPassword = Cypress.env('ADMIN_PASSWORD')
  * @type {object}
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} username - Username typed into website
  * @param {string} password - Password typed into website
  */
@@ -77,7 +72,6 @@ const login = (username, password) => {
  * @name Organisations
  * @type {object}
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} describe - Organisations
  * @param {object} tests - Test code
  */

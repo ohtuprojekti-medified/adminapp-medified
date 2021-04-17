@@ -11,7 +11,6 @@
  * @name Caregivers
  * @type {object}
  * @memberof module:cypress/integration/caregivers_spec
- * @inner
  * @param {string} describe - Caregivers
  * @param {object} tests - Test code
  */

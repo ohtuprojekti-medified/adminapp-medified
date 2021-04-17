@@ -11,7 +11,6 @@
  * @name Filter
  * @type {object}
  * @memberof module:cypress/integration/filter_spec
- * @inner
  * @param {string} describe - Filter
  * @param {object} tests - Test code
  */

@@ -11,7 +11,6 @@
  * @name Cumulative
  * @type {object}
  * @memberof module:cypress/integration/cumulative_spec
- * @inner
  * @param {string} describe - Cumulative users
  * @param {object} tests - Test code
  */

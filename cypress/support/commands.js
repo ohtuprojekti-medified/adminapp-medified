@@ -41,7 +41,6 @@ import { Auth } from 'aws-amplify'
  * @function
  * @constant
  * @memberof module:cypress/integration/login_spec
- * @inner
  * @param {string} username - Retrieve username from environment variables
  */
 const testUsername = Cypress.env('USERNAME')
@@ -53,7 +52,6 @@ const testUsername = Cypress.env('USERNAME')
  * @function
  * @constant
  * @memberof module:cypress/integration/login_spec
- * @inner
  * @param {string} username - Retrieve password from environment variables
  */
 const testPassword = Cypress.env('PASSWORD')
@@ -65,7 +63,6 @@ const testPassword = Cypress.env('PASSWORD')
  * @function
  * @constant
  * @memberof module:cypress/support/commands
- * @inner
  * @param {string} username - Retrieve username from environment variables
  */
 const testAdminUsername = Cypress.env('ADMIN_USERNAME')
@@ -77,7 +74,6 @@ const testAdminUsername = Cypress.env('ADMIN_USERNAME')
  * @function
  * @constant
  * @memberof module:cypress/support/commands
- * @inner
  * @param {string} username - Retrieve password from environment variables
  */
 const testAdminPassword = Cypress.env('ADMIN_PASSWORD')

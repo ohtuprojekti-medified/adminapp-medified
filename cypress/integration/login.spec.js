@@ -12,7 +12,6 @@
  * @function
  * @constant
  * @memberof module:cypress/integration/login_spec
- * @inner
  * @param {string} username - Retrieve username from environment variables
  */
 const testUsername = Cypress.env('USERNAME')
@@ -24,7 +23,6 @@ const testUsername = Cypress.env('USERNAME')
  * @function
  * @constant
  * @memberof module:cypress/integration/login_spec
- * @inner
  * @param {string} username - Retrieve password from environment variables
  */
 const testPassword = Cypress.env('PASSWORD')
@@ -36,7 +34,6 @@ const testPassword = Cypress.env('PASSWORD')
  * @type {object}
  * @constant
  * @memberof module:cypress/integration/login_spec
- * @inner
  * @param {string} username - Username typed into website
  * @param {string} password - Password typed into website
  */
@@ -53,7 +50,6 @@ const login = (username, password) => {
  * @type {object}
  * @constant
  * @memberof module:cypress/integration/login_spec
- * @inner
  */
 const logout = () => {
   cy.contains('Log out').click()
@@ -65,7 +61,6 @@ const logout = () => {
  * @name Login
  * @type {object}
  * @memberof module:cypress/integration/login_spec
- * @inner
  * @param {string} describe - Login
  * @param {object} tests - Test code
  */

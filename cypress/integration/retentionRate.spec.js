@@ -11,7 +11,6 @@
  * @name RetentionRate
  * @type {object}
  * @memberof module:cypress/integration/retentionRate_spec
- * @inner
  * @param {string} describe - Retention rate
  * @param {object} tests - Test code
  */

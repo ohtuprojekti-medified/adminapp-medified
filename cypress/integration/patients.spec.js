@@ -11,7 +11,6 @@
  * @name Patients
  * @type {object}
  * @memberof module:cypress/integration/patients_spec
- * @inner
  * @param {string} describe - Patients
  * @param {object} tests - Test code
  */
