@@ -4,18 +4,18 @@ import { Chart } from 'primereact/chart'
 const MoodAverage = ({ moodAverages }) => {
   let lastAverage = 0
   const chartData = {
-    labels: [...moodAverages.map(entry => entry.week[0])],
+    labels: [...moodAverages.map(entry => new Date(entry.week[0]))],
     datasets: [
       {
         label: 'mood improvement',
-        data: [[...moodAverages.map(entry => {
+        data: [...moodAverages.map(entry => {
           if (entry.average === null) {
             return lastAverage
           } else {
             lastAverage = entry.average[entry.average.length - 1]
             return entry.average[entry.average.length - 1]
           }
-        })]]
+        })]
       }
     ]
   }
