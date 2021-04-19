@@ -6,6 +6,7 @@
  * @module models/index
  * @requires sequelize
  * @requires config
+ * @exports db
  */
 
 /**

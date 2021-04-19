@@ -6,6 +6,7 @@
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_survey_answers
+ * @exports user_survey_answers
  */
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('user_survey_answers', {
