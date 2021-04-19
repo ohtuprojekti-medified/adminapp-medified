@@ -1,16 +1,23 @@
 set -e;
-echo 'Lintting and fixing errors. Exit on error!'
-echo 'Lint-fix root'
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+echo -e "${BLUE}Lintting and fixing ${RED}errors${BLUE}. Exit on ${RED}error!"
+echo -e "${BLUE}Lint-fix root${NC}"
 npm run lint-fix;
 cd frontend;
-echo 'Lint-fix frontend'
+echo -e "${BLUE}Lint-fix frontend${NC}"
 npm run lint-fix;
 cd ../backend;
-echo 'Lint-fix backend'
+echo -e "${BLUE}Lint-fix backend${NC}"
 npm run lint-fix;
 cd ..;
+git status
 while true; do
-  read -p 'No errors found! Check for warnings. Commit changes? (y/n)' yn
+  echo -e "${GREEN}No errors found! ${YELLOW}Check for warnings ${GREEN}and files to be commited.${NC}"
+  read -p "Commit changes? (y/n)" yn
   case $yn in
     [Yy]* ) git add -A; git commit;;
     [Nn]* ) exit;;
