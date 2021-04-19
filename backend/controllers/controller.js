@@ -277,6 +277,15 @@ const findAllUserSurveyAnswers = async () => {
   return userSurveyAnswers
 }
 
+/**
+ * Returns all user moods from database
+ *
+ * @async
+ * @constant
+ * @memberof module:controllers/controller
+ * @returns  {...any} userMoods - list of user moods
+ */
+
 const findAllMoods = async () => {
   const userMoods = await user_moods.findAll()
   return userMoods
