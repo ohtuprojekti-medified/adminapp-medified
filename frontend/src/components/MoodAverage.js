@@ -4,6 +4,7 @@
  * @module src/components/MoodAverage
  * @requires react
  * @requires primereact/chart
+ * @exports MoodAverage
  */
 import React from 'react'
 import { Chart } from 'primereact/chart'
