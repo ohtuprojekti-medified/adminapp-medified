@@ -77,6 +77,16 @@ describe('Patients', function () {
     cy.contains('Application users: 7')
   })
 
+  /**
+   * Test that patients page exists after selecting start date
+   *
+   * @name Patients_exists_after_selecting_start_date
+   * @type {object}
+   * @memberof module:cypress/integration/patients_spec
+   * @inner
+   * @param {string} describe - exists after selecting start date
+   * @param {object} testFunction - Function that runs test
+   */
   it('exists after selecting start date in filters', function () {
     cy.contains('Filter').click()
     cy.get('[data-testid="startDate-checkbox"]').check()
@@ -85,6 +95,16 @@ describe('Patients', function () {
     cy.contains('Application users: 110')
   })
 
+  /**
+   * Test that patients page exists after selecting end date
+   *
+   * @name Patients_exists_after_selecting_end_date
+   * @type {object}
+   * @memberof module:cypress/integration/patients_spec
+   * @inner
+   * @param {string} describe - exists after selecting end date
+   * @param {object} testFunction - Function that runs test
+   */
   it('exists after selecting end date in filters', function () {
     cy.contains('Filter').click()
     cy.get('[data-testid="endDate-checkbox"]').check()
@@ -93,6 +113,16 @@ describe('Patients', function () {
     cy.contains('Application users: 110')
   })
 
+  /**
+   * Test that patients page exists after selecting start date and end date
+   *
+   * @name Patients_exists_after_selecting_start_date_and_end_date
+   * @type {object}
+   * @memberof module:cypress/integration/patients_spec
+   * @inner
+   * @param {string} describe - exists after selecting start date and end date
+   * @param {object} testFunction - Function that runs test
+   */
   it('exists after selecting start date and end date in filters', function () {
     cy.contains('Filter').click()
     cy.get('[data-testid="startDate-checkbox"]').check()

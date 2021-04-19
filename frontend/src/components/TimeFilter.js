@@ -1,5 +1,17 @@
+/**
+ * Component for timeframe filtering
+ *
+ * @module src/components/TimeFilter
+ * @requires react
+ */
 import React from 'react'
 
+/**
+ * This creates a JSX object that users can use to filter timeframe
+ *
+ * @param {*} param0 - Object with params
+ * @returns {object} - JSX object
+ */
 const TimeFilter = ({ startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
   handleEndDateEnableChange, handleStartDateChange, handleEndDateChange }) => {
   const setStartDate = (e) => {

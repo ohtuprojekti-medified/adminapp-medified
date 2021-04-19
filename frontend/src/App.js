@@ -191,6 +191,9 @@ const App = () => {
     setOrganisation(organisation)
   }
 
+  /**
+   * Event handler for enabling timeframe start filter
+   */
   const handleStartDateEnableChange = () => {
     if (startDateEnable) {
       setStartDateEnable(false)
@@ -200,6 +203,9 @@ const App = () => {
     }
   }
 
+  /**
+   * Event handler for enabling timeframe end filter
+   */
   const handleEndDateEnableChange = () => {
     if (endDateEnable) {
       setEndDateEnable(false)
@@ -209,12 +215,22 @@ const App = () => {
     }
   }
 
+  /**
+   * Event handler for changeing timeframe filter start value
+   *
+   * @param {string} date - Date where to begin showing data
+   */
   const handleStartDateChange = (date) => {
     if (startDateEnable) {
       setStartDate(date)
     }
   }
 
+  /**
+   * Event handler for changeing timeframe filter end value
+   *
+   * @param {string} date - Date where to end showing data
+   */
   const handleEndDateChange = (date) => {
     if (endDateEnable) {
       setEndDate(date)
