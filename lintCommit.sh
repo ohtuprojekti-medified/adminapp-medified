@@ -14,12 +14,12 @@ cd ../backend;
 echo -e "${BLUE}Lint-fix backend${NC}"
 npm run lint-fix;
 cd ..;
-git status
-while true; do
-  echo -e "${GREEN}No errors found! ${YELLOW}Check for warnings ${GREEN}and files to be commited.${NC}"
-  read -p "Commit changes? (y/n)" yn
-  case $yn in
-    [Yy]* ) git add -A; git commit;;
-    [Nn]* ) exit;;
-  esac
-done
+echo -e "${GREEN}Staging all changes!${NC}"
+git add -A;
+git status;
+echo -e "${GREEN}No errors found! ${YELLOW}Check for warnings ${GREEN}and files to be commited.${NC}"
+read -p "Commit changes? (y/n)" yn
+case $yn in
+  [Yy]* ) git commit;;
+  [Nn]* ) exit;;
+esac
