@@ -1,19 +1,10 @@
 const { differenceInCalendarDays } = require('date-fns')
 const db = require('../models')
-const { Op } = require('sequelize')
 const user_profiles = db.user_profiles
 const user_activities = db.user_activities
 const controller = require('./controller')
+const { addDateFilterToQuery } = require('./filters')
 
-const addDateFilterToQuery = (query, startDate, endDate) => {
-  if (startDate && endDate) {
-    query.where['created_at'] = { [Op.between]: [startDate, endDate] }
-  } else if (startDate) {
-    query.where['created_at'] = { [Op.gte]: startDate }
-  } else if (endDate) {
-    query.where['created_at'] = { [Op.lte]: endDate }
-  }
-}
 
 /**
  * Returns retention rates as in how long does user use app actively
