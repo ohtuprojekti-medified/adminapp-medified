@@ -8,7 +8,7 @@
  */
 import React from 'react'
 import { Chart } from 'primereact/chart'
-import { Dropdown } from 'primereact/dropdown'
+//import { Dropdown } from 'primereact/dropdown'
 
 /**
  * Component for graphing all new users, cumulative
@@ -25,7 +25,7 @@ import { Dropdown } from 'primereact/dropdown'
  * @param {object} param0.handleMoodGraphChange - Eventhandler for mood graph
  * @returns {object} - JSX component that creates a graph for average moods
  */
-const MoodAverage = ({ moodAverages, BDIAverages, PHQ9Averages, moodGraph, handleMoodGraphChange }) => {
+const MoodAverage = ({ moodAverages, BDIAverages, PHQ9Averages,/**moodGraph, handleMoodGraphChange */ }) => {
   let lastMoodAverage = 0
   let lastBDIAverage = 0
   let lastPHQ9Average = 0
@@ -116,11 +116,11 @@ const MoodAverage = ({ moodAverages, BDIAverages, PHQ9Averages, moodGraph, handl
 
   ]
 
-  const placeHolder = moodGraph ? moodGraph : moodGraphs[0].label
+  //const placeHolder = moodGraph ? moodGraph : moodGraphs[0].label
 
-  const setMoodGraph = (e) => {
+  /**const setMoodGraph = (e) => {
     handleMoodGraphChange(e.value)
-  }
+  }*/
 
   return (
 
@@ -128,12 +128,8 @@ const MoodAverage = ({ moodAverages, BDIAverages, PHQ9Averages, moodGraph, handl
       <div className="p-shadow-1" style={containerStyle}>
         <div className="card" style={cardStyle}>
           <h3>Mood average timeline</h3>
-          <Dropdown
-            options={moodGraphs.map(entry => entry.label)}
-            onChange={setMoodGraph}
-            label={placeHolder} />
           <Chart type='line'
-            data={moodGraphs.filter(entry => entry.label === moodGraph)[0]}
+            data={moodGraphs[1].chartData}
             options={chartOptions} />
         </div>
       </div>
@@ -142,5 +138,9 @@ const MoodAverage = ({ moodAverages, BDIAverages, PHQ9Averages, moodGraph, handl
 
   )
 }
+/**<Dropdown
+            options={moodGraphs.map(entry => entry.label)}
+            onChange={setMoodGraph}
+            label={placeHolder} />*/
 
 export default MoodAverage
