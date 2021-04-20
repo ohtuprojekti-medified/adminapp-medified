@@ -20,7 +20,7 @@ import { Chart } from 'primereact/chart'
  * @param {Array} param0.moodAverages - list of mood averages and their weeks
  * @returns {object} - JSX component that creates a graph for average moods
  */
-const MoodAverage = ({ moodAverages }) => {
+const AverageMoodWeekly = ({ moodAverages }) => {
   let lastMoodAverage = 0
   const moodAverageDataset = {
     label: 'mood improvement',
@@ -78,4 +78,4 @@ const MoodAverage = ({ moodAverages }) => {
   )
 }
 
-export default MoodAverage
+export default AverageMoodWeekly
