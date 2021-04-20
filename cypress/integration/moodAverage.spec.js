@@ -1,5 +1,3 @@
-import { cy, it } from 'date-fns/locale'
-
 describe('MoodAverage chart', function () {
   beforeEach(function () {
     cy.login()
