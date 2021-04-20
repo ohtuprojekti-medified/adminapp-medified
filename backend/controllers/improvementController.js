@@ -4,8 +4,6 @@ const db = require('../models')
 const user_moods = db.user_moods
 const user_care_givers = db.user_care_givers
 
-let idArray = []
-
 const findWeeklyValues = async (organisation, withCaregiver, variable) => {
 
   if (variable === 'MOOD') {
