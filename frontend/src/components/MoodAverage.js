@@ -122,8 +122,6 @@ const MoodAverage = ({ moodAverages, BDIAverages, PHQ9Averages, moodGraph, handl
     handleMoodGraphChange(e.value)
   }
 
-  console.log('houfidhofdhoifdhiof', moodGraphs.filter(entry => entry.label === moodGraph)[0])
-
   return (
 
     <div className="p-col-12 p-lg-8">

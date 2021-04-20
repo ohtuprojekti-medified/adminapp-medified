@@ -249,7 +249,6 @@ const App = () => {
    * @param {string} label - Name of mood graph to be used
    */
   const handleMoodGraphChange = (label) => {
-    console.log('label', label)
     setMoodGraph(label)
   }
 
