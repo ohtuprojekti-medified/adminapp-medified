@@ -66,6 +66,9 @@ const App = () => {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [moodAverages, setMoodAverages] = useState([])
+  const [BDIAverages, setBDIAverages] = useState([])
+  const [PHQ9Averages, setPHQ9Averages] = useState([])
+  const [moodGraph, setMoodGraph] = useState('ALL')
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -165,6 +168,8 @@ const App = () => {
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
           dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=MOOD`).then(weeklyValues => setMoodAverages(weeklyValues))
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=BDI`).then(weeklyValues => setBDIAverages(weeklyValues))
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=PHQ9`).then(weeklyValues => setPHQ9Averages(weeklyValues))
         }
       }
     }
@@ -237,6 +242,17 @@ const App = () => {
     }
   }
 
+  /**
+   *
+   * Event handler for changing the status of moodGraph
+   *
+   * @param {string} label - Name of mood graph to be used
+   */
+  const handleMoodGraphChange = (label) => {
+    console.log('label', label)
+    setMoodGraph(label)
+  }
+
   const containerStyle = {
     position: 'relative',
     minHeight: '100vh',
@@ -278,6 +294,10 @@ const App = () => {
                 retentionRates={retentionRates}
                 averageRetention={averageRetention}
                 moodAverages={moodAverages}
+                BDIAverages={BDIAverages}
+                PHQ9Averages={PHQ9Averages}
+                moodGraph={moodGraph}
+                handleMoodGraphChange={handleMoodGraphChange}
                 username={username}
                 setUsername={setUsername}
                 password={password}

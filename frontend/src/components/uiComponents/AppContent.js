@@ -24,7 +24,9 @@ import MoodAverage from '../MoodAverage'
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX component containing all sub components
  */
-const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention, moodAverages }) => {
+const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
+  retentionRates, averageRetention, moodAverages, BDIAverages, PHQ9Averages,
+  moodGraph, handleMoodGraphChange }) => {
 
   const subContainer1 = {
     marginTop: '10px',
@@ -85,7 +87,12 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retent
                 average={averageRetention} />
             </div>
             <div style={centered}>
-              <MoodAverage moodAverages={moodAverages} />
+              <MoodAverage
+                moodAverages={moodAverages}
+                BDIAverages={BDIAverages}
+                PHQ9Averages={PHQ9Averages}
+                moodGraph={moodGraph}
+                handleMoodGraphChange={handleMoodGraphChange} />
             </div>
           </div>
         </Route>
