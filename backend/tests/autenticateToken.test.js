@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for authenticateToken middleware
  *
  * @module tests/authenticateToken_test
@@ -7,7 +7,7 @@
  * @requires utils/middleware
  */
 
-/**
+/**.
  * Mocks for request and response in express
  *
  * @name mocks
@@ -17,7 +17,7 @@
  */
 const mocks = require('node-mocks-http')
 
-/**
+/**.
  * Mock for next-function in express
  *
  * @name sinon
@@ -29,7 +29,7 @@ const sinon = require('sinon')
 let authenticateToken
 let mockReq, mockRes, mockNext
 
-/**
+/**.
  * Run tests for authenticateToken
  *
  * @name description
@@ -41,7 +41,7 @@ let mockReq, mockRes, mockNext
  */
 describe('authenticateToken tests', () => {
 
-  /**
+  /**.
    * Restore authenticateToken and mocks before each test
    *
    * @name beforeEach
@@ -56,7 +56,7 @@ describe('authenticateToken tests', () => {
     mockNext = sinon.spy()
   })
 
-  /**
+  /**.
    * Tests that middleware doesn't allow access without token
    *
    * @name authenticateToken_without_token
@@ -72,7 +72,7 @@ describe('authenticateToken tests', () => {
     expect(mockNext.called).toBe(false)
   })
 
-  /**
+  /**.
    * Tests that middleware doesn't allow access with fake token
    *
    * @name authenticateToken_with_fake_token

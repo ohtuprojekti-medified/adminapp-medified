@@ -1,4 +1,4 @@
-/**
+/**.
  * User caregivers database model
  *
  * @module models/user_care_givers

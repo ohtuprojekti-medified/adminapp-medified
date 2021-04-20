@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for unknownEndpoint middleware
  *
  * @module tests/unknownEndpoint_test
@@ -7,7 +7,7 @@
  * @requires utils/middleware
  */
 
-/**
+/**.
  * Mocks for request and response in express
  *
  * @type {object}
@@ -16,7 +16,7 @@
  */
 const mocks = require('node-mocks-http')
 
-/**
+/**.
  * Mock for next-function in express
  *
  * @type {object}
@@ -28,7 +28,7 @@ let unknownEndpoint
 let mockReq, mockRes, mockNext
 let mockSend
 
-/**
+/**.
  * Run tests for unknownEndpoint
  *
  * @function
@@ -38,7 +38,7 @@ let mockSend
  */
 describe('unknownEndpoint tests', () => {
 
-  /**
+  /**.
    * Restore unknownEndpoint and mocks before each test
    *
    * @name beforeEach
@@ -60,7 +60,7 @@ describe('unknownEndpoint tests', () => {
     })
   })
 
-  /**
+  /**.
    * Tests that middleware responds with error
    *
    * @name unknownEndpoint

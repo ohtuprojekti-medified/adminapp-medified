@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for applications UI footer
  *
  * @module src/components/uiComponents/AppFooter
@@ -28,7 +28,7 @@ const leftContents = (
   </React.Fragment>
 )
 
-/**
+/**.
  * Component for applications UI footer
  *
  * @memberof module:src/components/uiComponents/AppFooter

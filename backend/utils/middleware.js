@@ -1,4 +1,4 @@
-/**
+/**.
  * Middlewares for backend
  *
  * @module utils/middleware
@@ -9,7 +9,7 @@
  * @exports authenticateToken
  */
 
-/**
+/**.
  * Logger for logging messages and errors
  *
  * @type {object}
@@ -18,7 +18,7 @@
  */
 const logger = require('./logger')
 
-/**
+/**.
  * CognitoExpress for validating token given by frontend
  *
  * @type {object}
@@ -29,7 +29,7 @@ const CognitoExpress = require('cognito-express')
 
 /**
  * Take CognitoExpress in use
- * see: https://www.npmjs.com/package/cognito-express
+ * see: https://www.npmjs.com/package/cognito-express.
  */
 const cognitoExpress = new CognitoExpress({
   region: 'eu-west-1',
@@ -40,7 +40,7 @@ const cognitoExpress = new CognitoExpress({
 
 const jsonWebToken = require('jsonwebtoken')
 
-/**
+/**.
  * Authenticating token in aws here. If token is verified, check user organisation from aws
  *
  * @name authenticateToken
@@ -90,7 +90,7 @@ const authenticateToken = (req, res, next) => {
   }
 }
 
-/**
+/**.
  * Sends 404 to unknown paths
  *
  * @name unknownEndpoint
@@ -104,7 +104,7 @@ const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: 'URL path does not match anything' })
 }
 
-/**
+/**.
  * Handles errors
  *
  * @name errorHandler

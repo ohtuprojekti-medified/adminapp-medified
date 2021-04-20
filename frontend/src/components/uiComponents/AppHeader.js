@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for header with nav links
  *
  * @module src/components/uiComponents/AppHeader
@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 
 
 /**
- * CSS-styling for navigation links
+ * CSS-styling for navigation links.
  */
 const linkStyle = {
   textDecoration: 'none',
@@ -25,7 +25,7 @@ const linkStyle = {
   borderRadius: '5px'
 }
 
-/**
+/**.
  * Component for header's nav links
  *
  * @param {object} param0 - Page name in path and title to show in navigation
@@ -38,7 +38,7 @@ const HeaderLink = ({ page, title }) => {
   return <Link style={linkStyle} to={`/${page}`}>{title}</Link>
 }
 
-/**
+/**.
  * Component containing all navigation links
  *
  * @memberof module:src/components/uiComponents/AppHeader

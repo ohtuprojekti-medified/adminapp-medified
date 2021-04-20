@@ -1,4 +1,4 @@
-/**
+/**.
  * User consents database model
  *
  * @module models/user_consents

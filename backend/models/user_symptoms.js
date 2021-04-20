@@ -1,4 +1,4 @@
-/**
+/**.
  * User symptoms database model
  *
  * @module models/user_symptoms

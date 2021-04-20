@@ -1,11 +1,11 @@
-/**
+/**.
  * Cypress tests for patients
  *
  * @module cypress/integration/patients_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Describe tests for patients page
  *
  * @name Patients
@@ -16,7 +16,7 @@
  */
 describe('Patients', function () {
 
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -29,7 +29,7 @@ describe('Patients', function () {
     cy.login()
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -42,7 +42,7 @@ describe('Patients', function () {
     cy.logOut()
   })
 
-  /**
+  /**.
    * Test that patients page exists
    *
    * @name Patients_exists
@@ -58,7 +58,7 @@ describe('Patients', function () {
     cy.contains('Application users: 110')
   })
 
-  /**
+  /**.
    * Test that patients page exists after checking only patients with caregiver
    *
    * @name Patients_exists_after_checking_only_patients_with_caregiver
@@ -76,7 +76,7 @@ describe('Patients', function () {
     cy.contains('Application users: 7')
   })
 
-  /**
+  /**.
    * Test that patients page exists after selecting start date
    *
    * @name Patients_exists_after_selecting_start_date
@@ -94,7 +94,7 @@ describe('Patients', function () {
     cy.contains('Application users: 110')
   })
 
-  /**
+  /**.
    * Test that patients page exists after selecting end date
    *
    * @name Patients_exists_after_selecting_end_date
@@ -112,7 +112,7 @@ describe('Patients', function () {
     cy.contains('Application users: 110')
   })
 
-  /**
+  /**.
    * Test that patients page exists after selecting start date and end date
    *
    * @name Patients_exists_after_selecting_start_date_and_end_date

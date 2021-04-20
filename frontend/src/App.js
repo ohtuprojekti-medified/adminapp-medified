@@ -1,4 +1,4 @@
-/**
+/**.
  * Frontend app
  *
  * @module src/App
@@ -39,7 +39,7 @@ import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
 
-/**
+/**.
  * Creates a single page application
  *
  * @type {object}
@@ -67,7 +67,7 @@ const App = () => {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
 
-  /**
+  /**.
    * Configure amplify authorization and check if user is logged in
    *
    * @type {object}
@@ -172,7 +172,7 @@ const App = () => {
 
   }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable])
 
-  /**
+  /**.
    *
    * Event handler for changing the status of caregiveFilterForAllUsers
    *
@@ -184,7 +184,7 @@ const App = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
-  /**
+  /**.
    *
    * Event handler for changing the selected organisation
    *
@@ -197,7 +197,7 @@ const App = () => {
     setOrganisation(organisation)
   }
 
-  /**
+  /**.
    * Event handler for enabling timeframe start filter
    *
    * @function
@@ -213,7 +213,7 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for enabling timeframe end filter
    *
    * @function
@@ -229,7 +229,7 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for changeing timeframe filter start value
    *
    * @param {string} date - Date where to begin showing data
@@ -243,7 +243,7 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for changeing timeframe filter end value
    *
    * @param {string} date - Date where to end showing data

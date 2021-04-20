@@ -1,4 +1,4 @@
-/**
+/**.
  * Service for handling API connection
  *
  * @module src/services/dataService
@@ -11,7 +11,7 @@ import axios from 'axios'
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/'
 let token = null
 
-/**
+/**.
  * Sets new token to axios config
  *
  * @type {object}
@@ -30,7 +30,7 @@ const getConfig = () => ({
 
 
 
-/**
+/**.
  * Gets all data from given API endpoint
  *
  * @type {object}

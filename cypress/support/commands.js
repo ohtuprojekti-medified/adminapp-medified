@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-/**
+/**.
  * Add helpful functions for testing
  *
  * @module cypress/support/commands
@@ -34,7 +34,7 @@
 
 import { Auth } from 'aws-amplify'
 
-/**
+/**.
  * Retrieve username from enviromment variables for logging in
  *
  * @name testUsername
@@ -45,7 +45,7 @@ import { Auth } from 'aws-amplify'
  */
 const testUsername = Cypress.env('USERNAME')
 
-/**
+/**.
  * Retrieve password from enviromment variables for logging in
  *
  * @name testPassword
@@ -56,7 +56,7 @@ const testUsername = Cypress.env('USERNAME')
  */
 const testPassword = Cypress.env('PASSWORD')
 
-/**
+/**.
  * Retrieve admin username from enviromment variables for logging in
  *
  * @name testAdminUsername
@@ -67,7 +67,7 @@ const testPassword = Cypress.env('PASSWORD')
  */
 const testAdminUsername = Cypress.env('ADMIN_USERNAME')
 
-/**
+/**.
  * Retrieve admin password from enviromment variables for logging in
  *
  * @name testAdminPassword
@@ -82,7 +82,7 @@ const react_app_user_pool_id = 'eu-west-1_sAj8nsLY6'
 const react_app_web_client_id = '57bgrf7014uhtdu95jm8ci2ok5'
 //const react_app_authentication_type = 'USER_PASSWORD_AUTH'
 
-/**
+/**.
  * Set nessessary params into config for AWS authentication request
  *
  * @constant
@@ -92,7 +92,7 @@ const AWSConfig = {
   aws_user_pools_web_client_id: react_app_web_client_id
 }
 
-/**
+/**.
  * Configure AWS-requests
  *
  * @function
@@ -100,7 +100,7 @@ const AWSConfig = {
  */
 Auth.configure(AWSConfig)
 
-/**
+/**.
  * Add function for fast login to AWS without using UI
  *
  * @function
@@ -116,7 +116,7 @@ Cypress.Commands.add('login', () => {
   })
 })
 
-/**
+/**.
  * Add function for fast admin login to AWS without using UI
  *
  * @function
@@ -132,7 +132,7 @@ Cypress.Commands.add('loginAdmin', () => {
   })
 })
 
-/**
+/**.
  * Add function for fast logout to AWS without using UI
  *
  * @function

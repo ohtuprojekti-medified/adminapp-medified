@@ -1,4 +1,4 @@
-/**
+/**.
  * User treatments database model
  *
  * @module models/user_treatment

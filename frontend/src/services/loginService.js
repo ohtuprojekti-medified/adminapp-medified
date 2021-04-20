@@ -1,4 +1,4 @@
-/**
+/**.
  * Service for handling login with AWS Cognito
  *
  * @module src/services/loginService
@@ -8,7 +8,7 @@
  */
 import { Auth } from 'aws-amplify'
 
-/**
+/**.
  * Logs user into AWS
  *
  * @type {object}
@@ -33,7 +33,7 @@ const login = async credentials => {
   }
 }
 
-/**
+/**.
  * Logs user out of AWS
  *
  * @type {object}

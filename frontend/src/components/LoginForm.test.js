@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for LoginForm component
  *
  * @module src/components/LoginForm_test
@@ -12,7 +12,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent, waitFor } from '@testing-library/react'
 import LoginForm from './LoginForm'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -31,7 +31,7 @@ describe('<LoginForm />', () => {
   const testUsername = 'FormUser'
   const testPassword = 'PasswordInForm'
 
-  /**
+  /**.
    * Render Loginform, select items from it and create mocks for its functions before each test
    *
    * @type {object}
@@ -59,7 +59,7 @@ describe('<LoginForm />', () => {
     )
   })
 
-  /**
+  /**.
    * Test that LoginForm is rendered
    *
    * @type {object}
@@ -76,7 +76,7 @@ describe('<LoginForm />', () => {
     expect(component.container).toHaveTextContent('login')
   })
 
-  /**
+  /**.
    * Test that submitting LoginForm calls setUser function
    *
    * @type {object}
@@ -102,7 +102,7 @@ describe('<LoginForm />', () => {
     await waitFor(() => expect(mockSetUser.mock.calls).toHaveLength(1))
   })
 
-  /**
+  /**.
    * Test that logging in renders logout-button
    *
    * @type {object}
@@ -126,7 +126,7 @@ describe('<LoginForm />', () => {
     waitFor(() => expect(component.container.toHaveTextContent('logOut')))
   })
 
-  /**
+  /**.
    * Test that logout-button is not shown in the beginning
    *
    * @type {object}
@@ -140,7 +140,7 @@ describe('<LoginForm />', () => {
     waitFor(() => expect(component.container.not.toHaveTextContent('logOut')))
   })
 
-  /**
+  /**.
    * Test that logging out renders login-form
    *
    * @type {object}

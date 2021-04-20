@@ -1,11 +1,11 @@
-/**
+/**.
  * Cypress tests for organisations filter
  *
  * @module cypress/integration/organisations_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Retrieve username from enviromment variables for logging in
  *
  * @name testUsername
@@ -16,7 +16,7 @@
  */
 const testUsername = Cypress.env('USERNAME')
 
-/**
+/**.
  * Retrieve password from enviromment variables for logging in
  *
  * @name testPassword
@@ -27,7 +27,7 @@ const testUsername = Cypress.env('USERNAME')
  */
 const testPassword = Cypress.env('PASSWORD')
 
-/**
+/**.
  * Retrieve admin username from enviromment variables for logging in
  *
  * @name testAdminUsername
@@ -38,7 +38,7 @@ const testPassword = Cypress.env('PASSWORD')
  */
 const testAdminUsername = Cypress.env('ADMIN_USERNAME')
 
-/**
+/**.
  * Retrieve admin password from enviromment variables for logging in
  *
  * @name testAdminPassword
@@ -49,14 +49,14 @@ const testAdminUsername = Cypress.env('ADMIN_USERNAME')
  */
 const testAdminPassword = Cypress.env('ADMIN_PASSWORD')
 
-/** Logs in with website UI
+/** Logs in with website UI.
  *
  * @name login
  * @type {object}
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @param {string} username - Username typed into website
- * @param {string} password - Password typed into website
+ * @param {string} username - Username typed into website.
+ * @param {string} password - Password typed into website.
  */
 const login = (username, password) => {
   cy.get('#username').type(username)
@@ -66,7 +66,7 @@ const login = (username, password) => {
   cy.wait(500)
 }
 
-/**
+/**.
  * Describe tests for organisations filter
  *
  * @name Organisations
@@ -77,7 +77,7 @@ const login = (username, password) => {
  */
 describe('Organisations', function () {
 
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -90,7 +90,7 @@ describe('Organisations', function () {
     cy.visit('http://localhost:3000')
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -102,7 +102,7 @@ describe('Organisations', function () {
   afterEach(function () {
   })
 
-  /**
+  /**.
    * Test that organisations filter exists
    *
    * @name Organisations_filter_exists
@@ -121,7 +121,7 @@ describe('Organisations', function () {
     cy.contains('Log out').click()
   })
 
-  /**
+  /**.
    * Test that organisation filter does not show for normal user
    *
    * @name Organisations_filter_not_showing_for_normal_user

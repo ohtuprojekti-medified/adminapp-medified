@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for retentionrateController
  *
  * @module tests/retentionrateController_test
@@ -8,7 +8,7 @@
  * @requires ../controllers/retentionrateController
  */
 
-/**
+/**.
  * Mocks data for models
  *
  * @type {object}
@@ -21,7 +21,7 @@ let retentionrateController
 let db
 let user_activities_stub, user_profiles_stub
 
-/**
+/**.
  * Helper function for creating new Date objects
  *
  * @constant
@@ -29,7 +29,7 @@ let user_activities_stub, user_profiles_stub
  */
 const newDates = require('./newDatesAroundLastMidnight')
 
-/**
+/**.
  * Creates retentionrateController with mock data
  *
  * @constant
@@ -141,7 +141,7 @@ const retentionrateControllerMocked = () => {
   return retentionrateController
 }
 
-/**
+/**.
  * Run tests for retentionrate controller
  *
  * @function
@@ -150,7 +150,7 @@ const retentionrateControllerMocked = () => {
  * @returns {object} - Function that runs tests
  */
 describe('retentionrate controller', () => {
-  /**
+  /**.
    * Code to be run before each test
    *
    * @name beforeEach
@@ -163,7 +163,7 @@ describe('retentionrate controller', () => {
     retentionrateController = retentionrateControllerMocked()
   })
 
-  /**
+  /**.
    * Tests that retentionrate controller findRetentionRates returns correct data
    *
    * @name retentionrate_controller_findRetentionRates_returns_correct_data
@@ -177,7 +177,7 @@ describe('retentionrate controller', () => {
     expect(await retentionrateController.findRetentionRates('ALL')).toEqual([{ daysUsed: 14 }])
   })
 
-  /**
+  /**.
    * Tests that retentionrate controller findAverageRetentionRate returns correct average
    *
    * @name retentionrate_controller_findAverageRetentionRate_returns_correct_data
@@ -191,7 +191,7 @@ describe('retentionrate controller', () => {
     expect(await retentionrateController.findAverageRetentionRate('ALL')).toEqual(14)
   })
 
-  /**
+  /**.
    * Code to be run after each test
    *
    * @name afterEach

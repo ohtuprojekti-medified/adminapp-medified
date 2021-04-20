@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for Cumulative component
  *
  * @module src/components/Cumulative_test
@@ -12,7 +12,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, waitFor } from '@testing-library/react'
 import Cumulative from './Cumulative'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -24,7 +24,7 @@ import Cumulative from './Cumulative'
 describe('<Cumulative />', () => {
   let component
 
-  /**
+  /**.
    * Render Cumulative with mock values
    *
    * @type {object}
@@ -37,7 +37,7 @@ describe('<Cumulative />', () => {
     component = render(<Cumulative cumulative={[]} activeUsers={[]} />)
   })
 
-  /**
+  /**.
    * Test that Cumulative is rendered
    *
    * @type {object}

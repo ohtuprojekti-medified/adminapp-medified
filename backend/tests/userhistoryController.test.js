@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for userhistoryController
  *
  * @module tests/userhistoryController_test
@@ -8,7 +8,7 @@
  * @requires ../controllers/userhistoryController
  */
 
-/**
+/**.
  * Mocks data for models
  *
  * @type {object}
@@ -18,7 +18,7 @@
 const sinon = require('sinon')
 let userhistoryController, db, user_activities_stub, user_profiles_stub
 
-/**
+/**.
  * Helper function for creating new Date objects
  *
  * @constant
@@ -35,7 +35,7 @@ const newDates = require('./newDatesAroundLastMidnight')
 const TIMES1 = newDates([-46.2, -39.2, -32.2, -25.2, -17.5, -7])
 const TIMES2 = newDates([-25.4, -17.6, -7])
 
-/**
+/**.
  * Creates userhistoryController with mock data
  *
  * @constant
@@ -161,7 +161,7 @@ const userhistoryControllerMocked = () => {
 
 }
 
-/**
+/**.
  * Run tests for userhistory controller
  *
  * @function
@@ -170,7 +170,7 @@ const userhistoryControllerMocked = () => {
  * @returns {object} - Function that runs tests
  */
 describe('userhistory controller', () => {
-  /**
+  /**.
    * Code to be run before each test
    *
    * @name beforeEach
@@ -183,7 +183,7 @@ describe('userhistory controller', () => {
     userhistoryController = userhistoryControllerMocked()
   })
 
-  /**
+  /**.
    * Tests that userhistory controller findCumulativeNewUser returns correct data
    *
    * @name userhistory_controller_findCumulativeNewUser_returns_correct_data
@@ -199,7 +199,7 @@ describe('userhistory controller', () => {
     expect(cumulativeUserActivities[1].entries).toEqual(3)
   })
 
-  /**
+  /**.
    * Tests that userhistory controller findUserActivities returns correct data
    *
    * @name userhistory_controller_findUserActivities_returns_correct_data
@@ -215,7 +215,7 @@ describe('userhistory controller', () => {
     expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
   })
 
-  /**
+  /**.
    * Tests that userhistory controller findUserActivities returns correct data within timeframe where all users are partially active
    *
    * @name userhistory_controller_findUserActivities_returns_correct_data_within_timeframe_where_all_users_are_partially_active
@@ -231,7 +231,7 @@ describe('userhistory controller', () => {
     expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
   })
 
-  /**
+  /**.
    * Tests that userhistory controller findUserActivities returns correct data within timeframe where all users are active
    *
    * @name userhistory_controller_findUserActivities_returns_correct_data_within_timeframe_where_all_users_are_active
@@ -247,7 +247,7 @@ describe('userhistory controller', () => {
     expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
   })
 
-  /**
+  /**.
    * Code to be run after each test
    *
    * @name afterEach
@@ -264,7 +264,7 @@ describe('userhistory controller', () => {
 
 const controller = require('../controllers/userhistoryController')
 
-/**
+/**.
  * Creating mock data for user_activities
  *
  * @type {object}
@@ -283,7 +283,7 @@ jest.mock('../models/user_activities', () => () => {
   })
 })
 
-/**
+/**.
  * Run tests for user_activities today
  *
  * @type {object}
@@ -293,7 +293,7 @@ jest.mock('../models/user_activities', () => () => {
  * @param {object} tests - Function that runs tests
  */
 describe('user_activities today', () => {
-  /**
+  /**.
    * Tests that user_activities today are returned correctly
    *
    * @name user_activities_today_are_returned_correctly
@@ -312,7 +312,7 @@ describe('user_activities today', () => {
   })
 })
 
-/**
+/**.
  * Creating mock data for user_profiles
  *
  * @type {object}
@@ -337,7 +337,7 @@ jest.mock('../models/user_profiles', () => () => {
   })
 })
 
-/**
+/**.
  * Run tests for new users from the last seven days
  *
  * @type {object}
@@ -347,7 +347,7 @@ jest.mock('../models/user_profiles', () => () => {
  * @param {object} tests - Function that runs tests
  */
 describe('new users from the last seven days', () => {
-  /**
+  /**.
    * Tests that new users from the last seven days are returned correctly
    *
    * @name new_users_from_the_last_seven_days_are_returned_correctly

@@ -1,4 +1,4 @@
-/**
+/**.
  * User survey answers database model
  *
  * @module models/user_survey_answers

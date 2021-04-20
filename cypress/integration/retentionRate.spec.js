@@ -1,11 +1,11 @@
-/**
+/**.
  * Cypress tests for retention rate
  *
  * @module cypress/integration/retentionRate_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Describe tests for retention rate page
  *
  * @name RetentionRate
@@ -16,7 +16,7 @@
  */
 describe('Retention rate', function () {
 
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -29,7 +29,7 @@ describe('Retention rate', function () {
     cy.login()
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -42,7 +42,7 @@ describe('Retention rate', function () {
     cy.logOut()
   })
 
-  /**
+  /**.
    * Test that retention rate page exists
    *
    * @name RetentionRate_exists
@@ -59,7 +59,7 @@ describe('Retention rate', function () {
     cy.contains('Average period and single periods:')
   })
 
-  /**
+  /**.
    * Test that retention rate page exists after checking only patients with caregiver
    *
    * @name RetentionRate_exists_after_checking_only_patients_with_caregiver
@@ -78,7 +78,7 @@ describe('Retention rate', function () {
     cy.contains('Average period and single periods:')
   })
 
-  /**
+  /**.
    * Test that retention rate page exists after selecting start date
    *
    * @name RetentionRate_exists_after_selecting_start_date
@@ -97,7 +97,7 @@ describe('Retention rate', function () {
     cy.contains('Average period and single periods:')
   })
 
-  /**
+  /**.
    * Test that retention rate page exists after selecting end date
    *
    * @name RetentionRate_exists_after_selecting_end_date
@@ -116,7 +116,7 @@ describe('Retention rate', function () {
     cy.contains('Average period and single periods:')
   })
 
-  /**
+  /**.
    * Test that retention rate page exists after selecting start date and end date
    *
    * @name RetentionRate_exists_after_selecting_start_date_and_end_date

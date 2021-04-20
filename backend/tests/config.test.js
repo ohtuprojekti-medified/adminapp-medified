@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for config
  *
  * @constant
@@ -7,7 +7,7 @@
  */
 const config = require('../utils/config')
 
-/**
+/**.
  * Run tests for config
  *
  * @name description
@@ -18,7 +18,7 @@ const config = require('../utils/config')
  * @param {object} tests - Function that runs tests
  */
 describe('config', () => {
-  /**
+  /**.
    * Tests that the port of backend is correct
    *
    * @name test_backend_port

@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests fro Filter component
  *
  * @module src/components/Filter_test
@@ -12,7 +12,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, waitFor, fireEvent } from '@testing-library/react'
 import Filter from './Filter'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -24,7 +24,7 @@ import Filter from './Filter'
 describe('<Filter />', () => {
   let component, mockHandler
 
-  /**
+  /**.
    * Render Filter
    *
    * @type {object}
@@ -39,7 +39,7 @@ describe('<Filter />', () => {
     component = render(<Filter description={'test filtering'} checked={false} handleFilterChange={mockHandler} />)
   })
 
-  /**
+  /**.
    * Test that Filter is rendered
    *
    * @type {object}
@@ -55,7 +55,7 @@ describe('<Filter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that checking checkbox calls event handler once
    *
    * @type {object}

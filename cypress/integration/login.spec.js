@@ -1,11 +1,11 @@
-/**
+/**.
  * Cypress tests for logging in and out
  *
  * @module cypress/integration/login_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Retrieve username from enviromment variables for logging in
  *
  * @name testUsername
@@ -16,7 +16,7 @@
  */
 const testUsername = Cypress.env('USERNAME')
 
-/**
+/**.
  * Retrieve password from enviromment variables for logging in
  *
  * @name testPassword
@@ -27,7 +27,7 @@ const testUsername = Cypress.env('USERNAME')
  */
 const testPassword = Cypress.env('PASSWORD')
 
-/**
+/**.
  * Logs in with website UI
  *
  * @name login
@@ -43,7 +43,7 @@ const login = (username, password) => {
   cy.contains('login').click()
 }
 
-/**
+/**.
  * Logs out with website UI
  *
  * @name logout
@@ -55,7 +55,7 @@ const logout = () => {
   cy.contains('Log out').click()
 }
 
-/**
+/**.
  * Describe tests for Login
  *
  * @name Login
@@ -66,7 +66,7 @@ const logout = () => {
  */
 describe('Login', function () {
 
-  /**
+  /**.
    * Reconnect website before each test
    *
    * @name beforeEach
@@ -79,7 +79,7 @@ describe('Login', function () {
     cy.visit('http://localhost:3000/')
   })
 
-  /**
+  /**.
    * Test that website exists
    *
    * @name Login_exists
@@ -100,7 +100,7 @@ describe('Login', function () {
     cy.contains('login')
   })
 
-  /**
+  /**.
    * Test that login disappears after logging in
    *
    * @name Login_disappears_after_logged_in
@@ -120,7 +120,7 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'login')
   })
 
-  /**
+  /**.
    * Test that webpage shows patients page after successful login
    *
    * @name Login_shows_patients_page_after_successful_login
@@ -137,7 +137,7 @@ describe('Login', function () {
     cy.contains('Application users:')
   })
 
-  /**
+  /**.
    * Test that webpage shows logout-button after successfull login
    *
    * @name Login_shows_logout-button_after_successfull_login
@@ -153,7 +153,7 @@ describe('Login', function () {
     cy.contains('Log out')
   })
 
-  /**
+  /**.
    * Test that webpage does not show logout-button before login
    *
    * @name Login_does_not_show_logout-button_before_login
@@ -167,7 +167,7 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'Log out')
   })
 
-  /**
+  /**.
    * Test that webpage shows login form after logging out
    *
    * @name Login_shows_login_form_after_logging_out
@@ -187,7 +187,7 @@ describe('Login', function () {
     cy.contains('login')
   })
 
-  /**
+  /**.
    * Test that webpage does not show logout-button after logging out
    *
    * @name Login_does_not_show_logout-button_after_logging_out
@@ -204,7 +204,7 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'Log out')
   })
 
-  /**
+  /**.
    * Test that webpage does not login with wrong password
    *
    * @name Login_does_not_login_with_wrong_password
@@ -225,7 +225,7 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'Log out')
   })
 
-  /**
+  /**.
    * Test that webpage does not login with wrong username
    *
    * @name Login_does_not_login_with_wrong_username
@@ -246,7 +246,7 @@ describe('Login', function () {
     cy.get('body').should('not.contain', 'Log out')
   })
 
-  /**
+  /**.
    * Test that webpage does not login with wrong username and password
    *
    * @name Login_does_not_login_with_wrong_username_and_password

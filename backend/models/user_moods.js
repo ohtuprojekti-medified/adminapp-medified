@@ -1,4 +1,4 @@
-/**
+/**.
  * User moods database model
  *
  * @module models/user_moods

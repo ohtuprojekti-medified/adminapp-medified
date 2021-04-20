@@ -1,4 +1,4 @@
-/**
+/**.
  * User professional profiles database model
  *
  * @module models/user_professional_profiles

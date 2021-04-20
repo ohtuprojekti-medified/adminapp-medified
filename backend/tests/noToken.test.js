@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for requests to backend when no token is present
  *
  * @module tests/noToken_test
@@ -7,7 +7,7 @@
  * @requires app
  */
 
-/**
+/**.
  * Used to make requests to the backend
  *
  * @type {object}
@@ -16,7 +16,7 @@
  */
 const mongoose = require('mongoose')
 
-/**
+/**.
  * Used to create backend for tests
  *
  * @type {object}
@@ -25,7 +25,7 @@ const mongoose = require('mongoose')
  */
 const supertest = require('supertest')
 
-/**
+/**.
  * The backend of the app
  *
  * @type {object}
@@ -34,7 +34,7 @@ const supertest = require('supertest')
  */
 const app = require('../app')
 
-/**
+/**.
  * Api for tests created with supertest
  *
  * @type {object}
@@ -43,7 +43,7 @@ const app = require('../app')
  */
 const api = supertest(app)
 
-/**
+/**.
  * Url for api requests
  *
  * @constant
@@ -51,7 +51,7 @@ const api = supertest(app)
  */
 const apiUrl = '/api'
 
-/**
+/**.
  * Run tests for noToken requests
  *
  * @name description
@@ -63,7 +63,7 @@ const apiUrl = '/api'
  */
 describe('noToken tests', () => {
 
-  /**
+  /**.
    * Tests that users are not returned without token
    *
    * @name no_users_without_token
@@ -78,7 +78,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that caregivers are not returned without token
    *
    * @name no_caregivers_without_token
@@ -93,7 +93,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that ping is not returned without token
    *
    * @name no_ping_without_token
@@ -108,7 +108,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that cumulative amount of users is not returned without token
    *
    * @name no_cumulative_without_token
@@ -123,7 +123,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that activeusers are not returned without token
    *
    * @name no_activeusers_without_token
@@ -138,7 +138,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that newusers are not returned without token
    *
    * @name no_newusers_without_token
@@ -153,7 +153,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that user activity today is not returned without token
    *
    * @name no_activitytoday_without_token
@@ -168,7 +168,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that retention rate is not returned without token
    *
    * @name no_retention_rate_without_token
@@ -183,7 +183,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that average retention rate is not returned without token
    *
    * @name no_average_retention_rate_without_token
@@ -198,7 +198,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Tests that unknown url returns 403 without token
    *
    * @name unknown_url_returns_403_without_token
@@ -213,7 +213,7 @@ describe('noToken tests', () => {
       .expect(403)
   })
 
-  /**
+  /**.
    * Close connection after all tests have been executed
    *
    * @name afterAll

@@ -1,4 +1,4 @@
-/**
+/**.
  * Component that creates a checkbox that can be used for filtering
  *
  * @module src/components/Filter
@@ -8,7 +8,7 @@
 
 import React from 'react'
 
-/**
+/**.
  * Component that creates a checkbox that can be used for filtering
  *
  * @type {object}

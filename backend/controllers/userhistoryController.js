@@ -1,4 +1,4 @@
-/**
+/**.
  * Controller for userhistory queries
  *
  * @module controllers/userhistoryController
@@ -19,7 +19,7 @@ const user_profiles = db.user_profiles
 const user_activities = db.user_activities
 const controller = require('./controller')
 
-/**
+/**.
  * Returns all user activities in app today from database
  *
  * @param {string} organisation - Organisation name for filtering
@@ -27,7 +27,7 @@ const controller = require('./controller')
  * @async
  * @constant
  * @memberof module:controllers/userhistoryController
- * @returns  {...any} userActivitiesToday - list of user activities today
+ * @returns {...any} userActivitiesToday - list of user activities today
  */
 
 const findUserActivitiesToday = async (organisation, withCaregiver) => {
@@ -47,7 +47,7 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
   return userActivitiesToday
 }
 
-/**
+/**.
  * Returns new users within week from database
  *
  * @param {string} organisation - Organisation name for filtering
@@ -55,7 +55,7 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
  * @async
  * @constant
  * @memberof module:controllers/userhistoryController
- * @returns  {...any} usersCreatedAt - list of new users registered in the last week
+ * @returns {...any} usersCreatedAt - list of new users registered in the last week
  */
 
 const findNewUsers = async (organisation, withCaregiver) => {
@@ -79,7 +79,7 @@ const findNewUsers = async (organisation, withCaregiver) => {
   return usersCreatedAt
 }
 
-/**
+/**.
  * Returns total cumulative new users week by week from database
  *
  * @param {string} organisation - Organisation name for filtering
@@ -173,7 +173,7 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
   return entries
 }
 
-/**
+/**.
  * Returns active users week by week
  *
  * @param {string} organisation - string id used to identify organisation

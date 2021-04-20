@@ -1,4 +1,4 @@
-/**
+/**.
  * Organisations database model
  *
  * @module models/organisations

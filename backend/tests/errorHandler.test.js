@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for errorHandler middleware
  *
  * @module tests/errorHandler_Test
@@ -7,7 +7,7 @@
  * @requires utils/middleware
  */
 
-/**
+/**.
  * Mocks for request and response in express
  *
  * @type {object}
@@ -15,7 +15,7 @@
  * @namespace mocks
  */
 const mocks = require('node-mocks-http')
-/**
+/**.
  * Mock for next-function in express
  *
  * @type {object}
@@ -28,7 +28,7 @@ let errorHandler
 let error, mockReq, mockRes, mockNext
 let mockSend, mockJson
 
-/**
+/**.
  * Run tests for errorhandler
  *
  * @type {object}
@@ -39,7 +39,7 @@ let mockSend, mockJson
  */
 describe('errorhandler tests', () => {
 
-  /**
+  /**.
    * Restore errorHandler and mocks before each test
    *
    * @name beforeEach
@@ -64,7 +64,7 @@ describe('errorhandler tests', () => {
     mockNext = sinon.spy()
   })
 
-  /**
+  /**.
    * Tests that middleware calls next when no errors
    *
    * @name errorHandler_when_no_error
@@ -80,7 +80,7 @@ describe('errorhandler tests', () => {
     expect(mockNext.called).toBe(true)
   })
 
-  /**
+  /**.
    * Tests that middleware responds with CastError
    *
    * @name errorHandler_when_CastError
@@ -99,7 +99,7 @@ describe('errorhandler tests', () => {
     expect(mockSend.calledWith({ error: 'Id in URL is not correct' })).toBe(true)
   })
 
-  /**
+  /**.
    * Tests that middleware responds with ValidationError
    *
    * @name errorHandler_when_ValidationError

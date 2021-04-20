@@ -1,4 +1,4 @@
-/**
+/**.
  * Index file for running the app
  *
  * @namespace Frontend_index
@@ -14,7 +14,7 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-/**
+/**.
  * Run the app
  *
  * @function

@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for Organisations component
  *
  * @module src/components/Organisations_test
@@ -12,7 +12,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, waitFor } from '@testing-library/react'
 import Organisations from './Organisations'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -26,7 +26,7 @@ describe('<Organisations />', () => {
   let organisations
   let handleOrganisationChange = jest.fn()
 
-  /**
+  /**.
    * Render Organisations with 2 organisations
    *
    * @type {object}
@@ -43,7 +43,7 @@ describe('<Organisations />', () => {
     component = render(<Organisations organisations={organisations} handleOrganisationChange={handleOrganisationChange} organisationSelect={'ALL'} />)
   })
 
-  /**
+  /**.
    * Test that Organisations is rendered
    *
    * @type {object}

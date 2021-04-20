@@ -12,7 +12,7 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-/**
+/**.
  * Run this code when project is opened
  *
  * @module cypress/plugins/index
@@ -21,7 +21,7 @@
  * @exports config - Configurate dotenv plugin for cypress
  */
 
-/**
+/**.
  * Give cypress access to environment variables in .env
  *
  * @type {Cypress.PluginConfig}

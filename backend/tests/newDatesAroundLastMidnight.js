@@ -1,4 +1,4 @@
-/**
+/**.
  * This is a helper function for creating new Date objects around current midnight
  *
  * @param {Array} days - Array of float multipliers for days

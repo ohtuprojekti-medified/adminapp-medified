@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for Organisations filter
  *
  * @module src/components/Organisation
@@ -10,7 +10,7 @@
 import React from 'react'
 import { Dropdown } from 'primereact/dropdown'
 
-/**
+/**.
  * Component for selecting an organisation from all the organisations
  *
  * @name Organisations

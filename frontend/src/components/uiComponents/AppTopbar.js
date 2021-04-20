@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for applications UI topbar
  *
  * @module src/components/uiComponents/AppTopbar
@@ -23,7 +23,7 @@ import loginService from '../../services/loginService'
 
 import Header from './AppHeader'
 
-/**
+/**.
  * Component for applications UI topbar
  *
  * @memberof module:src/components/uiComponents/AppTopbar
@@ -35,7 +35,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
   startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
   handleEndDateEnableChange, handleStartDateChange, handleEndDateChange }) => {
 
-  /**
+  /**.
    * Handle logout button presses
    *
    * @type {object}
@@ -65,7 +65,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
     backgroundColor: '#beede7'
   }
 
-  /**
+  /**.
    * Contents for the left side of primereact's toolbar
    *
    * @type {object}
@@ -84,7 +84,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
     </React.Fragment>
   )
 
-  /**
+  /**.
    * Contents for the right side of primereact's toolbar
    *
    * @type {object}

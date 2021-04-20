@@ -1,4 +1,4 @@
-/**
+/**.
  * Component containing all UI components on the home page
  *
  * @module src/components/uiComponents/AppContent
@@ -18,7 +18,7 @@ import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
 
-/**
+/**.
  * Component containing all UI components on the home page
  *
  * @param {*} param0 - all props from App.js

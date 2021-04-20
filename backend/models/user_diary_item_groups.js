@@ -1,4 +1,4 @@
-/**
+/**.
  * User diary item groups  database model
  *
  * @module models/user_diary_item_groups

@@ -1,4 +1,4 @@
-/**
+/**.
  * Controller for database queries
  *
  * @module controllers/controller
@@ -34,14 +34,14 @@ const { Sequelize } = require('../models')
 const Op = Sequelize.Op
 
 
-/**
+/**.
  * Returns all access codes from database
  *
  * @param {string} organisation - Organisation name for filtering
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} accessCodes - list of access codes
+ * @returns {...any} accessCodes - list of access codes
  */
 
 const findAllAccessCodes = async (organisation) => {
@@ -62,7 +62,7 @@ const findAllAccessCodes = async (organisation) => {
   return accessCodes
 }
 
-/**
+/**.
  * Returns all organisations from database for admin
  *
  * @param {string} organisation - Organisation name for filtering
@@ -81,7 +81,7 @@ const findAllOrgs = async (organisation) => {
   }
 }
 
-/**
+/**.
  * Returns all users from database
  *
  * @param {string} organisation - Organisation name for filtering
@@ -89,7 +89,7 @@ const findAllOrgs = async (organisation) => {
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userProfiles - list of users
+ * @returns {...any} userProfiles - list of users
  */
 
 const findAllUsers = async (organisation, withCaregiver) => {
@@ -148,14 +148,14 @@ const findAllUsers = async (organisation, withCaregiver) => {
   return userProfiles
 }
 
-/**
+/**.
  * Returns all caregivers from database
  * Note that caregivers-table contains one db-entry for every caregiver-user realtionship
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userCaregivers - list of caregiver-user relationships
+ * @returns {...any} userCaregivers - list of caregiver-user relationships
  */
 
 const findAllUserCaregivers = async () => {
@@ -165,13 +165,13 @@ const findAllUserCaregivers = async () => {
   return userCaregivers
 }
 
-/**
+/**.
  * Returns all user ctivities from database
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userActivities - list of all user activities
+ * @returns {...any} userActivities - list of all user activities
  */
 
 const findAllUserActivities = async () => {
@@ -181,13 +181,13 @@ const findAllUserActivities = async () => {
   return userActivities
 }
 
-/**
+/**.
  * Returns all caregiver activities from database
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userCaregiverActivities - list of all caregiver activities
+ * @returns {...any} userCaregiverActivities - list of all caregiver activities
  */
 
 const findAllUserCaregiverActivities = async () => {
@@ -197,13 +197,13 @@ const findAllUserCaregiverActivities = async () => {
   return userCaregiverActivities
 }
 
-/**
+/**.
  * Returns all user answers from database
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userAnswers - list of user answers
+ * @returns {...any} userAnswers - list of user answers
  */
 
 const findAllUserAnswers = async () => {
@@ -213,13 +213,13 @@ const findAllUserAnswers = async () => {
   return userAnswers
 }
 
-/**
+/**.
  * Returns all diary items from database
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userDiaryItems - list of all user diary items
+ * @returns {...any} userDiaryItems - list of all user diary items
  */
 
 const findAllUserDiaryItems = async () => {
@@ -229,13 +229,13 @@ const findAllUserDiaryItems = async () => {
   return userDiaryItems
 }
 
-/**
+/**.
  * Returns all diary item groups from database
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userDiaryItemGroups - list of diary item groups
+ * @returns {...any} userDiaryItemGroups - list of diary item groups
  */
 
 const findAllUserDiaryItemGroups = async () => {
@@ -245,13 +245,13 @@ const findAllUserDiaryItemGroups = async () => {
   return userDiaryItemGroups
 }
 
-/**
+/**.
  * Returns all professional profiles from database
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userProfessionalProfiles - list of all professional profiles
+ * @returns {...any} userProfessionalProfiles - list of all professional profiles
  */
 
 const findAllUserProfessionalProfiles = async () => {
@@ -261,13 +261,13 @@ const findAllUserProfessionalProfiles = async () => {
   return userProfessionalProfiles
 }
 
-/**
+/**.
  * Returns all survey answers from database
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userSurveyAnswers - list of survey answers
+ * @returns {...any} userSurveyAnswers - list of survey answers
  */
 
 const findAllUserSurveyAnswers = async () => {
@@ -277,13 +277,13 @@ const findAllUserSurveyAnswers = async () => {
   return userSurveyAnswers
 }
 
-/**
+/**.
  * Returns all user moods from database
  *
  * @async
  * @constant
  * @memberof module:controllers/controller
- * @returns  {...any} userMoods - list of user moods
+ * @returns {...any} userMoods - list of user moods
  */
 
 const findAllMoods = async () => {

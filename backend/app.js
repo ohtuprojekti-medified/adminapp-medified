@@ -1,4 +1,4 @@
-/**
+/**.
  * Backend app
  *
  * @module app
@@ -12,7 +12,7 @@
  * @exports app
  */
 
-/**
+/**.
  * Middlewares for backend
  *
  * @type {object}
@@ -22,7 +22,7 @@
  */
 const middleware = require('./utils/middleware')
 
-/**
+/**.
  * Router for requests to backend
  *
  * @type {object}
@@ -32,7 +32,7 @@ const middleware = require('./utils/middleware')
  */
 const router = require('./routes/routes')
 
-/**
+/**.
  * Express for creating backend
  *
  * @type {object}
@@ -43,7 +43,7 @@ const router = require('./routes/routes')
 const express = require('express')
 require('express-async-errors')
 
-/**
+/**.
  * Morgan for better logs in backend terminal
  *
  * @type {object}
@@ -53,7 +53,7 @@ require('express-async-errors')
  */
 const morgan = require('morgan')
 
-/**
+/**.
  * Cors for allowing cross origin requests
  *
  * @type {object}
@@ -63,7 +63,7 @@ const morgan = require('morgan')
  */
 const cors = require('cors')
 
-/**
+/**.
  * App created with express
  *
  * @type {object}
@@ -72,7 +72,7 @@ const cors = require('cors')
  */
 const app = express()
 
-/**
+/**.
  * Middleware for allowing cross origin requests
  *
  * @name cors
@@ -85,7 +85,7 @@ app.use(cors())
 // Needed if frontend is builded into /public
 //app.use(express.static('build'))
 
-/**
+/**.
  * JSON to readable form
  *
  * @name express_json
@@ -95,7 +95,7 @@ app.use(cors())
  */
 app.use(express.json())
 
-/**
+/**.
  * Verify token from frontend
  *
  * @name authenticateToken
@@ -109,7 +109,7 @@ app.use(middleware.authenticateToken)
 // Morgan-logs for HTTP-requests
 morgan.token('body', (req) => JSON.stringify(req.body))
 
-/**
+/**.
  * Tiny Morgan-logs for HTTP-requests
  *
  * @name tiny_morgan
@@ -119,7 +119,7 @@ morgan.token('body', (req) => JSON.stringify(req.body))
  */
 app.use(morgan('tiny'))
 
-/**
+/**.
  * Morgan-logs for HTTP-requests
  *
  * @name morgan_body
@@ -130,7 +130,7 @@ app.use(morgan('tiny'))
 app.use(morgan(':body'))
 
 
-/**
+/**.
  * Database connection
  *
  * @name models
@@ -149,7 +149,7 @@ db.sequelize.sync()
 
 
 
-/**
+/**.
  * Url for api requests
  *
  * @constant
@@ -157,7 +157,7 @@ db.sequelize.sync()
  */
 const apiUrl = '/api'
 
-/**
+/**.
  * Use router with apiUrl
  *
  * @name router_with_url
@@ -168,7 +168,7 @@ const apiUrl = '/api'
  */
 app.use(apiUrl, router)
 
-/**
+/**.
  * Return 404 for undefined paths
  *
  * @name unknownEndpoint
@@ -178,7 +178,7 @@ app.use(apiUrl, router)
  */
 app.use(middleware.unknownEndpoint)
 
-/**
+/**.
  * Error handling
  *
  * @name errorHandler

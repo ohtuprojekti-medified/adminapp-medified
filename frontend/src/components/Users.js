@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for users
  *
  * @module src/components/Users
@@ -9,7 +9,7 @@
 import React from 'react'
 import { Card } from 'primereact/card'
 
-/**
+/**.
  * Component listing App users
  *
  * @type {object}

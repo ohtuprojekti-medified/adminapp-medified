@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for App component
  *
  * @module src/App_test
@@ -13,7 +13,7 @@ import { render, fireEvent, waitFor } from '@testing-library/react'
 //import { prettyDOM } from '@testing-library/dom'
 import App from './App'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -33,8 +33,8 @@ describe('<App />', () => {
    * @constant
    * @memberof module:src/App_test
    * @inner
-   * @param {string} username - Username for tests
-   * @param {string} password - Password for tests
+   * @param {string} username - Username for tests.
+   * @param {string} password - Password for tests.
    */
   const login = (username, password) => {
     // Add username and password to form
@@ -52,7 +52,7 @@ describe('<App />', () => {
   const testUsername = 'TestUser'
   const testPassword = 'TestPassword'
 
-  /**
+  /**.
    * Render App and select items from it before each test
    *
    * @type {object}
@@ -70,7 +70,7 @@ describe('<App />', () => {
     onlyWithCaregiverCheckbox = component.container.querySelector('input[data-testid=\'filter-checkbox\']')
   })
 
-  /**
+  /**.
    * Test that header is rendered
    *
    * @type {object}
@@ -84,7 +84,7 @@ describe('<App />', () => {
     expect(component.container).toHaveTextContent('Adminapp for monitoring moods')
   })
 
-  /**
+  /**.
    * Test that login form is rendered
    *
    * @type {object}
@@ -100,7 +100,7 @@ describe('<App />', () => {
     expect(component.container).toHaveTextContent('password:')
   })
 
-  /**
+  /**.
    * Test that App does not render login form after logged in
    *
    * @type {object}
@@ -120,7 +120,7 @@ describe('<App />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that App renders patients page after logged in
    *
    * @type {object}
@@ -136,7 +136,7 @@ describe('<App />', () => {
     waitFor(() => expect(component.container).toHaveTextContent('Patients moods listed'))
   })
 
-  /**
+  /**.
    * Test that App renders login form after log out
    *
    * @type {object}
@@ -160,7 +160,7 @@ describe('<App />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that logout-button is not shown in the beginning
    *
    * @type {object}
@@ -174,7 +174,7 @@ describe('<App />', () => {
     waitFor(() => expect(component.container.not.toHaveTextContent('log out')))
   })
 
-  /**
+  /**.
    * Test that App renders logout-button after successful login
    *
    * @type {object}
@@ -190,7 +190,7 @@ describe('<App />', () => {
     waitFor(() => expect(component.container.toHaveTextContent('log out')))
   })
 
-  /**
+  /**.
    * Test that logging out removes logout-button
    *
    * @type {object}
@@ -210,7 +210,7 @@ describe('<App />', () => {
     waitFor(() => expect(component.container.not.toHaveTextContent('log out')))
   })
 
-  /**
+  /**.
    * Test that App renders after clicking only patients with caregiver checkbox
    *
    * @type {object}
@@ -238,7 +238,7 @@ describe('<App />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that App does not render login form after clicking only patients with caregiver checkbox
    *
    * @type {object}

@@ -1,4 +1,4 @@
-/**
+/**.
  * User answers database model
  *
  * @module models/user_answers

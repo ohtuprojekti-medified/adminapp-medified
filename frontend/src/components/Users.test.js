@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for Users component
  *
  * @module src/components/Users_test
@@ -11,7 +11,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render } from '@testing-library/react'
 import Users from './Users'
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -22,7 +22,7 @@ import Users from './Users'
  */
 describe('Users', () => {
 
-  /**
+  /**.
    * Test that Users is rendered
    *
    * @type {object}

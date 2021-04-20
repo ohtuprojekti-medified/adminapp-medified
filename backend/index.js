@@ -1,4 +1,4 @@
-/**
+/**.
  * Index file for running backend
  *
  * @namespace Backend_index
@@ -8,7 +8,7 @@
  * @requires utils/logger
  */
 
-/**
+/**.
  * Backend app
  *
  * @type {object}
@@ -19,7 +19,7 @@
 const app = require('./app')
 const http = require('http')
 
-/**
+/**.
  * Config for retrieving environment values
  *
  * @type {object}
@@ -29,7 +29,7 @@ const http = require('http')
  */
 const config = require('./utils/config')
 
-/**
+/**.
  * Logger for logging messages
  *
  * @type {object}
@@ -39,7 +39,7 @@ const config = require('./utils/config')
  */
 const logger = require('./utils/logger')
 
-/**
+/**.
  * Create backend with http
  *
  * @type {object}
@@ -49,7 +49,7 @@ const logger = require('./utils/logger')
  */
 const server = http.createServer(app)
 
-/**
+/**.
  * Listen to requests made to backend
  *
  * @name server_listen

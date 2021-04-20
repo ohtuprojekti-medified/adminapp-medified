@@ -1,4 +1,4 @@
-/**
+/**.
  * Controller for retentionRate queries
  *
  * @module controllers/retentionrateController
@@ -16,7 +16,7 @@ const user_profiles = db.user_profiles
 const user_activities = db.user_activities
 const controller = require('./controller')
 
-/**
+/**.
  * Returns retention rates as in how long does user use app actively
  *
  * @param {string} organisation - Organisation for filtering
@@ -26,7 +26,7 @@ const controller = require('./controller')
  * @async
  * @constant
  * @memberof module:controllers/retentionrateController
- * @returns  {...any} usingPeriods - number of days per using period
+ * @returns {...any} usingPeriods - number of days per using period
  */
 const findRetentionRates = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
@@ -127,7 +127,7 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
   return usingPeriods
 }
 
-/**
+/**.
  * Returns average retention rate
  *
  * @param {string} organisation - string id used to identify organisation
@@ -137,7 +137,7 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
  * @async
  * @constant
  * @memberof module:controllers/retentionrateController
- * @returns  {...any} averageUsingPeriod - average app using period
+ * @returns {...any} averageUsingPeriod - average app using period
  */
 
 const findAverageRetentionRate = async (organisation, withCaregiver, startDate, endDate) => {

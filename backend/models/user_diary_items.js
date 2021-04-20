@@ -1,4 +1,4 @@
-/**
+/**.
  * User diary items database model
  *
  * @module models/user_diary_items

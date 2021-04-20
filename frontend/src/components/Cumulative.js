@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for graphing all new users, cumulative
  *
  * @module src/components/Cumulative
@@ -10,7 +10,7 @@ import React from 'react'
 import { Chart } from 'primereact/chart'
 import { subDays, format } from 'date-fns'
 
-/**
+/**.
  * Component for graphing all new users, cumulative
  *
  * @type {object}

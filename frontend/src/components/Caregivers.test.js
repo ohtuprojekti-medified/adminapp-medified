@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for Caregivers component
  *
  * @module src/components/Caregivers_test
@@ -12,7 +12,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render } from '@testing-library/react'
 import Caregivers from './Caregivers'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -23,7 +23,7 @@ import Caregivers from './Caregivers'
  */
 describe('Caregivers', () => {
 
-  /**
+  /**.
    * Test that Caregivers renders correct amount of caregivers
    *
    * @type {object}

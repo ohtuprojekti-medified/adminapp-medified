@@ -1,4 +1,4 @@
-/**
+/**.
  * Express router for all paths
  *
  * @module routes/routes
@@ -9,7 +9,7 @@
  * @requires express-async-errors
  */
 
-/**
+/**.
  * Router for all paths
  *
  * @type {object}
@@ -18,7 +18,7 @@
  */
 const router = require('express').Router()
 
-/**
+/**.
  * Controllers for database
  *
  * @type {object}
@@ -32,7 +32,7 @@ const userhistoryController = require('../controllers/userhistoryController')
 // handle errors if database-queries fail
 require('express-async-errors')
 
-/**
+/**.
  * Route request for users
  *
  * @name get_users
@@ -48,7 +48,7 @@ router.get('/users', async (req, res) => {
   res.json(users)
 })
 
-/**
+/**.
  * Route request for caregivers
  *
  * @name get_caregivers
@@ -63,7 +63,7 @@ router.get('/caregivers', async (req, res) => {
   res.json(caregivers)
 })
 
-/**
+/**.
  * Route request for organisations
  *
  * @name get_organisations
@@ -78,7 +78,7 @@ router.get('/organisations', async (req, res) => {
   res.json(organisations)
 })
 
-/**
+/**.
  * Route request for secure ping
  *
  * @name get_ping
@@ -92,7 +92,7 @@ router.get('/ping', async (req, res) => {
   res.status(200).json({ message: 'token ok' })
 })
 
-/**
+/**.
  * Route request for cumulative amount of users
  *
  * @name get_cumulative
@@ -109,7 +109,7 @@ router.get('/cumulative', async (req, res) => {
   res.json(cumulativeUsers)
 })
 
-/**
+/**.
  * Route request for amount of active users
  *
  * @name get_activeusers
@@ -126,7 +126,7 @@ router.get('/activeusers', async (req, res) => {
   res.json(activeUsers)
 })
 
-/**
+/**.
  * Route request for new users within week
  *
  * @name get_newusers
@@ -143,7 +143,7 @@ router.get('/newusers', async (req, res) => {
   res.json(newUsers)
 })
 
-/**
+/**.
  * Route request for user activity today
  *
  * @name get_activitytoday
@@ -160,7 +160,7 @@ router.get('/activitytoday', async (req, res) => {
   res.json(activity)
 })
 
-/**
+/**.
  * Route request for retention/using periods
  *
  * @name get_retention
@@ -177,7 +177,7 @@ router.get('/retention', async (req, res) => {
   res.json(retention)
 })
 
-/**
+/**.
  * Route request for average retention rate
  *
  * @name get_avgretention

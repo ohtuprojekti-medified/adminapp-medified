@@ -1,4 +1,4 @@
-/**
+/**.
  * Caregivers JSX component
  *
  * @module src/components/Caregivers
@@ -8,7 +8,7 @@
 import React from 'react'
 import { Card } from 'primereact/card'
 
-/**
+/**.
  * Component listing registered caregivers
  *
  * @name Caregivers

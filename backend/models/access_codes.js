@@ -1,4 +1,4 @@
-/**
+/**.
  * Access codes database model
  *
  * @module models/access_codes

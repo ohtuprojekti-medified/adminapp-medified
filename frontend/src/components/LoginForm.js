@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for login form
  *
  * @module src/components/LoginForm
@@ -15,7 +15,7 @@ import { InputText } from 'primereact/inputtext'
 import { Password } from 'primereact/password'
 import { Button } from 'primereact/button'
 
-/**
+/**.
  * Component that creates a form for login and button for logout
  *
  * @type {object}
@@ -33,7 +33,7 @@ import { Button } from 'primereact/button'
  */
 const LoginForm = ({ username, setUsername, password, setPassword, user, setUser }) => {
 
-  /**
+  /**.
    * Handle login button presses
    *
    * @type {object}

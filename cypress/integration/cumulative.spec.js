@@ -1,11 +1,11 @@
-/**
+/**.
  * Cypress tests for cumulative users
  *
  * @module cypress/integration/Cumulative_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Describe tests for cumulative users page
  *
  * @name Cumulative
@@ -16,7 +16,7 @@
  */
 describe('Cumulative users', function () {
 
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -29,7 +29,7 @@ describe('Cumulative users', function () {
     cy.login()
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -42,7 +42,7 @@ describe('Cumulative users', function () {
     cy.logOut()
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists
    *
    * @name Cumulative_exists
@@ -57,7 +57,7 @@ describe('Cumulative users', function () {
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists after checking only patients with caregiver
    *
    * @name Cumulative_exists_after_checking_only_patients_with_caregiver
@@ -74,7 +74,7 @@ describe('Cumulative users', function () {
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists after selecting start date
    *
    * @name Cumulative_exists_after_selecting_start_date
@@ -92,7 +92,7 @@ describe('Cumulative users', function () {
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists after selecting end date
    *
    * @name Cumulative_exists_after_selecting_end_date
@@ -110,7 +110,7 @@ describe('Cumulative users', function () {
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists after selecting start date and end date
    *
    * @name Cumulative_exists_after_selecting_start_date_and_end_date
