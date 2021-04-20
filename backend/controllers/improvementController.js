@@ -11,6 +11,7 @@ const findWeeklyValues = async (organisation, withCaregiver, variable) => {
     let moodsWeekly = []
 
     if (organisation === 'ALL') {
+
       if (withCaregiver === true) {
         const userCaregivers = await user_care_givers.findAll({
           attributes: ['user_id', 'access_code_id', 'created_at', 'updated_at', 'consent']
@@ -80,6 +81,10 @@ const findWeeklyMoods = async (userMoodsData) => {
 
   const userMoods = userMoodsData.map(mood => mood.dataValues)
 
+  const userIds = userMoods.map(userMood => userMood.user_id)
+  const uniqueUserIds = [...new Set(userIds)]
+  const convertedIds = convertIds(uniqueUserIds)
+
   const firstCreated = userMoods[0].created_at.getTime()
   const first = new Date(firstCreated).setHours(0, 0, 0, 0)
   const last = userMoods[userMoods.length - 1].created_at.getTime()
@@ -104,7 +109,6 @@ const findWeeklyMoods = async (userMoodsData) => {
     const temp = week[1]
     week = [temp, addDays(temp, 7)]
     timeFrame = timeFrame + 604800000
-
     oneUserMoods = []
   }
 
@@ -118,13 +122,23 @@ const findWeeklyMoods = async (userMoodsData) => {
     if (moodValues.length === 0) {
       const averageValue = {
         week: weekDates,
-        average: null
+        averages: null
       }
       valuesWeekly = [...valuesWeekly, averageValue]
     } else if (moodValues.length === 1) {
+      const originalId = moodValues[0].user_id
+      const convertedId = convertedIds.find(id => id.originalId === originalId)
+      const moodAndId = {
+        id: convertedId.newId,
+        average: moodValues[0].value
+      }
+      const averageAndId = {
+        id: 'average',
+        average: moodValues[0].value
+      }
       const averageValue = {
         week: weekDates,
-        average: [moodValues[0].value, moodValues[0].value]
+        averages: [moodAndId, averageAndId]
       }
       valuesWeekly = [...valuesWeekly, averageValue]
     } else {
@@ -143,25 +157,42 @@ const findWeeklyMoods = async (userMoodsData) => {
         if (i + 1 === moodValues.length) {
           average = sum / count
           average = parseFloat(average.toFixed(2))
-          averages = [...averages, average]
+          const originalId = moodValues[i].user_id
+          const convertedId = convertedIds.find(id => id.originalId === originalId)
+          const moodAndId = {
+            id: convertedId.newId,
+            average: average
+          }
+          averages = [...averages, moodAndId]
           sum = 0
           count = 0
         } else if (moodValues[i].user_id !== moodValues[i + 1].user_id) {
           average = sum / count
           average = parseFloat(average.toFixed(2))
-          averages = [...averages, average]
+          const originalId = moodValues[i].user_id
+          const convertedId = convertedIds.find(id => id.originalId === originalId)
+          const moodAndId = {
+            id: convertedId.newId,
+            average: average
+          }
+          averages = [...averages, moodAndId]
           sum = 0
           count = 0
         }
 
       }
-      const averageSum = averages.reduce((a, b) => a + b, 0)
-      let averageOfAverages = averageSum / averages.length
+      const averageValues = averages.map(average => average.average)
+      const averageSum = averageValues.reduce((a, b) => a + b, 0)
+      let averageOfAverages = averageSum / averageValues.length
       averageOfAverages = parseFloat(averageOfAverages.toFixed(2))
-      averages = [...averages, averageOfAverages]
+      const averageAndId = {
+        id: 'average',
+        average: averageOfAverages
+      }
+      averages = [...averages, averageAndId]
       const averageValue = {
         week: weekDates,
-        average: averages
+        averages: averages
       }
       valuesWeekly = [...valuesWeekly, averageValue]
     }
@@ -169,6 +200,18 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
-// TODO USER ID CONVERTER?
+const convertIds = (userIds) => {
+  let newIds = []
+  for (let i = 0; i < userIds.length; i++) {
+    const originalId = userIds[i]
+    const newId = i + 1
+    const keyValuePair = {
+      originalId: originalId,
+      newId: newId
+    }
+    newIds = [...newIds, keyValuePair]
+  }
+  return newIds
+}
 
 module.exports = { findWeeklyValues }
