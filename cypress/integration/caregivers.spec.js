@@ -135,4 +135,36 @@ describe('Caregivers', function () {
     cy.contains('Caregivers')
     cy.contains('Registered caregivers: 5')
   })
+
+  it('exists after checking only patients with caregivers, start date and end date in filters', function () {
+    cy.contains('Filter').click()
+    cy.get('[data-testid="filter-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-date"]').type('2020-06-01')
+    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-date"]').type('2020-11-01')
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Caregivers')
+    cy.contains('Registered caregivers: 5')
+  })
+
+  it('does not exist after clicking Retention rates', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Caregivers')
+    cy.contains('Registered caregivers: 5')
+    cy.contains('Retention rate').click()
+    cy.contains('Adminapp for monitoring moods')
+    cy.get('Caregivers').should('not.exist')
+    cy.get('Registered caregivers: 5').should('not.exist')
+  })
+
+  it('does not exist after clicking New and active users', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Caregivers')
+    cy.contains('Registered caregivers: 5')
+    cy.contains('New and active users').click()
+    cy.contains('Adminapp for monitoring moods')
+    cy.get('Caregivers').should('not.exist')
+    cy.get('Registered caregivers: 5').should('not.exist')
+  })
 })
