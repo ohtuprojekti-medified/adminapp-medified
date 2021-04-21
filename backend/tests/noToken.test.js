@@ -52,6 +52,34 @@ const api = supertest(app)
 const apiUrl = '/api'
 
 /**
+ * Tests that weekly mood averages are not returned without token
+ *
+ * @name no_weekly_mood_averages_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('weekly mood averages are not returned without token', async () => {
+  await api.get(apiUrl + '/weeklyvalue')
+    .expect(403)
+})
+
+/**
+ * Tests that weekly improvement averages are not returned without token
+ *
+ * @name no_weekly_improvement_averages_without_token
+ * @function
+ * @memberof module:tests/noToken_test
+ * @param {string} name - Name of the test
+ * @param {object} test - Test code
+ */
+test('weekly improvement averages are not returned without token', async () => {
+  await api.get(apiUrl + '/weeklyimprovement')
+    .expect(403)
+})
+
+/**
  * Tests that users are not returned without token
  *
  * @name no_users_without_token
