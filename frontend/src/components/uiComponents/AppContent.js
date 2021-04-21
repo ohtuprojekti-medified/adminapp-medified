@@ -16,6 +16,7 @@ import Users from '../Users'
 import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
+import AverageMoodWeekly from '../AverageMoodWeekly'
 import WeeklyImprovement from '../WeeklyImprovement'
 
 /**
@@ -24,7 +25,8 @@ import WeeklyImprovement from '../WeeklyImprovement'
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX component containing all sub components
  */
-const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention, weeklyImprovementAverages }) => {
+const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
+  retentionRates, averageRetention, moodAverages, weeklyImprovementAverages }) => {
 
   const subContainer1 = {
     marginTop: '10px',
@@ -64,6 +66,12 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retent
           </div>
         </Route>
 
+        <Route path='/moodaverages'>
+          <div style={centered}>
+            <AverageMoodWeekly moodAverages={moodAverages} />
+          </div>
+        </Route>
+
         <Route path='/'>
           <div className="p-grid p-fluid dashboard" style={subContainer1}>
             <Users users={appUsers} />
@@ -77,6 +85,10 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retent
               <RetentionRate
                 retentionRates={retentionRates}
                 average={averageRetention} />
+            </div>
+            <div style={subContainer2}>
+              <AverageMoodWeekly
+                moodAverages={moodAverages} />
             </div>
             <div style={subContainer2}>
               <WeeklyImprovement
