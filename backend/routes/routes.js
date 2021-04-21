@@ -37,6 +37,12 @@ router.get('/weeklyvalues', async (req, res) => {
   res.json(weeklyvalues)
 })
 
+router.get('/weeklyimprovement', async (req, res) => {
+  const weeklyImprovement = await improvementController.findWeeklyImprovement(req.query.organisation, req.query.withCaregiver,
+    req.query.startDate, req.query.endDate, req.query.variable)
+  res.json(weeklyImprovement)
+})
+
 /**
  * Route request for users
  *
