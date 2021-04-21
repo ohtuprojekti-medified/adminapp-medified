@@ -19,6 +19,7 @@ const user_diary_item_groups = db.user_diary_item_groups
 const user_activities = db.user_activities
 const user_answers = db.user_answers
 const user_care_giver_activities = db.user_care_giver_activities
+const user_moods = db.user_moods
 const { Sequelize } = require('../models')
 const Op = Sequelize.Op
 
@@ -233,6 +234,11 @@ const findAllUserSurveyAnswers = async () => {
   })
   return userSurveyAnswers
 }
+
+const findAllMoods = async () => {
+  const userMoods = await user_moods.findAll()
+  return userMoods
+}
 module.exports = {
   findAllOrgs,
   findAllAccessCodes,
@@ -244,5 +250,6 @@ module.exports = {
   findAllUserDiaryItems,
   findAllUserDiaryItemGroups,
   findAllUserProfessionalProfiles,
-  findAllUserSurveyAnswers
+  findAllUserSurveyAnswers,
+  findAllMoods
 }
