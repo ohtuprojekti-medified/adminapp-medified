@@ -26,7 +26,7 @@ describe('<LoginForm />', () => {
   let component, formWithMock
   let usernameInput, passwordInput, loginForm
   let username, password
-  let mockSetUser, mockSetUsername, mockSetPassword
+  let mockHandleLogin, mockSetUsername, mockSetPassword
 
   // Test users username and password
   const testUsername = 'FormUser'
@@ -49,14 +49,14 @@ describe('<LoginForm />', () => {
     loginForm = component.container.querySelector('form')
 
     // Mock-functions for Form
-    mockSetUser = jest.fn()
+    mockHandleLogin = jest.fn()
     mockSetUsername = jest.fn()
     mockSetPassword = jest.fn()
 
     // Form with mock-functions
     formWithMock = render(
       <LoginForm username={username} setUsername={mockSetUsername} password={password}
-        setPassword={mockSetPassword} setUser={mockSetUser} />
+        setPassword={mockSetPassword} handleLogin={mockHandleLogin} />
     )
   })
 
@@ -78,16 +78,16 @@ describe('<LoginForm />', () => {
   })
 
   /**
-   * Test that submitting LoginForm calls setUser function
+   * Test that submitting LoginForm calls handleLogin function
    *
    * @type {object}
    * @function
    * @memberof module:src/components/LoginForm_test
    * @inner
-   * @param {string} description - submitting form calls setUser
+   * @param {string} description - submitting form calls handleLogin
    * @param {object} TestCode - Code that runs the test
    */
-  test('submitting form calls setUser', async () => {
+  test('submitting form calls handleLogin', async () => {
     const mockUsernameInput = formWithMock.container.querySelector('input[type=\'text\']')
     const mockPasswordInput = formWithMock.container.querySelector('input[type=\'password\']')
     const mockLoginForm = formWithMock.container.querySelector('form')
@@ -100,7 +100,7 @@ describe('<LoginForm />', () => {
     })
 
     fireEvent.submit(mockLoginForm)
-    await waitFor(() => expect(mockSetUser.mock.calls).toHaveLength(1))
+    await waitFor(() => expect(mockHandleLogin.mock.calls).toHaveLength(1))
   })
 
   /**
