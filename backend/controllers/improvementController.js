@@ -138,7 +138,7 @@ const findWeeklyMoods = async (userMoodsData) => {
     oneUserMoods = []
   }
 
-  // Count average moods
+  //  Count average moods
   let weekDates
   let valuesWeekly = []
   for (let i = 0; i < weeklyMoods.length; i++) {

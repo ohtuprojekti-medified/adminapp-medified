@@ -1,67 +1,62 @@
-/**
+/**.
  * Cypress tests for organisations filter
  *
  * @module cypress/integration/organisations_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Retrieve username from enviromment variables for logging in
  *
  * @name testUsername
  * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} username - Retrieve username from environment variables
  */
 const testUsername = Cypress.env('USERNAME')
 
-/**
+/**.
  * Retrieve password from enviromment variables for logging in
  *
  * @name testPassword
  * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} username - Retrieve password from environment variables
  */
 const testPassword = Cypress.env('PASSWORD')
 
-/**
+/**.
  * Retrieve admin username from enviromment variables for logging in
  *
  * @name testAdminUsername
  * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} username - Retrieve username from environment variables
  */
 const testAdminUsername = Cypress.env('ADMIN_USERNAME')
 
-/**
+/**.
  * Retrieve admin password from enviromment variables for logging in
  *
  * @name testAdminPassword
  * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} password - Retrieve password from environment variables
  */
 const testAdminPassword = Cypress.env('ADMIN_PASSWORD')
 
-/** Logs in with website UI
+/** Logs in with website UI.
  *
  * @name login
  * @type {object}
  * @constant
  * @memberof module:cypress/integration/organisations_spec
- * @inner
- * @param {string} username - Username typed into website
- * @param {string} password - Password typed into website
+ * @param {string} username - Username typed into website.
+ * @param {string} password - Password typed into website.
  */
 const login = (username, password) => {
   cy.get('#username').type(username)
@@ -71,19 +66,18 @@ const login = (username, password) => {
   cy.wait(500)
 }
 
-/**
+/**.
  * Describe tests for organisations filter
  *
  * @name Organisations
  * @type {object}
  * @memberof module:cypress/integration/organisations_spec
- * @inner
  * @param {string} describe - Organisations
  * @param {object} tests - Test code
  */
 describe('Organisations', function () {
 
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -96,7 +90,7 @@ describe('Organisations', function () {
     cy.visit('http://localhost:3000')
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -108,7 +102,7 @@ describe('Organisations', function () {
   afterEach(function () {
   })
 
-  /**
+  /**.
    * Test that organisations filter exists
    *
    * @name Organisations_filter_exists
@@ -127,7 +121,7 @@ describe('Organisations', function () {
     cy.contains('Log out').click()
   })
 
-  /**
+  /**.
    * Test that organisation filter does not show for normal user
    *
    * @name Organisations_filter_not_showing_for_normal_user

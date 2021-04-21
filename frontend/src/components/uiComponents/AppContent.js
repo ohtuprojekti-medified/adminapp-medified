@@ -1,13 +1,14 @@
-/**
+/**.
  * Component containing all UI components on the home page
  *
  * @module src/components/uiComponents/AppContent
  * @requires react
  * @requires react-router-dom
- * @requires components/Users
- * @requires components/Caregivers
- * @requires components/Cumulative
- * @requires components/RetentionRate
+ * @requires src/components/Users
+ * @requires src/components/Caregivers
+ * @requires src/components/Cumulative
+ * @requires src/components/RetentionRate
+ * @exports AppContent - Page content
  */
 import React from 'react'
 import { BrowserRouter as Route, Switch } from 'react-router-dom'
@@ -19,10 +20,11 @@ import RetentionRate from '../RetentionRate'
 import AverageMoodWeekly from '../AverageMoodWeekly'
 import WeeklyImprovement from '../WeeklyImprovement'
 
-/**
+/**.
  * Component containing all UI components on the home page
  *
  * @param {*} param0 - all props from App.js
+ * @memberof module:src/components/uiComponents/AppContent
  * @returns {object} - JSX component containing all sub components
  */
 const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
