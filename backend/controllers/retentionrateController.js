@@ -1,9 +1,10 @@
 const { differenceInCalendarDays } = require('date-fns')
 const db = require('../models')
-const { Op } = require('sequelize')
 const user_profiles = db.user_profiles
 const user_activities = db.user_activities
 const controller = require('./controller')
+const { addDateFilterToQuery } = require('./filters')
+
 
 /**
  * Returns retention rates as in how long does user use app actively
@@ -17,57 +18,20 @@ const controller = require('./controller')
 const findRetentionRates = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   const userIdsArray = userIds.map(user => user.user_id)
-  let userActivities
-  if (startDate === '' && endDate === '') {
-    userActivities = await user_activities.findAll({
-      where: {
-        user_id: userIdsArray
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at']
-    })
-  } else if (startDate === '') {
-    userActivities = await user_activities.findAll({
-      where: {
-        user_id: userIdsArray,
-        created_at: {
-          [Op.lte]: endDate
-        }
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at']
-    })
-  } else if (endDate === '') {
-    userActivities = await user_activities.findAll({
-      where: {
-        user_id: userIdsArray,
-        created_at: {
-          [Op.gte]: startDate
-        }
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at']
-    })
-  } else {
-    userActivities = await user_activities.findAll({
-      where: {
-        user_id: userIdsArray,
-        created_at: {
-          [Op.between]: [startDate, endDate]
-        }
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at']
-    })
+
+  let activitiesQuery = {
+    where: {
+      user_id: userIdsArray
+    },
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['id', 'user_id', 'created_at']
   }
+
+  addDateFilterToQuery(activitiesQuery, startDate, endDate)
+  const userActivities = await user_activities.findAll(activitiesQuery)
+
   const userProfiles = await user_profiles.findAll({
     where: {
       user_id: userIdsArray
@@ -81,7 +45,6 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
 
   const allActivities = userActivities.map(activity => activity.dataValues)
   const userIdsActivities = allActivities.map(obj => obj.user_id)
-
 
   const allUserProfiles = userProfiles.map(profile => profile.dataValues)
   const activeUsers = allUserProfiles.filter(user => userIdsActivities.includes(user.user_id))
