@@ -30,7 +30,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
   visible, setVisible, organisations, handleOrganisationChange, organisationSelect,
   startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
   handleEndDateEnableChange, handleStartDateChange, handleEndDateChange,
-  moodGraph, moodGraphLabels, handleMoodGraphChange }) => {
+  moodDataSelect, moodGraphLabels, handleMoodDataSelectChange }) => {
 
   /**
    * Handle logout button presses
@@ -101,9 +101,9 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
               handleStartDateChange={handleStartDateChange}
               handleEndDateChange={handleEndDateChange} />
             <MoodFilter
-              moodGraph={moodGraph}
+              moodDataSelect={moodDataSelect}
               moodGraphLabels={moodGraphLabels}
-              handleMoodGraphChange={handleMoodGraphChange} />
+              handleMoodDataSelectChange={handleMoodDataSelectChange} />
           </Sidebar>
 
           <Button label={'Filter'} icon="pi pi-filter" className="p-mr-2" onClick={() => setVisible(true)} />

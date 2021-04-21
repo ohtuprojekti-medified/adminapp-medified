@@ -1,11 +1,11 @@
 import React from 'react'
 import { Dropdown } from 'primereact/dropdown'
 
-const MoodFilter = ({ moodGraph, moodGraphLabels, handleMoodGraphChange }) => {
-  const placeholder = moodGraph ? moodGraph : 'MOOD'
+const MoodFilter = ({ moodDataSelect, moodGraphLabels, handleMoodDataSelectChange }) => {
+  const placeholder = moodDataSelect ? moodDataSelect : 'MOOD'
   const moodGraphLabelArray = moodGraphLabels.map(x => x.label)
   const setMoodGraph = (e) => {
-    handleMoodGraphChange(e.value)
+    handleMoodDataSelectChange(e.value)
   }
   return (
     <div className="dropdown">
