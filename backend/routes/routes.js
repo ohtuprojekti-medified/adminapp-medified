@@ -33,7 +33,7 @@ require('express-async-errors')
 
 router.get('/weeklyvalues', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const weeklyvalues = await improvementController.findWeeklyValues(req.query.organisation, withCaregiver, req.query.variable)
+  const weeklyvalues = await improvementController.findWeeklyValues(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate, req.query.variable)
   res.json(weeklyvalues)
 })
 
