@@ -68,6 +68,7 @@ const App = () => {
   const [moodChartData, setMoodChartData] = useState([])
   const [moodAverages, setMoodAverages] = useState([])
   const [moodGraph, setMoodGraph] = useState('MOOD')
+  const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
   const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
 
   /**
@@ -167,15 +168,15 @@ const App = () => {
           dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
-          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=MOOD`).then(weeklyValues => setMoodAverages(weeklyValues))
-          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${'MOOD'}`).then(weeklyImprovement => setWeeklyImprovementAverages(weeklyImprovement))
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodGraph}`).then(weeklyValues => setMoodAverages(weeklyValues))
+          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodGraph}`).then(weeklyImprovement => setWeeklyImprovementAverages(weeklyImprovement))
         }
       }
     }
 
     fetchData()
 
-  }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable])
+  }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable, moodGraph])
 
   /**
    *
@@ -242,7 +243,7 @@ const App = () => {
   }
 
   const moodGraphLabels = [
-    { label: 'MOOD', data: moodAverages }
+    { label: 'MOOD', averageMoodWeeklyData: moodAverages, weeklyImprovementData: weeklyImprovementAverages }
   ]
 
   /**
@@ -253,7 +254,8 @@ const App = () => {
    */
   const handleMoodGraphChange = (label) => {
     setMoodGraph(label)
-    setMoodChartData(moodGraphLabels.filter(entry => entry.label === label)[0].data)
+    setMoodChartData(moodGraphLabels.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
+    setWeeklyImprovementChartData(moodGraphLabels.filter(entry => entry.label === label)[0].weeklyImprovementData)
   }
 
   const containerStyle = {
@@ -300,7 +302,7 @@ const App = () => {
                 retentionRates={retentionRates}
                 averageRetention={averageRetention}
                 moodChartData={moodChartData}
-                weeklyImprovementAverages={weeklyImprovementAverages}
+                weeklyImprovementAverages={weeklyImprovementChartData}
                 username={username}
                 setUsername={setUsername}
                 password={password}
