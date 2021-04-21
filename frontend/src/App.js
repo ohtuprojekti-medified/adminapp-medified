@@ -66,9 +66,8 @@ const App = () => {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [moodAverages, setMoodAverages] = useState([])
-  const [BDIAverages, setBDIAverages] = useState([])
-  const [PHQ9Averages, setPHQ9Averages] = useState([])
   const [moodGraph, setMoodGraph] = useState('ALL')
+  const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -168,8 +167,7 @@ const App = () => {
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
           dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=MOOD`).then(weeklyValues => setMoodAverages(weeklyValues))
-          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=BDI`).then(weeklyValues => setBDIAverages(weeklyValues))
-          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=PHQ9`).then(weeklyValues => setPHQ9Averages(weeklyValues))
+          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${'MOOD'}`).then(weeklyImprovement => setWeeklyImprovementAverages(weeklyImprovement))
         }
       }
     }
@@ -293,10 +291,9 @@ const App = () => {
                 retentionRates={retentionRates}
                 averageRetention={averageRetention}
                 moodAverages={moodAverages}
-                BDIAverages={BDIAverages}
-                PHQ9Averages={PHQ9Averages}
                 moodGraph={moodGraph}
                 handleMoodGraphChange={handleMoodGraphChange}
+                weeklyImprovementAverages={weeklyImprovementAverages}
                 username={username}
                 setUsername={setUsername}
                 password={password}
