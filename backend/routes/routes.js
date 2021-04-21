@@ -28,9 +28,23 @@ const router = require('express').Router()
 const controller = require('../controllers/controller')
 const retentionrateController = require('../controllers/retentionrateController')
 const userhistoryController = require('../controllers/userhistoryController')
+const improvementController = require('../improvementController')
 
 // handle errors if database-queries fail
 require('express-async-errors')
+
+
+router.get('/weeklyvalues', async (req, res) => {
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const weeklyvalues = await improvementController.findWeeklyValues(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate, req.query.variable)
+  res.json(weeklyvalues)
+})
+
+router.get('/weeklyimprovement', async (req, res) => {
+  const weeklyImprovement = await improvementController.findWeeklyImprovement(req.query.organisation, req.query.withCaregiver,
+    req.query.startDate, req.query.endDate, req.query.variable)
+  res.json(weeklyImprovement)
+})
 
 /**.
  * Route request for users
