@@ -16,6 +16,7 @@ import Users from '../Users'
 import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
+import WeeklyImprovement from '../WeeklyImprovement'
 
 /**
  * Component containing all UI components on the home page
@@ -23,7 +24,7 @@ import RetentionRate from '../RetentionRate'
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX component containing all sub components
  */
-const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention }) => {
+const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retentionRates, averageRetention, weeklyImprovementAverages }) => {
 
   const subContainer1 = {
     marginTop: '10px',
@@ -76,6 +77,10 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers, retent
               <RetentionRate
                 retentionRates={retentionRates}
                 average={averageRetention} />
+            </div>
+            <div style={subContainer2}>
+              <WeeklyImprovement
+                weeklyImprovementAverages={weeklyImprovementAverages} />
             </div>
           </div>
         </Route>

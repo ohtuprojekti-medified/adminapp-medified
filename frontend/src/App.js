@@ -65,6 +65,7 @@ const App = () => {
   const [endDateEnable, setEndDateEnable] = useState(false)
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
+  const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
 
   /**
    * Configure amplify authorization and check if user is logged in
@@ -163,6 +164,7 @@ const App = () => {
           dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
+          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${'MOOD'}`).then(weeklyImprovement => setWeeklyImprovementAverages(weeklyImprovement))
         }
       }
     }
@@ -275,6 +277,7 @@ const App = () => {
                 activeUsers={activeUsers}
                 retentionRates={retentionRates}
                 averageRetention={averageRetention}
+                weeklyImprovementAverages={weeklyImprovementAverages}
                 username={username}
                 setUsername={setUsername}
                 password={password}
