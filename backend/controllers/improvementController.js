@@ -226,6 +226,18 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
+/**
+ * Find weekly mood improvement percentages
+ *
+ * @constant
+ * @async
+ * @param {string} organisation - Organisation for filtering
+ * @param {boolean} withCaregiver - Show only users with caregiver filter value
+ * @param {string} startDate - Start date for filtering
+ * @param {string} endDate - End date for filtering
+ * @param {string} variable - Selector for mood data type
+ * @returns {Array} - Mood improvement percentages and their dates in an array
+ */
 const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
   const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
   let lastValue = [...weeklyValues][0].averages === null
