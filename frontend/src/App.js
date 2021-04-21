@@ -60,7 +60,7 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [organisationSelect, setOrganisation] = useState('ALL')
   const [visible, setVisible] = useState(false)
-  const [organisations, setOrganisations] = useState(null)
+  const [organisations, setOrganisations] = useState([])
   const [startDateEnable, setStartDateEnable] = useState(false)
   const [endDateEnable, setEndDateEnable] = useState(false)
   const [startDate, setStartDate] = useState('')
