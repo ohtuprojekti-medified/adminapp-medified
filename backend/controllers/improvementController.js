@@ -79,7 +79,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
       } else {
         const usersInOrganisation = await controller.findAllUsers(organisation, false)
         const usersInOrganisationIdArray = usersInOrganisation.map(user => user.user_id)
-        
+
         weeklyValuesQuery = {
           attributes: ['id', 'user_id', 'created_at', 'value'],
           where: {
