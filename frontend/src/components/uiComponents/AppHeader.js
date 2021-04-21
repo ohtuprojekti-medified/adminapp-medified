@@ -50,6 +50,7 @@ const Header = () => {
       <HeaderLink page='' title='Home' />
       <HeaderLink page='retention' title='Retention rates' />
       <HeaderLink page='cumulative' title='New and active users' />
+      <HeaderLink page='moodaverages' title='Mood improvement' />
     </div>
   )
 }

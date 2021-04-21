@@ -66,6 +66,8 @@ const App = () => {
   const [endDateEnable, setEndDateEnable] = useState(false)
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
+  const [moodAverages, setMoodAverages] = useState([])
+  const [moodGraph, setMoodGraph] = useState('ALL')
   const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
 
   /**.
@@ -165,6 +167,7 @@ const App = () => {
           dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=MOOD`).then(weeklyValues => setMoodAverages(weeklyValues))
           dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${'MOOD'}`).then(weeklyImprovement => setWeeklyImprovementAverages(weeklyImprovement))
         }
       }
@@ -259,6 +262,16 @@ const App = () => {
     }
   }
 
+  /**
+   *
+   * Event handler for changing the status of moodGraph
+   *
+   * @param {string} label - Name of mood graph to be used
+   */
+  const handleMoodGraphChange = (label) => {
+    setMoodGraph(label)
+  }
+
   const containerStyle = {
     position: 'relative',
     minHeight: '100vh',
@@ -299,6 +312,9 @@ const App = () => {
                 activeUsers={activeUsers}
                 retentionRates={retentionRates}
                 averageRetention={averageRetention}
+                moodAverages={moodAverages}
+                moodGraph={moodGraph}
+                handleMoodGraphChange={handleMoodGraphChange}
                 weeklyImprovementAverages={weeklyImprovementAverages}
                 username={username}
                 setUsername={setUsername}

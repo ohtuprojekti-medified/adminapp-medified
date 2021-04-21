@@ -55,7 +55,7 @@ describe('Retention rate', function () {
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Retention rates')
-    cy.contains('Average using period 28.17 days')
+    cy.contains('Average using period 17.83 days')
     cy.contains('Average period and single periods:')
   })
 
@@ -93,7 +93,7 @@ describe('Retention rate', function () {
     cy.get('[data-testid="startDate-checkbox"]').check()
     cy.get('[data-testid="startDate-date"]').type('2020-10-01')
     cy.contains('Retention rates')
-    cy.contains('Average using period 27.67 days')
+    cy.contains('Average using period 17.33 days')
     cy.contains('Average period and single periods:')
   })
 
@@ -133,7 +133,7 @@ describe('Retention rate', function () {
     cy.get('[data-testid="endDate-checkbox"]').check()
     cy.get('[data-testid="endDate-date"]').type('2020-12-01')
     cy.contains('Retention rates')
-    cy.contains('Average using period 6.50 days')
+    cy.contains('Average using period 2.50 days')
     cy.contains('Average period and single periods:')
   })
 })

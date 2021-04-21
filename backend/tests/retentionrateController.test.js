@@ -17,6 +17,8 @@
  * @name sinon
  */
 const sinon = require('sinon')
+
+// const { format } = require('date-fns')
 let retentionrateController
 let db
 let user_activities_stub, user_profiles_stub
@@ -29,6 +31,9 @@ let user_activities_stub, user_profiles_stub
  */
 const newDates = require('./newDatesAroundLastMidnight')
 
+const TIMES1 = newDates([-46.7, -39.6, -32.5, -25.4, -17.6, -7])
+const TIMES2 = newDates([-25.4, -20.6, -7])
+
 /**.
  * Creates retentionrateController with mock data
  *
@@ -39,8 +44,6 @@ const newDates = require('./newDatesAroundLastMidnight')
  */
 const retentionrateControllerMocked = () => {
   db = require('../models')
-  const TIMES1 = newDates([-46.7, -39.6, -32.5, -25.4, -17.6, -7])
-  const TIMES2 = newDates([-25.4, -17.6, -7])
 
   user_activities_stub = sinon.stub(db.user_activities, 'findAll')
     .callsFake(() => {
@@ -49,63 +52,63 @@ const retentionrateControllerMocked = () => {
           dataValues: {
             id: 21,
             user_id: 'user21',
-            created_at: TIMES1[1]
+            created_at: TIMES1[0]
           }
         },
         {
           dataValues: {
             id: 22,
             user_id: 'user21',
-            created_at: TIMES1[2]
+            created_at: TIMES1[1]
           }
         },
         {
           dataValues: {
             id: 23,
             user_id: 'user21',
-            created_at: TIMES1[3]
+            created_at: TIMES1[2]
           }
         },
         {
           dataValues: {
             id: 24,
             user_id: 'user21',
-            created_at: TIMES1[4]
+            created_at: TIMES1[3]
           }
         },
         {
           dataValues: {
             id: 25,
             user_id: 'user21',
-            created_at: TIMES1[5]
+            created_at: TIMES1[4]
           }
         },
         {
           dataValues: {
             id: 26,
             user_id: 'user21',
-            created_at: TIMES1[6]
+            created_at: TIMES1[5]
           }
         },
         {
           dataValues: {
             id: 27,
             user_id: 'user22',
-            created_at: TIMES2[1]
+            created_at: TIMES2[0]
           }
         },
         {
           dataValues: {
             id: 28,
             user_id: 'user22',
-            created_at: TIMES2[2]
+            created_at: TIMES2[1]
           }
         },
         {
           dataValues: {
             id: 29,
             user_id: 'user22',
-            created_at: TIMES2[3]
+            created_at: TIMES2[2]
           }
         }
       ]
@@ -174,7 +177,14 @@ describe('retentionrate controller', () => {
    * @param {object} test - Test code
    */
   test('findRetentionRates returns correct data', async () => {
-    expect(await retentionrateController.findRetentionRates('ALL')).toEqual([{ daysUsed: 14 }])
+    expect(await retentionrateController.findRetentionRates('ALL')).toEqual([
+      {
+        daysUsed: 21,
+      },
+      {
+        daysUsed: 5,
+      },
+    ])
   })
 
   /**.
@@ -188,8 +198,35 @@ describe('retentionrate controller', () => {
    * @param {object} test - Test code
    */
   test('findAverageRetentionRate returns correct average', async () => {
-    expect(await retentionrateController.findAverageRetentionRate('ALL')).toEqual(14)
+    expect(await retentionrateController.findAverageRetentionRate('ALL')).toEqual(13)
   })
+
+  // test('findRetentionRates returns correct data with start date filter', async () => {
+  //   const ratesWithStartDate = await retentionrateController.findRetentionRates('ALL', false, format(TIMES1[1], 'yyyy-MM-dd'), '')
+  //   console.log('TESTING LOG')
+  //   console.log(ratesWithStartDate)
+  //   expect(ratesWithStartDate).toEqual([{ daysUsed: 14 }])
+  // })
+
+  // test('findRetentionRates returns correct data with end date filter', async () => {
+  //   expect(await retentionrateController.findRetentionRates('ALL', false, '', format(TIMES1[4], 'yyyy-MM-dd'))).toEqual([{ daysUsed: 14 }])
+  // })
+
+  // test('findRetentionRates returns correct data with start date and end date filter', async () => {
+  //   expect(await retentionrateController.findRetentionRates('ALL', false, format(TIMES1[1], 'yyyy-MM-dd'), format(TIMES1[4], 'yyyy-MM-dd'))).toEqual([{ daysUsed: 14 }])
+  // })
+
+  // test('findAverageRetentionRate returns correct data with start date filter', async () => {
+  //   expect(await retentionrateController.findAverageRetentionRate('ALL', false, format(TIMES1[1], 'yyyy-MM-dd'), '')).toEqual(14)
+  // })
+
+  // test('findAverageRetentionRate returns correct data with end date filter', async () => {
+  //   expect(await retentionrateController.findAverageRetentionRate('ALL', false, '', format(TIMES1[4], 'yyyy-MM-dd'))).toEqual(14)
+  // })
+
+  // test('findAverageRetentionRate returns correct data with start date and end date filter', async () => {
+  //   expect(await retentionrateController.findAverageRetentionRate('ALL', false, format(TIMES1[1], 'yyyy-MM-dd'), format(TIMES1[4], 'yyyy-MM-dd'))).toEqual(14)
+  // })
 
   /**.
    * Code to be run after each test
