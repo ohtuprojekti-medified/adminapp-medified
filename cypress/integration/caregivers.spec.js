@@ -147,24 +147,4 @@ describe('Caregivers', function () {
     cy.contains('Caregivers')
     cy.contains('Registered caregivers: 5')
   })
-
-  it('does not exist after clicking Retention rates', function () {
-    cy.contains('Adminapp for monitoring moods')
-    cy.contains('Caregivers')
-    cy.contains('Registered caregivers: 5')
-    cy.contains('Retention rate').click()
-    cy.contains('Adminapp for monitoring moods')
-    cy.get('Caregivers').should('not.exist')
-    cy.get('Registered caregivers: 5').should('not.exist')
-  })
-
-  it('does not exist after clicking New and active users', function () {
-    cy.contains('Adminapp for monitoring moods')
-    cy.contains('Caregivers')
-    cy.contains('Registered caregivers: 5')
-    cy.contains('New and active users').click()
-    cy.contains('Adminapp for monitoring moods')
-    cy.get('Caregivers').should('not.exist')
-    cy.get('Registered caregivers: 5').should('not.exist')
-  })
 })
