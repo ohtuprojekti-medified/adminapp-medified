@@ -16,6 +16,7 @@ const { addDateFilterToQuery } = require('./filters')
  * @returns  {...any} usingPeriods - number of days per using period
  */
 const findRetentionRates = async (organisation, withCaregiver, startDate, endDate) => {
+
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   const userIdsArray = userIds.map(user => user.user_id)
 
@@ -42,7 +43,6 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
     attributes: ['user_id', 'created_at']
   })
 
-
   const allActivities = userActivities.map(activity => activity.dataValues)
   const userIdsActivities = allActivities.map(obj => obj.user_id)
 
@@ -59,6 +59,7 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
       if (differenceInCalendarDays(usersActivity[i].created_at, usersActivity[i - 1].created_at) > 7) {
 
         if (differenceInCalendarDays(usersActivity[i - 1].created_at, first) === 0) {
+          first = usersActivity[i].created_at
           continue
         }
 
