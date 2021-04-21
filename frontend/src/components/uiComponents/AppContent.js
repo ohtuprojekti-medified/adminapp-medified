@@ -66,9 +66,16 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
           </div>
         </Route>
 
-        <Route path='/moodaverages'>
-          <div style={centered}>
-            <AverageMoodWeekly moodAverages={moodChartData} />
+        <Route path='/moodimprovement'>
+          <div>
+            <div style={subContainer2}>
+              <AverageMoodWeekly
+                moodAverages={moodChartData} />
+            </div>
+            <div style={subContainer2}>
+              <WeeklyImprovement
+                weeklyImprovementAverages={weeklyImprovementAverages} />
+            </div>
           </div>
         </Route>
 
@@ -86,13 +93,15 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
                 retentionRates={retentionRates}
                 average={averageRetention} />
             </div>
-            <div style={subContainer2}>
-              <AverageMoodWeekly
-                moodAverages={moodChartData} />
-            </div>
-            <div style={subContainer2}>
-              <WeeklyImprovement
-                weeklyImprovementAverages={weeklyImprovementAverages} />
+            <div>
+              <div style={subContainer2}>
+                <AverageMoodWeekly
+                  moodAverages={moodChartData} />
+              </div>
+              <div style={subContainer2}>
+                <WeeklyImprovement
+                  weeklyImprovementAverages={weeklyImprovementAverages} />
+              </div>
             </div>
           </div>
         </Route>
