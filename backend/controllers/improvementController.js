@@ -226,6 +226,13 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
+const findWeeklyImprovement = (organisation, withCaregiver, startDate, endDate, variable) => {
+  const weeklyValues = findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+  let weeklyImprovement = []
+  weeklyValues.reduce(entry => weeklyImprovement.push({ week: entry.week, average: entry.averages['average'] }))
+  return weeklyImprovement
+}
+
 const convertIds = (userIds) => {
   let newIds = []
   for (let i = 0; i < userIds.length; i++) {
@@ -240,4 +247,4 @@ const convertIds = (userIds) => {
   return newIds
 }
 
-module.exports = { findWeeklyValues }
+module.exports = { findWeeklyValues, findWeeklyImprovement }
