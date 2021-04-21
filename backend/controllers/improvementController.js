@@ -226,10 +226,24 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
-const findWeeklyImprovement = (organisation, withCaregiver, startDate, endDate, variable) => {
-  const weeklyValues = findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
+  const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+  let lastValue = [...weeklyValues][0].averages === null
+    ? 0
+    : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
   let weeklyImprovement = []
-  weeklyValues.reduce(entry => weeklyImprovement.push({ week: entry.week, average: entry.averages['average'] }))
+  weeklyValues === null
+    ? null
+    : [...weeklyValues].forEach(entry => {
+      const newValue = entry.averages === null
+        ? lastValue
+        : entry.averages.filter(average => average.id === 'average')[0].average
+      weeklyImprovement.push({
+        week: entry.week,
+        average: ((newValue - lastValue) / lastValue).toFixed(2)
+      })
+      lastValue = newValue
+    })
   return weeklyImprovement
 }
 
