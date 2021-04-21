@@ -16,7 +16,7 @@ import Users from '../Users'
 import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
-import MoodAverage from '../MoodAverage'
+import AverageMoodWeekly from '../AverageMoodWeekly'
 
 /**
  * Component containing all UI components on the home page
@@ -67,7 +67,7 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
 
         <Route path='/moodaverages'>
           <div style={centered}>
-            <MoodAverage moodAverages={moodChartData} />
+            <AverageMoodWeekly moodAverages={moodChartData} />
           </div>
         </Route>
 
@@ -86,14 +86,15 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
                 average={averageRetention} />
             </div>
             <div style={centered}>
-              <MoodAverage
+              <AverageMoodWeekly
                 moodAverages={moodChartData} />
+
             </div>
           </div>
         </Route>
 
       </Switch>
-    </div>
+    </div >
   )
 }
 
