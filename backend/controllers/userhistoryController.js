@@ -1,10 +1,10 @@
 const { addDays } = require('date-fns')
 const db = require('../models')
 const { Sequelize } = require('../models')
-const { Op } = require('sequelize')
 const user_profiles = db.user_profiles
 const user_activities = db.user_activities
 const controller = require('./controller')
+const { addDateFilterToQuery } = require('./filters')
 
 /**
  * Returns all user activities in app today from database
@@ -72,59 +72,19 @@ const findNewUsers = async (organisation, withCaregiver) => {
 
 const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
-  let usersCreatedAt
-  if (startDate === '' && endDate === '') {
-    usersCreatedAt = await user_profiles.findAll({
-      where: {
-        user_id: userIds.map(user => user.user_id)
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['created_at']
-    })
-  } else if (startDate === '') {
-    usersCreatedAt = await user_profiles.findAll({
-      where: {
-        user_id: userIds.map(user => user.user_id),
-        created_at: {
-          [Op.lte]: endDate
-        }
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['created_at']
-    })
+
+  let userProfilesQuery = {
+    where: {
+      user_id: userIds.map(user => user.user_id)
+    },
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['created_at']
   }
-  else if (endDate === '') {
-    usersCreatedAt = await user_profiles.findAll({
-      where: {
-        user_id: userIds.map(user => user.user_id),
-        created_at: {
-          [Op.gte]: startDate
-        }
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['created_at']
-    })
-  }
-  else {
-    usersCreatedAt = await user_profiles.findAll({
-      where: {
-        user_id: userIds.map(user => user.user_id),
-        created_at: {
-          [Op.between]: [startDate, endDate]
-        }
-      },
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['created_at']
-    })
-  }
+
+  addDateFilterToQuery(userProfilesQuery, startDate, endDate)
+  const usersCreatedAt = await user_profiles.findAll(userProfilesQuery)
 
   const createdDates = usersCreatedAt.map(user => user.dataValues)
 
@@ -162,59 +122,20 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
  */
 const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
-  let userActivities
-  if (startDate === '' && endDate === '') {
-    userActivities = await user_activities.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at'],
-      where: {
-        user_id: userIds.map(user => user.user_id)
-      }
-    })
-  } else if (startDate === '') {
-    userActivities = await user_activities.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at'],
-      where: {
-        user_id: userIds.map(user => user.user_id),
-        created_at: {
-          [Op.lte]: endDate
-        }
-      }
-    })
-  } else if (endDate === '') {
-    userActivities = await user_activities.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at'],
-      where: {
-        user_id: userIds.map(user => user.user_id),
-        created_at: {
-          [Op.gte]: startDate
-        }
-      }
-    })
-  } else {
-    userActivities = await user_activities.findAll({
-      order: [
-        ['created_at', 'ASC']
-      ],
-      attributes: ['id', 'user_id', 'created_at'],
-      where: {
-        user_id: userIds.map(user => user.user_id),
-        created_at: {
-          [Op.between]: [startDate, endDate]
-        }
-      }
-    })
+  let userAcitivitiesQuery = {
+    order: [
+      ['created_at', 'ASC']
+    ],
+    attributes: ['id', 'user_id', 'created_at'],
+    where: {
+      user_id: userIds.map(user => user.user_id)
+    }
   }
+  addDateFilterToQuery(userAcitivitiesQuery, startDate, endDate)
 
+  const userActivities = await user_activities.findAll(userAcitivitiesQuery)
   const allActivities = userActivities.map(activity => activity.dataValues)
+
   if (allActivities.length === 0) {
     return []
   }
