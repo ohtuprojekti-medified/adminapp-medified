@@ -88,11 +88,7 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
             </div>
             <div style={subContainer2}>
               <AverageMoodWeekly
-                moodAverages={moodAverages}
-                BDIAverages={BDIAverages}
-                PHQ9Averages={PHQ9Averages}
-                moodGraph={moodGraph}
-                handleMoodGraphChange={handleMoodGraphChange} />
+                moodAverages={moodAverages} />
             </div>
             <div style={subContainer2}>
               <WeeklyImprovement
