@@ -136,6 +136,16 @@ describe('Weekly improvement', function () {
     cy.contains('Weekly Improvement')
   })
 
+  /**
+   * Test that WeeklyImprovement page exists after checking only patients with caregivers, start date and end date
+   *
+   * @name WeeklyImprovement_exists_after_checking_only_patients_with_caregivers_start_date_and_end_date
+   * @type {object}
+   * @memberof module:cypress/integration/WeeklyImprovement_spec
+   * @inner
+   * @param {string} describe - exists after selecting only patients with caregiver start date and end date
+   * @param {object} testFunction - Function that runs test
+   */
   it('exists after checking only patients with caregivers, start date and end date in filters', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
@@ -149,15 +159,35 @@ describe('Weekly improvement', function () {
     cy.contains('Weekly Improvement')
   })
 
+  /**
+   * Test that WeeklyImprovement page does not exist after clicking Retention rate
+   *
+   * @name WeeklyImprovement_does_not_exist_after_clicking_Retention_rates
+   * @type {object}
+   * @memberof module:cypress/integration/WeeklyImprovement_spec
+   * @inner
+   * @param {string} describe - does not exist after clicking Retention rates
+   * @param {object} testFunction - Function that runs test
+   */
   it('does not exist after clicking Retention rates', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
-    cy.contains('Retention rate').click()
+    cy.contains('Retention rates').click()
     cy.contains('Adminapp for monitoring moods')
     cy.get('Adminapp for monitoring moods').should('not.exist')
     cy.get('Weekly Improvement').should('not.exist')
   })
 
+  /**
+   * Test that WeeklyImprovement page does not exist after clicking New and active users
+   *
+   * @name WeeklyImprovement_does_not_exist_after_clicking_New_and_active_users
+   * @type {object}
+   * @memberof module:cypress/integration/WeeklyImprovement_spec
+   * @inner
+   * @param {string} describe - does not exist after clicking New and active users
+   * @param {object} testFunction - Function that runs test
+   */
   it('does not exist after clicking New and active users', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
