@@ -262,7 +262,7 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    *
    * Event handler for changing the status of moodGraph
    *

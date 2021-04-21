@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for graphing mood averages
  *
  * @module src/components/MoodAverage
@@ -9,7 +9,7 @@
 import React from 'react'
 import { Chart } from 'primereact/chart'
 
-/**
+/**.
  * Component for graphing all new users, cumulative
  *
  * @type {object}
