@@ -3,12 +3,18 @@ const controller = require('./controller')
 const db = require('../models')
 const user_moods = db.user_moods
 const user_care_givers = db.user_care_givers
+const { addDateFilterToQuery } = require('./filters')
 
-const findWeeklyValues = async (organisation, withCaregiver, variable) => {
+const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate, variable) => {
+
+  console.log('MITÄS TÄÄL')
+  console.log(startDate)
+
 
   if (variable === 'MOOD') {
     let userMoodData = []
     let moodsWeekly = []
+    let weeklyValuesQuery
 
     if (organisation === 'ALL') {
 
@@ -16,7 +22,8 @@ const findWeeklyValues = async (organisation, withCaregiver, variable) => {
         const userCaregivers = await user_care_givers.findAll({
           attributes: ['user_id', 'access_code_id', 'created_at', 'updated_at', 'consent']
         })
-        userMoodData = await user_moods.findAll({
+
+        weeklyValuesQuery = {
           attributes: ['id', 'user_id', 'created_at', 'value'],
           where: {
             user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id)
@@ -25,17 +32,24 @@ const findWeeklyValues = async (organisation, withCaregiver, variable) => {
             ['created_at', 'ASC'],
             ['user_id', 'ASC']
           ]
-        })
+        }
+
+        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
+
+        userMoodData = await user_moods.findAll(weeklyValuesQuery)
 
         moodsWeekly = await findWeeklyMoods(userMoodData)
+
       } else {
-        userMoodData = await user_moods.findAll({
+        weeklyValuesQuery = {
           order: [
             ['created_at', 'ASC'],
             ['user_id', 'ASC']
           ],
           attributes: ['id', 'user_id', 'created_at', 'value']
-        })
+        }
+        addDateFilterToQuery(weeklyValuesQuery)
+        userMoodData = await user_moods.findAll(weeklyValuesQuery)
 
         moodsWeekly = await findWeeklyMoods(userMoodData)
       }
@@ -51,22 +65,30 @@ const findWeeklyValues = async (organisation, withCaregiver, variable) => {
         })
         const userIdsLinkedToOrganisationalCaregivers = caregiversInOrganisation.map(caregiver => caregiver.user_id)
         const uniqueIds = [...new Set(userIdsLinkedToOrganisationalCaregivers)]
-        userMoodData = await user_moods.findAll({
+
+        weeklyValuesQuery = {
           attributes: ['id', 'user_id', 'created_at', 'value'],
           where: {
             user_id: uniqueIds
           }
-        })
+        }
+        addDateFilterToQuery(weeklyValuesQuery)
+        userMoodData = await user_moods.findAll(weeklyValuesQuery)
         moodsWeekly = await findWeeklyMoods(userMoodData)
+
       } else {
         const usersInOrganisation = await controller.findAllUsers(organisation, false)
         const usersInOrganisationIdArray = usersInOrganisation.map(user => user.user_id)
-        userMoodData = await user_moods.findAll({
+
+        weeklyValuesQuery = {
           attributes: ['id', 'user_id', 'created_at', 'value'],
           where: {
             user_id: usersInOrganisationIdArray
           }
-        })
+        }
+        addDateFilterToQuery(weeklyValuesQuery)
+        userMoodData = await user_moods.findAll(weeklyValuesQuery)
+
         moodsWeekly = await findWeeklyMoods(userMoodData)
       }
     }
@@ -78,6 +100,10 @@ const findWeeklyValues = async (organisation, withCaregiver, variable) => {
 }
 
 const findWeeklyMoods = async (userMoodsData) => {
+
+  if (userMoodsData.length === 0) {
+    return null
+  }
 
   const userMoods = userMoodsData.map(mood => mood.dataValues)
 
@@ -200,6 +226,27 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
+const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
+  const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+  let lastValue = [...weeklyValues][0].averages === null
+    ? 0
+    : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
+  let weeklyImprovement = []
+  weeklyValues === null
+    ? null
+    : [...weeklyValues].forEach(entry => {
+      const newValue = entry.averages === null
+        ? lastValue
+        : entry.averages.filter(average => average.id === 'average')[0].average
+      weeklyImprovement.push({
+        week: entry.week,
+        average: ((newValue - lastValue) / lastValue).toFixed(2)
+      })
+      lastValue = newValue
+    })
+  return weeklyImprovement
+}
+
 const convertIds = (userIds) => {
   let newIds = []
   for (let i = 0; i < userIds.length; i++) {
@@ -214,4 +261,4 @@ const convertIds = (userIds) => {
   return newIds
 }
 
-module.exports = { findWeeklyValues }
+module.exports = { findWeeklyValues, findWeeklyImprovement }
