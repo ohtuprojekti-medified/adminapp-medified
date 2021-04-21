@@ -28,6 +28,7 @@ import WeeklyImprovement from '../WeeklyImprovement'
 const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
   retentionRates, averageRetention, moodChartData, weeklyImprovementAverages }) => {
 
+
   const subContainer1 = {
     marginTop: '10px',
     display: 'flex',
