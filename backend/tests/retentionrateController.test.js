@@ -16,6 +16,8 @@
  * @namespace sinon
  */
 const sinon = require('sinon')
+
+const { format } = require('date-fns')
 let retentionrateController
 let db
 let user_activities_stub, user_profiles_stub
@@ -28,6 +30,9 @@ let user_activities_stub, user_profiles_stub
  */
 const newDates = require('./newDatesAroundLastMidnight')
 
+const TIMES1 = newDates([-46.7, -39.6, -32.5, -25.4, -17.6, -7])
+const TIMES2 = newDates([-25.4, -17.6, -7])
+
 /**
  * Creates retentionrateController with mock data
  *
@@ -39,8 +44,6 @@ const newDates = require('./newDatesAroundLastMidnight')
  */
 const retentionrateControllerMocked = () => {
   db = require('../models')
-  const TIMES1 = newDates([-46.7, -39.6, -32.5, -25.4, -17.6, -7])
-  const TIMES2 = newDates([-25.4, -17.6, -7])
 
   user_activities_stub = sinon.stub(db.user_activities, 'findAll')
     .callsFake(() => {
@@ -162,6 +165,30 @@ describe('retentionrate controller', () => {
 
   test('findAverageRetentionRate returns correct average', async () => {
     expect(await retentionrateController.findAverageRetentionRate('ALL')).toEqual(14)
+  })
+
+  test('findRetentionRates returns correct data with start date filter', async () => {
+    expect(await retentionrateController.findRetentionRates('ALL', false, format(TIMES1[1], 'yyyy-MM-dd'), '')).toEqual([{ daysUsed: 14 }])
+  })
+
+  test('findRetentionRates returns correct data with end date filter', async () => {
+    expect(await retentionrateController.findRetentionRates('ALL', false, '', format(TIMES1[4], 'yyyy-MM-dd'))).toEqual([{ daysUsed: 14 }])
+  })
+
+  test('findRetentionRates returns correct data with start date and end date filter', async () => {
+    expect(await retentionrateController.findRetentionRates('ALL', false, format(TIMES1[1], 'yyyy-MM-dd'), format(TIMES1[4], 'yyyy-MM-dd'))).toEqual([{ daysUsed: 14 }])
+  })
+
+  test('findAverageRetentionRate returns correct data with start date filter', async () => {
+    expect(await retentionrateController.findAverageRetentionRate('ALL', false, format(TIMES1[1], 'yyyy-MM-dd'), '')).toEqual(14)
+  })
+
+  test('findAverageRetentionRate returns correct data with end date filter', async () => {
+    expect(await retentionrateController.findAverageRetentionRate('ALL', false, '', format(TIMES1[4], 'yyyy-MM-dd'))).toEqual(14)
+  })
+
+  test('findAverageRetentionRate returns correct data with start date and end date filter', async () => {
+    expect(await retentionrateController.findAverageRetentionRate('ALL', false, format(TIMES1[1], 'yyyy-MM-dd'), format(TIMES1[4], 'yyyy-MM-dd'))).toEqual(14)
   })
 
   afterEach(() => {
