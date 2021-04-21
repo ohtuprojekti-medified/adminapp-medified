@@ -158,42 +158,4 @@ describe('Weekly improvement', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
   })
-
-  /**
-   * Test that WeeklyImprovement page does not exist after clicking Retention rate
-   *
-   * @name WeeklyImprovement_does_not_exist_after_clicking_Retention_rates
-   * @type {object}
-   * @memberof module:cypress/integration/WeeklyImprovement_spec
-   * @inner
-   * @param {string} describe - does not exist after clicking Retention rates
-   * @param {object} testFunction - Function that runs test
-   */
-  it('does not exist after clicking Retention rates', function () {
-    cy.contains('Adminapp for monitoring moods')
-    cy.contains('Weekly Improvement')
-    cy.contains('Retention rates').click()
-    cy.contains('Adminapp for monitoring moods')
-    cy.get('Adminapp for monitoring moods').should('not.exist')
-    cy.get('Weekly Improvement').should('not.exist')
-  })
-
-  /**
-   * Test that WeeklyImprovement page does not exist after clicking New and active users
-   *
-   * @name WeeklyImprovement_does_not_exist_after_clicking_New_and_active_users
-   * @type {object}
-   * @memberof module:cypress/integration/WeeklyImprovement_spec
-   * @inner
-   * @param {string} describe - does not exist after clicking New and active users
-   * @param {object} testFunction - Function that runs test
-   */
-  it('does not exist after clicking New and active users', function () {
-    cy.contains('Adminapp for monitoring moods')
-    cy.contains('Weekly Improvement')
-    cy.contains('New and active users').click()
-    cy.contains('Adminapp for monitoring moods')
-    cy.get('Adminapp for monitoring moods').should('not.exist')
-    cy.get('Weekly Improvement').should('not.exist')
-  })
 })
