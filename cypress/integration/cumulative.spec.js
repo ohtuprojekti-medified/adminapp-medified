@@ -1,7 +1,7 @@
 /**
  * Cypress tests for cumulative users
  *
- * @module cypress/integration/Cumulative_spec
+ * @module cypress/integration/cumulative_spec
  * @requires cypress
  */
 
