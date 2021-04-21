@@ -66,10 +66,12 @@ describe('<Filter />', () => {
    * @param {string} description - eventhandler is called once
    * @param {object} TestCode - code that runs the test
    */
-  test('checking filtering checkbox calls event handler once', async() => {
+  test('checking filtering checkbox calls event handler once', async () => {
     const checkbox = component.getByTestId('filter-checkbox')
     fireEvent.click(checkbox)
 
-    expect(mockHandler.mock.calls).toHaveLength(1)
+    waitFor(() => {
+      expect(mockHandler.mock.calls).toHaveLength(1)
+    })
   })
 })
