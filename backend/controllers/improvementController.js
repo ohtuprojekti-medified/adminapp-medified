@@ -48,7 +48,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
           ],
           attributes: ['id', 'user_id', 'created_at', 'value']
         }
-        addDateFilterToQuery(weeklyValuesQuery)
+        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
 
         moodsWeekly = await findWeeklyMoods(userMoodData)
@@ -72,7 +72,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
             user_id: uniqueIds
           }
         }
-        addDateFilterToQuery(weeklyValuesQuery)
+        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
         moodsWeekly = await findWeeklyMoods(userMoodData)
 
@@ -86,7 +86,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
             user_id: usersInOrganisationIdArray
           }
         }
-        addDateFilterToQuery(weeklyValuesQuery)
+        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
 
         moodsWeekly = await findWeeklyMoods(userMoodData)
