@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for RetentionRate component
  *
  * @module src/components/RetentionRate_test
@@ -12,13 +12,12 @@ import '@testing-library/jest-dom/extend-expect'
 import { render } from '@testing-library/react'
 import RetentionRate from './RetentionRate'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
  * @function
  * @memberof module:src/components/RetentionRate_test
- * @inner
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -26,7 +25,7 @@ describe('<RetentionRate />', () => {
   let component
   let retentionRates, average
 
-  /**
+  /**.
    * Render RetentionRate with mock values
    *
    * @type {object}
@@ -42,7 +41,7 @@ describe('<RetentionRate />', () => {
     component = render(<RetentionRate retentionRates={retentionRates} average={average} />)
   })
 
-  /**
+  /**.
    * Test that RetentionRate is rendered
    *
    * @type {object}

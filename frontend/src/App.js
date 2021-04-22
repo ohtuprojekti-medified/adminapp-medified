@@ -1,4 +1,4 @@
-/**
+/**.
  * Frontend app
  *
  * @module src/App
@@ -17,6 +17,7 @@
  * @requires src/components/uiComponents/AppFooter
  * @requires src/components/uiComponents/AppContent
  * @requires dotenv
+ * @exports App - React application
  */
 
 import './App.css'
@@ -38,13 +39,13 @@ import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
 
-/**
+/**.
  * Creates a single page application
  *
  * @type {object}
  * @function
+ * @constant
  * @memberof module:src/App
- * @inner
  * @returns {object} - A single page application in JSX
  */
 const App = () => {
@@ -71,7 +72,7 @@ const App = () => {
   const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
   const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
 
-  /**
+  /**.
    * Configure amplify authorization and check if user is logged in
    *
    * @type {object}
@@ -185,26 +186,37 @@ const App = () => {
 
   }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable, moodDataSelect])
 
-  /**
+  /**.
    *
    * Event handler for changing the status of caregiveFilterForAllUsers
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
-  /**
+  /**.
    *
    * Event handler for changing the selected organisation
    *
    * @param {string} organisation - Requested organisation
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleOrganisationChange = (organisation) => {
     setOrganisation(organisation)
   }
 
-  /**
+  /**.
    * Event handler for enabling timeframe start filter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleStartDateEnableChange = () => {
     if (startDateEnable) {
@@ -215,8 +227,12 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for enabling timeframe end filter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleEndDateEnableChange = () => {
     if (endDateEnable) {
@@ -227,10 +243,13 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for changeing timeframe filter start value
    *
    * @param {string} date - Date where to begin showing data
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleStartDateChange = (date) => {
     if (startDateEnable) {
@@ -238,10 +257,13 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for changeing timeframe filter end value
    *
    * @param {string} date - Date where to end showing data
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleEndDateChange = (date) => {
     if (endDateEnable) {
@@ -249,11 +271,12 @@ const App = () => {
     }
   }
 
+
   const moodGraphLabels = [
     { label: 'MOOD', averageMoodWeeklyData: moodAverages, weeklyImprovementData: weeklyImprovementAverages }
   ]
 
-  /**
+  /**.
    *
    * Event handler for changing the status of moodGraph
    *

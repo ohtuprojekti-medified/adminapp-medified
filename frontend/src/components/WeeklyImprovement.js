@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for graphing weekly mood improvement
  *
  * @module src/components/WeeklyImprovement
@@ -9,7 +9,7 @@
 import React from 'react'
 import { Chart } from 'primereact/chart'
 
-/**
+/**.
  * Component for graphing weekly mood improvement
  *
  * @type {object}

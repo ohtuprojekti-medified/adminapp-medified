@@ -1,14 +1,17 @@
-/**
+/**.
  * Component for timeframe filtering
  *
  * @module src/components/TimeFilter
  * @requires react
+ * @exports TimeFilter
  */
 import React from 'react'
 
-/**
+/**.
  * This creates a JSX object that users can use to filter timeframe
  *
+ * @constant
+ * @function
  * @param {*} param0 - Object with params
  * @returns {object} - JSX object
  */

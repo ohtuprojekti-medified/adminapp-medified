@@ -1,7 +1,7 @@
-/**
+/**.
  * Index file for running the app
  *
- * @module src/index
+ * @namespace Frontend_index
  * @requires react
  * @requires react-dom
  * @requires src/index.css
@@ -14,13 +14,11 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-/**
+/**.
  * Run the app
  *
- * @type {object}
  * @function
- * @memberof module:src/index
- * @inner
+ * @memberof Frontend_index
  * @param {object} JSXApp - pass the app to be rendered
  * @param {object} root - pass root to react
  */
