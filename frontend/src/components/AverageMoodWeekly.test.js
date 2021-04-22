@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for AverageMoodWeekly component
  *
  * @module src/components/AverageMoodWeekly_test
@@ -12,7 +12,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, waitFor } from '@testing-library/react'
 import AverageMoodWeekly from './AverageMoodWeekly'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -24,7 +24,7 @@ import AverageMoodWeekly from './AverageMoodWeekly'
 describe('<AverageMoodWeekly />', () => {
   let component
 
-  /**
+  /**.
    * Render AverageMoodWeekly
    *
    * @type {object}
@@ -37,7 +37,7 @@ describe('<AverageMoodWeekly />', () => {
     component = render(<AverageMoodWeekly />)
   })
 
-  /**
+  /**.
    * Test that MoodAverage is rendered
    *
    * @type {object}

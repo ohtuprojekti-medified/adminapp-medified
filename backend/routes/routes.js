@@ -40,7 +40,7 @@ router.get('/weeklyvalues', async (req, res) => {
   res.json(weeklyvalues)
 })
 
-/**
+/**.
  * Route request for weekly mood improvement
  *
  * @name get_weeklyimprovement

@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for WeeklyImprovement component
  *
  * @module src/components/WeeklyImprovement_test
@@ -12,7 +12,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, waitFor } from '@testing-library/react'
 import WeeklyImprovement from './WeeklyImprovement'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
@@ -24,7 +24,7 @@ import WeeklyImprovement from './WeeklyImprovement'
 describe('<WeeklyImprovement />', () => {
   let component
 
-  /**
+  /**.
    * Render WeeklyImprovement
    *
    * @type {object}
@@ -37,7 +37,7 @@ describe('<WeeklyImprovement />', () => {
     component = render(<WeeklyImprovement />)
   })
 
-  /**
+  /**.
    * Test that WeeklyImprovement is rendered
    *
    * @type {object}

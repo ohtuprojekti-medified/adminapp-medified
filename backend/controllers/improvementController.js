@@ -226,7 +226,7 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
-/**
+/**.
  * Find weekly mood improvement percentages
  *
  * @constant
@@ -257,15 +257,15 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
       })
       lastValue = newValue
     })
-  /*  
+  /*
   console.log('HELLO')
-  console.log(weeklyImprovement)  
+  console.log(weeklyImprovement)
   */
   return weeklyImprovement
 }
 
 //JSDOC Find change in current week's mood in relation to mood on first week
-const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => { 
+const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
   const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
 
   //console.log([...weeklyValues][40].averages)
@@ -279,7 +279,7 @@ const findTotalImprovement = async (organisation, withCaregiver, startDate, endD
   let firstValue = [...weeklyValues][0].averages === null
     ? 0
     : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
-  
+
   let totalImprovements = []
 
   weeklyValues === null
@@ -291,15 +291,15 @@ const findTotalImprovement = async (organisation, withCaregiver, startDate, endD
       totalImprovements.push({
         week: entry.week,
         average: ((newValue / firstValue) - 1 ).toFixed(2)
-        
-      })
-      
-    })
-    
 
-    console.log('TOTAL IMPROVEMENTS')
-    console.log(totalImprovements)
-    return totalImprovements
+      })
+
+    })
+
+
+  console.log('TOTAL IMPROVEMENTS')
+  console.log(totalImprovements)
+  return totalImprovements
 }
 
 
