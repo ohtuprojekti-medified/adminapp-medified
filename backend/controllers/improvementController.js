@@ -256,8 +256,36 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
       })
       lastValue = newValue
     })
+  /*  
+  console.log('HEPPPPPPPP')
+  console.log(weeklyImprovement)  
+  */
   return weeklyImprovement
 }
+
+
+const findTotalImprovements = async (organisation, withCaregiver, startDate, endDate, variable) => { 
+  const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+  let lastValue = [...weeklyValues][0].averages === null
+    ? 0
+    : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
+  
+  //  let firstValue = X -> käytä laskuissa
+  let totalImprovements = []
+  weeklyValues === null
+    ? null
+    : [...weeklyValues].forEach(entry => {
+      const newValue = entry.averages === null
+        ? lastValue
+        : entry.averages.filter(average => average.id === 'average')[0].average
+      totalImprovements.push({
+        week: entry.week,
+        average: ((newValue - lastValue) / lastValue).toFixed(2)
+      })
+      lastValue = newValue
+    })
+}
+
 
 const convertIds = (userIds) => {
   let newIds = []
