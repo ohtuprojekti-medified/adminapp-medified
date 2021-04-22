@@ -18,6 +18,7 @@ import { Button } from 'primereact/button'
 import { Sidebar } from 'primereact/sidebar'
 import Filter from '../Filter'
 import TimeFilter from '../TimeFilter'
+import MoodFilter from '../MoodFilter'
 import Organisations from '../Organisations'
 import loginService from '../../services/loginService'
 
@@ -33,7 +34,8 @@ import Header from './AppHeader'
 const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChange,
   visible, setVisible, organisations, handleOrganisationChange, organisationSelect,
   startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
-  handleEndDateEnableChange, handleStartDateChange, handleEndDateChange }) => {
+  handleEndDateEnableChange, handleStartDateChange, handleEndDateChange,
+  moodDataSelect, moodGraphLabels, handleMoodDataSelectChange }) => {
 
   /**.
    * Handle logout button presses
@@ -109,6 +111,10 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
               handleEndDateEnableChange={handleEndDateEnableChange}
               handleStartDateChange={handleStartDateChange}
               handleEndDateChange={handleEndDateChange} />
+            <MoodFilter
+              moodDataSelect={moodDataSelect}
+              moodGraphLabels={moodGraphLabels}
+              handleMoodDataSelectChange={handleMoodDataSelectChange} />
           </Sidebar>
 
           <Button label={'Filter'} icon="pi pi-filter" className="p-mr-2" onClick={() => setVisible(true)} />

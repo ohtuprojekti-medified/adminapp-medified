@@ -28,7 +28,8 @@ import WeeklyImprovement from '../WeeklyImprovement'
  * @returns {object} - JSX component containing all sub components
  */
 const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
-  retentionRates, averageRetention, moodAverages, weeklyImprovementAverages }) => {
+  retentionRates, averageRetention, moodChartData, weeklyImprovementAverages }) => {
+
 
   const subContainer1 = {
     marginTop: '10px',
@@ -68,9 +69,16 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
           </div>
         </Route>
 
-        <Route path='/moodaverages'>
-          <div style={centered}>
-            <AverageMoodWeekly moodAverages={moodAverages} />
+        <Route path='/moodimprovement'>
+          <div>
+            <div style={subContainer2}>
+              <AverageMoodWeekly
+                moodAverages={moodChartData} />
+            </div>
+            <div style={subContainer2}>
+              <WeeklyImprovement
+                weeklyImprovementAverages={weeklyImprovementAverages} />
+            </div>
           </div>
         </Route>
 
@@ -88,19 +96,21 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
                 retentionRates={retentionRates}
                 average={averageRetention} />
             </div>
-            <div style={subContainer2}>
-              <AverageMoodWeekly
-                moodAverages={moodAverages} />
-            </div>
-            <div style={subContainer2}>
-              <WeeklyImprovement
-                weeklyImprovementAverages={weeklyImprovementAverages} />
+            <div>
+              <div style={subContainer2}>
+                <AverageMoodWeekly
+                  moodAverages={moodChartData} />
+              </div>
+              <div style={subContainer2}>
+                <WeeklyImprovement
+                  weeklyImprovementAverages={weeklyImprovementAverages} />
+              </div>
             </div>
           </div>
         </Route>
 
       </Switch>
-    </div>
+    </div >
   )
 }
 

@@ -61,13 +61,15 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [organisationSelect, setOrganisation] = useState('ALL')
   const [visible, setVisible] = useState(false)
-  const [organisations, setOrganisations] = useState(null)
+  const [organisations, setOrganisations] = useState([])
   const [startDateEnable, setStartDateEnable] = useState(false)
   const [endDateEnable, setEndDateEnable] = useState(false)
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
+  const [moodChartData, setMoodChartData] = useState([])
   const [moodAverages, setMoodAverages] = useState([])
-  const [moodGraph, setMoodGraph] = useState('ALL')
+  const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
+  const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
   const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
 
   /**.
@@ -167,15 +169,22 @@ const App = () => {
           dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
-          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&variable=MOOD`).then(weeklyValues => setMoodAverages(weeklyValues))
-          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${'MOOD'}`).then(weeklyImprovement => setWeeklyImprovementAverages(weeklyImprovement))
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyValues => {
+            setMoodAverages(weeklyValues)
+            setMoodChartData(weeklyValues)
+          })
+          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyImprovement => {
+            setWeeklyImprovementAverages(weeklyImprovement)
+            setWeeklyImprovementChartData(weeklyImprovement)
+          })
+
         }
       }
     }
 
     fetchData()
 
-  }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable])
+  }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable, moodDataSelect])
 
   /**.
    *
@@ -262,14 +271,21 @@ const App = () => {
     }
   }
 
+
+  const moodGraphLabels = [
+    { label: 'MOOD', averageMoodWeeklyData: moodAverages, weeklyImprovementData: weeklyImprovementAverages }
+  ]
+
   /**.
    *
    * Event handler for changing the status of moodGraph
    *
    * @param {string} label - Name of mood graph to be used
    */
-  const handleMoodGraphChange = (label) => {
-    setMoodGraph(label)
+  const handleMoodDataSelectChange = (label) => {
+    setMoodDataSelect(label)
+    setMoodChartData(moodGraphLabels.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
+    setWeeklyImprovementChartData(moodGraphLabels.filter(entry => entry.label === label)[0].weeklyImprovementData)
   }
 
   const containerStyle = {
@@ -301,7 +317,10 @@ const App = () => {
                 handleStartDateEnableChange={handleStartDateEnableChange}
                 handleEndDateEnableChange={handleEndDateEnableChange}
                 handleStartDateChange={handleStartDateChange}
-                handleEndDateChange={handleEndDateChange} />
+                handleEndDateChange={handleEndDateChange}
+                moodGraphLabels={moodGraphLabels}
+                moodDataSelect={moodDataSelect}
+                handleMoodDataSelectChange={handleMoodDataSelectChange} />
 
               <AppContent user={user}
                 appUsers={appUsers}
@@ -312,10 +331,8 @@ const App = () => {
                 activeUsers={activeUsers}
                 retentionRates={retentionRates}
                 averageRetention={averageRetention}
-                moodAverages={moodAverages}
-                moodGraph={moodGraph}
-                handleMoodGraphChange={handleMoodGraphChange}
-                weeklyImprovementAverages={weeklyImprovementAverages}
+                moodChartData={moodChartData}
+                weeklyImprovementAverages={weeklyImprovementChartData}
                 username={username}
                 setUsername={setUsername}
                 password={password}
