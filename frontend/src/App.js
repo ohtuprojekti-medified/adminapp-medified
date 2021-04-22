@@ -71,6 +71,7 @@ const App = () => {
   const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
   const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
   const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
+  const [totalImprovementAverages, setTotalImprovementAverages] = useState([])
 
   /**.
    * Configure amplify authorization and check if user is logged in
@@ -177,6 +178,9 @@ const App = () => {
             setWeeklyImprovementAverages(weeklyImprovement)
             setWeeklyImprovementChartData(weeklyImprovement)
           })
+          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${'MOOD'}`).then(totalImprovement => setTotalImprovementAverages(totalImprovement))
+          console.log(totalImprovementAverages)
+
 
         }
       }
