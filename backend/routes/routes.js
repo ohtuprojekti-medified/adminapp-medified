@@ -40,7 +40,7 @@ router.get('/weeklyvalues', async (req, res) => {
   res.json(weeklyvalues)
 })
 
-/**
+/**.
  * Route request for weekly mood improvement
  *
  * @name get_weeklyimprovement
@@ -50,7 +50,8 @@ router.get('/weeklyvalues', async (req, res) => {
  * @param {object} middleware - Handle request to path
  */
 router.get('/weeklyimprovement', async (req, res) => {
-  const weeklyImprovement = await improvementController.findWeeklyImprovement(req.query.organisation, req.query.withCaregiver,
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const weeklyImprovement = await improvementController.findWeeklyImprovement(req.query.organisation, withCaregiver,
     req.query.startDate, req.query.endDate, req.query.variable)
   res.json(weeklyImprovement)
 })
