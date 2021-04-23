@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for improvementController
  *
  * @module tests/improvementController_test
@@ -8,7 +8,7 @@
  * @requires ../controllers/improvementController
  */
 
-/**
+/**.
  * Mocks data for models
  *
  * @type {object}
@@ -18,7 +18,7 @@
 const sinon = require('sinon')
 let improvementController, db, user_moods_stub
 
-/**
+/**.
  * Helper function for creating new Date objects
  *
  * @constant
@@ -26,7 +26,7 @@ let improvementController, db, user_moods_stub
  */
 const newDates = require('./newDatesAroundLastMidnight')
 
-/**
+/**.
  * Created improvementController with mock data
  *
  * @constant
@@ -112,7 +112,7 @@ const improvementControllerMocked = () => {
   return improvementController
 }
 
-/**
+/**.
  * Run tests for improvement controller
  *
  * @constant
