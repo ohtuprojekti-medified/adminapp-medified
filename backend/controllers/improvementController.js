@@ -226,7 +226,7 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
-/**
+/**.
  * Find weekly mood improvement percentages
  *
  * @constant
