@@ -226,7 +226,7 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
-/**
+/**.
  * Find weekly mood improvement percentages
  *
  * @constant
@@ -257,49 +257,42 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
       })
       lastValue = newValue
     })
-  /*  
-  console.log('HELLO')
-  console.log(weeklyImprovement)  
-  */
   return weeklyImprovement
 }
-
-//JSDOC Find change in current week's mood in relation to mood on first week
-const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => { 
+/**.
+ * Find change in current week's mood in relation to mood on first week
+ *
+ * @param {*} organisation - Organisation for filtering
+ * @param {*} withCaregiver - Show only users with caregiver filter value
+ * @param {*} startDate - Start date for filtering
+ * @param {*} endDate - End date for filtering
+ * @param {*} variable - Selector for mood data type
+ * @returns {Array} - Mood change percentages and their dates in an array
+ */
+const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
   const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
-
-  //console.log([...weeklyValues][40].averages)
-  //34-40 should be 5
-  //31-33 should be 5.8
-  //30 should be 5
-  //29 should be 6.71
-  //28 should be 6.71
-
 
   let firstValue = [...weeklyValues][0].averages === null
     ? 0
     : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
-  
+
+  let lastValue = firstValue
   let totalImprovements = []
 
   weeklyValues === null
     ? null
     : [...weeklyValues].forEach(entry => {
       const newValue = entry.averages === null
-        ? firstValue
+        ? lastValue
         : entry.averages.filter(average => average.id === 'average')[0].average
       totalImprovements.push({
         week: entry.week,
         average: ((newValue / firstValue) - 1 ).toFixed(2)
-        
-      })
-      
-    })
-    
 
-    console.log('TOTAL IMPROVEMENTS')
-    console.log(totalImprovements)
-    return totalImprovements
+      })
+      lastValue = newValue
+    })
+  return totalImprovements
 }
 
 
