@@ -1,4 +1,4 @@
-/**
+/**.
  * Tests for TimeFilter component
  *
  * @module src/components/TimeFilter_test
@@ -12,13 +12,12 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, waitFor, fireEvent } from '@testing-library/react'
 import TimeFilter from './TimeFilter'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
  * @function
  * @memberof module:src/components/TimeFilter_test
- * @inner
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -29,7 +28,7 @@ describe('<TimeFilter />', () => {
   let handleStartDateChange
   let handleEndDateChange
 
-  /**
+  /**.
    * Render TimeFilter with mock values
    *
    * @type {object}
@@ -50,7 +49,7 @@ describe('<TimeFilter />', () => {
   })
 
 
-  /**
+  /**.
    * Test that TimeFilter is rendered
    *
    * @type {object}
@@ -67,7 +66,7 @@ describe('<TimeFilter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that TimeFilter calls start date enable eventhandler
    *
    * @type {object}
@@ -86,7 +85,7 @@ describe('<TimeFilter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that TimeFilter calls end date enable eventhandler
    *
    * @type {object}
@@ -105,7 +104,7 @@ describe('<TimeFilter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that TimeFilter calls start date event handler
    *
    * @type {object}
@@ -124,7 +123,7 @@ describe('<TimeFilter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that TimeFilter calls end date eventhandler
    *
    * @type {object}

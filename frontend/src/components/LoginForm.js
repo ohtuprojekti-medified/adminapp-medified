@@ -1,9 +1,13 @@
-/**
+/**.
  * Component for login form
  *
  * @module src/components/LoginForm
  * @requires react
+ * @requires primereact/inputtext
+ * @requires primereact/password
+ * @requires primereact/button
  * @requires src/services/loginService
+ * @exports LoginForm
  */
 import React from 'react'
 import loginService from '../services/loginService'
@@ -11,14 +15,13 @@ import { InputText } from 'primereact/inputtext'
 import { Password } from 'primereact/password'
 import { Button } from 'primereact/button'
 
-/**
+/**.
  * Component that creates a form for login and button for logout
  *
  * @type {object}
  * @function
  * @constant
  * @memberof module:src/components/LoginForm
- * @inner
  * @param {object} param0 - Object with params
  * @param {string} param0.username - Value of username in form
  * @param {Function} param0.setUsername - Function to set the value of username
@@ -30,7 +33,7 @@ import { Button } from 'primereact/button'
  */
 const LoginForm = ({ username, setUsername, password, setPassword, user, setUser }) => {
 
-  /**
+  /**.
    * Handle login button presses
    *
    * @type {object}

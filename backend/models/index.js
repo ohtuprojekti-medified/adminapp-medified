@@ -1,22 +1,23 @@
 'use strict'
 
-/**
+/**.
  * Initialization for sequelize-database and models
  *
  * @module models/index
  * @requires sequelize
  * @requires config
+ * @exports db
  */
 
 /**
- * Sequelize ORM - object-relational mapper
+ * Sequelize ORM - object-relational mapper.
  */
 const Sequelize = require('sequelize')
 const config = require('../utils/config')
 const db = {}
 
 /**
- * initialization for database
+ * Initialization for database.
  */
 const sequelize = new Sequelize(
   config.db_name,
@@ -38,6 +39,9 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
+/**
+ * Defining sequelize ORM database models.
+ */
 db.access_codes = require('../models/access_codes')(sequelize, Sequelize)
 db.organisations = require('../models/organisations')(sequelize, Sequelize)
 db.user_profiles = require('../models/user_profiles')(sequelize, Sequelize)

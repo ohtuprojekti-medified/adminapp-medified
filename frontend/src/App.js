@@ -1,4 +1,4 @@
-/**
+/**.
  * Frontend app
  *
  * @module src/App
@@ -17,6 +17,7 @@
  * @requires src/components/uiComponents/AppFooter
  * @requires src/components/uiComponents/AppContent
  * @requires dotenv
+ * @exports App - React application
  */
 
 import './App.css'
@@ -38,13 +39,13 @@ import 'primeicons/primeicons.css'
 import 'react-transition-group'
 import 'primeflex/primeflex.css'
 
-/**
+/**.
  * Creates a single page application
  *
  * @type {object}
  * @function
+ * @constant
  * @memberof module:src/App
- * @inner
  * @returns {object} - A single page application in JSX
  */
 const App = () => {
@@ -60,13 +61,18 @@ const App = () => {
   const [password, setPassword] = useState('')
   const [organisationSelect, setOrganisation] = useState('ALL')
   const [visible, setVisible] = useState(false)
-  const [organisations, setOrganisations] = useState(null)
+  const [organisations, setOrganisations] = useState([])
   const [startDateEnable, setStartDateEnable] = useState(false)
   const [endDateEnable, setEndDateEnable] = useState(false)
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
+  const [moodChartData, setMoodChartData] = useState([])
+  const [moodAverages, setMoodAverages] = useState([])
+  const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
+  const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
+  const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
 
-  /**
+  /**.
    * Configure amplify authorization and check if user is logged in
    *
    * @type {object}
@@ -163,34 +169,54 @@ const App = () => {
           dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyValues => {
+            setMoodAverages(weeklyValues)
+            setMoodChartData(weeklyValues)
+          })
+          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyImprovement => {
+            setWeeklyImprovementAverages(weeklyImprovement)
+            setWeeklyImprovementChartData(weeklyImprovement)
+          })
+
         }
       }
     }
 
     fetchData()
 
-  }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable])
+  }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable, moodDataSelect])
 
-  /**
+  /**.
    *
    * Event handler for changing the status of caregiveFilterForAllUsers
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
-  /**
+  /**.
    *
    * Event handler for changing the selected organisation
    *
    * @param {string} organisation - Requested organisation
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleOrganisationChange = (organisation) => {
     setOrganisation(organisation)
   }
 
-  /**
+  /**.
    * Event handler for enabling timeframe start filter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleStartDateEnableChange = () => {
     if (startDateEnable) {
@@ -201,8 +227,12 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for enabling timeframe end filter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleEndDateEnableChange = () => {
     if (endDateEnable) {
@@ -213,10 +243,13 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for changeing timeframe filter start value
    *
    * @param {string} date - Date where to begin showing data
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleStartDateChange = (date) => {
     if (startDateEnable) {
@@ -224,15 +257,35 @@ const App = () => {
     }
   }
 
-  /**
+  /**.
    * Event handler for changeing timeframe filter end value
    *
    * @param {string} date - Date where to end showing data
+   * @function
+   * @constant
+   * @memberof module:src/App
    */
   const handleEndDateChange = (date) => {
     if (endDateEnable) {
       setEndDate(date)
     }
+  }
+
+
+  const moodGraphLabels = [
+    { label: 'MOOD', averageMoodWeeklyData: moodAverages, weeklyImprovementData: weeklyImprovementAverages }
+  ]
+
+  /**.
+   *
+   * Event handler for changing the status of moodGraph
+   *
+   * @param {string} label - Name of mood graph to be used
+   */
+  const handleMoodDataSelectChange = (label) => {
+    setMoodDataSelect(label)
+    setMoodChartData(moodGraphLabels.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
+    setWeeklyImprovementChartData(moodGraphLabels.filter(entry => entry.label === label)[0].weeklyImprovementData)
   }
 
   const containerStyle = {
@@ -264,7 +317,10 @@ const App = () => {
                 handleStartDateEnableChange={handleStartDateEnableChange}
                 handleEndDateEnableChange={handleEndDateEnableChange}
                 handleStartDateChange={handleStartDateChange}
-                handleEndDateChange={handleEndDateChange} />
+                handleEndDateChange={handleEndDateChange}
+                moodGraphLabels={moodGraphLabels}
+                moodDataSelect={moodDataSelect}
+                handleMoodDataSelectChange={handleMoodDataSelectChange} />
 
               <AppContent user={user}
                 appUsers={appUsers}
@@ -275,6 +331,8 @@ const App = () => {
                 activeUsers={activeUsers}
                 retentionRates={retentionRates}
                 averageRetention={averageRetention}
+                moodChartData={moodChartData}
+                weeklyImprovementAverages={weeklyImprovementChartData}
                 username={username}
                 setUsername={setUsername}
                 password={password}
