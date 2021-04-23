@@ -1,11 +1,11 @@
-/**
+/**.
  * Cypress tests for MoodAverage chart
  *
  * @module cypress/integration/moodAverage_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Describe tests for mood average page
  *
  * @name MoodAverage
@@ -16,7 +16,7 @@
  */
 describe('MoodAverage chart', function () {
 
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -29,7 +29,7 @@ describe('MoodAverage chart', function () {
     cy.login()
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -42,7 +42,7 @@ describe('MoodAverage chart', function () {
     cy.logOut()
   })
 
-  /**
+  /**.
    * Test that mood average page exists
    *
    * @name MoodAverage_exists
