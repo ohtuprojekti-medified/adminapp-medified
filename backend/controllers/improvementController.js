@@ -1,3 +1,13 @@
+/**
+ * Controller for variable improvement database queries
+ *
+ * @module controllers/improvementController
+ * @requires date-fns
+ * @requires models/db
+ * @requires controllers/controller
+ * @requires filters
+ */
+
 const { addDays } = require('date-fns')
 const controller = require('./controller')
 const db = require('../models')
@@ -5,6 +15,16 @@ const user_moods = db.user_moods
 const user_care_givers = db.user_care_givers
 const { addDateFilterToQuery } = require('./filters')
 
+/**
+ * Return weekly values with given parameters/filters
+ *
+ * @param {*} organisation - Organisation name/code for filtering
+ * @param {*} withCaregiver - Specifies whether data should be filtered to only users with caregiver
+ * @param {*} startDate - time filtering start date
+ * @param {*} endDate - time filtering end date
+ * @param {*} variable - variable indicating which data is queried
+ * @returns {...any} - computed and modified data of given variable, with possible filters
+ */
 const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate, variable) => {
 
   if (variable === 'MOOD') {
@@ -94,6 +114,12 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
   }
 }
 
+/**
+ * Function for modifying and calculating data when variable is mood
+ *
+ * @param {*} userMoodsData - object with data from database, with possible filtering
+ * @returns {...any} - computed and modified data
+ */
 const findWeeklyMoods = async (userMoodsData) => {
 
   if (userMoodsData.length === 0) {
