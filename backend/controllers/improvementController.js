@@ -7,10 +7,6 @@ const { addDateFilterToQuery } = require('./filters')
 
 const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate, variable) => {
 
-  console.log('MITÄS TÄÄL')
-  console.log(startDate)
-
-
   if (variable === 'MOOD') {
     let userMoodData = []
     let moodsWeekly = []
@@ -50,7 +46,6 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
         }
         addDateFilterToQuery(weeklyValuesQuery)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
-
         moodsWeekly = await findWeeklyMoods(userMoodData)
       }
     } else {
@@ -111,9 +106,11 @@ const findWeeklyMoods = async (userMoodsData) => {
   const uniqueUserIds = [...new Set(userIds)]
   const convertedIds = convertIds(uniqueUserIds)
 
-  const firstCreated = userMoods[0].created_at.getTime()
+  const sortedTemp = userMoods.sort( compare )
+
+  const firstCreated = sortedTemp[0].created_at.getTime()
   const first = new Date(firstCreated).setHours(0, 0, 0, 0)
-  const last = userMoods[userMoods.length - 1].created_at.getTime()
+  const last = (sortedTemp[userMoods.length - 1].created_at.getTime()) + 604800000
 
   let timeFrame = first + 604800000
   let week = [new Date(first), addDays(first, 7)]
@@ -137,6 +134,7 @@ const findWeeklyMoods = async (userMoodsData) => {
     timeFrame = timeFrame + 604800000
     oneUserMoods = []
   }
+
 
   // Count average moods
   let weekDates
@@ -238,6 +236,16 @@ const convertIds = (userIds) => {
     newIds = [...newIds, keyValuePair]
   }
   return newIds
+}
+
+const compare = (moodA, moodB) => {
+  if (moodA.created_at < moodB.created_at) {
+    return -1
+  }
+  if (moodA.created_at > moodB.created_at) {
+    return 1
+  }
+  return 0
 }
 
 module.exports = { findWeeklyValues }
