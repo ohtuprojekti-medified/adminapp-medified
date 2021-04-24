@@ -137,7 +137,7 @@ describe('Retention rate', function () {
     cy.contains('Average period and single periods:')
   })
 
-  /**
+  /**.
    * Test that RetentionRate page exists after selecting only patients with caregivers start date and end date
    *
    * @name RetentionRate_exists_after_selecting_only_patients_with_caregivers_start_date_and_end_date
@@ -149,7 +149,7 @@ describe('Retention rate', function () {
    */
   it('exists after checking only patients with caregivers, start date and end date in filters', function () {
     cy.contains('Retention rates')
-    cy.contains('Average using period 28.17 days')
+    cy.contains('Average using period 17.83 days')
     cy.contains('Average period and single periods:')
     cy.contains('Filter').click()
     cy.get('[data-testid="filter-checkbox"]').check()
