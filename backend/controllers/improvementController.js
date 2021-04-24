@@ -1,3 +1,13 @@
+/**.
+ * Controller for variable improvement database queries
+ *
+ * @module controllers/improvementController
+ * @requires date-fns
+ * @requires models/db
+ * @requires controllers/controller
+ * @requires filters
+ */
+
 const { addDays } = require('date-fns')
 const controller = require('./controller')
 const db = require('../models')
@@ -5,11 +15,17 @@ const user_moods = db.user_moods
 const user_care_givers = db.user_care_givers
 const { addDateFilterToQuery } = require('./filters')
 
+/**.
+ * Return weekly values with given parameters/filters
+ *
+ * @param {*} organisation - Organisation name/code for filtering
+ * @param {*} withCaregiver - Specifies whether data should be filtered to only users with caregiver
+ * @param {*} startDate - time filtering start date
+ * @param {*} endDate - time filtering end date
+ * @param {*} variable - variable indicating which data is queried
+ * @returns {...any} - computed and modified data of given variable, with possible filters
+ */
 const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate, variable) => {
-
-  console.log('MITÄS TÄÄL')
-  console.log(startDate)
-
 
   if (variable === 'MOOD') {
     let userMoodData = []
@@ -50,7 +66,6 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
         }
         addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
-
         moodsWeekly = await findWeeklyMoods(userMoodData)
       }
     } else {
@@ -99,6 +114,12 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
   }
 }
 
+/**.
+ * Function for modifying and calculating data when variable is mood
+ *
+ * @param {*} userMoodsData - object with data from database, with possible filtering
+ * @returns {...any} - computed and modified data
+ */
 const findWeeklyMoods = async (userMoodsData) => {
 
   if (userMoodsData.length === 0) {
@@ -111,9 +132,11 @@ const findWeeklyMoods = async (userMoodsData) => {
   const uniqueUserIds = [...new Set(userIds)]
   const convertedIds = convertIds(uniqueUserIds)
 
-  const firstCreated = userMoods[0].created_at.getTime()
+  const sortedTemp = userMoods.sort( compare )
+
+  const firstCreated = sortedTemp[0].created_at.getTime()
   const first = new Date(firstCreated).setHours(0, 0, 0, 0)
-  const last = userMoods[userMoods.length - 1].created_at.getTime()
+  const last = (sortedTemp[userMoods.length - 1].created_at.getTime()) + 604800000
 
   let timeFrame = first + 604800000
   let week = [new Date(first), addDays(first, 7)]
@@ -271,6 +294,16 @@ const convertIds = (userIds) => {
     newIds = [...newIds, keyValuePair]
   }
   return newIds
+}
+
+const compare = (moodA, moodB) => {
+  if (moodA.created_at < moodB.created_at) {
+    return -1
+  }
+  if (moodA.created_at > moodB.created_at) {
+    return 1
+  }
+  return 0
 }
 
 module.exports = { findWeeklyValues, findWeeklyImprovement }

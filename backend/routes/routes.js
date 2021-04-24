@@ -33,29 +33,6 @@ const improvementController = require('../controllers/improvementController')
 // handle errors if database-queries fail
 require('express-async-errors')
 
-
-router.get('/weeklyvalues', async (req, res) => {
-  const withCaregiver = req.query.withcaregiver === 'true'
-  const weeklyvalues = await improvementController.findWeeklyValues(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate, req.query.variable)
-  res.json(weeklyvalues)
-})
-
-/**.
- * Route request for weekly mood improvement
- *
- * @name get_weeklyimprovement
- * @function
- * @memberof module:routes/routes
- * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
- */
-router.get('/weeklyimprovement', async (req, res) => {
-  const withCaregiver = req.query.withcaregiver === 'true'
-  const weeklyImprovement = await improvementController.findWeeklyImprovement(req.query.organisation, withCaregiver,
-    req.query.startDate, req.query.endDate, req.query.variable)
-  res.json(weeklyImprovement)
-})
-
 /**.
  * Route request for users
  *
@@ -218,4 +195,21 @@ router.get('/avgretention', async (req, res) => {
   res.json(avg)
 })
 
+/**.
+ * Route request for weekly improvement values
+ *
+ * @name get_weeklyvalues
+ * @function
+ * @memberof module:routes/routes
+ * @inner
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+router.get('/weeklyvalues', async (req, res) => {
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const weeklyvalues = await improvementController.findWeeklyValues(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate, req.query.variable)
+  res.json(weeklyvalues)
+})
+
+module.exports = router
 module.exports = router
