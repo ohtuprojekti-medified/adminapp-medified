@@ -48,7 +48,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
           ],
           attributes: ['id', 'user_id', 'created_at', 'value']
         }
-        addDateFilterToQuery(weeklyValuesQuery)
+        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
 
         moodsWeekly = await findWeeklyMoods(userMoodData)
@@ -72,7 +72,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
             user_id: uniqueIds
           }
         }
-        addDateFilterToQuery(weeklyValuesQuery)
+        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
         moodsWeekly = await findWeeklyMoods(userMoodData)
 
@@ -86,7 +86,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
             user_id: usersInOrganisationIdArray
           }
         }
-        addDateFilterToQuery(weeklyValuesQuery)
+        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
 
         moodsWeekly = await findWeeklyMoods(userMoodData)
@@ -138,7 +138,7 @@ const findWeeklyMoods = async (userMoodsData) => {
     oneUserMoods = []
   }
 
-  // Count average moods
+  //  Count average moods
   let weekDates
   let valuesWeekly = []
   for (let i = 0; i < weeklyMoods.length; i++) {
@@ -226,6 +226,18 @@ const findWeeklyMoods = async (userMoodsData) => {
   return valuesWeekly
 }
 
+/**.
+ * Find weekly mood improvement percentages
+ *
+ * @constant
+ * @async
+ * @param {string} organisation - Organisation for filtering
+ * @param {boolean} withCaregiver - Show only users with caregiver filter value
+ * @param {string} startDate - Start date for filtering
+ * @param {string} endDate - End date for filtering
+ * @param {string} variable - Selector for mood data type
+ * @returns {Array} - Mood improvement percentages and their dates in an array
+ */
 const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
   const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
   let lastValue = [...weeklyValues][0].averages === null

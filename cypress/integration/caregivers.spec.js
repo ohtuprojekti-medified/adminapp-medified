@@ -1,23 +1,22 @@
-/**
+/**.
  * Cypress tests for caregivers
  *
  * @module cypress/integration/caregivers_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Describe tests for caregivers page
  *
  * @name Caregivers
  * @type {object}
  * @memberof module:cypress/integration/caregivers_spec
- * @inner
  * @param {string} describe - Caregivers
  * @param {object} tests - Test code
  */
 describe('Caregivers', function () {
 
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -30,7 +29,7 @@ describe('Caregivers', function () {
     cy.login()
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -43,7 +42,7 @@ describe('Caregivers', function () {
     cy.logOut()
   })
 
-  /**
+  /**.
    * Test that caregivers page exists
    *
    * @name Caregivers_exists
@@ -59,7 +58,7 @@ describe('Caregivers', function () {
     cy.contains('Registered caregivers: 5')
   })
 
-  /**
+  /**.
    * Test that caregivers page exists after checking only patients with caregiver
    *
    * @name Caregivers_exists_after_checking_only_patients_with_caregiver
@@ -77,7 +76,7 @@ describe('Caregivers', function () {
     cy.contains('Registered caregivers: 5')
   })
 
-  /**
+  /**.
    * Test that caregivers page exists after selecting start date
    *
    * @name Caregivers_exists_after_selecting_start_date
@@ -96,7 +95,7 @@ describe('Caregivers', function () {
     cy.contains('Registered caregivers: 5')
   })
 
-  /**
+  /**.
    * Test that caregivers page exists after selecting end date
    *
    * @name Caregivers_exists_after_selecting_end_date
@@ -115,7 +114,7 @@ describe('Caregivers', function () {
     cy.contains('Registered caregivers: 5')
   })
 
-  /**
+  /**.
    * Test that caregivers page exists after selecting start date and end date
    *
    * @name Caregivers_exists_after_selecting_start_date_and_end_date

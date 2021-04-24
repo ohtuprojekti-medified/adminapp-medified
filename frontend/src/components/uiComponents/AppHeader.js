@@ -1,10 +1,11 @@
-/**
+/**.
  * Component for header with nav links
  *
  * @module src/components/uiComponents/AppHeader
  * @requires react
  * @requires react-router-dom
  * @requires src/components/Filter
+ * @exports Header - Page header
  */
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -12,7 +13,7 @@ import { Link } from 'react-router-dom'
 
 
 /**
- * CSS-styling for navigation links
+ * CSS-styling for navigation links.
  */
 const linkStyle = {
   textDecoration: 'none',
@@ -24,21 +25,23 @@ const linkStyle = {
   borderRadius: '5px'
 }
 
-/**
+/**.
  * Component for header's nav links
  *
  * @param {object} param0 - Page name in path and title to show in navigation
  * @param {object} param0.page - page
  * @param {object} param0.title - title
+ * @memberof module:src/components/uiComponents/AppHeader
  * @returns { Link } - navigation link
  */
 const HeaderLink = ({ page, title }) => {
   return <Link style={linkStyle} to={`/${page}`}>{title}</Link>
 }
 
-/**
+/**.
  * Component containing all navigation links
  *
+ * @memberof module:src/components/uiComponents/AppHeader
  * @returns {object} - JSX component containing all links
  */
 const Header = () => {
@@ -47,7 +50,7 @@ const Header = () => {
       <HeaderLink page='' title='Home' />
       <HeaderLink page='retention' title='Retention rates' />
       <HeaderLink page='cumulative' title='New and active users' />
-      <HeaderLink page='moodaverages' title='Mood improvement' />
+      <HeaderLink page='moodimprovement' title='Mood improvement' />
     </div>
   )
 }

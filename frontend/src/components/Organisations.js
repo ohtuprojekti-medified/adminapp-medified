@@ -1,15 +1,22 @@
+/**.
+ * Component for Organisations filter
+ *
+ * @module src/components/Organisation
+ * @requires react
+ * @requires primereact/dropdown
+ * @exports Organisations
+ */
+
 import React from 'react'
-// import React from 'react'
 import { Dropdown } from 'primereact/dropdown'
 
-/**
+/**.
  * Component for selecting an organisation from all the organisations
  *
  * @name Organisations
  * @function
  * @constant
  * @memberof module:src/components/Organisations
- * @inner
  * @param {object} param0 - Object with params
  * @param {Array} param0.organisations - Array of all organisations
  * @returns {object} - Dropdown menu with all the organisations

@@ -46,7 +46,16 @@ module.exports = {
       'error', { 'before': true, 'after': true }
     ],
     'no-console': 0,
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    /**
+     * Jsdoc rules.
+     */
+    'jsdoc/check-indentation': 1,
+    'jsdoc/check-line-alignment': 1,
+    'jsdoc/check-syntax': 1,
+    'jsdoc/no-bad-blocks': 1,
+    'jsdoc/require-description-complete-sentence': 1,
+    'jsdoc/require-throws': 1
   },
   'settings': {
     'react': {
