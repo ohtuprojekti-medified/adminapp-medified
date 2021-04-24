@@ -1,4 +1,4 @@
-/**
+/**.
  * Component for graphing weekly mood improvement
  *
  * @module src/components/WeeklyImprovement
@@ -9,7 +9,7 @@
 import React from 'react'
 import { Chart } from 'primereact/chart'
 
-/**
+/**.
  * Component for graphing weekly mood improvement
  *
  * @type {object}
@@ -58,7 +58,7 @@ const WeeklyImprovement = ({ weeklyImprovementAverages }) => {
     <div className="p-col-12 p-lg-8">
       <div className="p-shadow-1" style={containerStyle}>
         <div className="card" style={cardStyle}>
-          <h3>WeeklyImprovement</h3>
+          <h3>Weekly Improvement</h3>
           <Chart type='bar'
             data={moodChartData}
             options={chartOptions} />
