@@ -131,4 +131,29 @@ describe('Patients', function () {
     cy.contains('App users')
     cy.contains('Application users: 110')
   })
+
+  /**
+   * Test that patients page exists after selecting only patients with caregivers start date and end date
+   *
+   * @name Patients_exists_after_selecting_only_patients_with_caregivers_start_date_and_end_date
+   * @type {object}
+   * @memberof module:cypress/integration/patients_spec
+   * @inner
+   * @param {string} describe - exists after selecting only patients with caregivers start date and end date
+   * @param {object} testFunction - Function that runs test
+   */
+  it('exists after checking only patients with caregivers, start date and end date in filters', function () {
+    cy.contains('Filter').click()
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('App users')
+    cy.contains('Application users: 110')
+    cy.get('[data-testid="filter-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-date"]').type('2020-06-01')
+    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-date"]').type('2020-11-01')
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('App users')
+    cy.contains('Application users: 7')
+  })
 })
