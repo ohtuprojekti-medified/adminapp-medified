@@ -611,3 +611,52 @@ describe('user_survey_answers', () => {
     expect(surveyAnswers[0].name).toEqual('1a2y')
   })
 })
+
+/**.
+ * Creating mock data for user_moods
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @param {string} user_moods_model - user_moods_model
+ * @param {object} mock_function - Function that creates mock data
+ */
+ jest.mock('../models/user_moods', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('user_moods', {
+    id: 4,
+    name: '1a2y',
+    mood_id: '123xyz',
+    score: '4',
+    options: []
+  })
+})
+
+/**.
+ * Run tests for user_moods
+ *
+ * @type {object}
+ * @function
+ * @memberof module:tests/controller_test
+ * @param {string} description - user_moods
+ * @param {object} tests - Function that runs tests
+ */
+describe('user_moods', () => {
+  /**.
+   * Tests that user_moods can be found from database
+   *
+   * @name user_moods_can_be_found_from_database
+   * @function
+   * @memberof module:tests/controller_test
+   * @inner
+   * @param {string} name - Name of the test
+   * @param {object} test - Test code
+   */
+  it('can be found from database', async () => {
+    const moods = await controller.findAllMoods()
+    expect(moods.length).toEqual(1)
+    expect(moods[0].name).toEqual('1a2y')
+  })
+})
