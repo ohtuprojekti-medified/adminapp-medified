@@ -3,7 +3,7 @@
  *
  * @constant
  * @module tests/controller_test
- * @requires controllers/controller
+ * @requires ../controllers/controller
  * @requires sequelize-mock
  */
 
