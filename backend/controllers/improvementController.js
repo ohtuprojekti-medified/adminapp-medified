@@ -306,4 +306,4 @@ const compare = (moodA, moodB) => {
   return 0
 }
 
-module.exports = { findWeeklyValues, findWeeklyImprovement }
+module.exports = { findWeeklyValues, findWeeklyImprovement, findWeeklyMoods }
