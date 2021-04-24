@@ -61,7 +61,33 @@ jest.mock('../models/user_profiles', () => () => {
     birth_date: null,
     first_name: 'Mikko',
     last_name: 'Mallikas',
-    added_organisation: null
+    added_organisation: 'Yritys'
+  })
+})
+
+jest.mock('../models/organisations', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('organisations', {
+    id: '11',
+    user_id: '11',
+    organisation_id: 'Yritys',
+    created_at: new Date(),
+    updated_at: new Date()
+  })
+})
+
+jest.mock('../models/access_codes', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('access_codes', {
+    id: '11',
+    user_id: '11',
+    organisation_id: 'Yritys',
+    created_at: new Date(),
+    updated_at: new Date()
   })
 })
 
@@ -159,6 +185,18 @@ describe('improvement controller', () => {
 
   test('findWeeklyValues returns correct data for moods', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', false, null, null, 'MOOD')
+    expect(weeklyMoods.length).toEqual(5)
+    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+  })
+
+  test('findWeeklyValues returns correct data for moods for certain organisation', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('Yritys', true, null, null, 'MOOD')
+    expect(weeklyMoods.length).toEqual(5)
+    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+  })
+
+  test('findWeeklyValues returns correct data for moods for certain organisation without caregiver', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('Yritys', false, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
     expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
   })
