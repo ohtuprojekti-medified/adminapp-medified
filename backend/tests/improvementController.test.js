@@ -35,6 +35,36 @@ const newDates = require('./newDatesAroundLastMidnight')
  * @inner
  * @returns {object} - improvementController with mock data
  */
+
+jest.mock('../models/user_care_givers', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('user_care_givers', {
+    user_id: '1a2b3c',
+    access_code_id: 'acc1',
+    created_at: new Date(),
+    updated_at: new Date(),
+    consent: true
+  })
+})
+
+jest.mock('../models/user_profiles', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('user_profiles', {
+    user_id: '1a2b3c',
+    height: '',
+    weight: '',
+    sex: null,
+    birth_date: null,
+    first_name: 'Mikko',
+    last_name: 'Mallikas',
+    added_organisation: null
+  })
+})
+
 const improvementControllerMocked = () => {
   db = require('../models')
   const TIMES1 = newDates([-46.7, -43.6, -40.5, -37.4, -20.6, -15.9])
@@ -129,6 +159,12 @@ describe('improvement controller', () => {
 
   test('findWeeklyValues returns correct data for moods', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', false, null, null, 'MOOD')
+    expect(weeklyMoods.length).toEqual(5)
+    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+  })
+
+  test('findWeeklyValues with caregivers returns correct data for moods', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('ALL', true, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
     expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
   })
