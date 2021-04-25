@@ -621,7 +621,7 @@ describe('user_survey_answers', () => {
  * @param {string} user_moods_model - user_moods_model
  * @param {object} mock_function - Function that creates mock data
  */
- jest.mock('../models/user_moods', () => () => {
+jest.mock('../models/user_moods', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
 
