@@ -21,15 +21,13 @@ import { Chart } from 'primereact/chart'
  * @returns {object} - JSX component that creates a graph for average moods
  */
 const AverageMoodWeekly = ({ moodAverages }) => {
-  let lastMoodAverage = 0
   const moodAverageDataset = {
     label: 'mood improvement',
     data: moodAverages === undefined || moodAverages === null ? []
       : [...moodAverages.map(entry => {
         if (entry.averages === null) {
-          return lastMoodAverage
+          return null
         } else {
-          lastMoodAverage = entry.averages[entry.averages.length - 1].average
           return entry.averages[entry.averages.length - 1].average
         }
       })],
