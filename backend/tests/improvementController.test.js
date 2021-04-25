@@ -189,7 +189,15 @@ describe('improvement controller', () => {
     expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
   })
 
-  test('findWeeklyValues returns correct data for moods for certain organisation', async () => {
+  // ***The following doesn't work. Should the date filter be brought to this test as mocked?
+  // test('findWeeklyValues returns correct data for moods with dates', async () => {
+  //   const TIMES2 = newDates([-48, -42])
+  //   const weeklyMoods = await improvementController.findWeeklyValues('ALL', true, TIMES2[0], TIMES2[1], 'MOOD')
+  //   expect(weeklyMoods.length).toEqual(5)
+  //   expect(weeklyMoods[0].averages).toEqual([{ average: 3.5, id: 1 }, { average: 5.5, id: 2 }, { average: 4.5, id: 'average' }])
+  // })
+
+  test('findWeeklyValues returns correct data for moods for certain organisation with caregiver', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('Yritys', true, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
     expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
