@@ -7,12 +7,12 @@
  * @requires @testing-library/react
  * @requires src/components/TotalMoodImprovement
  */
- import React from 'react'
- import '@testing-library/jest-dom/extend-expect'
- import { render, waitFor } from '@testing-library/react'
- import TotalMoodImprovement from './TotalMoodImprovement'
- 
- /**.
+import React from 'react'
+import '@testing-library/jest-dom/extend-expect'
+import { render, waitFor } from '@testing-library/react'
+import TotalMoodImprovement from './TotalMoodImprovement'
+
+/**.
   * Describe tests
   *
   * @type {object}
@@ -21,10 +21,10 @@
   * @param {string} description - Description of tests
   * @param {object} testCode - Code for tests
   */
- describe('<TotalMoodImprovement />', () => {
-   let component
- 
-   /**.
+describe('<TotalMoodImprovement />', () => {
+  let component
+
+  /**.
     * Render TotalMoodImprovement
     *
     * @type {object}
@@ -33,11 +33,11 @@
     * @inner
     * @param {object} beforeEachCode - Code to be run before each test
     */
-   beforeEach(() => {
-     component = render(<TotalMoodImprovement />)
-   })
- 
-   /**.
+  beforeEach(() => {
+    component = render(<TotalMoodImprovement />)
+  })
+
+  /**.
     * Test that TotalMoodImprovement is rendered
     *
     * @type {object}
@@ -47,10 +47,10 @@
     * @param {string} description - renders TotalMoodImprovement
     * @param {object} TestCode - Code that runs the test
     */
-   test('renders TotalMoodImprovement', () => {
-     waitFor(() => {
-       expect(component.container.toHaveTextContent('Adminapp for monitoring moods'))
-       expect(component.container.toHaveTextContent('Total Improvement'))
-     })
-   })
- })
+  test('renders TotalMoodImprovement', () => {
+    waitFor(() => {
+      expect(component.container.toHaveTextContent('Adminapp for monitoring moods'))
+      expect(component.container.toHaveTextContent('Total Improvement'))
+    })
+  })
+})

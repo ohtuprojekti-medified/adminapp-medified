@@ -138,7 +138,7 @@ describe('Cumulative users', function () {
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative page exists after selecting only patients with caregivers start date and end date
    *
    * @name Cumulative_exists_after_selecting_only_patients_with_caregivers_start_date_and_end_date
