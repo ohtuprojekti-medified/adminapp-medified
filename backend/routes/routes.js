@@ -227,5 +227,21 @@ router.get('/weeklyimprovement', async (req, res) => {
   res.json(weeklyImprovement)
 })
 
+/**.
+ * Route request for total mood improvement
+ *
+ * @name get_totalimprovement
+ * @function
+ * @memberof module:routes/routes
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+router.get('/totalimprovement', async (req, res) => {
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const totalImprovement = await improvementController.findTotalImprovement(req.query.organisation, withCaregiver,
+    req.query.startDate, req.query.endDate, req.query.variable)
+  res.json(totalImprovement)
+})
+
 module.exports = router
-module.exports = router
+

@@ -135,7 +135,7 @@ describe('Caregivers', function () {
     cy.contains('Registered caregivers: 5')
   })
 
-  /**
+  /**.
    * Test that caregivers page exists after selecting only patients with caregivers start date and end date
    *
    * @name Caregivers_exists_after_selecting_only_patients_with_caregivers_start_date_and_end_date

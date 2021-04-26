@@ -19,6 +19,7 @@ import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
 import AverageMoodWeekly from '../AverageMoodWeekly'
 import WeeklyImprovement from '../WeeklyImprovement'
+import TotalMoodImprovement from '../TotalMoodImprovement'
 
 /**.
  * Component containing all UI components on the home page
@@ -28,7 +29,7 @@ import WeeklyImprovement from '../WeeklyImprovement'
  * @returns {object} - JSX component containing all sub components
  */
 const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
-  retentionRates, averageRetention, moodChartData, weeklyImprovementAverages }) => {
+  retentionRates, averageRetention, moodChartData, weeklyImprovementAverages, totalImprovementAverages }) => {
 
 
   const subContainer1 = {
@@ -79,6 +80,10 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
               <WeeklyImprovement
                 weeklyImprovementAverages={weeklyImprovementAverages} />
             </div>
+            <div style={subContainer2}>
+              <TotalMoodImprovement
+                totalImprovementAverages={totalImprovementAverages} />
+            </div>
           </div>
         </Route>
 
@@ -104,6 +109,10 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
               <div style={subContainer2}>
                 <WeeklyImprovement
                   weeklyImprovementAverages={weeklyImprovementAverages} />
+              </div>
+              <div style={subContainer2}>
+                <TotalMoodImprovement
+                  totalImprovementAverages={totalImprovementAverages} />
               </div>
             </div>
           </div>
