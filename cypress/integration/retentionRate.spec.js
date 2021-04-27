@@ -55,8 +55,8 @@ describe('Retention rate', function () {
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Retention rates')
-    cy.contains('Average using period 17.83 days')
-    cy.contains('Average period and single periods:')
+    cy.contains('Average using period is 17.83 days')
+    cy.contains('Single periods:')
   })
 
   /**.
@@ -74,8 +74,8 @@ describe('Retention rate', function () {
     cy.get('[data-testid="filter-checkbox"]').check()
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Retention rates')
-    cy.contains('Average using period 33.00 days')
-    cy.contains('Average period and single periods:')
+    cy.contains('Average using period is 33.00 days')
+    cy.contains('Single periods:')
   })
 
   /**.
@@ -93,8 +93,8 @@ describe('Retention rate', function () {
     cy.get('[data-testid="startDate-checkbox"]').check()
     cy.get('[data-testid="startDate-date"]').type('2020-10-01')
     cy.contains('Retention rates')
-    cy.contains('Average using period 17.33 days')
-    cy.contains('Average period and single periods:')
+    cy.contains('Average using period is 17.33 days')
+    cy.contains('Single periods:')
   })
 
   /**.
@@ -112,8 +112,8 @@ describe('Retention rate', function () {
     cy.get('[data-testid="endDate-checkbox"]').check()
     cy.get('[data-testid="endDate-date"]').type('2020-11-01')
     cy.contains('Retention rates')
-    cy.contains('Average using period 2.00 days')
-    cy.contains('Average period and single periods:')
+    cy.contains('Average using period is 2.00 days')
+    cy.contains('Single periods:')
   })
 
   /**.
@@ -133,8 +133,8 @@ describe('Retention rate', function () {
     cy.get('[data-testid="endDate-checkbox"]').check()
     cy.get('[data-testid="endDate-date"]').type('2020-12-01')
     cy.contains('Retention rates')
-    cy.contains('Average using period 2.50 days')
-    cy.contains('Average period and single periods:')
+    cy.contains('Average using period is 2.50 days')
+    cy.contains('Single periods:')
   })
 
   /**.
@@ -149,15 +149,15 @@ describe('Retention rate', function () {
    */
   it('exists after checking only patients with caregivers, start date and end date in filters', function () {
     cy.contains('Retention rates')
-    cy.contains('Average using period 17.83 days')
-    cy.contains('Average period and single periods:')
+    cy.contains('Average using period is 17.83 days')
+    cy.contains('Single periods:')
     cy.contains('Filter').click()
     cy.get('[data-testid="filter-checkbox"]').check()
     cy.get('[data-testid="startDate-checkbox"]').check()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
     cy.get('[data-testid="endDate-checkbox"]').check()
     cy.get('[data-testid="endDate-date"]').type('2021-02-01')
-    cy.contains('Average using period 46.50 days')
-    cy.contains('Average period and single periods:')
+    cy.contains('Average using period is 46.50 days')
+    cy.contains('Single periods:')
   })
 })
