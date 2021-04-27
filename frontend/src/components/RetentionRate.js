@@ -58,7 +58,7 @@ const RetentionRate = ({ retentionRates, average }) => {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 150,
+          max: 160,
           fontColor: '#454545'
         }
       }]
