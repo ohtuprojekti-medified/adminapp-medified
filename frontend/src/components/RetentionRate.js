@@ -21,6 +21,10 @@ import { Chart } from 'primereact/chart'
 const RetentionRate = ({ retentionRates, average }) => {
 
   const daysUsed = retentionRates.map(obj => obj.daysUsed)
+
+  daysUsed.sort((a,b) => a - b)
+  daysUsed.reverse()
+
   const data = [average, ...daysUsed]
 
   let labels = []
