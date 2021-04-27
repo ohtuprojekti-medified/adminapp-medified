@@ -53,7 +53,7 @@ describe('<RetentionRate />', () => {
    */
   test('renders RetentionRate', () => {
     expect(component.container).toHaveTextContent('Retention rates')
-    expect(component.container).toHaveTextContent('Average using period')
-    expect(component.container).toHaveTextContent('Average period and single periods:')
+    expect(component.container).toHaveTextContent('Average using period is')
+    expect(component.container).toHaveTextContent('Single periods:')
   })
 })
