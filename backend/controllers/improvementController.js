@@ -349,7 +349,7 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
   let valuesWeekly = []
   for (let index = 0; index < values.length; index++) {
     valuesWeekly[index] = {
-      week: [`Week ${index + 1}`, `Week ${index + 1}`],
+      week: [index + 1, index + 1],
       averages: [{
         id: 'average',
         average: values[index]
