@@ -23,9 +23,10 @@ const { addDateFilterToQuery } = require('./filters')
  * @param {*} startDate - time filtering start date
  * @param {*} endDate - time filtering end date
  * @param {*} variable - variable indicating which data is queried
+ * @param {*} byUsingPeriod - variable indicating week by date or using period
  * @returns {...any} - computed and modified data of given variable, with possible filters
  */
-const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate, variable) => {
+const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod) => {
 
   if (variable === 'MOOD') {
     let userMoodData = []
@@ -54,7 +55,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
 
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
 
-        moodsWeekly = await findWeeklyMoods(userMoodData)
+        moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
 
       } else {
         weeklyValuesQuery = {
@@ -66,7 +67,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
         }
         addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
-        moodsWeekly = await findWeeklyMoods(userMoodData)
+        moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
       }
     } else {
       if (withCaregiver === true) {
@@ -89,7 +90,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
         }
         addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
-        moodsWeekly = await findWeeklyMoods(userMoodData)
+        moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
 
       } else {
         const usersInOrganisation = await controller.findAllUsers(organisation, false)
@@ -104,7 +105,7 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
         addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
         userMoodData = await user_moods.findAll(weeklyValuesQuery)
 
-        moodsWeekly = await findWeeklyMoods(userMoodData)
+        moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
       }
     }
     return moodsWeekly
@@ -118,10 +119,23 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
  * Function for modifying and calculating data when variable is mood
  *
  * @param {*} userMoodsData - object with data from database, with possible filtering
+ * @param {*} byUsingPeriod - variable indicating week by date or using period
  * @returns {...any} - computed and modified data
  */
-const findWeeklyMoods = async (userMoodsData) => {
+const findWeeklyMoods = async (userMoodsData, byUsingPeriod) => {
+  console.log('userMoodsData', userMoodsData)
+  return byUsingPeriod
+    ? await findWeeklyMoodsByUsingPeriod(userMoodsData)
+    : await findWeeklyMoodsByDate(userMoodsData)
+}
 
+/**.
+ * Function for modifying and calculating data when variable is mood by date
+ *
+ * @param {*} userMoodsData - object with data from database, with possible filtering
+ * @returns {...any} - computed and modified data
+ */
+const findWeeklyMoodsByDate = async (userMoodsData) => {
   if (userMoodsData.length === 0) {
     return null
   }
@@ -132,7 +146,7 @@ const findWeeklyMoods = async (userMoodsData) => {
   const uniqueUserIds = [...new Set(userIds)]
   const convertedIds = convertIds(uniqueUserIds)
 
-  const sortedTemp = userMoods.sort( compare )
+  const sortedTemp = userMoods.sort(compare)
 
   const firstCreated = sortedTemp[0].created_at.getTime()
   const first = new Date(firstCreated).setHours(0, 0, 0, 0)
@@ -250,6 +264,102 @@ const findWeeklyMoods = async (userMoodsData) => {
 }
 
 /**.
+ * Function for modifying and calculating data when variable is mood by using periods
+ *
+ * @param {*} userMoodsData - object with data from database, with possible filtering
+ * @returns {...any} - computed and modified data
+ */
+const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
+  if (userMoodsData.length === 0) {
+    return null
+  }
+  //Retrieve mood dataValues
+  const userMoods = userMoodsData.map(mood => mood.dataValues)
+  const sortedTemp = userMoods.sort(compare)
+
+  //Create set of users
+  const userIds = sortedTemp.map(userMood => userMood.user_id)
+  const uniqueUserIds = [...new Set(userIds)]
+
+  let weekAmount = 0
+  let usageByWeeks = []
+
+  //Retrieve amounts of weeks users have used the app
+  uniqueUserIds.forEach(userId => {
+    const filteredTemp = sortedTemp.filter(mood => mood.user_id === userId)
+    const first_created_at = filteredTemp[0].created_at
+    const last_created_at = filteredTemp[filteredTemp.length - 1].created_at
+    const weeks = parseInt(Math.floor(((last_created_at - first_created_at) / 604800000)).toFixed(0))
+    usageByWeeks.push(weeks)
+  })
+
+  //Max usage by weeks
+  weekAmount = Math.max(...usageByWeeks)
+
+  //Averages by using week
+  let values = []
+  for (let index = 0; index < weekAmount; index++) {
+    values.push(0)
+  }
+
+  let usersInWeek = values.slice(0)
+
+  //Retrieve number of users who used each week
+  for (let index = 0; index < usersInWeek.length; index++) {
+    usageByWeeks.forEach(weekAmount => {
+      usersInWeek[index] = index > weekAmount
+        ? usersInWeek[index]
+        : usersInWeek[index] + 1
+    })
+  }
+
+  //Retrieve average mood by week
+  uniqueUserIds.forEach(userId => {
+    //Filter data for current user
+    const filteredTemp = sortedTemp.filter(mood => mood.user_id === userId)
+    //Get first usage of the app for current user
+    const first_created_at = filteredTemp[0].created_at
+    let sums = []
+    let lastWeek = 0
+    let count = 0
+    let userMoodIndex = 0
+    //Get average mood by each week
+    while (userMoodIndex < filteredTemp.length) {
+      const userMood = filteredTemp[userMoodIndex]
+      const currentWeek = Math.floor((userMood.created_at - first_created_at) / 604800000).toFixed(0)
+      sums[currentWeek] = sums[currentWeek] === undefined || sums[currentWeek] === null ? 0 : sums[currentWeek]
+      if (currentWeek !== lastWeek) {
+        sums[lastWeek] = count === 0 ? 0 : sums[lastWeek] / count
+        count = 0
+        lastWeek = currentWeek
+      }
+      sums[currentWeek] += userMood.value
+      count++
+      userMoodIndex++
+    }
+    sums[lastWeek] = count === 0 ? 0 : sums[lastWeek] / count
+
+    //Get averages of sums
+    for (let index = 0; index < sums.length; index++) {
+      values[index] += sums[index] === undefined ? 0 : sums[index] / usersInWeek[index]
+    }
+  })
+
+  //Create returned objects
+  let valuesWeekly = []
+  for (let index = 0; index < values.length; index++) {
+    valuesWeekly[index] = {
+      week: [`Week ${index + 1}`, `Week ${index + 1}`],
+      averages: [{
+        id: 'average',
+        average: values[index]
+      }]
+    }
+  }
+  return valuesWeekly
+}
+
+/**.
  * Find weekly mood improvement percentages
  *
  * @constant
@@ -259,10 +369,11 @@ const findWeeklyMoods = async (userMoodsData) => {
  * @param {string} startDate - Start date for filtering
  * @param {string} endDate - End date for filtering
  * @param {string} variable - Selector for mood data type
+ * @param {boolean} byUsingPeriod - variable indicating week by date or using period
  * @returns {Array} - Mood improvement percentages and their dates in an array
  */
-const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
-  const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod) => {
+  const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod)
 
   let lastValue = [...weeklyValues][0].averages === null
     ? 0
@@ -290,10 +401,11 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
  * @param {*} startDate - Start date for filtering
  * @param {*} endDate - End date for filtering
  * @param {*} variable - Selector for mood data type
+ * @param {*} byUsingPeriod - variable indicating week by date or using period
  * @returns {Array} - Mood change percentages and their dates in an array
  */
-const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
-  const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod) => {
+  const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod)
 
   let firstValue = [...weeklyValues][0].averages === null
     ? 0
@@ -310,7 +422,7 @@ const findTotalImprovement = async (organisation, withCaregiver, startDate, endD
         : entry.averages.filter(average => average.id === 'average')[0].average
       totalImprovements.push({
         week: entry.week,
-        average: ((newValue / firstValue) - 1 ).toFixed(2)
+        average: ((newValue / firstValue) - 1).toFixed(2)
 
       })
       lastValue = newValue
