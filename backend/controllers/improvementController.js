@@ -184,23 +184,23 @@ const findWeeklyMoodsByDate = async (userMoodsData) => {
     if (moodValues.length === 0) {
       const averageValue = {
         week: weekDates,
-        averages: null
+        averages: [{ id: 'average', average: 0 }]
       }
       valuesWeekly = [...valuesWeekly, averageValue]
     } else if (moodValues.length === 1) {
-      const originalId = moodValues[0].user_id
-      const convertedId = convertedIds.find(id => id.originalId === originalId)
-      const moodAndId = {
-        id: convertedId.newId,
-        average: moodValues[0].value
-      }
+      // const originalId = moodValues[0].user_id
+      // const convertedId = convertedIds.find(id => id.originalId === originalId)
+      // const moodAndId = {
+      //   id: convertedId.newId,
+      //   average: moodValues[0].value
+      // }
       const averageAndId = {
         id: 'average',
         average: moodValues[0].value
       }
       const averageValue = {
         week: weekDates,
-        averages: [moodAndId, averageAndId]
+        averages: [averageAndId]
       }
       valuesWeekly = [...valuesWeekly, averageValue]
     } else {
@@ -251,7 +251,7 @@ const findWeeklyMoodsByDate = async (userMoodsData) => {
         id: 'average',
         average: averageOfAverages
       }
-      averages = [...averages, averageAndId]
+      averages = [averageAndId]
       const averageValue = {
         week: weekDates,
         averages: averages
@@ -346,7 +346,7 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
 
   //Create returned objects
   let valuesWeekly = []
-  for (let index = 0; index < values.length -1; index++) {
+  for (let index = 0; index < values.length - 1; index++) {
     valuesWeekly[index] = {
       week: [index + 1, index + 1],
       averages: [{
@@ -385,7 +385,7 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
     : [...weeklyValues].forEach(entry => {
       let newValue = 0
 
-      if (entry.averages[0].average === 0) {
+      if (entry.averages !== null && entry.averages[0].average === 0) {
         newValue = lastValue
         average = lastAverage
         weeklyImprovement.push({
@@ -439,7 +439,9 @@ const findTotalImprovement = async (organisation, withCaregiver, startDate, endD
     ? null
     : [...weeklyValues].forEach(entry => {
       let newValue
-      if (entry.averages[0].average === 0) {
+      console.log('TESTEISSÄ')
+      console.log(entry.averages[0])
+      if (entry.averages !== null && entry.averages[0].average === 0) {
         newValue = lastValue
         average = lastAverage
         totalImprovements.push({
