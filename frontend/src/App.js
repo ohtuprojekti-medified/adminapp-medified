@@ -67,12 +67,13 @@ const App = () => {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [moodChartData, setMoodChartData] = useState([])
-  const [moodAverages, setMoodAverages] = useState([])
+  const [moodAverages, setMoodAveragesByDate] = useState([])
   const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
   const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
-  const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
-  const [totalImprovementAverages, setTotalImprovementAverages] = useState([])
+  const [weeklyImprovementAverages, setWeeklyImprovementAveragesByDate] = useState([])
+  const [totalImprovementAverages, setTotalImprovementAveragesByDate] = useState([])
   const [totalImprovementChartData, setTotalImprovementChartData] = useState([])
+  const [byUsingPeriodFilter, setByUsingPeriodFilter] = useState(true)
 
   /**.
    * Configure amplify authorization and check if user is logged in
@@ -171,21 +172,19 @@ const App = () => {
           dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
-          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyValues => {
-            setMoodAverages(weeklyValues)
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyValues => {
+            setMoodAveragesByDate(weeklyValues)
             setMoodChartData(weeklyValues)
           })
-          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyImprovement => {
-            setWeeklyImprovementAverages(weeklyImprovement)
+          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyImprovement => {
+            setWeeklyImprovementAveragesByDate(weeklyImprovement)
             setWeeklyImprovementChartData(weeklyImprovement)
           })
-          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(totalImprovement => {
-            setTotalImprovementAverages(totalImprovement)
+          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(totalImprovement => {
+            setTotalImprovementAveragesByDate(totalImprovement)
             setTotalImprovementChartData(totalImprovement)
           })
-          console.log(totalImprovementAverages)
-
-
+          console.log(moodChartData)
         }
       }
     }
@@ -204,6 +203,10 @@ const App = () => {
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
+  }
+
+  const handleByUsingPeriodChange = () => {
+    setByUsingPeriodFilter(!byUsingPeriodFilter)
   }
 
   /**.
@@ -343,6 +346,8 @@ const App = () => {
                 moodChartData={moodChartData}
                 weeklyImprovementAverages={weeklyImprovementChartData}
                 totalImprovementAverages={totalImprovementChartData}
+                handleByUsingPeriodChange={handleByUsingPeriodChange}
+                byUsingPeriodFilter={byUsingPeriodFilter}
                 username={username}
                 setUsername={setUsername}
                 password={password}

@@ -17,9 +17,7 @@ import Users from '../Users'
 import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
-import AverageMoodWeekly from '../AverageMoodWeekly'
-import WeeklyImprovement from '../WeeklyImprovement'
-import TotalMoodImprovement from '../TotalMoodImprovement'
+import ImprovementsByDate from '../Improvements'
 
 /**.
  * Component containing all UI components on the home page
@@ -29,7 +27,8 @@ import TotalMoodImprovement from '../TotalMoodImprovement'
  * @returns {object} - JSX component containing all sub components
  */
 const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
-  retentionRates, averageRetention, moodChartData, weeklyImprovementAverages, totalImprovementAverages }) => {
+  retentionRates, averageRetention, moodChartData, weeklyImprovementAverages, totalImprovementAverages,
+  handleByUsingPeriodChange, byUsingPeriodFilter }) => {
 
 
   const subContainer1 = {
@@ -43,6 +42,12 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  }
+
+  const subContainer3 = {
+    justifyContent: 'center',
+    paddingTop: '50px',
+    backgroundColor: '#ebebeb'
   }
 
   const centered = {
@@ -72,16 +77,12 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
 
         <Route path='/moodimprovement'>
           <div>
-            <div style={subContainer2}>
-              <AverageMoodWeekly
-                moodAverages={moodChartData} />
-            </div>
-            <div style={subContainer2}>
-              <WeeklyImprovement
-                weeklyImprovementAverages={weeklyImprovementAverages} />
-            </div>
-            <div style={subContainer2}>
-              <TotalMoodImprovement
+            <div style={subContainer3}>
+              <ImprovementsByDate
+                handleByUsingPeriodChange={handleByUsingPeriodChange}
+                byUsingPeriodFilter={byUsingPeriodFilter}
+                moodAverages={moodChartData}
+                weeklyImprovementAverages={weeklyImprovementAverages}
                 totalImprovementAverages={totalImprovementAverages} />
             </div>
           </div>
@@ -102,16 +103,12 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
                 average={averageRetention} />
             </div>
             <div>
-              <div style={subContainer2}>
-                <AverageMoodWeekly
-                  moodAverages={moodChartData} />
-              </div>
-              <div style={subContainer2}>
-                <WeeklyImprovement
-                  weeklyImprovementAverages={weeklyImprovementAverages} />
-              </div>
-              <div style={subContainer2}>
-                <TotalMoodImprovement
+              <div style={subContainer3}>
+                <ImprovementsByDate
+                  handleByUsingPeriodChange={handleByUsingPeriodChange}
+                  byUsingPeriodFilter={byUsingPeriodFilter}
+                  moodAverages={moodChartData}
+                  weeklyImprovementAverages={weeklyImprovementAverages}
                   totalImprovementAverages={totalImprovementAverages} />
               </div>
             </div>
