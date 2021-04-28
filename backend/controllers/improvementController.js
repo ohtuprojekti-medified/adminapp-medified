@@ -140,11 +140,6 @@ const findWeeklyMoodsByDate = async (userMoodsData) => {
   }
 
   const userMoods = userMoodsData.map(mood => mood.dataValues)
-
-  const userIds = userMoods.map(userMood => userMood.user_id)
-  const uniqueUserIds = [...new Set(userIds)]
-  const convertedIds = convertIds(uniqueUserIds)
-
   const sortedTemp = userMoods.sort(compare)
 
   const firstCreated = sortedTemp[0].created_at.getTime()
@@ -187,74 +182,39 @@ const findWeeklyMoodsByDate = async (userMoodsData) => {
         averages: [{ id: 'average', average: 0 }]
       }
       valuesWeekly = [...valuesWeekly, averageValue]
-    } else if (moodValues.length === 1) {
-      // const originalId = moodValues[0].user_id
-      // const convertedId = convertedIds.find(id => id.originalId === originalId)
-      // const moodAndId = {
-      //   id: convertedId.newId,
-      //   average: moodValues[0].value
-      // }
-      const averageAndId = {
-        id: 'average',
-        average: moodValues[0].value
-      }
-      const averageValue = {
-        week: weekDates,
-        averages: [averageAndId]
-      }
-      valuesWeekly = [...valuesWeekly, averageValue]
     } else {
       moodValues.sort((a, b) => (a.user_id > b.user_id) ? 1 : ((b.user_id > a.user_id) ? -1 : 0))
 
-      let averages = []
+      let allAverages = []
       let sum = 0
       let count = 0
       let average, value
 
       for (let i = 0; i < moodValues.length; i++) {
         value = moodValues[i].value
-        sum = sum + value
+        sum += value
         count++
 
-        if (i + 1 === moodValues.length) {
+        if (i + 1 === moodValues.length || moodValues[i].user_id !== moodValues[i + 1].user_id) {
           average = sum / count
           average = parseFloat(average.toFixed(2))
-          const originalId = moodValues[i].user_id
-          const convertedId = convertedIds.find(id => id.originalId === originalId)
-          const moodAndId = {
-            id: convertedId.newId,
-            average: average
-          }
-          averages = [...averages, moodAndId]
-          sum = 0
-          count = 0
-        } else if (moodValues[i].user_id !== moodValues[i + 1].user_id) {
-          average = sum / count
-          average = parseFloat(average.toFixed(2))
-          const originalId = moodValues[i].user_id
-          const convertedId = convertedIds.find(id => id.originalId === originalId)
-          const moodAndId = {
-            id: convertedId.newId,
-            average: average
-          }
-          averages = [...averages, moodAndId]
+          allAverages = [...allAverages, average]
           sum = 0
           count = 0
         }
-
       }
-      const averageValues = averages.map(average => average.average)
-      const averageSum = averageValues.reduce((a, b) => a + b, 0)
-      let averageOfAverages = averageSum / averageValues.length
+
+      const averageSum = allAverages.reduce((a, b) => a + b, 0)
+      let averageOfAverages = averageSum / allAverages.length
       averageOfAverages = parseFloat(averageOfAverages.toFixed(2))
       const averageAndId = {
         id: 'average',
         average: averageOfAverages
       }
-      averages = [averageAndId]
+      allAverages = [averageAndId]
       const averageValue = {
         week: weekDates,
-        averages: averages
+        averages: allAverages
       }
       valuesWeekly = [...valuesWeekly, averageValue]
     }
@@ -461,21 +421,6 @@ const findTotalImprovement = async (organisation, withCaregiver, startDate, endD
       lastAverage = average
     })
   return totalImprovements
-}
-
-
-const convertIds = (userIds) => {
-  let newIds = []
-  for (let i = 0; i < userIds.length; i++) {
-    const originalId = userIds[i]
-    const newId = i + 1
-    const keyValuePair = {
-      originalId: originalId,
-      newId: newId
-    }
-    newIds = [...newIds, keyValuePair]
-  }
-  return newIds
 }
 
 const compare = (moodA, moodB) => {
