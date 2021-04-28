@@ -230,6 +230,12 @@ describe('improvement controller', () => {
     expect(weeklyMoods).toEqual(null)
   })
 
+  test('findTotalImprovement returns correct data for moods', async () => {
+    const totalImprovement = await improvementController.findTotalImprovement('ALL', null, null, null, 'MOOD')
+    expect(totalImprovement.length).toEqual(5)
+    expect(totalImprovement[0].average).toEqual('0.00')
+    expect(totalImprovement[2].average).toEqual('-0.02')
+  })
 
   afterEach(() => {
     user_moods_stub.restore()

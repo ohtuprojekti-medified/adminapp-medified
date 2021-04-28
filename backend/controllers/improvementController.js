@@ -263,6 +263,7 @@ const findWeeklyMoods = async (userMoodsData) => {
  */
 const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
   const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+
   let lastValue = [...weeklyValues][0].averages === null
     ? 0
     : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
@@ -281,6 +282,42 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
     })
   return weeklyImprovement
 }
+/**.
+ * Find change in current week's mood in relation to mood on first week
+ *
+ * @param {*} organisation - Organisation for filtering
+ * @param {*} withCaregiver - Show only users with caregiver filter value
+ * @param {*} startDate - Start date for filtering
+ * @param {*} endDate - End date for filtering
+ * @param {*} variable - Selector for mood data type
+ * @returns {Array} - Mood change percentages and their dates in an array
+ */
+const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable) => {
+  const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable)
+
+  let firstValue = [...weeklyValues][0].averages === null
+    ? 0
+    : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
+
+  let lastValue = firstValue
+  let totalImprovements = []
+
+  weeklyValues === null
+    ? null
+    : [...weeklyValues].forEach(entry => {
+      const newValue = entry.averages === null
+        ? lastValue
+        : entry.averages.filter(average => average.id === 'average')[0].average
+      totalImprovements.push({
+        week: entry.week,
+        average: ((newValue / firstValue) - 1 ).toFixed(2)
+
+      })
+      lastValue = newValue
+    })
+  return totalImprovements
+}
+
 
 const convertIds = (userIds) => {
   let newIds = []
@@ -306,4 +343,4 @@ const compare = (moodA, moodB) => {
   return 0
 }
 
-module.exports = { findWeeklyValues, findWeeklyImprovement, findWeeklyMoods }
+module.exports = { findWeeklyValues, findWeeklyImprovement, findTotalImprovement, findWeeklyMoods }

@@ -71,6 +71,8 @@ const App = () => {
   const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
   const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
   const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
+  const [totalImprovementAverages, setTotalImprovementAverages] = useState([])
+  const [totalImprovementChartData, setTotalImprovementChartData] = useState([])
 
   /**.
    * Configure amplify authorization and check if user is logged in
@@ -177,6 +179,12 @@ const App = () => {
             setWeeklyImprovementAverages(weeklyImprovement)
             setWeeklyImprovementChartData(weeklyImprovement)
           })
+          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${'MOOD'}`).then(totalImprovement => {
+            setTotalImprovementAverages(totalImprovement)
+            setTotalImprovementChartData(totalImprovement)
+          })
+          console.log(totalImprovementAverages)
+
 
         }
       }
@@ -273,7 +281,7 @@ const App = () => {
 
 
   const moodGraphLabels = [
-    { label: 'MOOD', averageMoodWeeklyData: moodAverages, weeklyImprovementData: weeklyImprovementAverages }
+    { label: 'MOOD', averageMoodWeeklyData: moodAverages, weeklyImprovementData: weeklyImprovementAverages, totalImprovementData: totalImprovementAverages }
   ]
 
   /**.
@@ -286,6 +294,7 @@ const App = () => {
     setMoodDataSelect(label)
     setMoodChartData(moodGraphLabels.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
     setWeeklyImprovementChartData(moodGraphLabels.filter(entry => entry.label === label)[0].weeklyImprovementData)
+    setTotalImprovementChartData(moodGraphLabels.filter(entry => entry.label === label)[0].totalImprovementData)
   }
 
   const containerStyle = {
@@ -333,6 +342,7 @@ const App = () => {
                 averageRetention={averageRetention}
                 moodChartData={moodChartData}
                 weeklyImprovementAverages={weeklyImprovementChartData}
+                totalImprovementAverages={totalImprovementChartData}
                 username={username}
                 setUsername={setUsername}
                 password={password}
