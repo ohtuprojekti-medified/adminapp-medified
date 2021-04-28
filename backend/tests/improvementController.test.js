@@ -35,6 +35,62 @@ const newDates = require('./newDatesAroundLastMidnight')
  * @inner
  * @returns {object} - improvementController with mock data
  */
+
+jest.mock('../models/user_care_givers', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('user_care_givers', {
+    user_id: '1a2b3c',
+    access_code_id: 'acc1',
+    created_at: new Date(),
+    updated_at: new Date(),
+    consent: true
+  })
+})
+
+jest.mock('../models/user_profiles', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('user_profiles', {
+    user_id: '1a2b3c',
+    height: '',
+    weight: '',
+    sex: null,
+    birth_date: null,
+    first_name: 'Mikko',
+    last_name: 'Mallikas',
+    added_organisation: 'Yritys'
+  })
+})
+
+jest.mock('../models/organisations', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('organisations', {
+    id: '11',
+    user_id: '11',
+    organisation_id: 'Yritys',
+    created_at: new Date(),
+    updated_at: new Date()
+  })
+})
+
+jest.mock('../models/access_codes', () => () => {
+  const SequelizeMock = require('sequelize-mock')
+  const dbMock = new SequelizeMock()
+
+  return dbMock.define('access_codes', {
+    id: '11',
+    user_id: '11',
+    organisation_id: 'Yritys',
+    created_at: new Date(),
+    updated_at: new Date()
+  })
+})
+
 const improvementControllerMocked = () => {
   db = require('../models')
   const TIMES1 = newDates([-46.7, -43.6, -40.5, -37.4, -20.6, -15.9])
@@ -128,9 +184,50 @@ describe('improvement controller', () => {
   })
 
   test('findWeeklyValues returns correct data for moods', async () => {
-    const weeklyMoods = await improvementController.findWeeklyValues('ALL', null, null, null, 'MOOD')
+    const weeklyMoods = await improvementController.findWeeklyValues('ALL', false, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
     expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+  })
+
+  // ***The following doesn't work. Should the date filter be brought to this test as mocked?
+  // test('findWeeklyValues returns correct data for moods with dates', async () => {
+  //   const TIMES2 = newDates([-48, -42])
+  //   const weeklyMoods = await improvementController.findWeeklyValues('ALL', true, TIMES2[0], TIMES2[1], 'MOOD')
+  //   expect(weeklyMoods.length).toEqual(5)
+  //   expect(weeklyMoods[0].averages).toEqual([{ average: 3.5, id: 1 }, { average: 5.5, id: 2 }, { average: 4.5, id: 'average' }])
+  // })
+
+  test('findWeeklyValues returns correct data for moods for certain organisation with caregiver', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('Yritys', true, null, null, 'MOOD')
+    expect(weeklyMoods.length).toEqual(5)
+    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+  })
+
+  test('findWeeklyValues returns correct data for moods for certain organisation without caregiver', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('Yritys', false, null, null, 'MOOD')
+    expect(weeklyMoods.length).toEqual(5)
+    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+  })
+
+  test('findWeeklyValues with caregivers returns correct data for moods', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('ALL', true, null, null, 'MOOD')
+    expect(weeklyMoods.length).toEqual(5)
+    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+  })
+
+  test('findWeeklyValues returns null if variable is not mood', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('ALL', false, null, null, 'NOTMOOD')
+    expect(weeklyMoods).toEqual(null)
+  })
+  test('findWeeklyImprovement returns correct data for moods', async () => {
+    const weeklyImprovement = await improvementController.findWeeklyImprovement('ALL', false, null, null, 'MOOD')
+    expect(weeklyImprovement.length).toEqual(5)
+    expect(weeklyImprovement[1].average).toEqual('-0.02')
+  })
+
+  test('findWeeklyMoods return null if userMoodsData is empty', async () => {
+    const weeklyMoods = await improvementController.findWeeklyMoods([])
+    expect(weeklyMoods).toEqual(null)
   })
 
   test('findTotalImprovement returns correct data for moods', async () => {
