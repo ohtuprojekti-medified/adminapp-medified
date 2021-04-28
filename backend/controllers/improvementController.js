@@ -439,8 +439,6 @@ const findTotalImprovement = async (organisation, withCaregiver, startDate, endD
     ? null
     : [...weeklyValues].forEach(entry => {
       let newValue
-      console.log('TESTEISSÄ')
-      console.log(entry.averages[0])
       if (entry.averages !== null && entry.averages[0].average === 0) {
         newValue = lastValue
         average = lastAverage
