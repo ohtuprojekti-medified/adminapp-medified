@@ -123,7 +123,6 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
  * @returns {...any} - computed and modified data
  */
 const findWeeklyMoods = async (userMoodsData, byUsingPeriod) => {
-  console.log('userMoodsData', userMoodsData)
   return byUsingPeriod
     ? await findWeeklyMoodsByUsingPeriod(userMoodsData)
     : await findWeeklyMoodsByDate(userMoodsData)
@@ -347,7 +346,7 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
 
   //Create returned objects
   let valuesWeekly = []
-  for (let index = 0; index < values.length; index++) {
+  for (let index = 0; index < values.length -1; index++) {
     valuesWeekly[index] = {
       week: [index + 1, index + 1],
       averages: [{
@@ -375,6 +374,8 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
 const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod) => {
   const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod)
 
+  let lastAverage = 0
+  let average = 0
   let lastValue = [...weeklyValues][0].averages === null
     ? 0
     : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
@@ -382,14 +383,32 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
   weeklyValues === null
     ? null
     : [...weeklyValues].forEach(entry => {
-      const newValue = entry.averages === null
-        ? lastValue
-        : entry.averages.filter(average => average.id === 'average')[0].average
-      weeklyImprovement.push({
-        week: entry.week,
-        average: ((newValue - lastValue) / lastValue).toFixed(2)
-      })
+      let newValue = 0
+
+      if (entry.averages[0].average === 0) {
+        newValue = lastValue
+        average = lastAverage
+        weeklyImprovement.push({
+          week: entry.week,
+          average: average
+        })
+      } else {
+        newValue = entry.averages === null
+          ? lastValue
+          : entry.averages.filter(average => average.id === 'average')[0].average
+
+        average = (lastValue === 0 || lastValue === null)
+          ? 0
+          : ((newValue - lastValue) / lastValue).toFixed(2)
+
+        weeklyImprovement.push({
+          week: entry.week,
+          average: average
+        })
+      }
+
       lastValue = newValue
+      lastAverage = average
     })
   return weeklyImprovement
 }
@@ -413,19 +432,33 @@ const findTotalImprovement = async (organisation, withCaregiver, startDate, endD
 
   let lastValue = firstValue
   let totalImprovements = []
+  let lastAverage = 0
+  let average = 0
 
   weeklyValues === null
     ? null
     : [...weeklyValues].forEach(entry => {
-      const newValue = entry.averages === null
-        ? lastValue
-        : entry.averages.filter(average => average.id === 'average')[0].average
-      totalImprovements.push({
-        week: entry.week,
-        average: ((newValue / firstValue) - 1).toFixed(2)
+      let newValue
+      if (entry.averages[0].average === 0) {
+        newValue = lastValue
+        average = lastAverage
+        totalImprovements.push({
+          week: entry.week,
+          average: average
+        })
+      } else {
+        const newValue = entry.averages === null
+          ? lastValue
+          : entry.averages.filter(average => average.id === 'average')[0].average
+        average = ((newValue / firstValue) - 1).toFixed(2)
+        totalImprovements.push({
+          week: entry.week,
+          average: average
 
-      })
+        })
+      }
       lastValue = newValue
+      lastAverage = average
     })
   return totalImprovements
 }
