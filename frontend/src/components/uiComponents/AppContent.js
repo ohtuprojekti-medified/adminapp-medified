@@ -17,7 +17,7 @@ import Users from '../Users'
 import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
-import ImprovementsByDate from '../Improvements'
+import ImprovementContainer from '../ImprovementsContainer'
 
 /**.
  * Component containing all UI components on the home page
@@ -28,7 +28,8 @@ import ImprovementsByDate from '../Improvements'
  */
 const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
   retentionRates, averageRetention, moodChartData, weeklyImprovementAverages, totalImprovementAverages,
-  handleByUsingPeriodChange, byUsingPeriodFilter }) => {
+  handleByUsingPeriodChange, byUsingPeriodFilter, moodChartDataByPeriod, weeklyImprovementAveragesByPeriod,
+  totalImprovementAveragesByPeriod }) => {
 
 
   const subContainer1 = {
@@ -46,8 +47,7 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
 
   const subContainer3 = {
     justifyContent: 'center',
-    paddingTop: '50px',
-    backgroundColor: '#ebebeb'
+    paddingTop: '50px'
   }
 
   const centered = {
@@ -78,12 +78,8 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
         <Route path='/moodimprovement'>
           <div>
             <div style={subContainer3}>
-              <ImprovementsByDate
-                handleByUsingPeriodChange={handleByUsingPeriodChange}
-                byUsingPeriodFilter={byUsingPeriodFilter}
-                moodAverages={moodChartData}
-                weeklyImprovementAverages={weeklyImprovementAverages}
-                totalImprovementAverages={totalImprovementAverages} />
+              <ImprovementContainer moodAverages={moodChartData} totalImprovementAverages={totalImprovementAverages} weeklyImprovementAverages={weeklyImprovementAverages} byUsingPeriodFilter={byUsingPeriodFilter} handleByUsingPeriodChange={handleByUsingPeriodChange}
+                moodChartDataByPeriod={moodChartDataByPeriod} weeklyImprovementAveragesByPeriod={weeklyImprovementAveragesByPeriod} totalImprovementAveragesByPeriod={totalImprovementAveragesByPeriod} />
             </div>
           </div>
         </Route>
@@ -104,12 +100,8 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
             </div>
             <div>
               <div style={subContainer3}>
-                <ImprovementsByDate
-                  handleByUsingPeriodChange={handleByUsingPeriodChange}
-                  byUsingPeriodFilter={byUsingPeriodFilter}
-                  moodAverages={moodChartData}
-                  weeklyImprovementAverages={weeklyImprovementAverages}
-                  totalImprovementAverages={totalImprovementAverages} />
+                <ImprovementContainer moodAverages={moodChartData} totalImprovementAverages={totalImprovementAverages} weeklyImprovementAverages={weeklyImprovementAverages} byUsingPeriodFilter={byUsingPeriodFilter} handleByUsingPeriodChange={handleByUsingPeriodChange}
+                  moodChartDataByPeriod={moodChartDataByPeriod} weeklyImprovementAveragesByPeriod={weeklyImprovementAveragesByPeriod} totalImprovementAveragesByPeriod={totalImprovementAveragesByPeriod} />
               </div>
             </div>
           </div>

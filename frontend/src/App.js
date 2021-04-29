@@ -66,14 +66,20 @@ const App = () => {
   const [endDateEnable, setEndDateEnable] = useState(false)
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
-  const [moodChartData, setMoodChartData] = useState([])
-  const [moodAverages, setMoodAverages] = useState([])
   const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
-  const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
+  const [moodAverages, setMoodAverages] = useState([])
+  const [moodChartData, setMoodChartData] = useState([])
   const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
+  const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
   const [totalImprovementAverages, setTotalImprovementAverages] = useState([])
   const [totalImprovementChartData, setTotalImprovementChartData] = useState([])
   const [byUsingPeriodFilter, setByUsingPeriodFilter] = useState(true)
+  const [moodAveragesByPeriod, setMoodAveragesByPeriod] = useState([])
+  const [moodChartDataByPeriod, setMoodChartDataByPeriod] = useState([])
+  const [weeklyImprovementAveragesByPeriod, setWeeklyImprovementAveragesByPeriod] = useState([])
+  const [weeklyImprovementChartDataByPeriod, setWeeklyImprovementChartDataByPeriod] = useState([])
+  const [totalImprovementAveragesByPeriod, setTotalImprovementAveragesByPeriod] = useState([])
+  const [totalImprovementChartDataByPeriod, setTotalImprovementChartDataByPeriod] = useState([])
 
   /**.
    * Configure amplify authorization and check if user is logged in
@@ -172,18 +178,29 @@ const App = () => {
           dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
-          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyValues => {
-            console.log('kyllä tää suoritetaan')
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyValues => {
             setMoodAverages(weeklyValues)
             setMoodChartData(weeklyValues)
           })
-          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyImprovement => {
+          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyImprovement => {
             setWeeklyImprovementAverages(weeklyImprovement)
             setWeeklyImprovementChartData(weeklyImprovement)
           })
-          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(totalImprovement => {
+          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(totalImprovement => {
             setTotalImprovementAverages(totalImprovement)
             setTotalImprovementChartData(totalImprovement)
+          })
+          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyValues => {
+            setMoodAveragesByPeriod(weeklyValues)
+            setMoodChartDataByPeriod(weeklyValues)
+          })
+          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyImprovement => {
+            setWeeklyImprovementAveragesByPeriod(weeklyImprovement)
+            setWeeklyImprovementChartDataByPeriod(weeklyImprovement)
+          })
+          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(totalImprovement => {
+            setTotalImprovementAveragesByPeriod(totalImprovement)
+            setTotalImprovementChartDataByPeriod(totalImprovement)
           })
         }
       }
@@ -283,8 +300,11 @@ const App = () => {
   }
 
 
-  const moodGraphLabels = [
+  const moodGraphLabelsByDate = [
     { label: 'MOOD', averageMoodWeeklyData: moodAverages, weeklyImprovementData: weeklyImprovementAverages, totalImprovementData: totalImprovementAverages }
+  ]
+  const moodGraphLabelsByPeriod = [
+    { label: 'MOOD', averageMoodWeeklyData: moodAveragesByPeriod, weeklyImprovementData: weeklyImprovementAveragesByPeriod, totalImprovementData: totalImprovementAveragesByPeriod }
   ]
 
   /**.
@@ -295,9 +315,12 @@ const App = () => {
    */
   const handleMoodDataSelectChange = (label) => {
     setMoodDataSelect(label)
-    setMoodChartData(moodGraphLabels.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
-    setWeeklyImprovementChartData(moodGraphLabels.filter(entry => entry.label === label)[0].weeklyImprovementData)
-    setTotalImprovementChartData(moodGraphLabels.filter(entry => entry.label === label)[0].totalImprovementData)
+    setMoodChartData(moodGraphLabelsByDate.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
+    setWeeklyImprovementChartData(moodGraphLabelsByDate.filter(entry => entry.label === label)[0].weeklyImprovementData)
+    setTotalImprovementChartData(moodGraphLabelsByDate.filter(entry => entry.label === label)[0].totalImprovementData)
+    setMoodChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
+    setWeeklyImprovementChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].weeklyImprovementData)
+    setTotalImprovementChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].totalImprovementData)
   }
 
   const containerStyle = {
@@ -330,7 +353,7 @@ const App = () => {
                 handleEndDateEnableChange={handleEndDateEnableChange}
                 handleStartDateChange={handleStartDateChange}
                 handleEndDateChange={handleEndDateChange}
-                moodGraphLabels={moodGraphLabels}
+                moodGraphLabels={moodGraphLabelsByDate}
                 moodDataSelect={moodDataSelect}
                 handleMoodDataSelectChange={handleMoodDataSelectChange} />
 
@@ -346,6 +369,9 @@ const App = () => {
                 moodChartData={moodChartData}
                 weeklyImprovementAverages={weeklyImprovementChartData}
                 totalImprovementAverages={totalImprovementChartData}
+                moodChartDataByPeriod={moodChartDataByPeriod}
+                weeklyImprovementAveragesByPeriod={weeklyImprovementChartDataByPeriod}
+                totalImprovementAveragesByPeriod={totalImprovementChartDataByPeriod}
                 handleByUsingPeriodChange={handleByUsingPeriodChange}
                 byUsingPeriodFilter={byUsingPeriodFilter}
                 username={username}
