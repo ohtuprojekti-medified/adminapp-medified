@@ -67,11 +67,11 @@ const App = () => {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [moodChartData, setMoodChartData] = useState([])
-  const [moodAverages, setMoodAveragesByDate] = useState([])
+  const [moodAverages, setMoodAverages] = useState([])
   const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
   const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
-  const [weeklyImprovementAverages, setWeeklyImprovementAveragesByDate] = useState([])
-  const [totalImprovementAverages, setTotalImprovementAveragesByDate] = useState([])
+  const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
+  const [totalImprovementAverages, setTotalImprovementAverages] = useState([])
   const [totalImprovementChartData, setTotalImprovementChartData] = useState([])
   const [byUsingPeriodFilter, setByUsingPeriodFilter] = useState(true)
 
@@ -173,18 +173,18 @@ const App = () => {
           dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
           dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
           dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyValues => {
-            setMoodAveragesByDate(weeklyValues)
+            console.log('kyllä tää suoritetaan')
+            setMoodAverages(weeklyValues)
             setMoodChartData(weeklyValues)
           })
           dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyImprovement => {
-            setWeeklyImprovementAveragesByDate(weeklyImprovement)
+            setWeeklyImprovementAverages(weeklyImprovement)
             setWeeklyImprovementChartData(weeklyImprovement)
           })
           dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(totalImprovement => {
-            setTotalImprovementAveragesByDate(totalImprovement)
+            setTotalImprovementAverages(totalImprovement)
             setTotalImprovementChartData(totalImprovement)
           })
-          console.log(moodChartData)
         }
       }
     }

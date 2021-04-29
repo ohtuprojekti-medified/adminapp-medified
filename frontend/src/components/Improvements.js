@@ -3,30 +3,44 @@ import AverageMoodWeekly from './AverageMoodWeekly'
 import WeeklyImprovement from './WeeklyImprovement'
 import TotalMoodImprovement from './TotalMoodImprovement'
 
-const ImprovementsByDate = ({ moodAverages, totalImprovementAverages, weeklyImprovementAverages }) => {
-
+const ImprovementsByDate = ({ moodAverages, totalImprovementAverages, weeklyImprovementAverages, byUsingPeriodFilter }) => {
+  //handleByUsingPeriodChange,
   const centered = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
   }
   return (
-    <div>
-      <div style={centered}>
-        <p> tähän nappula </p>
-      </div>
+    byUsingPeriodFilter === true
+      ?
       <div>
         <div style={centered}>
-          <AverageMoodWeekly moodAverages={moodAverages} />
+          <AverageMoodWeekly moodAverages={moodAverages} byPeriod={byUsingPeriodFilter} />
         </div>
         <div style={centered}>
-          <WeeklyImprovement weeklyImprovementAverages={weeklyImprovementAverages} />
+          <WeeklyImprovement weeklyImprovementAverages={weeklyImprovementAverages} byPeriod={byUsingPeriodFilter} />
         </div>
         <div style={centered}>
-          <TotalMoodImprovement totalImprovementAverages={totalImprovementAverages} />
+          <TotalMoodImprovement totalImprovementAverages={totalImprovementAverages} byPeriod={byUsingPeriodFilter} />
         </div>
       </div>
-    </div>
+      :
+      <div>
+        <div style={centered}>
+          <p> tähän nappula </p>
+        </div>
+        <div>
+          <div style={centered}>
+            <AverageMoodWeekly moodAverages={moodAverages} byPeriod={byUsingPeriodFilter} />
+          </div>
+          <div style={centered}>
+            <WeeklyImprovement weeklyImprovementAverages={weeklyImprovementAverages} />
+          </div>
+          <div style={centered}>
+            <TotalMoodImprovement totalImprovementAverages={totalImprovementAverages} />
+          </div>
+        </div>
+      </div>
   )
 }
 
