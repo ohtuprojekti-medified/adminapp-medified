@@ -222,6 +222,14 @@ const App = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
+  /**.
+   *
+   * Event handler for changuing the status of byUsingPeriodFilter
+   *
+   * @function
+   * @constant
+   * @memberof module:src/App
+   */
   const handleByUsingPeriodChange = () => {
     setByUsingPeriodFilter(!byUsingPeriodFilter)
   }

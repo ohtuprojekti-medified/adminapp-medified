@@ -16,8 +16,9 @@ import { Chart } from 'primereact/chart'
  * @function
  * @constant
  * @memberof module:src/components/WeeklyImprovement
- * @param {object} param0 - Object with weekly mood improvement
+ * @param {object} param0 - Object with weekly mood improvement and boolean byPeriod
  * @param {Array} param0.weeklyImprovementAverages - list of mood averages and their weeks
+ * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods
  */
 const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
