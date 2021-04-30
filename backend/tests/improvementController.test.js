@@ -207,19 +207,19 @@ describe('improvement controller', () => {
   test('findWeeklyValues returns correct data for moods for certain organisation with caregiver', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('Yritys', true, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
-    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
   test('findWeeklyValues returns correct data for moods for certain organisation without caregiver', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('Yritys', false, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
-    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
   test('findWeeklyValues with caregivers returns correct data for moods', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', true, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
-    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
   test('findWeeklyValues returns null if variable is not mood', async () => {
