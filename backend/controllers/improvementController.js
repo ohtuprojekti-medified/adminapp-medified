@@ -248,7 +248,7 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
     const filteredTemp = sortedTemp.filter(mood => mood.user_id === userId)
     const first_created_at = filteredTemp[0].created_at
     const last_created_at = filteredTemp[filteredTemp.length - 1].created_at
-    const weeks = parseInt(Math.floor(((last_created_at - first_created_at) / 604800000)).toFixed(0))
+    const weeks = Math.ceil(((last_created_at - first_created_at) / 604800000))
     usageByWeeks.push(weeks)
   })
 
@@ -306,12 +306,12 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
 
   //Create returned objects
   let valuesWeekly = []
-  for (let index = 0; index < values.length - 1; index++) {
+  for (let index = 0; index < values.length; index++) {
     valuesWeekly[index] = {
       week: [index + 1, index + 1],
       averages: [{
         id: 'average',
-        average: values[index]
+        average: parseFloat((values[index]).toFixed(2))
       }]
     }
   }
