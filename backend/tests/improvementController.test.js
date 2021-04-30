@@ -133,6 +133,13 @@ describe('improvement controller', () => {
     expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
+  test('findWeeklyValues returns correct data for moods with byUsingPeriod enabled', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('ALL', null, null, null, 'MOOD', true)
+    expect(weeklyMoods.length).toEqual(5)
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].week).toEqual([1, 1])
+  })
+
   test('findTotalImprovement returns correct data for moods', async () => {
     const totalImprovement = await improvementController.findTotalImprovement('ALL', null, null, null, 'MOOD')
     expect(totalImprovement.length).toEqual(5)
