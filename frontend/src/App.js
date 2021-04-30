@@ -179,7 +179,7 @@ const App = () => {
             setWeeklyImprovementAverages(weeklyImprovement)
             setWeeklyImprovementChartData(weeklyImprovement)
           })
-          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${'MOOD'}`).then(totalImprovement => {
+          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(totalImprovement => {
             setTotalImprovementAverages(totalImprovement)
             setTotalImprovementChartData(totalImprovement)
           })

@@ -186,7 +186,14 @@ describe('improvement controller', () => {
   test('findWeeklyValues returns correct data for moods', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', false, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
-    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
+  })
+
+  test('findWeeklyValues returns correct data for moods with byUsingPeriod enabled', async () => {
+    const weeklyMoods = await improvementController.findWeeklyValues('ALL', null, null, null, 'MOOD', true)
+    expect(weeklyMoods.length).toEqual(5)
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].week).toEqual([1, 1])
   })
 
   // ***The following doesn't work. Should the date filter be brought to this test as mocked?
@@ -200,19 +207,19 @@ describe('improvement controller', () => {
   test('findWeeklyValues returns correct data for moods for certain organisation with caregiver', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('Yritys', true, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
-    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
   test('findWeeklyValues returns correct data for moods for certain organisation without caregiver', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('Yritys', false, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
-    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
   test('findWeeklyValues with caregivers returns correct data for moods', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', true, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
-    expect(weeklyMoods[0].averages).toEqual([{ average: 2.67, id: 1 }, { average: 5.5, id: 2 }, { average: 4.08, id: 'average' }])
+    expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
   test('findWeeklyValues returns null if variable is not mood', async () => {
