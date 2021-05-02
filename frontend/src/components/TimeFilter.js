@@ -5,7 +5,7 @@
  * @requires react
  * @exports TimeFilter
  */
-import React, { useState } from 'react'
+import React from 'react'
 import { InputSwitch } from 'primereact/inputswitch'
 
 /**.
@@ -19,9 +19,6 @@ import { InputSwitch } from 'primereact/inputswitch'
 const TimeFilter = ({ startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
   handleEndDateEnableChange, handleStartDateChange, handleEndDateChange }) => {
 
-  // const [checked1, setChecked1] = useState(false)
-  const [checked2, setChecked2] = useState(false)
-
   const setStartDate = (e) => {
     handleStartDateChange(e.target.value)
   }
@@ -32,24 +29,31 @@ const TimeFilter = ({ startDateEnable, endDateEnable, startDate, endDate, handle
   return (
     <div>
       <form>
-
-        <div><h5>Start Date</h5><InputSwitch checked={startDateEnable} data-testid="startDate-checkbox" onChange={handleStartDateEnableChange} /></div>
-        {/* <input type="checkbox" data-testid="startDate-checkbox" checked={startDateEnable} onChange={handleStartDateEnableChange}></input> */}
-        <div>
-          {startDateEnable ? (
-            <p><input type="date" data-testid="startDate-date" value={startDate} onChange={setStartDate}></input></p>
-          ) : (
-            <div></div>
-          )}
+        <h5>Start Date</h5>
+        <div className="p-grid">
+          <div className="p-col">
+            <InputSwitch checked={startDateEnable} data-testid="startDate-checkbox" onChange={handleStartDateEnableChange} />
+          </div>
+          <div className="p-col">
+            {startDateEnable ? (
+              <input className="p-inputtext p-component" type="date" data-testid="startDate-date" value={startDate} onChange={setStartDate}></input>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
-
-        <div><h5>End Date</h5><InputSwitch checked={checked2} onChange={(e) => setChecked2(e.value)} /></div>
-        <div>
-          {checked2 ? (
-            <p><input type="date" data-testid="endDate-date" value={endDate} onChange={setEndDate}></input> End date <input type="checkbox" data-testid="endDate-checkbox" checked={endDateEnable} onChange={handleEndDateEnableChange}></input></p>
-          ) : (
-            <div></div>
-          )}
+        <h5>End Date</h5>
+        <div className="p-grid">
+          <div className="p-col">
+            <InputSwitch checked={endDateEnable} data-testid="endDate-checkbox" onChange={handleEndDateEnableChange} />
+          </div>
+          <div className="p-col">
+            {endDateEnable ? (
+              <input className="p-inputtext p-component" type="date" data-testid="startDate-date" value={endDate} onChange={setEndDate}></input>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
       </form>
     </div>
