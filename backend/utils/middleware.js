@@ -1,8 +1,8 @@
 /**.
  * Middlewares for backend
  *
- * @module utils/middleware
- * @requires utils/logger
+ * @module backend/utils/middleware
+ * @requires backend/utils/logger
  * @requires cognito-express
  * @exports unknownEndpoint
  * @exports errorHandler
@@ -44,7 +44,7 @@ const jsonWebToken = require('jsonwebtoken')
  * Authenticating token in aws here. If token is verified, check user organisation from aws
  *
  * @name authenticateToken
- * @memberof module:utils/middlewares
+ * @memberof module:backend/utils/middlewares
  * @function
  * @constant
  * @param {object} req - Request
@@ -94,7 +94,7 @@ const authenticateToken = (req, res, next) => {
  * Sends 404 to unknown paths
  *
  * @name unknownEndpoint
- * @memberof module:utils/middlewares
+ * @memberof module:backend/utils/middlewares
  * @function
  * @constant
  * @param {object} req - Request
@@ -108,7 +108,7 @@ const unknownEndpoint = (req, res) => {
  * Handles errors
  *
  * @name errorHandler
- * @memberof module:utils/middlewares
+ * @memberof module:backend/utils/middlewares
  * @function
  * @constant
  * @param {object} error -Errors

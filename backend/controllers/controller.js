@@ -1,9 +1,8 @@
 /**.
  * Controller for database queries
  *
- * @module controllers/controller
- * @requires date-fns
- * @requires models
+ * @module backend/controllers/controller
+ * @requires backend/models/index
  * @exports findAllOrgs
  * @exports findAllAccessCodes
  * @exports findAllUsers
@@ -40,7 +39,7 @@ const Op = Sequelize.Op
  * @param {string} organisation - Organisation name for filtering
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} accessCodes - list of access codes
  */
 
@@ -67,7 +66,7 @@ const findAllAccessCodes = async (organisation) => {
  *
  * @param {string} organisation - Organisation name for filtering
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} allOrganisations - list of organisations
  */
 
@@ -88,7 +87,7 @@ const findAllOrgs = async (organisation) => {
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userProfiles - list of users
  */
 
@@ -154,7 +153,7 @@ const findAllUsers = async (organisation, withCaregiver) => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userCaregivers - list of caregiver-user relationships
  */
 
@@ -170,7 +169,7 @@ const findAllUserCaregivers = async () => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userActivities - list of all user activities
  */
 
@@ -186,7 +185,7 @@ const findAllUserActivities = async () => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userCaregiverActivities - list of all caregiver activities
  */
 
@@ -202,7 +201,7 @@ const findAllUserCaregiverActivities = async () => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userAnswers - list of user answers
  */
 
@@ -218,7 +217,7 @@ const findAllUserAnswers = async () => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userDiaryItems - list of all user diary items
  */
 
@@ -234,7 +233,7 @@ const findAllUserDiaryItems = async () => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userDiaryItemGroups - list of diary item groups
  */
 
@@ -250,7 +249,7 @@ const findAllUserDiaryItemGroups = async () => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userProfessionalProfiles - list of all professional profiles
  */
 
@@ -266,7 +265,7 @@ const findAllUserProfessionalProfiles = async () => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userSurveyAnswers - list of survey answers
  */
 
@@ -282,7 +281,7 @@ const findAllUserSurveyAnswers = async () => {
  *
  * @async
  * @constant
- * @memberof module:controllers/controller
+ * @memberof module:backend/controllers/controller
  * @returns {...any} userMoods - list of user moods
  */
 

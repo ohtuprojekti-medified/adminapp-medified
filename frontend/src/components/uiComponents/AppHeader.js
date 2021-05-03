@@ -1,10 +1,10 @@
 /**.
  * Component for header with nav links
  *
- * @module src/components/uiComponents/AppHeader
+ * @module frontend/src/components/uiComponents/AppHeader
  * @requires react
  * @requires react-router-dom
- * @requires src/components/Filter
+ * @requires frontend/src/components/Filter
  * @exports Header - Page header
  */
 import React from 'react'
@@ -31,7 +31,7 @@ const linkStyle = {
  * @param {object} param0 - Page name in path and title to show in navigation
  * @param {object} param0.page - page
  * @param {object} param0.title - title
- * @memberof module:src/components/uiComponents/AppHeader
+ * @memberof module:frontend/src/components/uiComponents/AppHeader
  * @returns { Link } - navigation link
  */
 const HeaderLink = ({ page, title }) => {
@@ -41,7 +41,7 @@ const HeaderLink = ({ page, title }) => {
 /**.
  * Component containing all navigation links
  *
- * @memberof module:src/components/uiComponents/AppHeader
+ * @memberof module:frontend/src/components/uiComponents/AppHeader
  * @returns {object} - JSX component containing all links
  */
 const Header = () => {

@@ -1,8 +1,7 @@
 /**.
  * User treatments database model
  *
- * @module models/user_treatment
- *
+ * @module backend/models/user_treatments
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_treatments

@@ -1,8 +1,7 @@
 /**.
  * User survey answers database model
  *
- * @module models/user_survey_answers
- *
+ * @module backend/models/user_survey_answers
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_survey_answers

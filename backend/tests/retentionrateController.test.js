@@ -1,11 +1,11 @@
 /**.
  * Tests for retentionrateController
  *
- * @module tests/retentionrateController_test
+ * @module backend/tests/retentionrateController_test
  * @requires sinon
- * @requires newDatesAroundLastMidnight
- * @requires ../models
- * @requires ../controllers/retentionrateController
+ * @requires backend/tests/newDatesAroundLastMidnight
+ * @requires backend/models/index
+ * @requires backend//controllers/retentionrateController
  */
 
 /**.
@@ -13,7 +13,7 @@
  *
  * @type {object}
  * @constant
- * @memberof module:tests/retentionrateController_test
+ * @memberof module:backend/tests/retentionrateController_test
  * @name sinon
  */
 const sinon = require('sinon')
@@ -27,7 +27,7 @@ let user_activities_stub, user_profiles_stub
  * Helper function for creating new Date objects
  *
  * @constant
- * @memberof module:tests/retentionrateController_test
+ * @memberof module:backend/tests/retentionrateController_test
  */
 const newDates = require('./newDatesAroundLastMidnight')
 
@@ -39,7 +39,7 @@ const TIMES2 = newDates([-25.4, -20.6, -7])
  *
  * @constant
  * @function
- * @memberof module:tests/retentionrateController_test
+ * @memberof module:backend/tests/retentionrateController_test
  * @returns {object} - retentionrateController with mock data
  */
 const retentionrateControllerMocked = () => {
@@ -148,7 +148,7 @@ const retentionrateControllerMocked = () => {
  * Run tests for retentionrate controller
  *
  * @function
- * @memberof module:tests/retentionrateController_test
+ * @memberof module:backend/tests/retentionrateController_test
  * @param {string} description - retentionrate controller
  * @returns {object} - Function that runs tests
  */
@@ -158,7 +158,7 @@ describe('retentionrate controller', () => {
    *
    * @name beforeEach
    * @function
-   * @memberof module:tests/retentionrateController_test
+   * @memberof module:backend/tests/retentionrateController_test
    * @inner
    * @param {object} beforeEachCode - beforeEach code
    */
@@ -171,7 +171,7 @@ describe('retentionrate controller', () => {
    *
    * @name retentionrate_controller_findRetentionRates_returns_correct_data
    * @function
-   * @memberof module:tests/retentionrateController_test
+   * @memberof module:backend/tests/retentionrateController_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -192,7 +192,7 @@ describe('retentionrate controller', () => {
    *
    * @name retentionrate_controller_findAverageRetentionRate_returns_correct_data
    * @function
-   * @memberof module:tests/retentionrateController_test
+   * @memberof module:backend/tests/retentionrateController_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -233,7 +233,7 @@ describe('retentionrate controller', () => {
    *
    * @name afterEach
    * @function
-   * @memberof module:tests/retentionrateController_test
+   * @memberof module:backend/tests/retentionrateController_test
    * @inner
    * @param {object} afterEachCode - afterEach code
    */

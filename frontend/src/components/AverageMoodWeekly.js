@@ -1,7 +1,7 @@
 /**.
  * Component for graphing mood averages
  *
- * @module src/components/MoodAverage
+ * @module frontend/src/components/MoodAverage
  * @requires react
  * @requires primereact/chart
  * @exports MoodAverage
@@ -15,8 +15,8 @@ import { Chart } from 'primereact/chart'
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/MoodAverage
- * @param {object} param0 - Object with weekly cumulative users and byPeriod boolean
+ * @memberof module:frontend/src/components/MoodAverage
+ * @param {object} param0 - Object with weekly cumulative users
  * @param {Array} param0.moodAverages - list of mood averages and their weeks
  * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods

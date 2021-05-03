@@ -1,13 +1,13 @@
 /**.
  * Component containing all UI components on the home page
  *
- * @module src/components/uiComponents/AppContent
+ * @module frontend/src/components/uiComponents/AppContent
  * @requires react
  * @requires react-router-dom
- * @requires src/components/Users
- * @requires src/components/Caregivers
- * @requires src/components/Cumulative
- * @requires src/components/RetentionRate
+ * @requires frontend/src/components/Users
+ * @requires frontend/src/components/Caregivers
+ * @requires frontend/src/components/Cumulative
+ * @requires frontend/src/components/RetentionRate
  * @exports AppContent - Page content
  */
 import React from 'react'
@@ -23,7 +23,7 @@ import ImprovementContainer from '../ImprovementsContainer'
  * Component containing all UI components on the home page
  *
  * @param {*} param0 - all props from App.js
- * @memberof module:src/components/uiComponents/AppContent
+ * @memberof module:frontend/src/components/uiComponents/AppContent
  * @returns {object} - JSX component containing all sub components
  */
 const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,

@@ -1,7 +1,7 @@
 /**.
  * Access codes database model
  *
- * @module models/access_codes
+ * @module backend/models/access_codes
  *
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types

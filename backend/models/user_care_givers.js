@@ -1,8 +1,7 @@
 /**.
  * User caregivers database model
  *
- * @module models/user_care_givers
- *
+ * @module backend/models/user_care_givers
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_care_givers

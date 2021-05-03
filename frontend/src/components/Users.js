@@ -1,7 +1,7 @@
 /**.
  * Component for users
  *
- * @module src/components/Users
+ * @module frontend/src/components/Users
  * @requires react
  * @requires primereact/card
  * @exports Users
@@ -15,7 +15,7 @@ import { Card } from 'primereact/card'
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/Users
+ * @memberof module:frontend/src/components/Users
  * @param {object} param0 - Object with users
  * @param {Array} param0.users - Array of all users
  * @returns {object} - JSX component that counts amount of users
