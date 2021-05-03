@@ -207,7 +207,8 @@ router.get('/avgretention', async (req, res) => {
  */
 router.get('/weeklyvalues', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
-  const weeklyvalues = await improvementController.findWeeklyValues(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate, req.query.variable)
+  const byUsingPeriod = req.query.byUsingPeriod === 'true'
+  const weeklyvalues = await improvementController.findWeeklyValues(req.query.organisation, withCaregiver, req.query.startDate, req.query.endDate, req.query.variable, byUsingPeriod)
   res.json(weeklyvalues)
 })
 
@@ -222,10 +223,28 @@ router.get('/weeklyvalues', async (req, res) => {
  */
 router.get('/weeklyimprovement', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
+  const byUsingPeriod = req.query.byUsingPeriod === 'true'
   const weeklyImprovement = await improvementController.findWeeklyImprovement(req.query.organisation, withCaregiver,
-    req.query.startDate, req.query.endDate, req.query.variable)
+    req.query.startDate, req.query.endDate, req.query.variable, byUsingPeriod)
   res.json(weeklyImprovement)
 })
 
+/**.
+ * Route request for total mood improvement
+ *
+ * @name get_totalimprovement
+ * @function
+ * @memberof module:routes/routes
+ * @param {string} path - Path for request
+ * @param {object} middleware - Handle request to path
+ */
+router.get('/totalimprovement', async (req, res) => {
+  const withCaregiver = req.query.withcaregiver === 'true'
+  const byUsingPeriod = req.query.byUsingPeriod === 'true'
+  const totalImprovement = await improvementController.findTotalImprovement(req.query.organisation, withCaregiver,
+    req.query.startDate, req.query.endDate, req.query.variable, byUsingPeriod)
+  res.json(totalImprovement)
+})
+
 module.exports = router
-module.exports = router
+

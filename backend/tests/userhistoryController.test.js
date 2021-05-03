@@ -28,12 +28,6 @@ let userhistoryController, db, user_activities_stub, user_profiles_stub
 const newDates = require('./newDatesAroundLastMidnight')
 
 const { format } = require('date-fns')
-// const TIME6 = new Date(new Date() - 604800000)
-// const TIME5 = new Date(new Date() - 1512000010)
-// const TIME4 = new Date(new Date() - 2177280020)
-// const TIME3 = new Date(new Date() - 2782080030)
-// const TIME2 = new Date(new Date() - 3386880040)
-// const TIME1 = new Date(new Date() - 3991680050)
 const TIMES = newDates([-46.2, -39.2, -32.2, -25.2, -17.5, -7])
 const USER_PROFILES_CREATED_AT_TIMES = newDates([-150, -100, -90, -75])
 

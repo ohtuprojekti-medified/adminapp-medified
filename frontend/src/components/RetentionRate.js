@@ -21,13 +21,15 @@ import { Chart } from 'primereact/chart'
 const RetentionRate = ({ retentionRates, average }) => {
 
   const daysUsed = retentionRates.map(obj => obj.daysUsed)
-  const data = [average, ...daysUsed]
+  daysUsed.sort((a,b) => a - b)
+  daysUsed.reverse()
+
+  const data = [...daysUsed]
 
   let labels = []
   for (let days of daysUsed) {
     labels = [...labels, days]
   }
-  labels = ['Average', ...labels]
 
   const barChart = {
     labels: labels,
@@ -56,7 +58,7 @@ const RetentionRate = ({ retentionRates, average }) => {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 100,
+          max: 160,
           fontColor: '#454545'
         }
       }]
@@ -80,9 +82,10 @@ const RetentionRate = ({ retentionRates, average }) => {
       <div className="p-shadow-1" style={containerStyle}>
         <div className="card" style={cardStyle}>
           <h3>Retention rates</h3>
-          <p> Average using period {parseFloat(average).toFixed(2)} days</p>
-          <p> Average period and single periods:</p>
+          <p> Average using period is {parseFloat(average).toFixed(2)} days</p>
+          <p> Single periods:</p>
           <Chart type="bar" data={barChart} options={options}></Chart>
+
         </div>
       </div>
     </div>
