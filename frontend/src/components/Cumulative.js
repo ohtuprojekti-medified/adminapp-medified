@@ -1,7 +1,7 @@
 /**.
  * Component for graphing all new users, cumulative
  *
- * @module src/components/Cumulative
+ * @module frontend/src/components/Cumulative
  * @requires react
  * @requires primereact/chart
  * @exports Cumulative
@@ -16,7 +16,7 @@ import { subDays, format } from 'date-fns'
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/Cumulative
+ * @memberof module:frontend/src/components/Cumulative
  * @param {object} param0 - Object with weekly cumulative users
  * @param {Array} param0.cumulative - Array of all cumulative users
  * @param {Array} param0.activeUsers - Array of all active users

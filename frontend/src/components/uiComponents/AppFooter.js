@@ -1,7 +1,7 @@
 /**.
  * Component for applications UI footer
  *
- * @module src/components/uiComponents/AppFooter
+ * @module frontend/src/components/uiComponents/AppFooter
  * @requires react
  * @requires primereact/toolbar
  * @exports AppFooter - Page footer
@@ -31,7 +31,7 @@ const leftContents = (
 /**.
  * Component for applications UI footer
  *
- * @memberof module:src/components/uiComponents/AppFooter
+ * @memberof module:frontend/src/components/uiComponents/AppFooter
  * @returns {object} - JSX Footer component
  */
 const AppFooter = () => {

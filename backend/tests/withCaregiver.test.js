@@ -1,10 +1,10 @@
 /**.
  * Tests that database controllers return correct data when filtered
  *
- * @module tests/withCaregiver_test
- * @requires ../controllers/controller
+ * @module backend/tests/withCaregiver_test
+ * @requires backend/controllers/controller
  * @requires sequelize-mock
- * @requires ../models
+ * @requires backend/models/index
  *
  */
 
@@ -27,7 +27,7 @@ const controller = require('../controllers/controller')
  *
  * @type {object}
  * @function
- * @memberof module:tests/withCaregiver_test
+ * @memberof module:backend/tests/withCaregiver_test
  * @param {string} user_caregivers_model - user_caregivesr_model
  * @param {object} mock_function - Function that creates mock data
  */

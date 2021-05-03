@@ -1,7 +1,7 @@
 /**.
  * Component for total mood improvement
  *
- * @module src/components/TotalMoodImprovement
+ * @module frontend/src/components/TotalMoodImprovement
  * @requires react
  * @requires primereact/chart
  * @exports TotalImprovement
@@ -15,8 +15,8 @@ import { Chart } from 'primereact/chart'
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/TotalMoodImprovement
- * @param {object} param0 - Object with total mood improvement and byPeriod boolean
+ * @memberof module:frontend/src/components/TotalMoodImprovement
+ * @param {object} param0 - Object with total mood improvement
  * @param {Array} param0.totalImprovementAverages - list of mood averages and their weeks
  * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods

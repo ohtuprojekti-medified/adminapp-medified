@@ -1,7 +1,7 @@
 /**.
  * Component for retention rates
  *
- * @module src/components/RetentionRate
+ * @module frontend/src/components/RetentionRate
  * @requires react
  * @requires primereact/chart
  * @exports RetentionRate

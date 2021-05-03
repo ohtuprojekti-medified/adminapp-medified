@@ -1,8 +1,7 @@
 /**.
  * User activities database model
  *
- * @module models/user_activities
- *
+ * @module backend/models/user_activities
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_activities

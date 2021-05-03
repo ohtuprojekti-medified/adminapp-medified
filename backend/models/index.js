@@ -3,9 +3,25 @@
 /**.
  * Initialization for sequelize-database and models
  *
- * @module models/index
+ * @module backend/models/index
  * @requires sequelize
- * @requires config
+ * @requires backend/utils/config
+ * @requires backend/models/access_codes
+ * @requires backend/models/organisations
+ * @requires backend/models/user_professional_profiles
+ * @requires backend/models/user_care_givers
+ * @requires backend/models/user_activities
+ * @requires backend/models/user_care_giver_activities
+ * @requires backend/models/user_answers
+ * @requires backend/models/user_diary_items
+ * @requires backend/models/user_diary_item_groups
+ * @requires backend/models/user_professional_profiles
+ * @requires backend/models/user_survey_answers
+ * @requires backend/models/user_consents
+ * @requires backend/models/user_medicine
+ * @requires backend/models/user_moods
+ * @requires backend/models/user_treatments
+ * @requires backend/models/user_symptoms
  * @exports db
  */
 

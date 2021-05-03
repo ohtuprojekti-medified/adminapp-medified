@@ -1,10 +1,10 @@
 /**.
  * Tests for authenticateToken middleware
  *
- * @module tests/authenticateToken_test
+ * @module backend/tests/authenticateToken_test
  * @requires node-mocks-http
  * @requires sinon
- * @requires utils/middleware
+ * @requires backend/utils/middleware
  */
 
 /**.
@@ -13,7 +13,7 @@
  * @name mocks
  * @type {object}
  * @constant
- * @memberof module:tests/authenticateToken_test
+ * @memberof module:backend/tests/authenticateToken_test
  */
 const mocks = require('node-mocks-http')
 
@@ -23,7 +23,7 @@ const mocks = require('node-mocks-http')
  * @name sinon
  * @type {object}
  * @constant
- * @memberof module:tests/authenticateToken_test
+ * @memberof module:backend/tests/authenticateToken_test
  */
 const sinon = require('sinon')
 let authenticateToken
@@ -35,7 +35,7 @@ let mockReq, mockRes, mockNext
  * @name description
  * @type {object}
  * @function
- * @memberof module:tests/authenticateToken_test
+ * @memberof module:backend/tests/authenticateToken_test
  * @param {string} description - user_profiles
  * @param {object} tests - Function that runs tests
  */
@@ -46,7 +46,7 @@ describe('authenticateToken tests', () => {
    *
    * @name beforeEach
    * @function
-   * @memberof module:tests/authenticateToken_test
+   * @memberof module:backend/tests/authenticateToken_test
    * @inner
    * @param {object} functionBeforeEach - Function to be executed before each test
    */
@@ -61,7 +61,7 @@ describe('authenticateToken tests', () => {
    *
    * @name authenticateToken_without_token
    * @function
-   * @memberof module:tests/authenticateToken_test
+   * @memberof module:backend/tests/authenticateToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -77,7 +77,7 @@ describe('authenticateToken tests', () => {
    *
    * @name authenticateToken_with_fake_token
    * @function
-   * @memberof module:tests/authenticateToken_test
+   * @memberof module:backend/tests/authenticateToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code

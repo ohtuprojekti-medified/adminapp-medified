@@ -1,11 +1,11 @@
 /**.
  * Tests for RetentionRate component
  *
- * @module src/components/RetentionRate_test
+ * @module frontend/src/components/RetentionRate_test
  * @requires react
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/components/RetentionRate
+ * @requires frontend/src/components/RetentionRate
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
@@ -17,7 +17,7 @@ import RetentionRate from './RetentionRate'
  *
  * @type {object}
  * @function
- * @memberof module:src/components/RetentionRate_test
+ * @memberof module:frontend/src/components/RetentionRate_test
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -30,7 +30,7 @@ describe('<RetentionRate />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/RetentionRate_test
+   * @memberof module:frontend/src/components/RetentionRate_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
    */
@@ -46,7 +46,7 @@ describe('<RetentionRate />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/RetentionRate_test
+   * @memberof module:frontend/src/components/RetentionRate_test
    * @inner
    * @param {string} description - Renders chart
    * @param {object} TestCode - Code that runs the test

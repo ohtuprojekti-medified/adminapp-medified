@@ -1,12 +1,12 @@
 /**.
  * Component for login form
  *
- * @module src/components/LoginForm
+ * @module frontend/src/components/LoginForm
  * @requires react
  * @requires primereact/inputtext
  * @requires primereact/password
  * @requires primereact/button
- * @requires src/services/loginService
+ * @requires frontend/src/services/loginService
  * @exports LoginForm
  */
 import React from 'react'
@@ -21,7 +21,7 @@ import { Button } from 'primereact/button'
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/LoginForm
+ * @memberof module:frontend/src/components/LoginForm
  * @param {object} param0 - Object with params
  * @param {string} param0.username - Value of username in form
  * @param {Function} param0.setUsername - Function to set the value of username
@@ -39,7 +39,7 @@ const LoginForm = ({ username, setUsername, password, setPassword, user, setUser
    * @type {object}
    * @function
    * @constant
-   * @memberof module:src/components/LoginForm
+   * @memberof module:frontend/src/components/LoginForm
    * @inner
    * @param {object} event - Contains event
    */

@@ -1,10 +1,10 @@
 /**.
  * Tests for requests to backend when no token is present
  *
- * @module tests/noToken_test
+ * @module backend/tests/noToken_test
  * @requires mongoose
  * @requires supertest
- * @requires app
+ * @requires backend/app
  */
 
 /**.
@@ -58,7 +58,7 @@ const apiUrl = '/api'
  * @name description
  * @type {object}
  * @function
- * @memberof module:tests/noToken_test
+ * @memberof module:backend/tests/noToken_test
  * @param {string} description - noToken tests
  * @param {object} tests - Function that runs tests
  */
@@ -69,7 +69,7 @@ describe('noToken tests', () => {
  *
  * @name no_weekly_mood_averages_without_token
  * @function
- * @memberof module:tests/noToken_test
+ * @memberof module:backend/tests/noToken_test
  * @param {string} name - Name of the test
  * @param {object} test - Test code
  */
@@ -83,7 +83,7 @@ describe('noToken tests', () => {
    *
    * @name no_weekly_improvement_averages_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @param {string} name - Name of the test
    * @param {object} test - Test code
    */
@@ -97,7 +97,7 @@ describe('noToken tests', () => {
    *
    * @name no_users_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -112,7 +112,7 @@ describe('noToken tests', () => {
    *
    * @name no_caregivers_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -127,7 +127,7 @@ describe('noToken tests', () => {
    *
    * @name no_ping_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -142,7 +142,7 @@ describe('noToken tests', () => {
    *
    * @name no_cumulative_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -157,7 +157,7 @@ describe('noToken tests', () => {
    *
    * @name no_activeusers_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -172,7 +172,7 @@ describe('noToken tests', () => {
    *
    * @name no_newusers_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -187,7 +187,7 @@ describe('noToken tests', () => {
    *
    * @name no_activitytoday_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -202,7 +202,7 @@ describe('noToken tests', () => {
    *
    * @name no_retention_rate_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -217,7 +217,7 @@ describe('noToken tests', () => {
    *
    * @name no_average_retention_rate_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -232,7 +232,7 @@ describe('noToken tests', () => {
    *
    * @name unknown_url_returns_403_without_token
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -247,7 +247,7 @@ describe('noToken tests', () => {
    *
    * @name afterAll
    * @function
-   * @memberof module:tests/noToken_test
+   * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {object} functionAfterAll - Function to be executed after all tests
    */

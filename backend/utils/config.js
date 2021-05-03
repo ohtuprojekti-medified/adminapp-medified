@@ -1,7 +1,7 @@
 /**.
  * Config for retrieving environment variables for app
  *
- * @module utils/config
+ * @module backend/utils/config
  * @requires dotenv
  * @exports PORT
  * @exports db_host

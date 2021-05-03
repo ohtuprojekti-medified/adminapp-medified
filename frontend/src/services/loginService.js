@@ -1,7 +1,7 @@
 /**.
  * Service for handling login with AWS Cognito
  *
- * @module src/services/loginService
+ * @module frontend/src/services/loginService
  * @requires aws-amplify
  * @exports login
  * @exports logOut
@@ -15,7 +15,7 @@ import { Auth } from 'aws-amplify'
  * @function
  * @async
  * @constant
- * @memberof module:src/services/loginService
+ * @memberof module:frontend/src/services/loginService
  * @param {object} credentials - Contains username and password
  * @param {string} credentials.username - Username
  * @param {string} credentials.password - Password
@@ -40,7 +40,7 @@ const login = async credentials => {
  * @function
  * @async
  * @constant
- * @memberof module:src/services/loginService
+ * @memberof module:frontend/src/services/loginService
  */
 const logOut = async () => {
   try {

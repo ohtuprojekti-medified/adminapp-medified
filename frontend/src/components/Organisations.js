@@ -1,7 +1,7 @@
 /**.
  * Component for Organisations filter
  *
- * @module src/components/Organisation
+ * @module frontend/src/components/Organisation
  * @requires react
  * @requires primereact/dropdown
  * @exports Organisations
@@ -16,7 +16,7 @@ import { Dropdown } from 'primereact/dropdown'
  * @name Organisations
  * @function
  * @constant
- * @memberof module:src/components/Organisations
+ * @memberof module:frontend/src/components/Organisations
  * @param {object} param0 - Object with params
  * @param {Array} param0.organisations - Array of all organisations
  * @returns {object} - Dropdown menu with all the organisations

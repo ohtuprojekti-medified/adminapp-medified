@@ -1,11 +1,11 @@
 /**.
  * Tests for TotalMoodImprovement component
  *
- * @module src/components/TotalMoodImprovement_test
+ * @module frontend/src/components/TotalMoodImprovement_test
  * @requires react
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/components/TotalMoodImprovement
+ * @requires frontend/src/components/TotalMoodImprovement
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
@@ -17,7 +17,7 @@ import TotalMoodImprovement from './TotalMoodImprovement'
   *
   * @type {object}
   * @function
-  * @memberof module:src/components/TotalMoodImprovement_test
+  * @memberof module:frontend/src/components/TotalMoodImprovement_test
   * @param {string} description - Description of tests
   * @param {object} testCode - Code for tests
   */
@@ -29,7 +29,7 @@ describe('<TotalMoodImprovement />', () => {
     *
     * @type {object}
     * @function
-    * @memberof module:src/components/TotalMoodImprovement_test
+    * @memberof module:frontend/src/components/TotalMoodImprovement_test
     * @inner
     * @param {object} beforeEachCode - Code to be run before each test
     */
@@ -42,7 +42,7 @@ describe('<TotalMoodImprovement />', () => {
     *
     * @type {object}
     * @function
-    * @memberof module:src/components/TotalMoodImprovement_test
+    * @memberof module:frontend/src/components/TotalMoodImprovement_test
     * @inner
     * @param {string} description - renders TotalMoodImprovement
     * @param {object} TestCode - Code that runs the test
