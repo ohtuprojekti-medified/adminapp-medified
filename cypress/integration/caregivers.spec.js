@@ -88,7 +88,7 @@ describe('Caregivers', function () {
    */
   it('exists after selecting start date in filters', function () {
     cy.contains('Filter').click()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Caregivers')
@@ -135,7 +135,7 @@ describe('Caregivers', function () {
     cy.contains('Registered caregivers: 5')
   })
 
-  /**
+  /**.
    * Test that caregivers page exists after selecting only patients with caregivers start date and end date
    *
    * @name Caregivers_exists_after_selecting_only_patients_with_caregivers_start_date_and_end_date
