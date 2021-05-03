@@ -1,21 +1,21 @@
 /**.
  * Frontend app
  *
- * @module src/App
+ * @module frontend/src/App
  * @requires primereact/resources/themes/saga-blue/theme.css
  * @requires primereact/resources/primereact.min.css
  * @requires primeicons/primeicons.css
  * @requires react-transition-group
  * @requires primeflex/primeflex.css
- * @requires src/App.css
- * @requires src/services/dataService
- * @requires src/services/loginService
+ * @requires frontend/src/App.css
+ * @requires frontend/src/services/dataService
+ * @requires frontend/src/services/loginService
  * @requires react
  * @requires aws-amplify
- * @requires src/components/LoginForm
- * @requires src/components/uiComponents/AppTopbar
- * @requires src/components/uiComponents/AppFooter
- * @requires src/components/uiComponents/AppContent
+ * @requires frontend/src/components/LoginForm
+ * @requires frontend/src/components/uiComponents/AppTopbar
+ * @requires frontend/src/components/uiComponents/AppFooter
+ * @requires frontend/src/components/uiComponents/AppContent
  * @requires dotenv
  * @exports App - React application
  */
@@ -45,7 +45,7 @@ import 'primeflex/primeflex.css'
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/App
+ * @memberof module:frontend/src/App
  * @returns {object} - A single page application in JSX
  */
 const App = () => {
@@ -79,7 +79,7 @@ const App = () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/App
+   * @memberof module:frontend/src/App
    * @inner
    */
   useEffect(() => {
@@ -104,7 +104,7 @@ const App = () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/App
+   * @memberof module:frontend/src/App
    * @inner
    */
   useEffect(() => {
@@ -200,7 +200,7 @@ const App = () => {
    *
    * @function
    * @constant
-   * @memberof module:src/App
+   * @memberof module:frontend/src/App
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
@@ -213,7 +213,7 @@ const App = () => {
    * @param {string} organisation - Requested organisation
    * @function
    * @constant
-   * @memberof module:src/App
+   * @memberof module:frontend/src/App
    */
   const handleOrganisationChange = (organisation) => {
     setOrganisation(organisation)
@@ -224,7 +224,7 @@ const App = () => {
    *
    * @function
    * @constant
-   * @memberof module:src/App
+   * @memberof module:frontend/src/App
    */
   const handleStartDateEnableChange = () => {
     if (startDateEnable) {
@@ -240,7 +240,7 @@ const App = () => {
    *
    * @function
    * @constant
-   * @memberof module:src/App
+   * @memberof module:frontend/src/App
    */
   const handleEndDateEnableChange = () => {
     if (endDateEnable) {
@@ -257,7 +257,7 @@ const App = () => {
    * @param {string} date - Date where to begin showing data
    * @function
    * @constant
-   * @memberof module:src/App
+   * @memberof module:frontend/src/App
    */
   const handleStartDateChange = (date) => {
     if (startDateEnable) {
@@ -271,7 +271,7 @@ const App = () => {
    * @param {string} date - Date where to end showing data
    * @function
    * @constant
-   * @memberof module:src/App
+   * @memberof module:frontend/src/App
    */
   const handleEndDateChange = (date) => {
     if (endDateEnable) {

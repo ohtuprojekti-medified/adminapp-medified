@@ -1,7 +1,7 @@
 /**.
  * Component for graphing weekly mood improvement
  *
- * @module src/components/WeeklyImprovement
+ * @module frontend/src/components/WeeklyImprovement
  * @requires react
  * @requires primereact/chart
  * @exports WeeklyImprovement
@@ -15,7 +15,7 @@ import { Chart } from 'primereact/chart'
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/WeeklyImprovement
+ * @memberof module:frontend/src/components/WeeklyImprovement
  * @param {object} param0 - Object with weekly mood improvement
  * @param {Array} param0.weeklyImprovementAverages - list of mood averages and their weeks
  * @returns {object} - JSX component that creates a graph for average moods

@@ -1,11 +1,11 @@
 /**.
  * Tests for TimeFilter component
  *
- * @module src/components/TimeFilter_test
+ * @module frontend/src/components/TimeFilter_test
  * @requires react
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/components/TimeFilter
+ * @requires frontend/src/components/TimeFilter
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
@@ -17,7 +17,7 @@ import TimeFilter from './TimeFilter'
  *
  * @type {object}
  * @function
- * @memberof module:src/components/TimeFilter_test
+ * @memberof module:frontend/src/components/TimeFilter_test
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -33,7 +33,7 @@ describe('<TimeFilter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
    */
@@ -54,7 +54,7 @@ describe('<TimeFilter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Renders filter
    * @param {object} TestCode - Code that runs the test
@@ -71,7 +71,7 @@ describe('<TimeFilter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls start date enable eventhandler
    * @param {object} TestCode - Code that runs the test
@@ -90,7 +90,7 @@ describe('<TimeFilter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls end date enable eventhandler
    * @param {object} TestCode - Code that runs the test
@@ -109,7 +109,7 @@ describe('<TimeFilter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls start date eventhandler
    * @param {object} TestCode - Code that runs the test
@@ -128,7 +128,7 @@ describe('<TimeFilter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls end date eventhandler
    * @param {object} TestCode - Code that runs the test

@@ -1,11 +1,11 @@
 /**.
  * Tests for App component
  *
- * @module src/App_test
+ * @module frontend/src/App_test
  * @requires react
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/App
+ * @requires frontend/src/App
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
@@ -18,7 +18,7 @@ import App from './App'
  *
  * @type {object}
  * @function
- * @memberof module:src/App_test
+ * @memberof module:frontend/src/App_test
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -31,7 +31,7 @@ describe('<App />', () => {
    * @type {object}
    * @function
    * @constant
-   * @memberof module:src/App_test
+   * @memberof module:frontend/src/App_test
    * @inner
    * @param {string} username - Username for tests.
    * @param {string} password - Password for tests.
@@ -57,7 +57,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/App_test
+   * @memberof module:frontend/src/App_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
    */
@@ -75,7 +75,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders header
    * @param {object} TestCode - Code that runs the test
@@ -89,7 +89,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders login form
    * @param {object} TestCode - Code that runs the test
@@ -105,7 +105,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Does not render login form after logged in
    * @param {object} TestCode - Code that runs the test
@@ -125,7 +125,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders patients page after successful login
    * @param {object} TestCode - Code that runs the test
@@ -141,7 +141,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders login form after log out
    * @param {object} TestCode - Code that runs the test
@@ -165,7 +165,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Logout-button is not shown in the beginning
    * @param {object} TestCode - Code that runs the test
@@ -179,7 +179,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders logout-button after successful login
    * @param {object} TestCode - Code that runs the test
@@ -195,7 +195,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Logging out removes logout-button
    * @param {object} TestCode - Code that runs the test
@@ -215,7 +215,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders App after checking only patients with a caregiver
    * @param {object} TestCode - Code that runs the test
@@ -243,7 +243,7 @@ describe('<App />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/App_test
+   * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Does not render login form after checking only patients with caregiver
    * @param {object} TestCode - Code that runs the test

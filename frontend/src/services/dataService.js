@@ -1,7 +1,7 @@
 /**.
  * Service for handling API connection
  *
- * @module src/services/dataService
+ * @module frontend/src/services/dataService
  * @requires axios
  * @exports getAll
  * @exports setToken
@@ -17,7 +17,7 @@ let token = null
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/services/dataService
+ * @memberof module:frontend/src/services/dataService
  */
 const setToken = newToken => {
   token = `Bearer ${newToken}`
@@ -37,7 +37,7 @@ const getConfig = () => ({
  * @function
  * @async
  * @constant
- * @memberof module:src/services/dataService
+ * @memberof module:frontend/src/services/dataService
  * @param {string} endpoint - API endpoint
  * @returns {*} - API response data
  */

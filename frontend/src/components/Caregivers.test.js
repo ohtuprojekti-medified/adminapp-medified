@@ -1,11 +1,11 @@
 /**.
  * Tests for Caregivers component
  *
- * @module src/components/Caregivers_test
+ * @module frontend/src/components/Caregivers_test
  * @requires react
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/components/Caregivers
+ * @requires frontend/src/components/Caregivers
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
@@ -17,7 +17,7 @@ import Caregivers from './Caregivers'
  *
  * @type {object}
  * @function
- * @memberof module:src/components/Caregivers_test
+ * @memberof module:frontend/src/components/Caregivers_test
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -28,7 +28,7 @@ describe('Caregivers', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/Caregivers_test
+   * @memberof module:frontend/src/components/Caregivers_test
    * @inner
    * @param {string} description - renders content
    * @param {object} testFunction - Runs the test

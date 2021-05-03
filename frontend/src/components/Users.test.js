@@ -1,11 +1,11 @@
 /**.
  * Tests for Users component
  *
- * @module src/components/Users_test
+ * @module frontend/src/components/Users_test
  * @requires react
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/components/Users
+ * @requires frontend/src/components/Users
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
@@ -16,7 +16,7 @@ import Users from './Users'
  *
  * @type {object}
  * @function
- * @memberof module:src/components/Users_test
+ * @memberof module:frontend/src/components/Users_test
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -27,7 +27,7 @@ describe('Users', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/Users_test
+   * @memberof module:frontend/src/components/Users_test
    * @inner
    * @param {string} description - renders content
    * @param {object} TestCode - Code that runs the test
