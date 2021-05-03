@@ -1,11 +1,11 @@
 /**.
  * Component containing byPeriod or byDate improvement graphs and toggling button
  *
- * @module src/components/ImprovementContainer
+ * @module frontend/src/components/ImprovementContainer
  * @requires React
  * @requires primereact/togglebutton
- * @requires src/components/ImprovementsByDate
- * @requires src/components/ImprovementsByPeriod
+ * @requires frontend/src/components/ImprovementsByDate
+ * @requires frontend/src/components/ImprovementsByPeriod
  * @exports ImprovementContainer
  */
 import React from 'react'
@@ -19,7 +19,7 @@ import { ToggleButton } from 'primereact/togglebutton'
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/ImprovementContainer
+ * @memberof module:frontend/src/components/ImprovementContainer
  * @param {object} param0 - Object containing mood avreages, total improvement averages and weekly improvement averages, both byPeriod and byDate and filter value and change-function
  * @param {Array} param0.moodAverages - list of mood averages and weeks byDate
  * @param {Array} param0.totalImprovementAverages - list of total improvement averages and weeks byDate

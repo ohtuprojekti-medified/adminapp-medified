@@ -42,7 +42,7 @@ describe('<ImprovementsContainer />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:frontedn/src/components/ImprovementsController_test
+   * @memberof module:frontend/src/components/ImprovementsController_test
    * @inner
    * @param {string} description - renders ImprovementsContainer correctly
    * @param {obejct} TestCode - Code that runs the test
