@@ -2,10 +2,10 @@
  * Index file for running backend
  *
  * @namespace Backend_index
- * @requires app
+ * @requires backend/app
  * @requires http
- * @requires utils/config
- * @requires utils/logger
+ * @requires backend/utils/config
+ * @requires backend/utils/logger
  */
 
 /**.
@@ -13,7 +13,6 @@
  *
  * @type {object}
  * @constant
- * @module app
  * @memberof Backend_index
  */
 const app = require('./app')
@@ -24,7 +23,6 @@ const http = require('http')
  *
  * @type {object}
  * @constant
- * @module config
  * @memberof Backend_index
  */
 const config = require('./utils/config')
@@ -34,7 +32,6 @@ const config = require('./utils/config')
  *
  * @type {object}
  * @constant
- * @module logger
  * @memberof Backend_index
  */
 const logger = require('./utils/logger')
@@ -44,7 +41,6 @@ const logger = require('./utils/logger')
  *
  * @type {object}
  * @constant
- * @module server
  * @memberof Backend_index
  */
 const server = http.createServer(app)

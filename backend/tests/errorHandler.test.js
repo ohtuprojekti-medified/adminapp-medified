@@ -1,10 +1,10 @@
 /**.
  * Tests for errorHandler middleware
  *
- * @module tests/errorHandler_Test
+ * @module backend/tests/errorHandler_Test
  * @requires node-mocks-http
  * @requires sinon
- * @requires utils/middleware
+ * @requires backend/utils/middleware
  */
 
 /**.
@@ -33,7 +33,7 @@ let mockSend, mockJson
  *
  * @type {object}
  * @function
- * @memberof module:tests/errorHandler_Test
+ * @memberof module:backend/tests/errorHandler_Test
  * @param {string} description - errorhandler tests
  * @param {object} tests - Function that runs tests
  */
@@ -44,7 +44,7 @@ describe('errorhandler tests', () => {
    *
    * @name beforeEach
    * @function
-   * @memberof module:tests/errorHandler_Test
+   * @memberof module:backend/tests/errorHandler_Test
    * @inner
    * @param {object} functionBeforeEach - Function to be executed before each test
    */
@@ -69,7 +69,7 @@ describe('errorhandler tests', () => {
    *
    * @name errorHandler_when_no_error
    * @function
-   * @memberof module:tests/errorHandler_Test
+   * @memberof module:backend/tests/errorHandler_Test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -85,7 +85,7 @@ describe('errorhandler tests', () => {
    *
    * @name errorHandler_when_CastError
    * @function
-   * @memberof module:tests/errorHandler_Test
+   * @memberof module:backend/tests/errorHandler_Test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -104,7 +104,7 @@ describe('errorhandler tests', () => {
    *
    * @name errorHandler_when_ValidationError
    * @function
-   * @memberof module:tests/errorHandler_Test
+   * @memberof module:backend/tests/errorHandler_Test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code

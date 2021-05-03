@@ -1,8 +1,7 @@
 /**.
  * User answers database model
  *
- * @module models/user_answers
- *
+ * @module backend/models/user_answers
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_anwers

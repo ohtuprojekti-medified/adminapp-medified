@@ -1,11 +1,10 @@
 /**.
  * Controller for retentionRate queries
  *
- * @module controllers/retentionrateController
+ * @module backend/controllers/retentionrateController
  * @requires date-fns
- * @requires models
- * @requires sequelize
- * @requires controllers/controller
+ * @requires backend/models/index
+ * @requires backend/controllers/controller
  * @exports findRetentionRates
  * @exports findAverageRetentionRate
  */
@@ -26,7 +25,7 @@ const { addDateFilterToQuery } = require('./filters')
  * @param {string} endDate - End date for filtering
  * @async
  * @constant
- * @memberof module:controllers/retentionrateController
+ * @memberof module:backend/controllers/retentionrateController
  * @returns {...any} usingPeriods - number of days per using period
  */
 const findRetentionRates = async (organisation, withCaregiver, startDate, endDate) => {
@@ -100,7 +99,7 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
  * @param {string} endDate - Date object for limiting data from last
  * @async
  * @constant
- * @memberof module:controllers/retentionrateController
+ * @memberof module:backend/controllers/retentionrateController
  * @returns {...any} averageUsingPeriod - average app using period
  */
 

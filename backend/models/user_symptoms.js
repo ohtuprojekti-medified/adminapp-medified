@@ -1,8 +1,7 @@
 /**.
  * User symptoms database model
  *
- * @module models/user_symptoms
- *
+ * @module backend/models/user_symptoms
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_symptoms

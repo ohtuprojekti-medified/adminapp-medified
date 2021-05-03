@@ -1,11 +1,11 @@
 /**.
  * Tests for improvementController
  *
- * @module tests/improvementController_test
+ * @module backend/tests/improvementController_test
  * @requires sinon
- * @requires newDatesAroundLastMidnight
- * @requires ../models
- * @requires ../controllers/improvementController
+ * @requires backend/tests/newDatesAroundLastMidnight
+ * @requires backend/models/index
+ * @requires backend/controllers/improvementController
  */
 
 /**.
@@ -31,7 +31,7 @@ const newDates = require('./newDatesAroundLastMidnight')
  *
  * @constant
  * @function
- * @memberof module:tests/improvementController_test
+ * @memberof module:backend/tests/improvementController_test
  * @inner
  * @returns {object} - improvementController with mock data
  */
@@ -173,7 +173,7 @@ const improvementControllerMocked = () => {
  *
  * @constant
  * @function
- * @memberof module:tests/improvementController_test
+ * @memberof module:backend/tests/improvementController_test
  * @inner
  * @param {string} description - improvement controller
  * @returns {object} - Function that runs tests

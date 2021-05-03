@@ -1,11 +1,10 @@
 /**.
  * Controller for userhistory queries
  *
- * @module controllers/userhistoryController
+ * @module backend/controllers/userhistoryController
  * @requires date-fns
- * @requires models
- * @requires sequelize
- * @requires controllers/controller
+ * @requires backend/models/index
+ * @requires backend/controllers/controller
  * @exports findCumulativeNewUsers
  * @exports findNewUsers
  * @exports findUserActivitiesToday
@@ -26,7 +25,7 @@ const { addDateFilterToQuery } = require('./filters')
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @async
  * @constant
- * @memberof module:controllers/userhistoryController
+ * @memberof module:backend/controllers/userhistoryController
  * @returns {...any} userActivitiesToday - list of user activities today
  */
 
@@ -54,7 +53,7 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @async
  * @constant
- * @memberof module:controllers/userhistoryController
+ * @memberof module:backend/controllers/userhistoryController
  * @returns {...any} usersCreatedAt - list of new users registered in the last week
  */
 
@@ -88,7 +87,7 @@ const findNewUsers = async (organisation, withCaregiver) => {
  * @param {string} endDate - Date object for limiting data from last
  * @async
  * @constant
- * @memberof module:controllers/userhistoryController
+ * @memberof module:backend/controllers/userhistoryController
  * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
  */
 
@@ -142,7 +141,7 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
  * @param {string} endDate - Date object for limiting data from last
  * @async
  * @constant
- * @memberof module:controllers/userhistoryController
+ * @memberof module:backend/controllers/userhistoryController
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
 const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {
