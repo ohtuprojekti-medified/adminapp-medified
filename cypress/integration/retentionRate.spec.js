@@ -90,7 +90,7 @@ describe('Retention rate', function () {
    */
   it('exists after selecting start date in filters', function () {
     cy.contains('Filter').click()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-10-01')
     cy.contains('Retention rates')
     cy.contains('Average using period 17.33 days')
@@ -109,7 +109,7 @@ describe('Retention rate', function () {
    */
   it('exists after selecting end date in filters', function () {
     cy.contains('Filter').click()
-    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-11-01')
     cy.contains('Retention rates')
     cy.contains('Average using period 2.00 days')
@@ -128,9 +128,9 @@ describe('Retention rate', function () {
    */
   it('exists after selecting start date and end date in filters', function () {
     cy.contains('Filter').click()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
-    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-12-01')
     cy.contains('Retention rates')
     cy.contains('Average using period 2.50 days')
@@ -153,9 +153,9 @@ describe('Retention rate', function () {
     cy.contains('Average period and single periods:')
     cy.contains('Filter').click()
     cy.get('[data-testid="filter-checkbox"]').check()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
-    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2021-02-01')
     cy.contains('Average using period 46.50 days')
     cy.contains('Average period and single periods:')

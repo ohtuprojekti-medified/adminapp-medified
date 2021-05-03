@@ -1,11 +1,11 @@
-/**
+/**.
  * Cypress tests for weekly improvement chart
  *
  * @module cypress/integration/WeeklyImprovement_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Describe tests for weekly improvement chart
  *
  * @name WeeklyImprovement
@@ -15,7 +15,7 @@
  * @param {object} tests - Test code
  */
 describe('Weekly improvement', function () {
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -28,7 +28,7 @@ describe('Weekly improvement', function () {
     cy.login()
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -41,7 +41,7 @@ describe('Weekly improvement', function () {
     cy.logOut()
   })
 
-  /**
+  /**.
    * Test that WeeklyImprovement page exists
    *
    * @name WeeklyImprovement_exists
@@ -55,7 +55,7 @@ describe('Weekly improvement', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
   })
-  /**
+  /**.
    * Test that WeeklyImprovement page exists after checking only patients with caregiver
    *
    * @name WeeklyImprovement_exists_after_checking_only_patients_with_caregiver
@@ -74,7 +74,7 @@ describe('Weekly improvement', function () {
     cy.contains('Weekly Improvement')
   })
 
-  /**
+  /**.
    * Test that WeeklyImprovement page exists after selecting start date
    *
    * @name WeeklyImprovement_exists_after_selecting_start_date
@@ -88,13 +88,13 @@ describe('Weekly improvement', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
     cy.contains('Filter').click()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
   })
 
-  /**
+  /**.
    * Test that WeeklyImprovement page exists after selecting end date
    *
    * @name WeeklyImprovement_exists_after_selecting_end_date
@@ -108,13 +108,13 @@ describe('Weekly improvement', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
     cy.contains('Filter').click()
-    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-11-01')
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
   })
 
-  /**
+  /**.
    * Test that WeeklyImprovement page exists after selecting start date and end date
    *
    * @name WeeklyImprovement_exists_after_selecting_start_date_and_end_date
@@ -128,15 +128,15 @@ describe('Weekly improvement', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
     cy.contains('Filter').click()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
-    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-11-01')
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
   })
 
-  /**
+  /**.
    * Test that WeeklyImprovement page exists after checking only patients with caregivers, start date and end date
    *
    * @name WeeklyImprovement_exists_after_checking_only_patients_with_caregivers_start_date_and_end_date
@@ -151,9 +151,9 @@ describe('Weekly improvement', function () {
     cy.contains('Weekly Improvement')
     cy.contains('Filter').click()
     cy.get('[data-testid="filter-checkbox"]').check()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
-    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-11-01')
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
