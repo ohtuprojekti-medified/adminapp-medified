@@ -336,7 +336,7 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
 
   let lastAverage = 0
   let average = 0
-  let lastValue = [...weeklyValues][0].averages === null
+  let lastValue = weeklyValues === null
     ? 0
     : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
   let weeklyImprovement = []
@@ -386,7 +386,7 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
 const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod) => {
   const weeklyValues = await findWeeklyValues(organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod)
 
-  let firstValue = [...weeklyValues][0].averages === null
+  let firstValue = weeklyValues === null
     ? 0
     : [...weeklyValues][0].averages.filter(average => average.id === 'average')[0].average
 

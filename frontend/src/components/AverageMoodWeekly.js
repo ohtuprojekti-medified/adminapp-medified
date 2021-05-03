@@ -18,9 +18,12 @@ import { Chart } from 'primereact/chart'
  * @memberof module:frontend/src/components/MoodAverage
  * @param {object} param0 - Object with weekly cumulative users
  * @param {Array} param0.moodAverages - list of mood averages and their weeks
+ * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods
  */
-const AverageMoodWeekly = ({ moodAverages }) => {
+const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
+  console.log(moodAverages)
+  console.log(byPeriod)
   const moodAverageDataset = {
     label: 'mood improvement',
     data: moodAverages === undefined || moodAverages === null ? []
@@ -33,17 +36,40 @@ const AverageMoodWeekly = ({ moodAverages }) => {
       })],
     backgroundColor: '#FFC107'
   }
-  const moodChartData = {
-    labels: moodAverages === undefined || moodAverages === null ? []
-      : [...moodAverages.map(entry => new Date(entry.week[0]))],
-    datasets: [moodAverageDataset]
-  }
 
-  const chartOptions = {
-    scales: {
-      xAxes: [{
-        type: 'time',
-      }]
+  let moodChartData, chartOptions
+  if (byPeriod) {
+    let labelText = []
+
+    if (moodAverages !== null) {
+      moodAverages.map(entry => {
+        const week = 'week ' + entry.week[0]
+        labelText = [...labelText, week]
+      })
+    }
+
+    moodChartData = {
+      labels: moodAverages === undefined || moodAverages === null ? []
+        : labelText,
+      datasets: [moodAverageDataset]
+    }
+    console.log(moodChartData)
+
+    chartOptions = {
+    }
+  } else {
+    moodChartData = {
+      labels: moodAverages === undefined || moodAverages === null ? []
+        : [...moodAverages.map(entry => new Date(entry.week[0]))],
+      datasets: [moodAverageDataset]
+    }
+
+    chartOptions = {
+      scales: {
+        xAxes: [{
+          type: 'time',
+        }]
+      }
     }
   }
 
