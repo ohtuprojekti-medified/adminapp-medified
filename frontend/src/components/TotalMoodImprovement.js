@@ -16,11 +16,12 @@ import { Chart } from 'primereact/chart'
  * @function
  * @constant
  * @memberof module:src/components/TotalMoodImprovement
- * @param {object} param0 - Object with total mood improvement
+ * @param {object} param0 - Object with total mood improvement and byPeriod boolean
  * @param {Array} param0.totalImprovementAverages - list of mood averages and their weeks
+ * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods
  */
-const TotalImprovement = ({ totalImprovementAverages }) => {
+const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
   const totalImprovementDataset = {
     label: 'mood improvement%',
     data: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
@@ -28,19 +29,36 @@ const TotalImprovement = ({ totalImprovementAverages }) => {
     borderColor: '#ff8000',
     fill: false
   }
-  const moodChartData = {
-    labels: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
-      : [...totalImprovementAverages.map(entry => new Date(entry.week[0]))],
-    datasets: [totalImprovementDataset]
-  }
+  let moodChartData, chartOptions
 
-  const chartOptions = {
-    scales: {
-      xAxes: [{
-        type: 'time',
-      }]
+  if (byPeriod) {
+    let labelText = []
+    totalImprovementAverages.map(entry => {
+      const week = 'week ' + entry.week[0]
+      labelText = [...labelText, week]
+    })
+    moodChartData = {
+      labels: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
+        : labelText,
+      datasets: [totalImprovementDataset]
+    }
+    chartOptions = {}
+  } else {
+    moodChartData = {
+      labels: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
+        : [...totalImprovementAverages.map(entry => new Date(entry.week[0]))],
+      datasets: [totalImprovementDataset]
+    }
+
+    chartOptions = {
+      scales: {
+        xAxes: [{
+          type: 'time',
+        }]
+      }
     }
   }
+
 
   const containerStyle = {
     backgroundColor: '#ffffff',
