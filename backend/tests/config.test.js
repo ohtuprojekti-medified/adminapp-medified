@@ -2,8 +2,8 @@
  * Tests for config
  *
  * @constant
- * @module tests/config_test
- * @requires utils/config
+ * @module backend/tests/config_test
+ * @requires backend/utils/config
  */
 const config = require('../utils/config')
 
@@ -13,7 +13,7 @@ const config = require('../utils/config')
  * @name description
  * @type {object}
  * @function
- * @memberof module:tests/config_test
+ * @memberof module:backend/tests/config_test
  * @param {string} description - config
  * @param {object} tests - Function that runs tests
  */
@@ -23,7 +23,7 @@ describe('config', () => {
    *
    * @name test_backend_port
    * @function
-   * @memberof module:tests/config_test
+   * @memberof module:backend/tests/config_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code

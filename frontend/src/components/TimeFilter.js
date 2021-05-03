@@ -1,7 +1,7 @@
 /**.
  * Component for timeframe filtering
  *
- * @module src/components/TimeFilter
+ * @module frontend/src/components/TimeFilter
  * @requires react
  * @exports TimeFilter
  */

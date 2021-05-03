@@ -1,11 +1,11 @@
 /**.
  * Controller for variable improvement database queries
  *
- * @module controllers/improvementController
+ * @module backend/controllers/improvementController
  * @requires date-fns
- * @requires models/db
- * @requires controllers/controller
- * @requires filters
+ * @requires backend/models/index
+ * @requires backend/controllers/controller
+ * @requires backend/controllers/filters
  */
 
 const { addDays } = require('date-fns')

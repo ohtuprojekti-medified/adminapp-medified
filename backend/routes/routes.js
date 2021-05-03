@@ -1,11 +1,11 @@
 /**.
  * Express router for all paths
  *
- * @module routes/routes
+ * @module backend/routes/routes
  * @requires express
- * @requires controllers/controller
- * @requires controllers/userhistoryController
- * @requires controllers/retentionrateController
+ * @requires backend/controllers/controller
+ * @requires backend/controllers/userhistoryController
+ * @requires backend/controllers/retentionrateController
  * @requires express-async-errors
  */
 
@@ -38,7 +38,7 @@ require('express-async-errors')
  *
  * @name get_users
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -54,7 +54,7 @@ router.get('/users', async (req, res) => {
  *
  * @name get_caregivers
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -69,7 +69,7 @@ router.get('/caregivers', async (req, res) => {
  *
  * @name get_organisations
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -84,7 +84,7 @@ router.get('/organisations', async (req, res) => {
  *
  * @name get_ping
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -98,7 +98,7 @@ router.get('/ping', async (req, res) => {
  *
  * @name get_cumulative
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -115,7 +115,7 @@ router.get('/cumulative', async (req, res) => {
  *
  * @name get_activeusers
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -132,7 +132,7 @@ router.get('/activeusers', async (req, res) => {
  *
  * @name get_newusers
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -149,7 +149,7 @@ router.get('/newusers', async (req, res) => {
  *
  * @name get_activitytoday
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -166,7 +166,7 @@ router.get('/activitytoday', async (req, res) => {
  *
  * @name get_retention
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -183,7 +183,7 @@ router.get('/retention', async (req, res) => {
  *
  * @name get_avgretention
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -200,7 +200,7 @@ router.get('/avgretention', async (req, res) => {
  *
  * @name get_weeklyvalues
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @inner
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
@@ -217,7 +217,7 @@ router.get('/weeklyvalues', async (req, res) => {
  *
  * @name get_weeklyimprovement
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
  */
@@ -234,7 +234,7 @@ router.get('/weeklyimprovement', async (req, res) => {
  *
  * @name get_totalimprovement
  * @function
- * @memberof module:routes/routes
+ * @memberof module:backend/routes/routes
  * @param {string} path - Path for request
  * @param {object} middleware - Handle request to path
  */

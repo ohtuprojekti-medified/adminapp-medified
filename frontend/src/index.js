@@ -4,9 +4,9 @@
  * @namespace Frontend_index
  * @requires react
  * @requires react-dom
- * @requires src/index.css
- * @requires src/App
- * @requires src/reportWebVitals
+ * @requires frontend/src/index.css
+ * @requires frontend/src/App
+ * @requires frontend/src/reportWebVitals
  */
 import React from 'react'
 import ReactDOM from 'react-dom'

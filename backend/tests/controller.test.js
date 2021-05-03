@@ -2,8 +2,8 @@
  * Tests for controller
  *
  * @constant
- * @module tests/controller_test
- * @requires ../controllers/controller
+ * @module backend/tests/controller_test
+ * @requires backend/controllers/controller
  * @requires sequelize-mock
  */
 
@@ -14,7 +14,7 @@ const controller = require('../controllers/controller')
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_profiles_model - user_profiles_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -39,7 +39,7 @@ jest.mock('../models/user_profiles', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_profiles
  * @param {object} tests - Function that runs tests
  */
@@ -49,7 +49,7 @@ describe('user_profiles', () => {
    *
    * @name user_profiles_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -65,7 +65,7 @@ describe('user_profiles', () => {
    *
    * @name user_profiles_are_returned_correctly_by_organisation
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -80,7 +80,7 @@ describe('user_profiles', () => {
    *
    * @name user_profiles_are_returned_correctly_with_organisation_and_cargiver_filtering
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -96,7 +96,7 @@ describe('user_profiles', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} organisations_model - organisations_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -120,7 +120,7 @@ jest.mock('../models/organisations', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - organisations
  * @param {object} tests - Function that runs tests
  */
@@ -130,7 +130,7 @@ describe('organisations', () => {
    *
    * @name organisations_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -146,7 +146,7 @@ describe('organisations', () => {
    *
    * @name organisations_are_not_returned_if_request_is_sent_without_admin_access
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -162,7 +162,7 @@ describe('organisations', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} access_codes_model - access_codes_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -182,7 +182,7 @@ jest.mock('../models/access_codes', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - access_codes
  * @param {object} tests - Function that runs tests
  */
@@ -192,7 +192,7 @@ describe('access_codes', () => {
    *
    * @name access_codes_are_all_returned_if_organisation_is_ALL
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -208,7 +208,7 @@ describe('access_codes', () => {
    *
    * @name access_codes_are_returned_correctly_with_defined_organisation
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -225,7 +225,7 @@ describe('access_codes', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_care_givers_model - user_care_givers_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -246,7 +246,7 @@ jest.mock('../models/user_care_givers', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - care_givers
  * @param {object} tests - Function that runs tests
  */
@@ -256,7 +256,7 @@ describe('care_givers', () => {
    *
    * @name care_givers_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -274,7 +274,7 @@ describe('care_givers', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_activities_model - user_activities_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -293,7 +293,7 @@ jest.mock('../models/user_activities', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_activities
  * @param {object} tests - Function that runs tests
  */
@@ -303,7 +303,7 @@ describe('user_activities', () => {
    *
    * @name user_activities_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -321,7 +321,7 @@ describe('user_activities', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_answers_model - user_answers_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -340,7 +340,7 @@ jest.mock('../models/user_answers', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_answers
  * @param {object} tests - Function that runs tests
  */
@@ -350,7 +350,7 @@ describe('user_answers', () => {
    *
    * @name user_answers_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -368,7 +368,7 @@ describe('user_answers', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_care_giver_activities_model - user_care_giver_activities_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -387,7 +387,7 @@ jest.mock('../models/user_care_giver_activities', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_care_giver_activities
  * @param {object} tests - Function that runs tests
  */
@@ -397,7 +397,7 @@ describe('user_care_giver_activities', () => {
    *
    * @name user_care_giver_activities_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -415,7 +415,7 @@ describe('user_care_giver_activities', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_diary_item_groups_model - user_diary_item_groups_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -435,7 +435,7 @@ jest.mock('../models/user_diary_item_groups', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_diary_item_groups
  * @param {object} tests - Function that runs tests
  */
@@ -445,7 +445,7 @@ describe('user_diary_item_groups', () => {
    *
    * @name user_diary_item_groups_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -463,7 +463,7 @@ describe('user_diary_item_groups', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_diary_items_model - user_diary_items_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -488,7 +488,7 @@ jest.mock('../models/user_diary_items', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_diary_items
  * @param {object} tests - Function that runs tests
  */
@@ -498,7 +498,7 @@ describe('user_diary_items', () => {
    *
    * @name user_diary_items_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -517,7 +517,7 @@ describe('user_diary_items', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_professional_profiles_model - user_professional_profiles_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -539,7 +539,7 @@ jest.mock('../models/user_professional_profiles', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_professional_profiles
  * @param {object} tests - Function that runs tests
  */
@@ -549,7 +549,7 @@ describe('user_professional_profiles', () => {
    *
    * @name user_professional_profiles_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -568,7 +568,7 @@ describe('user_professional_profiles', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_survey_answers_model - user_survey_answers_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -590,7 +590,7 @@ jest.mock('../models/user_survey_answers', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_survey_answers
  * @param {object} tests - Function that runs tests
  */
@@ -600,7 +600,7 @@ describe('user_survey_answers', () => {
    *
    * @name user_survey_answers_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -617,7 +617,7 @@ describe('user_survey_answers', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} user_moods_model - user_moods_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -639,7 +639,7 @@ jest.mock('../models/user_moods', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/controller_test
+ * @memberof module:backend/tests/controller_test
  * @param {string} description - user_moods
  * @param {object} tests - Function that runs tests
  */
@@ -649,7 +649,7 @@ describe('user_moods', () => {
    *
    * @name user_moods_can_be_found_from_database
    * @function
-   * @memberof module:tests/controller_test
+   * @memberof module:backend/tests/controller_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code

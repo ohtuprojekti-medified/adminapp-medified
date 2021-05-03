@@ -1,12 +1,12 @@
 /**.
  * Tests for userhistoryController
  *
- * @module tests/userhistoryController_test
+ * @module backend/tests/userhistoryController_test
  * @requires sinon
- * @requires newDatesAroundLastMidnight
+ * @requires backend/tests/newDatesAroundLastMidnight
  * @requires date-fns
- * @requires ../models
- * @requires ../controllers/userhistoryController
+ * @requires backend/models/index
+ * @requires backend/controllers/userhistoryController
  */
 
 /**.
@@ -36,7 +36,7 @@ const USER_PROFILES_CREATED_AT_TIMES = newDates([-150, -100, -90, -75])
  *
  * @constant
  * @function
- * @memberof module:tests/userhistoryController_test
+ * @memberof module:backend/tests/userhistoryController_test
  * @returns {object} - userhistoryController with mock data
  */
 const userhistoryControllerMocked = () => {
@@ -181,7 +181,7 @@ const userhistoryControllerMocked = () => {
  * Run tests for userhistory controller
  *
  * @function
- * @memberof module:tests/userhistoryController_test
+ * @memberof module:backend/tests/userhistoryController_test
  * @param {string} description - userhistory controller
  * @returns {object} - Function that runs tests
  */
@@ -191,7 +191,7 @@ describe('userhistory controller', () => {
    *
    * @name beforeEach
    * @function
-   * @memberof module:tests/userhistoryController_test
+   * @memberof module:backend/tests/userhistoryController_test
    * @inner
    * @param {object} beforeEachCode - beforeEach code
    */
@@ -204,7 +204,7 @@ describe('userhistory controller', () => {
    *
    * @name userhistory_controller_findCumulativeNewUser_returns_correct_data
    * @function
-   * @memberof module:tests/userhistoryController_test
+   * @memberof module:backend/tests/userhistoryController_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -220,7 +220,7 @@ describe('userhistory controller', () => {
    *
    * @name userhistory_controller_findUserActivities_returns_correct_data
    * @function
-   * @memberof module:tests/userhistoryController_test
+   * @memberof module:backend/tests/userhistoryController_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -236,7 +236,7 @@ describe('userhistory controller', () => {
    *
    * @name userhistory_controller_findUserActivities_returns_correct_data_within_timeframe_where_all_users_are_partially_active
    * @function
-   * @memberof module:tests/userhistoryController_test
+   * @memberof module:backend/tests/userhistoryController_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -252,7 +252,7 @@ describe('userhistory controller', () => {
    *
    * @name userhistory_controller_findUserActivities_returns_correct_data_within_timeframe_where_all_users_are_active
    * @function
-   * @memberof module:tests/userhistoryController_test
+   * @memberof module:backend/tests/userhistoryController_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -294,7 +294,7 @@ describe('userhistory controller', () => {
    *
    * @name afterEach
    * @function
-   * @memberof module:tests/userhistoryController_test
+   * @memberof module:backend/tests/userhistoryController_test
    * @inner
    * @param {object} afterEachCode - afterEach code
    */
@@ -311,7 +311,7 @@ const controller = require('../controllers/userhistoryController')
  *
  * @type {object}
  * @function
- * @memberof module:tests/userhistoryController_test
+ * @memberof module:backend/tests/userhistoryController_test
  * @param {string} user_activities_model - user_activities_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -330,7 +330,7 @@ jest.mock('../models/user_activities', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/userhistoryController_test
+ * @memberof module:backend/tests/userhistoryController_test
  * @param {string} description - user_activities today
  * @param {object} tests - Function that runs tests
  */
@@ -340,7 +340,7 @@ describe('user_activities today', () => {
    *
    * @name user_activities_today_are_returned_correctly
    * @function
-   * @memberof module:tests/userhistoryController_test
+   * @memberof module:backend/tests/userhistoryController_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code
@@ -359,7 +359,7 @@ describe('user_activities today', () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/userhistoryController_test
+ * @memberof module:backend/tests/userhistoryController_test
  * @param {string} user_profiles_model - user_profiles_model
  * @param {object} mock_function - Function that creates mock data
  */
@@ -384,7 +384,7 @@ jest.mock('../models/user_profiles', () => () => {
  *
  * @type {object}
  * @function
- * @memberof module:tests/userhistoryController_test
+ * @memberof module:backend/tests/userhistoryController_test
  * @param {string} description - new users from the last seven days
  * @param {object} tests - Function that runs tests
  */
@@ -394,7 +394,7 @@ describe('new users from the last seven days', () => {
    *
    * @name new_users_from_the_last_seven_days_are_returned_correctly
    * @function
-   * @memberof module:tests/userhistoryController_test
+   * @memberof module:backend/tests/userhistoryController_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code

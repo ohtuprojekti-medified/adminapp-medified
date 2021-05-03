@@ -1,11 +1,11 @@
 /**.
  * Tests fro Filter component
  *
- * @module src/components/Filter_test
+ * @module frontend/src/components/Filter_test
  * @requires React
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/components/Filter
+ * @requires frontend/src/components/Filter
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
@@ -17,7 +17,7 @@ import Filter from './Filter'
  *
  * @type {object}
  * @function
- * @memberof module:src/components/Filter_test
+ * @memberof module:frontend/src/components/Filter_test
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -29,7 +29,7 @@ describe('<Filter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/Filter_test
+   * @memberof module:frontend/src/components/Filter_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
    */
@@ -44,7 +44,7 @@ describe('<Filter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/Filter_test
+   * @memberof module:frontend/src/components/Filter_test
    * @inner
    * @param {string} description - renders filter component
    * @param {object} TestCode - code that runs the test
@@ -60,7 +60,7 @@ describe('<Filter />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/Filter_test
+   * @memberof module:frontend/src/components/Filter_test
    * @inner
    * @param {string} description - eventhandler is called once
    * @param {object} TestCode - code that runs the test

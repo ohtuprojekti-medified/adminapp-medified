@@ -1,15 +1,15 @@
 /**.
  * Component for applications UI topbar
  *
- * @module src/components/uiComponents/AppTopbar
+ * @module frontend/src/components/uiComponents/AppTopbar
  * @requires react
  * @requires primereact/toolbar
  * @requires primereact/button
- * @requires src/services/loginService
- * @requires src/components/uiComponents/AppHeader
- * @requires src/components/Filter
- * @requires src/components/TimeFilter
- * @requires src/components/Organisations
+ * @requires frontend/src/services/loginService
+ * @requires frontend/src/components/uiComponents/AppHeader
+ * @requires frontend/src/components/Filter
+ * @requires frontend/src/components/TimeFilter
+ * @requires frontend/src/components/Organisations
  * @exports AppTopbar - Page topbar
  */
 import React from 'react'
@@ -27,7 +27,7 @@ import Header from './AppHeader'
 /**.
  * Component for applications UI topbar
  *
- * @memberof module:src/components/uiComponents/AppTopbar
+ * @memberof module:frontend/src/components/uiComponents/AppTopbar
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX Topbar component
  */
@@ -43,7 +43,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
    * @type {object}
    * @function
    * @constant
-   * @memberof module:src/components/uiComponents/AppTopbar
+   * @memberof module:frontend/src/components/uiComponents/AppTopbar
    * @inner
    * @param {object} event - Contains event
    */
@@ -71,7 +71,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
    * Contents for the left side of primereact's toolbar
    *
    * @type {object}
-   * @memberof module:src/components/uiComponents/AppTopbar
+   * @memberof module:frontend/src/components/uiComponents/AppTopbar
    * @inner
    */
   const leftContents = (
@@ -90,7 +90,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
    * Contents for the right side of primereact's toolbar
    *
    * @type {object}
-   * @memberof module:src/components/uiComponents/AppTopbar
+   * @memberof module:frontend/src/components/uiComponents/AppTopbar
    * @inner
    */
   const rightContents = (

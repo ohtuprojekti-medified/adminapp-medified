@@ -1,8 +1,7 @@
 /**.
  * User consents database model
  *
- * @module models/user_consents
- *
+ * @module backend/models/user_consents
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_consents

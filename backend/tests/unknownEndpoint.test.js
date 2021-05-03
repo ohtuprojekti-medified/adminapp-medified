@@ -1,10 +1,10 @@
 /**.
  * Tests for unknownEndpoint middleware
  *
- * @module tests/unknownEndpoint_test
+ * @module backend/tests/unknownEndpoint_test
  * @requires node-mocks-http
  * @requires sinon
- * @requires utils/middleware
+ * @requires backend/utils/middleware
  */
 
 /**.
@@ -32,7 +32,7 @@ let mockSend
  * Run tests for unknownEndpoint
  *
  * @function
- * @memberof module:tests/unknownEndpoint_test
+ * @memberof module:backend/tests/unknownEndpoint_test
  * @param {string} description - unknownEndpoint tests
  * @returns {object} - Function that runs tests
  */
@@ -43,7 +43,7 @@ describe('unknownEndpoint tests', () => {
    *
    * @name beforeEach
    * @function
-   * @memberof module:tests/unknownEndpoint_test
+   * @memberof module:backend/tests/unknownEndpoint_test
    * @inner
    * @param {object} functionBeforeEach - Function to be executed before each test
    */
@@ -65,7 +65,7 @@ describe('unknownEndpoint tests', () => {
    *
    * @name unknownEndpoint
    * @function
-   * @memberof module:tests/unknownEndpoint_test
+   * @memberof module:backend/tests/unknownEndpoint_test
    * @inner
    * @param {string} name - Name of the test
    * @param {object} test - Test code

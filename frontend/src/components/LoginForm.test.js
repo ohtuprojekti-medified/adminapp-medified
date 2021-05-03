@@ -1,11 +1,11 @@
 /**.
  * Tests for LoginForm component
  *
- * @module src/components/LoginForm_test
+ * @module frontend/src/components/LoginForm_test
  * @requires react
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/components/LoginForm
+ * @requires frontend/src/components/LoginForm
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
@@ -17,7 +17,7 @@ import LoginForm from './LoginForm'
  *
  * @type {object}
  * @function
- * @memberof module:src/components/LoginForm_test
+ * @memberof module:frontend/src/components/LoginForm_test
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -36,7 +36,7 @@ describe('<LoginForm />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/LoginForm_test
+   * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
    */
@@ -64,7 +64,7 @@ describe('<LoginForm />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/LoginForm_test
+   * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - Renders form
    * @param {object} TestCode - Code that runs the test
@@ -81,7 +81,7 @@ describe('<LoginForm />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/LoginForm_test
+   * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - submitting form calls setUser
    * @param {object} TestCode - Code that runs the test
@@ -107,7 +107,7 @@ describe('<LoginForm />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/LoginForm_test
+   * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - logging in renders logout-button
    * @param {object} TestCode - Code that runs the test
@@ -131,7 +131,7 @@ describe('<LoginForm />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/LoginForm_test
+   * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - logout-button is not shown in the beginning
    * @param {object} TestCode - Code that runs the test
@@ -145,7 +145,7 @@ describe('<LoginForm />', () => {
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/LoginForm_test
+   * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - logging out renders login-form
    * @param {object} TestCode - Code that runs the test

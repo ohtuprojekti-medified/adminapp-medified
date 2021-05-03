@@ -1,7 +1,7 @@
 /**.
  * Caregivers JSX component
  *
- * @module src/components/Caregivers
+ * @module frontend/src/components/Caregivers
  * @requires react
  * @exports Caregivers
  */
@@ -14,7 +14,7 @@ import { Card } from 'primereact/card'
  * @name Caregivers
  * @function
  * @constant
- * @memberof module:src/components/Caregivers
+ * @memberof module:frontend/src/components/Caregivers
  * @param {object} param0 - Object with params
  * @param {Array} param0.caregivers - Array of all caregivers
  * @returns {object} - JSX component that counts amount of caregivers
