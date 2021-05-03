@@ -34,7 +34,8 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
           return entry.averages[entry.averages.length - 1].average
         }
       })],
-    backgroundColor: '#FFC107'
+    backgroundColor: '#512ae0'
+    // backgroundColor: '#FF7F50'
   }
 
   let moodChartData, chartOptions
