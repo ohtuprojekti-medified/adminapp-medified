@@ -38,10 +38,14 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
   let moodChartData, chartOptions
   if (byPeriod) {
     let labelText = []
-    moodAverages.map(entry => {
-      const week = 'week ' + entry.week[0]
-      labelText = [...labelText, week]
-    })
+
+    if (moodAverages !== null) {
+      moodAverages.map(entry => {
+        const week = 'week ' + entry.week[0]
+        labelText = [...labelText, week]
+      })
+    }
+
     moodChartData = {
       labels: moodAverages === undefined || moodAverages === null ? []
         : labelText,
