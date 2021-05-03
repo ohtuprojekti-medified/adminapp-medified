@@ -49,7 +49,7 @@ const TimeFilter = ({ startDateEnable, endDateEnable, startDate, endDate, handle
           </div>
           <div className="p-col">
             {endDateEnable ? (
-              <input className="p-inputtext p-component" type="date" data-testid="startDate-date" value={endDate} onChange={setEndDate}></input>
+              <input className="p-inputtext p-component" type="date" data-testid="endDate-date" value={endDate} onChange={setEndDate}></input>
             ) : (
               <div></div>
             )}
