@@ -60,7 +60,6 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [organisationSelect, setOrganisation] = useState('ALL')
-  const [visible, setVisible] = useState(false)
   const [organisations, setOrganisations] = useState([])
   const [startDateEnable, setStartDateEnable] = useState(false)
   const [endDateEnable, setEndDateEnable] = useState(false)
@@ -385,8 +384,6 @@ const App = () => {
                 caregiverFilterForAllUsers={caregiverFilterForAllUsers}
                 handleFilterChange={handleFilterChange}
                 organisations={organisations}
-                visible={visible}
-                setVisible={setVisible}
                 organisationSelect={organisationSelect}
                 handleOrganisationChange={handleOrganisationChange}
                 startDateEnable={startDateEnable}

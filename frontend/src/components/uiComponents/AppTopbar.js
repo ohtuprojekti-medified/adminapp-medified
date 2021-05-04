@@ -12,7 +12,7 @@
  * @requires frontend/src/components/Organisations
  * @exports AppTopbar - Page topbar
  */
-import React from 'react'
+import React, { useState } from 'react'
 import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
 import { Sidebar } from 'primereact/sidebar'
@@ -31,10 +31,12 @@ import AppNavigationMenu from './AppNavigationMenu'
  * @returns {object} - JSX Topbar component
  */
 const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChange,
-  visible, setVisible, organisations, handleOrganisationChange, organisationSelect,
+  organisations, handleOrganisationChange, organisationSelect,
   startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
   handleEndDateEnableChange, handleStartDateChange, handleEndDateChange,
   moodDataSelect, moodGraphLabels, handleMoodDataSelectChange }) => {
+
+  const [visible, setVisible] = useState(false)
 
   /**.
    * Handle logout button presses
