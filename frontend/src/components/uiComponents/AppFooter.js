@@ -1,9 +1,10 @@
-/**
+/**.
  * Component for applications UI footer
  *
- * @module src/components/uiComponents/AppFooter
+ * @module frontend/src/components/uiComponents/AppFooter
  * @requires react
  * @requires primereact/toolbar
+ * @exports AppFooter - Page footer
  */
 import React from 'react'
 import { Toolbar } from 'primereact/toolbar'
@@ -18,7 +19,7 @@ const footerStyle = {
 }
 
 const toolbarStyle = {
-  backgroundColor: '#d1e8e6'
+  backgroundColor: '#A9EAE8'
 }
 
 const leftContents = (
@@ -27,9 +28,10 @@ const leftContents = (
   </React.Fragment>
 )
 
-/**
+/**.
  * Component for applications UI footer
  *
+ * @memberof module:frontend/src/components/uiComponents/AppFooter
  * @returns {object} - JSX Footer component
  */
 const AppFooter = () => {

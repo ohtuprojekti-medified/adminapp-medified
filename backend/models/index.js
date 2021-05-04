@@ -1,22 +1,39 @@
 'use strict'
 
-/**
+/**.
  * Initialization for sequelize-database and models
  *
- * @module models/index
+ * @module backend/models/index
  * @requires sequelize
- * @requires config
+ * @requires backend/utils/config
+ * @requires backend/models/access_codes
+ * @requires backend/models/organisations
+ * @requires backend/models/user_professional_profiles
+ * @requires backend/models/user_care_givers
+ * @requires backend/models/user_activities
+ * @requires backend/models/user_care_giver_activities
+ * @requires backend/models/user_answers
+ * @requires backend/models/user_diary_items
+ * @requires backend/models/user_diary_item_groups
+ * @requires backend/models/user_professional_profiles
+ * @requires backend/models/user_survey_answers
+ * @requires backend/models/user_consents
+ * @requires backend/models/user_medicine
+ * @requires backend/models/user_moods
+ * @requires backend/models/user_treatments
+ * @requires backend/models/user_symptoms
+ * @exports db
  */
 
 /**
- * Sequelize ORM - object-relational mapper
+ * Sequelize ORM - object-relational mapper.
  */
 const Sequelize = require('sequelize')
 const config = require('../utils/config')
 const db = {}
 
 /**
- * initialization for database
+ * Initialization for database.
  */
 const sequelize = new Sequelize(
   config.db_name,
@@ -38,6 +55,9 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
+/**
+ * Defining sequelize ORM database models.
+ */
 db.access_codes = require('../models/access_codes')(sequelize, Sequelize)
 db.organisations = require('../models/organisations')(sequelize, Sequelize)
 db.user_profiles = require('../models/user_profiles')(sequelize, Sequelize)

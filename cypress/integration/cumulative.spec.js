@@ -1,23 +1,22 @@
-/**
+/**.
  * Cypress tests for cumulative users
  *
- * @module cypress/integration/Cumulative_spec
+ * @module cypress/integration/cumulative_spec
  * @requires cypress
  */
 
-/**
+/**.
  * Describe tests for cumulative users page
  *
  * @name Cumulative
  * @type {object}
  * @memberof module:cypress/integration/cumulative_spec
- * @inner
  * @param {string} describe - Cumulative users
  * @param {object} tests - Test code
  */
 describe('Cumulative users', function () {
 
-  /**
+  /**.
    * Log in fast before each test
    *
    * @name beforeEach
@@ -30,7 +29,7 @@ describe('Cumulative users', function () {
     cy.login()
   })
 
-  /**
+  /**.
    * Log out fast after each test
    *
    * @name afterEach
@@ -43,7 +42,7 @@ describe('Cumulative users', function () {
     cy.logOut()
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists
    *
    * @name Cumulative_exists
@@ -58,7 +57,7 @@ describe('Cumulative users', function () {
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists after checking only patients with caregiver
    *
    * @name Cumulative_exists_after_checking_only_patients_with_caregiver
@@ -69,13 +68,15 @@ describe('Cumulative users', function () {
    * @param {object} testFunction - Function that runs test
    */
   it('exists after checking only patients with caregivers', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('New users, cumulative and active users weekly')
     cy.contains('Filter').click()
-    cy.get('[data-testid="filter-checkbox"]').check()
+    cy.get('[data-testid="filter-checkbox"]').click()
     cy.contains('Adminapp for monitoring moods')
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists after selecting start date
    *
    * @name Cumulative_exists_after_selecting_start_date
@@ -86,14 +87,16 @@ describe('Cumulative users', function () {
    * @param {object} testFunction - Function that runs test
    */
   it('exists after selecting start date in filters', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('New users, cumulative and active users weekly')
     cy.contains('Filter').click()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
     cy.contains('Adminapp for monitoring moods')
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists after selecting end date
    *
    * @name Cumulative_exists_after_selecting_end_date
@@ -104,14 +107,16 @@ describe('Cumulative users', function () {
    * @param {object} testFunction - Function that runs test
    */
   it('exists after selecting end date in filters', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('New users, cumulative and active users weekly')
     cy.contains('Filter').click()
-    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-11-01')
     cy.contains('Adminapp for monitoring moods')
     cy.contains('New users, cumulative and active users weekly')
   })
 
-  /**
+  /**.
    * Test that cumulative users page exists after selecting start date and end date
    *
    * @name Cumulative_exists_after_selecting_start_date_and_end_date
@@ -122,10 +127,35 @@ describe('Cumulative users', function () {
    * @param {object} testFunction - Function that runs test
    */
   it('exists after selecting start date and end date in filters', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('New users, cumulative and active users weekly')
     cy.contains('Filter').click()
-    cy.get('[data-testid="startDate-checkbox"]').check()
+    cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
-    cy.get('[data-testid="endDate-checkbox"]').check()
+    cy.get('[data-testid="endDate-checkbox"]').click()
+    cy.get('[data-testid="endDate-date"]').type('2020-11-01')
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('New users, cumulative and active users weekly')
+  })
+
+  /**.
+   * Test that cumulative page exists after selecting only patients with caregivers start date and end date
+   *
+   * @name Cumulative_exists_after_selecting_only_patients_with_caregivers_start_date_and_end_date
+   * @type {object}
+   * @memberof module:cypress/integration/cumulative_spec
+   * @inner
+   * @param {string} describe - exists after selecting only patients with caregivers start date and end date
+   * @param {object} testFunction - Function that runs test
+   */
+  it('exists after checking only patients with caregivers, start date and end date in filters', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('New users, cumulative and active users weekly')
+    cy.contains('Filter').click()
+    cy.get('[data-testid="filter-checkbox"]').click()
+    cy.get('[data-testid="startDate-checkbox"]').click()
+    cy.get('[data-testid="startDate-date"]').type('2020-06-01')
+    cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-11-01')
     cy.contains('Adminapp for monitoring moods')
     cy.contains('New users, cumulative and active users weekly')

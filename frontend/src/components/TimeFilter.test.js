@@ -1,24 +1,23 @@
-/**
+/**.
  * Tests for TimeFilter component
  *
- * @module src/components/TimeFilter_test
+ * @module frontend/src/components/TimeFilter_test
  * @requires react
  * @requires @testing-library/jest-dom/extend-expect
  * @requires @testing-library/react
- * @requires src/components/TimeFilter
+ * @requires frontend/src/components/TimeFilter
  */
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, waitFor, fireEvent } from '@testing-library/react'
 import TimeFilter from './TimeFilter'
 
-/**
+/**.
  * Describe tests
  *
  * @type {object}
  * @function
- * @memberof module:src/components/TimeFilter_test
- * @inner
+ * @memberof module:frontend/src/components/TimeFilter_test
  * @param {string} description - Description of tests
  * @param {object} testCode - Code for tests
  */
@@ -29,12 +28,12 @@ describe('<TimeFilter />', () => {
   let handleStartDateChange
   let handleEndDateChange
 
-  /**
+  /**.
    * Render TimeFilter with mock values
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
    */
@@ -50,12 +49,12 @@ describe('<TimeFilter />', () => {
   })
 
 
-  /**
+  /**.
    * Test that TimeFilter is rendered
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Renders filter
    * @param {object} TestCode - Code that runs the test
@@ -67,12 +66,12 @@ describe('<TimeFilter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that TimeFilter calls start date enable eventhandler
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls start date enable eventhandler
    * @param {object} TestCode - Code that runs the test
@@ -86,12 +85,12 @@ describe('<TimeFilter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that TimeFilter calls end date enable eventhandler
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls end date enable eventhandler
    * @param {object} TestCode - Code that runs the test
@@ -105,12 +104,12 @@ describe('<TimeFilter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that TimeFilter calls start date event handler
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls start date eventhandler
    * @param {object} TestCode - Code that runs the test
@@ -124,12 +123,12 @@ describe('<TimeFilter />', () => {
     })
   })
 
-  /**
+  /**.
    * Test that TimeFilter calls end date eventhandler
    *
    * @type {object}
    * @function
-   * @memberof module:src/components/TimeFilter_test
+   * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls end date eventhandler
    * @param {object} TestCode - Code that runs the test

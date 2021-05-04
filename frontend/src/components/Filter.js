@@ -1,10 +1,18 @@
+/**.
+ * Component that creates a checkbox that can be used for filtering
+ *
+ * @module frontend/src/components/Filter
+ * @requires react
+ * @exports Filter
+ */
+
 import React from 'react'
 
-/**
+/**.
  * Component that creates a checkbox that can be used for filtering
  *
  * @type {object}
- * @memberof module:src/components/Filter
+ * @memberof module:frontend/src/components/Filter
  * @param {object} param0 - Object with params
  * @param {string} param0.description - Description of the filter
  * @param {boolean} param0.checked -  Boolean value of the checkbox

@@ -1,13 +1,20 @@
-/**
+/**.
  * Config for retrieving environment variables for app
  *
- * @module utils/config
+ * @module backend/utils/config
  * @requires dotenv
+ * @exports PORT
+ * @exports db_host
+ * @exports db_user
+ * @exports db_password
+ * @exports db_name
+ * @exports dialect
+ * @exports pool
  */
 
 require('dotenv').config()
 
-/**
+/**.
  * Port where backend is running
  *
  * @type {string}
@@ -24,7 +31,7 @@ const db_host = process.env.DB_HOST
 const db_name = 'adminapp'
 
 
-/**
+/**.
  * Username for database
  *
  * @type {string}
@@ -33,7 +40,7 @@ const db_name = 'adminapp'
  */
 const db_user = process.env.DB_USERNAME
 
-/**
+/**.
  * Password for database
  *
  * @type {string}

@@ -1,11 +1,11 @@
-/**
- * User profiles model
+/**.
+ * User profiles database model
  *
- * @module models/user_profiles
- *
+ * @module backend/models/user_profiles
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for user_profiles
+ * @exports user_profiles
  */
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('user_profiles', {

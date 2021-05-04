@@ -1,7 +1,7 @@
-/**
+/**.
  * Component for graphing weekly mood improvement
  *
- * @module src/components/WeeklyImprovement
+ * @module frontend/src/components/WeeklyImprovement
  * @requires react
  * @requires primereact/chart
  * @exports WeeklyImprovement
@@ -9,37 +9,69 @@
 import React from 'react'
 import { Chart } from 'primereact/chart'
 
-/**
+/**.
  * Component for graphing weekly mood improvement
  *
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/WeeklyImprovement
+ * @memberof module:frontend/src/components/WeeklyImprovement
  * @param {object} param0 - Object with weekly mood improvement
  * @param {Array} param0.weeklyImprovementAverages - list of mood averages and their weeks
+ * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods
  */
-const WeeklyImprovement = ({ weeklyImprovementAverages }) => {
+const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
   const weeklyImprovementDataset = {
     label: 'mood improvement%',
     data: weeklyImprovementAverages === undefined || weeklyImprovementAverages === null ? []
       : [...weeklyImprovementAverages.map(entry => entry.average * 100)],
-    backgroundColor: '#008000'
+    backgroundColor: '#30C8BF'
   }
-  const moodChartData = {
-    labels: weeklyImprovementAverages === undefined || weeklyImprovementAverages === null ? []
-      : [...weeklyImprovementAverages.map(entry => new Date(entry.week[0]))],
-    datasets: [weeklyImprovementDataset]
-  }
+  let moodChartData, chartOptions
 
-  const chartOptions = {
-    scales: {
-      xAxes: [{
-        type: 'time',
-      }]
+  if (byPeriod) {
+    let labelText = []
+    if (weeklyImprovementAverages !== null) {
+      weeklyImprovementAverages.map(entry => {
+        const week = 'week ' + entry.week[0]
+        labelText = [...labelText, week]
+      })
+    }
+
+    moodChartData = {
+      labels: weeklyImprovementAverages === undefined || weeklyImprovementAverages === null ? []
+        : labelText,
+      datasets: [weeklyImprovementDataset]
+    }
+    chartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      }
+    }
+  } else {
+    moodChartData = {
+      labels: weeklyImprovementAverages === undefined || weeklyImprovementAverages === null ? []
+        : [...weeklyImprovementAverages.map(entry => new Date(entry.week[0]))],
+      datasets: [weeklyImprovementDataset]
+    }
+
+    chartOptions = {
+      scales: {
+        xAxes: [{
+          type: 'time',
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      }
     }
   }
+
 
   const containerStyle = {
     backgroundColor: '#ffffff',
@@ -58,7 +90,7 @@ const WeeklyImprovement = ({ weeklyImprovementAverages }) => {
     <div className="p-col-12 p-lg-8">
       <div className="p-shadow-1" style={containerStyle}>
         <div className="card" style={cardStyle}>
-          <h3>WeeklyImprovement</h3>
+          <h3>Weekly Improvement</h3>
           <Chart type='bar'
             data={moodChartData}
             options={chartOptions} />

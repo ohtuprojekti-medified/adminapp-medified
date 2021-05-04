@@ -1,3 +1,12 @@
+/**.
+ * User treatments database model
+ *
+ * @module backend/models/user_treatments
+ * @param {...any} sequelize - ORM - object-relational mapper
+ * @param {DataTypes} DataTypes - sequelize database types
+ * @returns {...any} model for user_treatments
+ * @exports user_treatment
+ */
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('user_treatments', {
     snapshot_id: {

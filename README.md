@@ -10,15 +10,10 @@ Adminapp is a wed-application for organizations to be able to easily view data c
 
 ### Application
 
-#### Frontend
+* [Production](https://stats.medified.fi/)
+* [Frontend code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/frontend)
+* [Backend code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/backend)
 
-* [Code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/frontend)
-* Production (coming soon)
-
-#### Backend
-
-* [Code on GitHub](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/backend)
-* Production (coming soon)
 
 ## Documentation
 

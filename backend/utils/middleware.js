@@ -1,32 +1,35 @@
-/**
+/**.
  * Middlewares for backend
  *
- * @module utils/middleware
- * @requires utils/logger
+ * @module backend/utils/middleware
+ * @requires backend/utils/logger
  * @requires cognito-express
+ * @exports unknownEndpoint
+ * @exports errorHandler
+ * @exports authenticateToken
  */
 
-/**
+/**.
  * Logger for logging messages and errors
  *
  * @type {object}
  * @constant
- * @namespace logger
+ * @name logger
  */
 const logger = require('./logger')
 
-/**
+/**.
  * CognitoExpress for validating token given by frontend
  *
  * @type {object}
  * @constant
- * @namespace CognitoExpress
+ * @name CognitoExpress
  */
 const CognitoExpress = require('cognito-express')
 
 /**
  * Take CognitoExpress in use
- * see: https://www.npmjs.com/package/cognito-express
+ * see: https://www.npmjs.com/package/cognito-express.
  */
 const cognitoExpress = new CognitoExpress({
   region: 'eu-west-1',
@@ -37,12 +40,11 @@ const cognitoExpress = new CognitoExpress({
 
 const jsonWebToken = require('jsonwebtoken')
 
-/**
+/**.
  * Authenticating token in aws here. If token is verified, check user organisation from aws
  *
  * @name authenticateToken
- * @memberof module:utils/middlewares
- * @inner
+ * @memberof module:backend/utils/middlewares
  * @function
  * @constant
  * @param {object} req - Request
@@ -88,12 +90,11 @@ const authenticateToken = (req, res, next) => {
   }
 }
 
-/**
+/**.
  * Sends 404 to unknown paths
  *
  * @name unknownEndpoint
- * @memberof module:utils/middlewares
- * @inner
+ * @memberof module:backend/utils/middlewares
  * @function
  * @constant
  * @param {object} req - Request
@@ -103,12 +104,11 @@ const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: 'URL path does not match anything' })
 }
 
-/**
+/**.
  * Handles errors
  *
  * @name errorHandler
- * @memberof module:utils/middlewares
- * @inner
+ * @memberof module:backend/utils/middlewares
  * @function
  * @constant
  * @param {object} error -Errors

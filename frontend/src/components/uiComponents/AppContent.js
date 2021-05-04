@@ -1,13 +1,14 @@
-/**
+/**.
  * Component containing all UI components on the home page
  *
- * @module src/components/uiComponents/AppContent
+ * @module frontend/src/components/uiComponents/AppContent
  * @requires react
  * @requires react-router-dom
- * @requires components/Users
- * @requires components/Caregivers
- * @requires components/Cumulative
- * @requires components/RetentionRate
+ * @requires frontend/src/components/Users
+ * @requires frontend/src/components/Caregivers
+ * @requires frontend/src/components/Cumulative
+ * @requires frontend/src/components/RetentionRate
+ * @exports AppContent - Page content
  */
 import React from 'react'
 import { BrowserRouter as Route, Switch } from 'react-router-dom'
@@ -16,17 +17,20 @@ import Users from '../Users'
 import Caregivers from '../Caregivers'
 import Cumulative from '../Cumulative'
 import RetentionRate from '../RetentionRate'
-import AverageMoodWeekly from '../AverageMoodWeekly'
-import WeeklyImprovement from '../WeeklyImprovement'
+import ImprovementContainer from '../ImprovementsContainer'
 
-/**
+/**.
  * Component containing all UI components on the home page
  *
  * @param {*} param0 - all props from App.js
+ * @memberof module:frontend/src/components/uiComponents/AppContent
  * @returns {object} - JSX component containing all sub components
  */
 const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
-  retentionRates, averageRetention, moodAverages, weeklyImprovementAverages }) => {
+  retentionRates, averageRetention, moodChartData, weeklyImprovementAverages, totalImprovementAverages,
+  handleByUsingPeriodChange, byUsingPeriodFilter, moodChartDataByPeriod, weeklyImprovementAveragesByPeriod,
+  totalImprovementAveragesByPeriod }) => {
+
 
   const subContainer1 = {
     marginTop: '10px',
@@ -39,6 +43,11 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  }
+
+  const subContainer3 = {
+    justifyContent: 'center',
+    paddingTop: '50px'
   }
 
   const centered = {
@@ -66,9 +75,12 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
           </div>
         </Route>
 
-        <Route path='/moodaverages'>
-          <div style={centered}>
-            <AverageMoodWeekly moodAverages={moodAverages} />
+        <Route path='/moodimprovement'>
+          <div>
+            <div style={subContainer3}>
+              <ImprovementContainer moodAverages={moodChartData} totalImprovementAverages={totalImprovementAverages} weeklyImprovementAverages={weeklyImprovementAverages} byUsingPeriodFilter={byUsingPeriodFilter} handleByUsingPeriodChange={handleByUsingPeriodChange}
+                moodChartDataByPeriod={moodChartDataByPeriod} weeklyImprovementAveragesByPeriod={weeklyImprovementAveragesByPeriod} totalImprovementAveragesByPeriod={totalImprovementAveragesByPeriod} />
+            </div>
           </div>
         </Route>
 
@@ -86,19 +98,17 @@ const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
                 retentionRates={retentionRates}
                 average={averageRetention} />
             </div>
-            <div style={subContainer2}>
-              <AverageMoodWeekly
-                moodAverages={moodAverages} />
-            </div>
-            <div style={subContainer2}>
-              <WeeklyImprovement
-                weeklyImprovementAverages={weeklyImprovementAverages} />
+            <div>
+              <div style={subContainer3}>
+                <ImprovementContainer moodAverages={moodChartData} totalImprovementAverages={totalImprovementAverages} weeklyImprovementAverages={weeklyImprovementAverages} byUsingPeriodFilter={byUsingPeriodFilter} handleByUsingPeriodChange={handleByUsingPeriodChange}
+                  moodChartDataByPeriod={moodChartDataByPeriod} weeklyImprovementAveragesByPeriod={weeklyImprovementAveragesByPeriod} totalImprovementAveragesByPeriod={totalImprovementAveragesByPeriod} />
+              </div>
             </div>
           </div>
         </Route>
 
       </Switch>
-    </div>
+    </div >
   )
 }
 

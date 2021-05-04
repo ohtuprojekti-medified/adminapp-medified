@@ -1,3 +1,15 @@
+/**.
+ * Controller for userhistory queries
+ *
+ * @module backend/controllers/userhistoryController
+ * @requires date-fns
+ * @requires backend/models/index
+ * @requires backend/controllers/controller
+ * @exports findCumulativeNewUsers
+ * @exports findNewUsers
+ * @exports findUserActivitiesToday
+ * @exports findActiveUsers
+ */
 const { addDays } = require('date-fns')
 const db = require('../models')
 const { Sequelize } = require('../models')
@@ -6,12 +18,15 @@ const user_activities = db.user_activities
 const controller = require('./controller')
 const { addDateFilterToQuery } = require('./filters')
 
-/**
+/**.
  * Returns all user activities in app today from database
  *
  * @param {string} organisation - Organisation name for filtering
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
- * @returns  {...any} userActivitiesToday - list of user activities today
+ * @async
+ * @constant
+ * @memberof module:backend/controllers/userhistoryController
+ * @returns {...any} userActivitiesToday - list of user activities today
  */
 
 const findUserActivitiesToday = async (organisation, withCaregiver) => {
@@ -31,12 +46,15 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
   return userActivitiesToday
 }
 
-/**
+/**.
  * Returns new users within week from database
  *
  * @param {string} organisation - Organisation name for filtering
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
- * @returns  {...any} usersCreatedAt - list of new users registered in the last week
+ * @async
+ * @constant
+ * @memberof module:backend/controllers/userhistoryController
+ * @returns {...any} usersCreatedAt - list of new users registered in the last week
  */
 
 const findNewUsers = async (organisation, withCaregiver) => {
@@ -60,13 +78,16 @@ const findNewUsers = async (organisation, withCaregiver) => {
   return usersCreatedAt
 }
 
-/**
+/**.
  * Returns total cumulative new users week by week from database
  *
  * @param {string} organisation - Organisation name for filtering
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @param {string} startDate - Date object for limiting data from start
  * @param {string} endDate - Date object for limiting data from last
+ * @async
+ * @constant
+ * @memberof module:backend/controllers/userhistoryController
  * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
  */
 
@@ -111,13 +132,16 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
   return entries
 }
 
-/**
+/**.
  * Returns active users week by week
  *
  * @param {string} organisation - string id used to identify organisation
  * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
  * @param {string} startDate - Date object for limiting data from start
  * @param {string} endDate - Date object for limiting data from last
+ * @async
+ * @constant
+ * @memberof module:backend/controllers/userhistoryController
  * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
  */
 const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {

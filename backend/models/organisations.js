@@ -1,11 +1,11 @@
-/**
- * Organisations model
+/**.
+ * Organisations database model
  *
- * @module models/organisations
- *
+ * @module backend/models/organisations
  * @param {...any} sequelize - ORM - object-relational mapper
  * @param {DataTypes} DataTypes - sequelize database types
  * @returns {...any} model for organisations
+ * @exports organisations
  */
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('organisations', {

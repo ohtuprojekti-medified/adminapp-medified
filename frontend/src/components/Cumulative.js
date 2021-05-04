@@ -1,22 +1,22 @@
-/**
+/**.
  * Component for graphing all new users, cumulative
  *
- * @module src/components/Cumulative
+ * @module frontend/src/components/Cumulative
  * @requires react
  * @requires primereact/chart
+ * @exports Cumulative
  */
 import React from 'react'
 import { Chart } from 'primereact/chart'
 import { subDays, format } from 'date-fns'
 
-/**
+/**.
  * Component for graphing all new users, cumulative
  *
  * @type {object}
  * @function
  * @constant
- * @memberof module:src/components/Cumulative
- * @inner
+ * @memberof module:frontend/src/components/Cumulative
  * @param {object} param0 - Object with weekly cumulative users
  * @param {Array} param0.cumulative - Array of all cumulative users
  * @param {Array} param0.activeUsers - Array of all active users
@@ -60,7 +60,7 @@ const Cumulative = ({ cumulative, activeUsers }) => {
       },
       {
         label: 'active users weekly',
-        backgroundColor: '#80dbff',
+        backgroundColor: '#30C8BF',
         data: [...activeUsers.map(entry => entry.entries)]
       }
     ]
