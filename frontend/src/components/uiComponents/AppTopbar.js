@@ -21,8 +21,7 @@ import TimeFilter from '../TimeFilter'
 import MoodFilter from '../MoodFilter'
 import Organisations from '../Organisations'
 import loginService from '../../services/loginService'
-
-import Header from './AppHeader'
+import AppNavigationMenu from './AppNavigationMenu'
 
 /**.
  * Component for applications UI topbar
@@ -80,7 +79,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
       {user
         ?
         <div>
-          <Header />
+          <AppNavigationMenu />
         </div>
         : null}
     </React.Fragment>
