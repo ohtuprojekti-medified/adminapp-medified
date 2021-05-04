@@ -10,7 +10,7 @@ const MoodFilter = ({ moodDataSelect, moodGraphLabels, handleMoodDataSelectChang
   return (
     <div className="dropdown">
       <div className="card">
-        <h5>Select mood data</h5>
+        <h3 style={{ color: '#1E968E' }}>Select mood data</h3>
         <Dropdown options={moodGraphLabelArray} onChange={setMoodGraph} placeholder={placeholder} />
       </div>
     </div>

@@ -158,4 +158,22 @@ describe('Weekly improvement', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Weekly Improvement')
   })
+
+  /**.
+   * Test that WeeklyImprovement page exists after changing by using period to by date
+   *
+   * @name WeeklyImprovement_exists_after_clicking_by_using_period
+   * @type {object}
+   * @memberof module:cypress/integration/WeeklyImprovement_spec
+   * @inner
+   * @param {string} describe - exists after changing by using period to by date
+   * @param {object} testFunction - Function that runs test
+   */
+  it('exists after clicking by using period', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Weekly Improvement')
+    cy.contains('by using period')
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Weekly Improvement')
+  })
 })
