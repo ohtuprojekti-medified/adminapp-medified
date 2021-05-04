@@ -46,7 +46,15 @@ const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
         : labelText,
       datasets: [totalImprovementDataset]
     }
-    chartOptions = {}
+    chartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      }
+    }
   } else {
     moodChartData = {
       labels: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
@@ -58,6 +66,9 @@ const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
       scales: {
         xAxes: [{
           type: 'time',
+          gridLines: {
+            color: '#ffffff',
+          }
         }]
       }
     }

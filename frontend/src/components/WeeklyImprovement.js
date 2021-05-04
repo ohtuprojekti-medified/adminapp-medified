@@ -44,7 +44,15 @@ const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
         : labelText,
       datasets: [weeklyImprovementDataset]
     }
-    chartOptions = {}
+    chartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      }
+    }
   } else {
     moodChartData = {
       labels: weeklyImprovementAverages === undefined || weeklyImprovementAverages === null ? []
@@ -56,6 +64,9 @@ const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
       scales: {
         xAxes: [{
           type: 'time',
+          gridLines: {
+            color: '#ffffff',
+          }
         }]
       }
     }

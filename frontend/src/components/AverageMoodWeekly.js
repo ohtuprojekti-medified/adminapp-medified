@@ -56,6 +56,13 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
     console.log(moodChartData)
 
     chartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      }
     }
   } else {
     moodChartData = {
@@ -68,6 +75,9 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
       scales: {
         xAxes: [{
           type: 'time',
+          gridLines: {
+            color: '#ffffff',
+          }
         }]
       }
     }
