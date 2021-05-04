@@ -19,8 +19,7 @@ const footerStyle = {
 }
 
 const toolbarStyle = {
-  backgroundColor: '#d1e8e6'
-  // backgroundColor: '#FF7F50 '
+  backgroundColor: '#A9EAE8'
 }
 
 const leftContents = (
