@@ -331,6 +331,42 @@ const App = () => {
     setTotalImprovementChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].totalImprovementData)
   }
 
+  /**.
+   * Handle login button presses
+   *
+   * @type {object}
+   * @function
+   * @constant
+   * @memberof module:src/App
+   * @inner
+   * @param {object} event - Contains event
+   */
+  const handleLogin = async (event) => {
+    event.preventDefault()
+
+    try {
+      const user = await loginService.login({ username, password })
+      if (user.user) {
+        const appUser = {
+          username: user.user.username,
+          idToken: user.user.signInUserSession.idToken.jwtToken,
+          organisation: user.user.attributes['custom:organisation'],
+          admin: user.user.attributes['custom:admin']
+        }
+        setUser(appUser)
+        window.localStorage.setItem(
+          'loggedUser', JSON.stringify(appUser)
+        )
+      } else {
+        setUser(undefined)
+      }
+      setUsername('')
+      setPassword('')
+    } catch (exception) {
+      return
+    }
+  }
+
   const containerStyle = {
     position: 'relative',
     minHeight: '100vh',
@@ -402,7 +438,7 @@ const App = () => {
               password={password}
               setPassword={setPassword}
               user={user}
-              setUser={setUser} />
+              handleLogin={handleLogin} />
           </>
         }
       </Router>
