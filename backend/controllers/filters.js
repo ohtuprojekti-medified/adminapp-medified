@@ -1,3 +1,10 @@
+/**.
+ * Helper for adding filters to db queries
+ *
+ * @module backend/controllers/filter
+ * @requires sequelize
+ */
+
 const { Op } = require('sequelize')
 
 
