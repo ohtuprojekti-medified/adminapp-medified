@@ -12,8 +12,7 @@ const { addDays } = require('date-fns')
 const controller = require('./controller')
 const db = require('../models')
 const user_moods = db.user_moods
-const user_care_givers = db.user_care_givers
-const { addDateFilterToQuery } = require('./filters')
+const { addDateFilterToQuery, addUserFilterToQuery } = require('./filters')
 
 /**.
  * Return weekly values with given parameters/filters
@@ -31,83 +30,22 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
   if (variable === 'MOOD') {
     let userMoodData = []
     let moodsWeekly = []
-    let weeklyValuesQuery
-
-    if (organisation === 'ALL') {
-
-      if (withCaregiver === true) {
-        const userCaregivers = await user_care_givers.findAll({
-          attributes: ['user_id', 'access_code_id', 'created_at', 'updated_at', 'consent']
-        })
-
-        weeklyValuesQuery = {
-          attributes: ['id', 'user_id', 'created_at', 'value'],
-          where: {
-            user_id: userCaregivers.map(userCaregiver => userCaregiver.user_id)
-          },
-          order: [
-            ['created_at', 'ASC'],
-            ['user_id', 'ASC']
-          ]
-        }
-
-        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
-
-        userMoodData = await user_moods.findAll(weeklyValuesQuery)
-
-        moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
-
-      } else {
-        weeklyValuesQuery = {
-          order: [
-            ['created_at', 'ASC'],
-            ['user_id', 'ASC']
-          ],
-          attributes: ['id', 'user_id', 'created_at', 'value']
-        }
-        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
-        userMoodData = await user_moods.findAll(weeklyValuesQuery)
-        moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
-      }
-    } else {
-      if (withCaregiver === true) {
-        const organisationalAccessCodes = await controller.findAllAccessCodes(organisation)
-        const organisationalAccessCodesIdArray = organisationalAccessCodes.map(accessCode => accessCode.id)
-
-        const caregiversInOrganisation = await user_care_givers.findAll({
-          where: {
-            access_code_id: organisationalAccessCodesIdArray
-          }
-        })
-        const userIdsLinkedToOrganisationalCaregivers = caregiversInOrganisation.map(caregiver => caregiver.user_id)
-        const uniqueIds = [...new Set(userIdsLinkedToOrganisationalCaregivers)]
-
-        weeklyValuesQuery = {
-          attributes: ['id', 'user_id', 'created_at', 'value'],
-          where: {
-            user_id: uniqueIds
-          }
-        }
-        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
-        userMoodData = await user_moods.findAll(weeklyValuesQuery)
-        moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
-
-      } else {
-        const usersInOrganisation = await controller.findAllUsers(organisation, false)
-        const usersInOrganisationIdArray = usersInOrganisation.map(user => user.user_id)
-
-        weeklyValuesQuery = {
-          attributes: ['id', 'user_id', 'created_at', 'value'],
-          where: {
-            user_id: usersInOrganisationIdArray
-          }
-        }
-        addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
-        userMoodData = await user_moods.findAll(weeklyValuesQuery)
-
-        moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
-      }
+    let weeklyValuesQuery = {
+      attributes: ['id', 'user_id', 'created_at', 'value'],
+      order: [
+        ['created_at', 'ASC'],
+        ['user_id', 'ASC']
+      ]
     }
+
+    const users = await controller.findAllUsers(organisation, withCaregiver)
+    const userIds = users.map(user => user.user_id)
+
+    weeklyValuesQuery = addUserFilterToQuery(weeklyValuesQuery, userIds)
+    weeklyValuesQuery = addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
+    userMoodData = await user_moods.findAll(weeklyValuesQuery)
+    moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
+
     return moodsWeekly
   } else {
     return null
