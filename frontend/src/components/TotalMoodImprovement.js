@@ -40,7 +40,6 @@ const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
         labelText = [...labelText, week]
       })
     }
-
     moodChartData = {
       labels: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
         : labelText,
