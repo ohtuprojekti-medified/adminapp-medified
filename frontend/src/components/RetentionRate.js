@@ -36,7 +36,7 @@ const RetentionRate = ({ retentionRates, average }) => {
     datasets: [
       {
         label: 'usage periods',
-        backgroundColor: '#2cbcc9',
+        backgroundColor: '#30C8BF',
         data: data
       }
     ]

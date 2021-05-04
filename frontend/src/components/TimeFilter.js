@@ -29,6 +29,7 @@ const TimeFilter = ({ startDateEnable, endDateEnable, startDate, endDate, handle
   return (
     <div>
       <form>
+        <h3 style={{ color: '#1E968E' }}>Select period</h3>
         <h5>Start Date</h5>
         <div className="p-grid">
           <div className="p-col">

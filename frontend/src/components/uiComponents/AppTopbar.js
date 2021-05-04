@@ -64,7 +64,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
   }
 
   const toolbarStyle = {
-    backgroundColor: '#beede7'
+    backgroundColor: '#A9EAE8'
   }
 
   /**.

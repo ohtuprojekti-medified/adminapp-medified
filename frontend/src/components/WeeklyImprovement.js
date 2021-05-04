@@ -26,7 +26,7 @@ const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
     label: 'mood improvement%',
     data: weeklyImprovementAverages === undefined || weeklyImprovementAverages === null ? []
       : [...weeklyImprovementAverages.map(entry => entry.average * 100)],
-    backgroundColor: '#008000'
+    backgroundColor: '#30C8BF'
   }
   let moodChartData, chartOptions
 
