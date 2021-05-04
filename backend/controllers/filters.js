@@ -34,22 +34,6 @@ const addDateFilterToQuery = (oldQuery, startDate, endDate) => {
   return newQuery
 }
 
-/**.
- * Conditionally add user filtering to query
- *
- * @param {*} oldQuery - Query before filter
- * @param {*} usersToFind - List of user ids to filter with
- * @returns {...any} - Updated query
- */
-const addUserFilterToQuery = (oldQuery, usersToFind) => {
-  if (!usersToFind) return oldQuery
-
-  let newQuery = { ...oldQuery }
-  newQuery.where = { ...newQuery.where, user_id: usersToFind }
-  return newQuery
-}
-
 module.exports = {
   addDateFilterToQuery,
-  addUserFilterToQuery
 }

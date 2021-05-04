@@ -12,7 +12,7 @@ const { addDays } = require('date-fns')
 const controller = require('./controller')
 const db = require('../models')
 const user_moods = db.user_moods
-const { addDateFilterToQuery, addUserFilterToQuery } = require('./filters')
+const { addDateFilterToQuery } = require('./filters')
 
 /**.
  * Return weekly values with given parameters/filters
@@ -30,18 +30,20 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
   if (variable === 'MOOD') {
     let userMoodData = []
     let moodsWeekly = []
+
+    const userIds = await controller.findAllUsers(organisation, withCaregiver)
+
     let weeklyValuesQuery = {
       attributes: ['id', 'user_id', 'created_at', 'value'],
       order: [
         ['created_at', 'ASC'],
         ['user_id', 'ASC']
-      ]
+      ],
+      where: {
+        user_id: userIds.map(user => user.user_id)
+      }
     }
 
-    const users = await controller.findAllUsers(organisation, withCaregiver)
-    const userIds = users.map(user => user.user_id)
-
-    weeklyValuesQuery = addUserFilterToQuery(weeklyValuesQuery, userIds)
     weeklyValuesQuery = addDateFilterToQuery(weeklyValuesQuery, startDate, endDate)
     userMoodData = await user_moods.findAll(weeklyValuesQuery)
     moodsWeekly = await findWeeklyMoods(userMoodData, byUsingPeriod)
