@@ -49,37 +49,33 @@ import 'primeflex/primeflex.css'
  * @returns {object} - A single page application in JSX
  */
 const App = () => {
-  const [appUsers, setAppUsers] = useState([])
-  const [caregivers, setCaregivers] = useState([])
-  const [cumulativeUsers, setCumulative] = useState([])
-  const [activeUsers, setActive] = useState([])
-  const [retentionRates, setRetentionRates] = useState([])
-  const [averageRetention, setAverageRetention] = useState([])
+  const [organisations, setOrganisations] = useState([])
+  const [data, setData] = useState({
+    'appUsers': [],
+    'caregivers': [],
+    'cumulativeUsers': [],
+    'activeUsers': [],
+    'retentionRates': [],
+    'averageRetention': [],
+    'moodChartData': [],
+    'weeklyImprovementAverages': [],
+    'totalImprovementAverages': [],
+    'moodChartDataByPeriod': [],
+    'weeklyImprovementAveragesByPeriod': [],
+    'totalImprovementAveragesByPeriod': [] })
+
+  const [byUsingPeriodFilter, setByUsingPeriodFilter] = useState(true)
+  const [startDateEnable, setStartDateEnable] = useState(false)
+  const [endDateEnable, setEndDateEnable] = useState(false)
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
   const [user, setUser] = useState(undefined)
   const [caregiverFilterForAllUsers, setCaregiverFilterForAllUsers] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [organisationSelect, setOrganisation] = useState('ALL')
   const [visible, setVisible] = useState(false)
-  const [organisations, setOrganisations] = useState([])
-  const [startDateEnable, setStartDateEnable] = useState(false)
-  const [endDateEnable, setEndDateEnable] = useState(false)
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-  const [moodDataSelect, setMoodDataSelect] = useState('MOOD')
-  const [moodAverages, setMoodAverages] = useState([])
-  const [moodChartData, setMoodChartData] = useState([])
-  const [weeklyImprovementAverages, setWeeklyImprovementAverages] = useState([])
-  const [weeklyImprovementChartData, setWeeklyImprovementChartData] = useState([])
-  const [totalImprovementAverages, setTotalImprovementAverages] = useState([])
-  const [totalImprovementChartData, setTotalImprovementChartData] = useState([])
-  const [byUsingPeriodFilter, setByUsingPeriodFilter] = useState(true)
-  const [moodAveragesByPeriod, setMoodAveragesByPeriod] = useState([])
-  const [moodChartDataByPeriod, setMoodChartDataByPeriod] = useState([])
-  const [weeklyImprovementAveragesByPeriod, setWeeklyImprovementAveragesByPeriod] = useState([])
-  const [weeklyImprovementChartDataByPeriod, setWeeklyImprovementChartDataByPeriod] = useState([])
-  const [totalImprovementAveragesByPeriod, setTotalImprovementAveragesByPeriod] = useState([])
-  const [totalImprovementChartDataByPeriod, setTotalImprovementChartDataByPeriod] = useState([])
 
   /**.
    * Configure amplify authorization and check if user is logged in
@@ -106,14 +102,7 @@ const App = () => {
     }
   }, [])
 
-  /**
-   * Set token or refresh token and GET data if user logs in or is logged in. If secure ping fails twice user is logged out.
-   *
-   * @type {object}
-   * @function
-   * @memberof module:frontend/src/App
-   * @inner
-   */
+
   useEffect(() => {
     const refreshToken = async () => {
       try {
@@ -152,7 +141,7 @@ const App = () => {
       }
     }
 
-    const fetchData = async () => {
+    const secureUserConnection = async () => {
       if (user) {
         dataService.setToken(user.idToken)
         const ping1 = await securePing()
@@ -163,53 +152,99 @@ const App = () => {
           if (ping2 === 403) {
             await logOut()
           } else {
+            console.log('Set refreshedUser')
             setUser(refreshedUser)
             return
           }
         }
-
-        if (user) {
-          if (user.admin) {
-            dataService.getAll('organisations?organisation=ALL').then(organisations => setOrganisations(organisations))
-          }
-          dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(usersAtBeginning => setAppUsers(usersAtBeginning))
-          dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`).then(caregivs => setCaregivers(caregivs))
-          dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(cumulativeUsers => setCumulative(cumulativeUsers))
-          dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(retentionRates => setRetentionRates(retentionRates))
-          dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(average => setAverageRetention(average))
-          dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`).then(active => setActive(active))
-          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyValues => {
-            setMoodAverages(weeklyValues)
-            setMoodChartData(weeklyValues)
-          })
-          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(weeklyImprovement => {
-            setWeeklyImprovementAverages(weeklyImprovement)
-            setWeeklyImprovementChartData(weeklyImprovement)
-          })
-          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`).then(totalImprovement => {
-            setTotalImprovementAverages(totalImprovement)
-            setTotalImprovementChartData(totalImprovement)
-          })
-          dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyValues => {
-            setMoodAveragesByPeriod(weeklyValues)
-            setMoodChartDataByPeriod(weeklyValues)
-          })
-          dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(weeklyImprovement => {
-            setWeeklyImprovementAveragesByPeriod(weeklyImprovement)
-            setWeeklyImprovementChartDataByPeriod(weeklyImprovement)
-          })
-          dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`).then(totalImprovement => {
-            setTotalImprovementAveragesByPeriod(totalImprovement)
-            setTotalImprovementChartDataByPeriod(totalImprovement)
-          })
-        }
       }
     }
+
+    secureUserConnection()
+
+  }, [user])
+
+  /**
+   * Set token or refresh token and GET data if user logs in or is logged in. If secure ping fails twice user is logged out.
+   *
+   * @type {object}
+   * @function
+   * @memberof module:frontend/src/App
+   * @inner
+   */
+  useEffect(() => {
+    const fetchData = async () => {
+        if (user) {
+        console.log('And we have user set')
+          if (user.admin) {
+          const organisations = await dataService.getAll('organisations?organisation=ALL')
+          setOrganisations(organisations)
+          console.log('ADMINN')
+          }
+        const appUsers = await dataService.getAll(`users?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`)
+        const caregivers = await dataService.getAll(`caregivers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}`)
+        const cumulativeUsers = await dataService.getAll(`cumulative?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`)
+        const activeUsers = await dataService.getAll(`activeusers?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`)
+        const retentionRates = await dataService.getAll(`retention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`)
+        const averageRetention = await dataService.getAll(`avgretention?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}`)
+        const weeklyValues = await dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`)
+        const weeklyImprovementAverages = await dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`)
+        const totalImprovements = await dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}`)
+        const weeklyValuesByPeriod = await dataService.getAll(`weeklyvalues?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`)
+        const weeklyImprovementsByPeriod = await dataService.getAll(`weeklyimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`)
+        const totalImprovementsByPeriod = await dataService.getAll(`totalimprovement?withcaregiver=${caregiverFilterForAllUsers}&organisation=${organisationSelect}&startDate=${startDate}&endDate=${endDate}&variable=${moodDataSelect}&byUsingPeriod=${byUsingPeriodFilter}`)
+
+
+        setData({
+          appUsers,
+          caregivers,
+          cumulativeUsers,
+          activeUsers,
+          retentionRates,
+          averageRetention,
+          'moodAverages': weeklyValues,
+          'moodChartData': weeklyValues,
+          'weeklyImprovementAverages': weeklyImprovementAverages,
+          'weeklyImprovementChartData': weeklyImprovementAverages,
+          'totalImprovementAverages': totalImprovements,
+          'totalImprovementChartData': totalImprovements,
+          'moodAveragesByPeriod': weeklyValuesByPeriod,
+          'moodChartDataByPeriod': weeklyValuesByPeriod,
+          'weeklyImprovementAveragesByPeriod': weeklyImprovementsByPeriod,
+          'weeklyImprovementChartDataByPeriod': weeklyImprovementsByPeriod,
+          'totalImprovementAveragesByPeriod': totalImprovementsByPeriod,
+          'totalImprovementChartDataByPeriod': totalImprovementsByPeriod
+          })
+        console.log(caregivers)
+        // setAppUsers(appUsers)
+        // setCaregivers(caregivers)
+        // setCumulative(cumulativeUsers)
+        // setActive(activeUsers)
+        // setRetentionRates(retentionRates)
+        // setAverageRetention(averageRetention)
+        // setMoodAverages(weeklyValues)
+        // setMoodChartData(weeklyValues)
+        // setWeeklyImprovementAverages(weeklyImprovementAverages)
+        // setWeeklyImprovementChartData(weeklyImprovementAverages)
+        // setTotalImprovementAverages(totalImprovements)
+        // setTotalImprovementChartData(totalImprovements)
+        // setMoodAveragesByPeriod(weeklyValuesByPeriod)
+        // setMoodChartDataByPeriod(weeklyValuesByPeriod)
+        // setWeeklyImprovementAveragesByPeriod(weeklyImprovementsByPeriod)
+        // setWeeklyImprovementChartDataByPeriod(weeklyImprovementsByPeriod)
+        // setTotalImprovementAveragesByPeriod(totalImprovementsByPeriod)
+        // setTotalImprovementChartDataByPeriod(totalImprovementsByPeriod)
+      }
+    }
+
+    console.log('FetchData effectHook is run')
 
     fetchData()
 
   }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable, moodDataSelect, byUsingPeriodFilter])
 
+
+  console.log('App.js is rendered')
   /**.
    *
    * Event handler for changing the status of caregiveFilterForAllUsers
@@ -309,10 +344,7 @@ const App = () => {
 
 
   const moodGraphLabelsByDate = [
-    { label: 'MOOD', averageMoodWeeklyData: moodAverages, weeklyImprovementData: weeklyImprovementAverages, totalImprovementData: totalImprovementAverages }
-  ]
-  const moodGraphLabelsByPeriod = [
-    { label: 'MOOD', averageMoodWeeklyData: moodAveragesByPeriod, weeklyImprovementData: weeklyImprovementAveragesByPeriod, totalImprovementData: totalImprovementAveragesByPeriod }
+    { label: 'MOOD' }
   ]
 
   /**.
@@ -323,12 +355,6 @@ const App = () => {
    */
   const handleMoodDataSelectChange = (label) => {
     setMoodDataSelect(label)
-    setMoodChartData(moodGraphLabelsByDate.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
-    setWeeklyImprovementChartData(moodGraphLabelsByDate.filter(entry => entry.label === label)[0].weeklyImprovementData)
-    setTotalImprovementChartData(moodGraphLabelsByDate.filter(entry => entry.label === label)[0].totalImprovementData)
-    setMoodChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
-    setWeeklyImprovementChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].weeklyImprovementData)
-    setTotalImprovementChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].totalImprovementData)
   }
 
   const containerStyle = {
@@ -365,28 +391,9 @@ const App = () => {
                 moodDataSelect={moodDataSelect}
                 handleMoodDataSelectChange={handleMoodDataSelectChange} />
 
-              <AppContent user={user}
-                appUsers={appUsers}
-                caregivers={caregivers}
-                caregiverFilterForAllUsers={caregiverFilterForAllUsers}
-                handleFilterChange={handleFilterChange}
-                cumulativeUsers={cumulativeUsers}
-                activeUsers={activeUsers}
-                retentionRates={retentionRates}
-                averageRetention={averageRetention}
-                moodChartData={moodChartData}
-                weeklyImprovementAverages={weeklyImprovementChartData}
-                totalImprovementAverages={totalImprovementChartData}
-                moodChartDataByPeriod={moodChartDataByPeriod}
-                weeklyImprovementAveragesByPeriod={weeklyImprovementChartDataByPeriod}
-                totalImprovementAveragesByPeriod={totalImprovementChartDataByPeriod}
+              <AppContent data={data}
                 handleByUsingPeriodChange={handleByUsingPeriodChange}
-                byUsingPeriodFilter={byUsingPeriodFilter}
-                username={username}
-                setUsername={setUsername}
-                password={password}
-                setPassword={setPassword}
-                setUser={setUser} />
+                byUsingPeriodFilter={byUsingPeriodFilter} />
 
             </div>
             <AppFooter />

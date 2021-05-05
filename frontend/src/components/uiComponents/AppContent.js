@@ -26,11 +26,20 @@ import ImprovementContainer from '../ImprovementsContainer'
  * @memberof module:frontend/src/components/uiComponents/AppContent
  * @returns {object} - JSX component containing all sub components
  */
-const AppContent = ({ appUsers, caregivers, cumulativeUsers, activeUsers,
-  retentionRates, averageRetention, moodChartData, weeklyImprovementAverages, totalImprovementAverages,
-  handleByUsingPeriodChange, byUsingPeriodFilter, moodChartDataByPeriod, weeklyImprovementAveragesByPeriod,
-  totalImprovementAveragesByPeriod }) => {
+const AppContent = ({ data, handleByUsingPeriodChange, byUsingPeriodFilter }) => {
 
+  const { appUsers,
+    caregivers,
+    cumulativeUsers,
+    activeUsers,
+    retentionRates,
+    averageRetention,
+    moodChartData,
+    weeklyImprovementAverages,
+    totalImprovementAverages,
+    moodChartDataByPeriod,
+    weeklyImprovementAveragesByPeriod,
+    totalImprovementAveragesByPeriod } = data
 
   const subContainer1 = {
     marginTop: '10px',
