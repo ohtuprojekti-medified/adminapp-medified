@@ -182,6 +182,9 @@ describe('retentionrate controller', () => {
         daysUsed: 21,
       },
       {
+        daysUsed: 11,
+      },
+      {
         daysUsed: 5,
       },
     ])
@@ -198,7 +201,7 @@ describe('retentionrate controller', () => {
    * @param {object} test - Test code
    */
   test('findAverageRetentionRate returns correct average', async () => {
-    expect(await retentionrateController.findAverageRetentionRate('ALL')).toEqual(13)
+    expect(await retentionrateController.findAverageRetentionRate('ALL')).toEqual(12.33)
   })
 
   // test('findRetentionRates returns correct data with start date filter', async () => {
