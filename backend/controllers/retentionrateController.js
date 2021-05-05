@@ -43,7 +43,7 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
     attributes: ['id', 'user_id', 'created_at']
   }
 
-  addDateFilterToQuery(activitiesQuery, startDate, endDate)
+  activitiesQuery = addDateFilterToQuery(activitiesQuery, startDate, endDate)
   const userActivities = await user_activities.findAll(activitiesQuery)
 
   const userProfiles = await user_profiles.findAll({
