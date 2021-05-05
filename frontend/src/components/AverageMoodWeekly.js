@@ -59,7 +59,8 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
             color: '#ffffff',
           }
         }]
-      }
+      },
+      animation: false
     }
   } else {
     moodChartData = {
@@ -76,7 +77,8 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
             color: '#ffffff',
           }
         }]
-      }
+      },
+      animation: false
     }
   }
 
