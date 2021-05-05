@@ -149,7 +149,7 @@ describe('Retention rate', function () {
    */
   it('exists after checking only patients with caregivers, start date and end date in filters', function () {
     cy.contains('Retention rates')
-    cy.contains('Average using period is 17.83 days')
+    cy.contains('Average using period is 20.73 days')
     cy.contains('Single periods:')
     cy.contains('Filter').click()
     cy.get('[data-testid="filter-checkbox"]').check()
