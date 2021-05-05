@@ -52,7 +52,8 @@ const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
             color: '#ffffff',
           }
         }]
-      }
+      },
+      animation: false
     }
   } else {
     moodChartData = {
@@ -69,7 +70,8 @@ const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
             color: '#ffffff',
           }
         }]
-      }
+      },
+      animation: false
     }
   }
 

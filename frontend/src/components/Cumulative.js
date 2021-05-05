@@ -71,7 +71,8 @@ const Cumulative = ({ cumulative, activeUsers }) => {
       xAxes: [{
         type: 'time',
       }]
-    }
+    },
+    animation: false
   }
 
   const containerStyle = {

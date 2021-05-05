@@ -58,7 +58,8 @@ const RetentionRate = ({ retentionRates, average }) => {
           color: '#ffffff',
         }
       }]
-    }
+    },
+    animation: false
   }
 
   const containerStyle = {

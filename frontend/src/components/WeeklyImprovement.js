@@ -51,7 +51,8 @@ const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
             color: '#ffffff',
           }
         }]
-      }
+      },
+      animation: false
     }
   } else {
     moodChartData = {
@@ -68,7 +69,8 @@ const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
             color: '#ffffff',
           }
         }]
-      }
+      },
+      animation: false
     }
   }
 
