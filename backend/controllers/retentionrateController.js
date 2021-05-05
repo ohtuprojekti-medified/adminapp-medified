@@ -44,9 +44,12 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
   }
 
   activitiesQuery = addDateFilterToQuery(activitiesQuery, startDate, endDate)
-  const userActivities = await user_activities.findAll(activitiesQuery)
 
-  const userProfiles = await user_profiles.findAll({
+  const userActivitiesData = await user_activities.findAll(activitiesQuery)
+  const userActivities = userActivitiesData.map(activity => activity.dataValues)
+  const userActivitiesIdArray = userActivities.map(activity => activity.user_id)
+
+  const userProfilesData = await user_profiles.findAll({
     where: {
       user_id: userIdsArray
     },
@@ -55,35 +58,31 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
     ],
     attributes: ['user_id', 'created_at']
   })
+  const userProfiles = userProfilesData.map(profile => profile.dataValues)
+  const activeUsers = userProfiles.filter(user => userActivitiesIdArray.includes(user.user_id))
 
-  const allActivities = userActivities.map(activity => activity.dataValues)
-  const userIdsActivities = allActivities.map(obj => obj.user_id)
-
-  const allUserProfiles = userProfiles.map(profile => profile.dataValues)
-  const activeUsers = allUserProfiles.filter(user => userIdsActivities.includes(user.user_id))
   let usingPeriods = []
 
   for (let user of activeUsers) {
-    const usersActivity = allActivities.filter(activity => activity.user_id === user.user_id)
+    const usersActivity = userActivities.filter(activity => activity.user_id === user.user_id)
     let first = usersActivity[0].created_at
+    let latest
 
     for (let i = 1; i < usersActivity.length; i++) {
+      latest = usersActivity[i].created_at
 
       if (differenceInCalendarDays(usersActivity[i].created_at, usersActivity[i - 1].created_at) > 7) {
 
-        if (differenceInCalendarDays(usersActivity[i - 1].created_at, first) === 0) {
+        if (differenceInCalendarDays(usersActivity[i - 1].created_at, first) !== 0) {
+          const object = { daysUsed: differenceInCalendarDays(usersActivity[i - 1].created_at, first) }
+          usingPeriods = [...usingPeriods, object]
           first = usersActivity[i].created_at
-          continue
         }
-
-        const object = { daysUsed: differenceInCalendarDays(usersActivity[i - 1].created_at, first) }
-        usingPeriods = [...usingPeriods, object]
-
-        if (i + 1 >= usersActivity.length) {
-          break
-        }
-        first = usersActivity[i].created_at
       }
+    }
+    if (latest !== undefined && differenceInCalendarDays(latest, first) !== 0) {
+      const object = { daysUsed: differenceInCalendarDays(latest, first) }
+      usingPeriods = [...usingPeriods, object]
     }
   }
 
@@ -104,10 +103,13 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
  */
 
 const findAverageRetentionRate = async (organisation, withCaregiver, startDate, endDate) => {
-  const allRates = await findRetentionRates(organisation, withCaregiver, startDate, endDate)
-  const daysUsed = allRates.map(obj => obj.daysUsed)
+  let averageUsingPeriod = 0
+  const allRetentionRates = await findRetentionRates(organisation, withCaregiver, startDate, endDate)
+  const daysUsed = allRetentionRates.map(retentionRate => retentionRate.daysUsed)
   const sum = daysUsed.reduce((a, b) => a + b, 0)
-  const averageUsingPeriod = sum / daysUsed.length
+  sum === 0
+    ? averageUsingPeriod = 0
+    : averageUsingPeriod = parseFloat((sum / daysUsed.length).toFixed(2))
 
   return averageUsingPeriod
 

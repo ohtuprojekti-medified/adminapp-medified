@@ -211,8 +211,8 @@ describe('userhistory controller', () => {
    */
   test('findCumulativeNewUsers returns correct data', async () => {
     const cumulativeUserActivities = await userhistoryController.findCumulativeNewUsers('ALL')
-    expect(cumulativeUserActivities[0].entries).toEqual(2)
-    expect(cumulativeUserActivities[1].entries).toEqual(2)
+    expect(cumulativeUserActivities[0].entries).toEqual(1)
+    expect(cumulativeUserActivities[1].entries).toEqual(1)
   })
 
   /**.
@@ -228,7 +228,7 @@ describe('userhistory controller', () => {
   test('findUserActivities returns correct data', async () => {
     const activeUsers = await userhistoryController.findActiveUsers('ALL')
     expect(activeUsers[0].entries).toEqual(1)
-    expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
+    expect(activeUsers[activeUsers.length - 1].entries).toEqual(1)
   })
 
   /**.
@@ -244,7 +244,7 @@ describe('userhistory controller', () => {
   test('findActiveUsers returns correct data within timeframe where users are partially active', async () => {
     const activeUsers = await userhistoryController.findActiveUsers('ALL', false, format(TIMES[1], 'yyyy-MM-dd'), format(TIMES[5], 'yyyy-MM-dd'))
     expect(activeUsers[0].entries).toEqual(1)
-    expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
+    expect(activeUsers[activeUsers.length - 1].entries).toEqual(1)
   })
 
   /**.
@@ -258,34 +258,31 @@ describe('userhistory controller', () => {
    * @param {object} test - Test code
    */
   test('findActiveUsers returns correct data within timeframe where all users are active', async () => {
-    console.log('all users are active')
     const activeUsers = await userhistoryController.findActiveUsers('ALL', false, format(TIMES[2], 'yyyy-MM-dd'), format(TIMES[5], 'yyyy-MM-dd'))
-    expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
+    expect(activeUsers[activeUsers.length - 1].entries).toEqual(1)
   })
 
   test('findActiveUsers returns correct data within timeframe where 2 users are active', async () => {
     const activeUsers = await userhistoryController.findActiveUsers('ALL', false, format(TIMES[2], 'yyyy-MM-dd'), format(TIMES[5], 'yyyy-MM-dd'))
-    console.log('all users are active', activeUsers)
     expect(activeUsers[0].entries).toEqual(1)
-    expect(activeUsers[activeUsers.length - 1].entries).toEqual(2)
+    expect(activeUsers[activeUsers.length - 1].entries).toEqual(1)
   })
 
   test('findCumulativeNewUsers return correct data with start date filter', async () => {
     const cumulativeNewUsers = await userhistoryController.findCumulativeNewUsers('ALL', false, format(USER_PROFILES_CREATED_AT_TIMES[2], 'yyyy-MM-dd'), '')
-    expect(cumulativeNewUsers[0].entries).toEqual(2)
+    expect(cumulativeNewUsers[0].entries).toEqual(1)
     expect(cumulativeNewUsers[cumulativeNewUsers.length - 1].entries).toEqual(4)
   })
 
   test('findCumulativeNewUsers return correct data with end date filter', async () => {
     const cumulativeNewUsers = await userhistoryController.findCumulativeNewUsers('ALL', false, '', format(USER_PROFILES_CREATED_AT_TIMES[2], 'yyyy-MM-dd'))
-    expect(cumulativeNewUsers[0].entries).toEqual(2)
+    expect(cumulativeNewUsers[0].entries).toEqual(1)
     expect(cumulativeNewUsers[cumulativeNewUsers.length - 1].entries).toEqual(4)
   })
 
   test('findCumulativeNewUsers return correct data with start date and end date filter', async () => {
-    console.log('dsadsadsa', format(USER_PROFILES_CREATED_AT_TIMES[1], 'yyyy-MM-dd'))
     const cumulativeNewUsers = await userhistoryController.findCumulativeNewUsers('ALL', false, format(USER_PROFILES_CREATED_AT_TIMES[1], 'yyyy-MM-dd'), format(USER_PROFILES_CREATED_AT_TIMES[2], 'yyyy-MM-dd'))
-    expect(cumulativeNewUsers[0].entries).toEqual(2)
+    expect(cumulativeNewUsers[0].entries).toEqual(1)
     expect(cumulativeNewUsers[cumulativeNewUsers.length - 1].entries).toEqual(4)
   })
 

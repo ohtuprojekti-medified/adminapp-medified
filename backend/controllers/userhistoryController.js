@@ -18,6 +18,8 @@ const user_activities = db.user_activities
 const controller = require('./controller')
 const { addDateFilterToQuery } = require('./filters')
 
+const WEEK_IN_MS = 604800000
+
 /**.
  * Returns all user activities in app today from database
  *
@@ -60,7 +62,7 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
 const findNewUsers = async (organisation, withCaregiver) => {
   const Op = Sequelize.Op
   const NOW = new Date()
-  const WEEK_AGO = new Date(new Date() - 604800000)
+  const WEEK_AGO = new Date(new Date() - WEEK_IN_MS)
 
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
   const usersCreatedAt = await user_profiles.findAll({
@@ -105,28 +107,26 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
   }
 
   userProfilesQuery = addDateFilterToQuery(userProfilesQuery, startDate, endDate)
-  const usersCreatedAt = await user_profiles.findAll(userProfilesQuery)
+  const userProfilesData = await user_profiles.findAll(userProfilesQuery)
+  const userProfiles = userProfilesData.map(user => user.dataValues)
 
-  const createdDates = usersCreatedAt.map(user => user.dataValues)
+  if (userProfiles.length === 0) return []
 
-  if (createdDates.length === 0) {
-    return []
-  }
-  const first = createdDates[0].created_at.getTime()
-  const last = createdDates[createdDates.length - 1].created_at.getTime()
-  let timeFrame = first + 604800000
-  let counter = 0
+  const first = userProfiles[0].created_at.getTime()
+  const last = userProfiles[userProfiles.length - 1].created_at.getTime()
+  let currentWeek = first + WEEK_IN_MS
+  let usersCounted = 0
   let week = [new Date(first), addDays(first, 7)]
   let entries = []
-  while (timeFrame < last + 604800000) {
-    while (createdDates[counter].created_at <= timeFrame && counter < createdDates.length - 1) {
-      counter++
+
+  while (currentWeek < last + WEEK_IN_MS) {
+    while (userProfiles[usersCounted].created_at <= currentWeek) {
+      usersCounted++
+      if (usersCounted >= userProfiles.length) break
     }
-    const object = { week: week, entries: counter + 1 }
-    entries = [...entries, object]
-    const temp = week[1]
-    week = [temp, addDays(temp, 7)]
-    timeFrame = timeFrame + 604800000
+    entries = [...entries, { week: week, entries: usersCounted }]
+    week = [week[1], addDays(week[1], 7)]
+    currentWeek = currentWeek + WEEK_IN_MS
   }
 
   return entries
@@ -157,31 +157,33 @@ const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) 
   }
   userAcitivitiesQuery = addDateFilterToQuery(userAcitivitiesQuery, startDate, endDate)
 
-  const userActivities = await user_activities.findAll(userAcitivitiesQuery)
-  const allActivities = userActivities.map(activity => activity.dataValues)
+  const userActivitiesData = await user_activities.findAll(userAcitivitiesQuery)
+  const userActivities = userActivitiesData.map(activity => activity.dataValues)
 
-  if (allActivities.length === 0) {
-    return []
-  }
-  const first = allActivities[0].created_at.getTime()
-  let currentWeek = first + 604800000
+  if (userActivities.length === 0) return []
+
+  const first = userActivities[0].created_at.getTime()
+  const last = userActivities[userActivities.length - 1].created_at.getTime()
+  let currentWeek = first + WEEK_IN_MS
   let week = [new Date(first), addDays(first, 7)]
   let activeUsersThisWeek = []
+  let counter = 0
+
   let entries = []
-  for (let i = 0; i < allActivities.length; i++) {
-    while (allActivities[i].created_at >= currentWeek + 604800000) {
-      const object = { week: week, entries: activeUsersThisWeek.length }
-      entries = [...entries, object]
-      activeUsersThisWeek = []
-      currentWeek = currentWeek + 604800000
-      week = [new Date(currentWeek), addDays(currentWeek, 7)]
+
+  while (currentWeek < last + WEEK_IN_MS) {
+    while (userActivities[counter].created_at <= currentWeek ) {
+      counter++
+      if(counter >= userActivities.length) break
+      if (!activeUsersThisWeek.includes(userActivities[counter-1].user_id)) {
+        activeUsersThisWeek = [...activeUsersThisWeek, userActivities[counter-1].user_id]
+      }
     }
-    if (!activeUsersThisWeek.includes(allActivities[i].user_id)) {
-      activeUsersThisWeek = [...activeUsersThisWeek, allActivities[i].user_id]
-    }
+    entries = [...entries, { week: week, entries: activeUsersThisWeek.length }]
+    activeUsersThisWeek = []
+    currentWeek = currentWeek + WEEK_IN_MS
+    week = [week[1], addDays(week[1], 7)]
   }
-  const object = { week: week, entries: activeUsersThisWeek.length }
-  entries = [...entries, object]
   return entries
 }
 
