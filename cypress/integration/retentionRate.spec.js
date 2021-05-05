@@ -55,7 +55,7 @@ describe('Retention rate', function () {
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Retention rates')
-    cy.contains('Average using period is 17.83 days')
+    cy.contains('Average using period is 20.73 days')
     cy.contains('Single periods:')
   })
 
@@ -74,7 +74,7 @@ describe('Retention rate', function () {
     cy.get('[data-testid="filter-checkbox"]').check()
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Retention rates')
-    cy.contains('Average using period is 33.00 days')
+    cy.contains('Average using period is 31.25 days')
     cy.contains('Single periods:')
   })
 
@@ -93,7 +93,7 @@ describe('Retention rate', function () {
     cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-10-01')
     cy.contains('Retention rates')
-    cy.contains('Average using period is 17.33 days')
+    cy.contains('Average using period is 20.73 days')
     cy.contains('Single periods:')
   })
 
@@ -112,7 +112,7 @@ describe('Retention rate', function () {
     cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-11-01')
     cy.contains('Retention rates')
-    cy.contains('Average using period is 2.00 days')
+    cy.contains('Average using period is 11.80 days')
     cy.contains('Single periods:')
   })
 
@@ -133,7 +133,7 @@ describe('Retention rate', function () {
     cy.get('[data-testid="endDate-checkbox"]').click()
     cy.get('[data-testid="endDate-date"]').type('2020-12-01')
     cy.contains('Retention rates')
-    cy.contains('Average using period is 2.50 days')
+    cy.contains('Average using period is 0.00 days')
     cy.contains('Single periods:')
   })
 
@@ -156,8 +156,8 @@ describe('Retention rate', function () {
     cy.get('[data-testid="startDate-checkbox"]').click()
     cy.get('[data-testid="startDate-date"]').type('2020-06-01')
     cy.get('[data-testid="endDate-checkbox"]').click()
-    cy.get('[data-testid="endDate-date"]').type('2021-02-01')
-    cy.contains('Average using period is 46.50 days')
+    cy.get('[data-testid="endDate-date"]').type('2021-12-31')
+    cy.contains('Average using period is 82.00 days')
     cy.contains('Single periods:')
   })
 })
