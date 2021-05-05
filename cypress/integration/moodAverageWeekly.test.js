@@ -160,4 +160,22 @@ describe('MoodAverage chart', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Average mood weekly')
   })
+
+  /**.
+   * Test that Average mood weekly page exists after changing by using period to by date
+   *
+   * @name AverageMoodWeekly_exists_after_clicking_by_using_period
+   * @type {object}
+   * @memberof module:cypress/integration/AverageMoodWeekly_spec
+   * @inner
+   * @param {string} describe - exists after changing by using period to by date
+   * @param {object} testFunction - Function that runs test
+   */
+  it('exists after clicking by using period', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Average mood weekly')
+    cy.contains('by using period').click()
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Average mood weekly')
+  })
 })

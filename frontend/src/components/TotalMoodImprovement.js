@@ -26,7 +26,7 @@ const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
     label: 'mood improvement%',
     data: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
       : [...totalImprovementAverages.map(entry => entry.average * 100)],
-    borderColor: '#ff8000',
+    borderColor: '#30C8BF',
     fill: false
   }
   let moodChartData, chartOptions
@@ -40,13 +40,20 @@ const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
         labelText = [...labelText, week]
       })
     }
-
     moodChartData = {
       labels: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
         : labelText,
       datasets: [totalImprovementDataset]
     }
-    chartOptions = {}
+    chartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      }
+    }
   } else {
     moodChartData = {
       labels: totalImprovementAverages === undefined || totalImprovementAverages === null ? []
@@ -58,6 +65,9 @@ const TotalImprovement = ({ totalImprovementAverages, byPeriod }) => {
       scales: {
         xAxes: [{
           type: 'time',
+          gridLines: {
+            color: '#ffffff',
+          }
         }]
       }
     }

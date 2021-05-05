@@ -60,7 +60,7 @@ const Cumulative = ({ cumulative, activeUsers }) => {
       },
       {
         label: 'active users weekly',
-        backgroundColor: '#80dbff',
+        backgroundColor: '#30C8BF',
         data: [...activeUsers.map(entry => entry.entries)]
       }
     ]

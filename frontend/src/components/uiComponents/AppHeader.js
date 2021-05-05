@@ -20,8 +20,8 @@ const linkStyle = {
   color: 'black',
   padding: '5px',
   margin: '5px',
-  borderColor: '#00b5b8',
-  border: '3px solid #00b5b8',
+  borderColor: '#30C8BF',
+  border: '3px solid #30C8BF',
   borderRadius: '5px'
 }
 

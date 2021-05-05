@@ -22,8 +22,6 @@ import { Chart } from 'primereact/chart'
  * @returns {object} - JSX component that creates a graph for average moods
  */
 const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
-  console.log(moodAverages)
-  console.log(byPeriod)
   const moodAverageDataset = {
     label: 'mood improvement',
     data: moodAverages === undefined || moodAverages === null ? []
@@ -34,7 +32,7 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
           return entry.averages[entry.averages.length - 1].average
         }
       })],
-    backgroundColor: '#FFC107'
+    backgroundColor: '#30C8BF'
   }
 
   let moodChartData, chartOptions
@@ -53,9 +51,15 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
         : labelText,
       datasets: [moodAverageDataset]
     }
-    console.log(moodChartData)
 
     chartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      }
     }
   } else {
     moodChartData = {
@@ -68,6 +72,9 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
       scales: {
         xAxes: [{
           type: 'time',
+          gridLines: {
+            color: '#ffffff',
+          }
         }]
       }
     }

@@ -104,7 +104,7 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
     attributes: ['created_at']
   }
 
-  addDateFilterToQuery(userProfilesQuery, startDate, endDate)
+  userProfilesQuery = addDateFilterToQuery(userProfilesQuery, startDate, endDate)
   const usersCreatedAt = await user_profiles.findAll(userProfilesQuery)
 
   const createdDates = usersCreatedAt.map(user => user.dataValues)
@@ -155,7 +155,7 @@ const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) 
       user_id: userIds.map(user => user.user_id)
     }
   }
-  addDateFilterToQuery(userAcitivitiesQuery, startDate, endDate)
+  userAcitivitiesQuery = addDateFilterToQuery(userAcitivitiesQuery, startDate, endDate)
 
   const userActivities = await user_activities.findAll(userAcitivitiesQuery)
   const allActivities = userActivities.map(activity => activity.dataValues)

@@ -12,7 +12,7 @@
  * @requires frontend/src/components/Organisations
  * @exports AppTopbar - Page topbar
  */
-import React from 'react'
+import React, { useState } from 'react'
 import { Toolbar } from 'primereact/toolbar'
 import { Button } from 'primereact/button'
 import { Sidebar } from 'primereact/sidebar'
@@ -21,8 +21,7 @@ import TimeFilter from '../TimeFilter'
 import MoodFilter from '../MoodFilter'
 import Organisations from '../Organisations'
 import loginService from '../../services/loginService'
-
-import Header from './AppHeader'
+import AppNavigationMenu from './AppNavigationMenu'
 
 /**.
  * Component for applications UI topbar
@@ -32,10 +31,12 @@ import Header from './AppHeader'
  * @returns {object} - JSX Topbar component
  */
 const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChange,
-  visible, setVisible, organisations, handleOrganisationChange, organisationSelect,
+  organisations, handleOrganisationChange, organisationSelect,
   startDateEnable, endDateEnable, startDate, endDate, handleStartDateEnableChange,
   handleEndDateEnableChange, handleStartDateChange, handleEndDateChange,
   moodDataSelect, moodGraphLabels, handleMoodDataSelectChange }) => {
+
+  const [visible, setVisible] = useState(false)
 
   /**.
    * Handle logout button presses
@@ -64,7 +65,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
   }
 
   const toolbarStyle = {
-    backgroundColor: '#beede7'
+    backgroundColor: '#A9EAE8'
   }
 
   /**.
@@ -80,7 +81,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
       {user
         ?
         <div>
-          <Header />
+          <AppNavigationMenu />
         </div>
         : null}
     </React.Fragment>

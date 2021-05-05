@@ -158,4 +158,22 @@ describe('Total improvement', function () {
     cy.contains('Adminapp for monitoring moods')
     cy.contains('Total Improvement')
   })
+
+  /**.
+     * Test that TotalImprovement page exists after changing by using period to by date
+     *
+     * @name TotalImprovement_exists_after_clicking_by_using_period
+     * @type {object}
+     * @memberof module:cypress/integration TotalImprovement_spec
+     * @inner
+     * @param {string} describe - exists after changing by using period to by date
+     * @param {object} testFunction - Function that runs test
+     */
+  it('exists after clicking by using period', function () {
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Total Improvement')
+    cy.contains('by using period').click()
+    cy.contains('Adminapp for monitoring moods')
+    cy.contains('Total Improvement')
+  })
 })
