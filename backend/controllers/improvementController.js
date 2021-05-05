@@ -14,6 +14,8 @@ const db = require('../models')
 const user_moods = db.user_moods
 const { addDateFilterToQuery } = require('./filters')
 
+const WEEK_IN_MS = 604800000
+
 /**.
  * Return weekly values with given parameters/filters
  *
@@ -84,9 +86,9 @@ const findWeeklyMoodsByDate = async (userMoodsData) => {
 
   const firstCreated = sortedTemp[0].created_at.getTime()
   const first = new Date(firstCreated).setHours(0, 0, 0, 0)
-  const last = (sortedTemp[userMoods.length - 1].created_at.getTime()) + 604800000
+  const last = (sortedTemp[userMoods.length - 1].created_at.getTime()) + WEEK_IN_MS
 
-  let timeFrame = first + 604800000
+  let timeFrame = first + WEEK_IN_MS
   let week = [new Date(first), addDays(first, 7)]
   let counter = 0
   let oneUserMoods = []
@@ -105,7 +107,7 @@ const findWeeklyMoodsByDate = async (userMoodsData) => {
     weeklyMoods = [...weeklyMoods, weeklyValues]
     const temp = week[1]
     week = [temp, addDays(temp, 7)]
-    timeFrame = timeFrame + 604800000
+    timeFrame = timeFrame + WEEK_IN_MS
     oneUserMoods = []
   }
 
@@ -188,7 +190,7 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
     const filteredTemp = sortedTemp.filter(mood => mood.user_id === userId)
     const first_created_at = filteredTemp[0].created_at
     const last_created_at = filteredTemp[filteredTemp.length - 1].created_at
-    const weeks = Math.ceil(((last_created_at - first_created_at) / 604800000))
+    const weeks = Math.ceil(((last_created_at - first_created_at) / WEEK_IN_MS))
     usageByWeeks.push(weeks)
   })
 
@@ -225,7 +227,7 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
     //Get average mood by each week
     while (userMoodIndex < filteredTemp.length) {
       const userMood = filteredTemp[userMoodIndex]
-      const currentWeek = Math.floor((userMood.created_at - first_created_at) / 604800000).toFixed(0)
+      const currentWeek = Math.floor((userMood.created_at - first_created_at) / WEEK_IN_MS).toFixed(0)
       sums[currentWeek] = sums[currentWeek] === undefined || sums[currentWeek] === null ? 0 : sums[currentWeek]
       if (currentWeek !== lastWeek) {
         sums[lastWeek] = count === 0 ? 0 : sums[lastWeek] / count
