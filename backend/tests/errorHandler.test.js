@@ -12,7 +12,6 @@
  *
  * @type {object}
  * @constant
- * @namespace mocks
  */
 const mocks = require('node-mocks-http')
 /**.
@@ -20,7 +19,6 @@ const mocks = require('node-mocks-http')
  *
  * @type {object}
  * @constant
- * @namespace sinon
  */
 const sinon = require('sinon')
 
@@ -32,21 +30,18 @@ let mockSend, mockJson
  * Run tests for errorhandler
  *
  * @type {object}
- * @function
  * @memberof module:backend/tests/errorHandler_Test
  * @param {string} description - errorhandler tests
- * @param {object} tests - Function that runs tests
+ * @param {Function} tests - Function that runs tests
  */
 describe('errorhandler tests', () => {
 
   /**.
    * Restore errorHandler and mocks before each test
    *
-   * @name beforeEach
-   * @function
    * @memberof module:backend/tests/errorHandler_Test
    * @inner
-   * @param {object} functionBeforeEach - Function to be executed before each test
+   * @param {Function} functionBeforeEach - Function to be executed before each test
    */
   beforeEach(() => {
     errorHandler = require('../utils/middleware').errorHandler
@@ -67,12 +62,10 @@ describe('errorhandler tests', () => {
   /**.
    * Tests that middleware calls next when no errors
    *
-   * @name errorHandler_when_no_error
-   * @function
    * @memberof module:backend/tests/errorHandler_Test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('errorHandler calls next when no error', async () => {
     error = {}
@@ -83,12 +76,10 @@ describe('errorhandler tests', () => {
   /**.
    * Tests that middleware responds with CastError
    *
-   * @name errorHandler_when_CastError
-   * @function
    * @memberof module:backend/tests/errorHandler_Test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('errorHandler sends error when CastError is made', async () => {
     error = {
@@ -102,12 +93,10 @@ describe('errorhandler tests', () => {
   /**.
    * Tests that middleware responds with ValidationError
    *
-   * @name errorHandler_when_ValidationError
-   * @function
    * @memberof module:backend/tests/errorHandler_Test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('errorHandler sends error when ValidationError is made', async () => {
     error = {

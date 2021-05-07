@@ -15,17 +15,15 @@ import LoginForm from './LoginForm'
 /**.
  * Describe tests
  *
- * @type {object}
- * @function
  * @memberof module:frontend/src/components/LoginForm_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('<LoginForm />', () => {
   let component, formWithMock
   let usernameInput, passwordInput, loginForm
   let username, password
-  let mockSetUser, mockSetUsername, mockSetPassword
+  let mockHandleLogin, mockSetUsername, mockSetPassword
 
   // Test users username and password
   const testUsername = 'FormUser'
@@ -34,11 +32,9 @@ describe('<LoginForm />', () => {
   /**.
    * Render Loginform, select items from it and create mocks for its functions before each test
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     component = render(<LoginForm />)
@@ -48,26 +44,24 @@ describe('<LoginForm />', () => {
     loginForm = component.container.querySelector('form')
 
     // Mock-functions for Form
-    mockSetUser = jest.fn()
+    mockHandleLogin = jest.fn()
     mockSetUsername = jest.fn()
     mockSetPassword = jest.fn()
 
     // Form with mock-functions
     formWithMock = render(
       <LoginForm username={username} setUsername={mockSetUsername} password={password}
-        setPassword={mockSetPassword} setUser={mockSetUser} />
+        setPassword={mockSetPassword} handleLogin={mockHandleLogin} />
     )
   })
 
   /**.
    * Test that LoginForm is rendered
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - Renders form
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders form', () => {
     expect(component.container).toHaveTextContent('Login')
@@ -77,16 +71,14 @@ describe('<LoginForm />', () => {
   })
 
   /**.
-   * Test that submitting LoginForm calls setUser function
+   * Test that submitting LoginForm calls handleLogin function
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
-   * @param {string} description - submitting form calls setUser
-   * @param {object} TestCode - Code that runs the test
+   * @param {string} description - submitting form calls handleLogin
+   * @param {Function} testCode - Code that runs the test
    */
-  test('submitting form calls setUser', async () => {
+  test('submitting form calls handleLogin', async () => {
     const mockUsernameInput = formWithMock.container.querySelector('input[type=\'text\']')
     const mockPasswordInput = formWithMock.container.querySelector('input[type=\'password\']')
     const mockLoginForm = formWithMock.container.querySelector('form')
@@ -99,18 +91,16 @@ describe('<LoginForm />', () => {
     })
 
     fireEvent.submit(mockLoginForm)
-    await waitFor(() => expect(mockSetUser.mock.calls).toHaveLength(1))
+    await waitFor(() => expect(mockHandleLogin.mock.calls).toHaveLength(1))
   })
 
   /**.
    * Test that logging in renders logout-button
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - logging in renders logout-button
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('logging in renders logout-button', async () => {
     // Add username and password to form
@@ -129,12 +119,10 @@ describe('<LoginForm />', () => {
   /**.
    * Test that logout-button is not shown in the beginning
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - logout-button is not shown in the beginning
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('logout-button is not shown in the beginning', async () => {
     waitFor(() => expect(component.container.not.toHaveTextContent('logOut')))
@@ -143,12 +131,10 @@ describe('<LoginForm />', () => {
   /**.
    * Test that logging out renders login-form
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - logging out renders login-form
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('logging out renders login-form', async () => {
     // Add username and password to form

@@ -11,11 +11,10 @@ import { Card } from 'primereact/card'
 /**.
  * Component listing registered caregivers
  *
- * @name Caregivers
- * @function
  * @constant
+ * @function
  * @memberof module:frontend/src/components/Caregivers
- * @param {object} param0 - Object with params
+ * @param {*} param0 - Object with params
  * @param {Array} param0.caregivers - Array of all caregivers
  * @returns {object} - JSX component that counts amount of caregivers
  */

@@ -13,11 +13,10 @@ import { subDays, format } from 'date-fns'
 /**.
  * Component for graphing all new users, cumulative
  *
- * @type {object}
- * @function
  * @constant
+ * @function
  * @memberof module:frontend/src/components/Cumulative
- * @param {object} param0 - Object with weekly cumulative users
+ * @param {*} param0 - Object with weekly cumulative users
  * @param {Array} param0.cumulative - Array of all cumulative users
  * @param {Array} param0.activeUsers - Array of all active users
  * @returns {object} - JSX component that lists amount of new users in a cumulative manner
@@ -60,7 +59,7 @@ const Cumulative = ({ cumulative, activeUsers }) => {
       },
       {
         label: 'active users weekly',
-        backgroundColor: '#80dbff',
+        backgroundColor: '#30C8BF',
         data: [...activeUsers.map(entry => entry.entries)]
       }
     ]
@@ -71,7 +70,8 @@ const Cumulative = ({ cumulative, activeUsers }) => {
       xAxes: [{
         type: 'time',
       }]
-    }
+    },
+    animation: false
   }
 
   const containerStyle = {

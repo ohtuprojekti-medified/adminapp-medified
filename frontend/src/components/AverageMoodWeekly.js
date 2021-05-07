@@ -12,18 +12,15 @@ import { Chart } from 'primereact/chart'
 /**.
  * Component for graphing all new users, cumulative
  *
- * @type {object}
- * @function
  * @constant
+ * @function
  * @memberof module:frontend/src/components/MoodAverage
- * @param {object} param0 - Object with weekly cumulative users
+ * @param {*} param0 - Object with weekly cumulative users
  * @param {Array} param0.moodAverages - list of mood averages and their weeks
  * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods
  */
 const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
-  console.log(moodAverages)
-  console.log(byPeriod)
   const moodAverageDataset = {
     label: 'mood improvement',
     data: moodAverages === undefined || moodAverages === null ? []
@@ -34,7 +31,7 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
           return entry.averages[entry.averages.length - 1].average
         }
       })],
-    backgroundColor: '#FFC107'
+    backgroundColor: '#30C8BF'
   }
 
   let moodChartData, chartOptions
@@ -53,9 +50,16 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
         : labelText,
       datasets: [moodAverageDataset]
     }
-    console.log(moodChartData)
 
     chartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      },
+      animation: false
     }
   } else {
     moodChartData = {
@@ -68,8 +72,12 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
       scales: {
         xAxes: [{
           type: 'time',
+          gridLines: {
+            color: '#ffffff',
+          }
         }]
-      }
+      },
+      animation: false
     }
   }
 

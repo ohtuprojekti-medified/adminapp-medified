@@ -15,11 +15,9 @@ import TotalMoodImprovement from './TotalMoodImprovement'
 /**.
   * Describe tests
   *
-  * @type {object}
-  * @function
   * @memberof module:frontend/src/components/TotalMoodImprovement_test
   * @param {string} description - Description of tests
-  * @param {object} testCode - Code for tests
+  * @param {Function} testCode - Code for tests
   */
 describe('<TotalMoodImprovement />', () => {
   let component
@@ -27,11 +25,9 @@ describe('<TotalMoodImprovement />', () => {
   /**.
     * Render TotalMoodImprovement
     *
-    * @type {object}
-    * @function
     * @memberof module:frontend/src/components/TotalMoodImprovement_test
     * @inner
-    * @param {object} beforeEachCode - Code to be run before each test
+    * @param {Function} beforeEachCode - Code to be run before each test
     */
   beforeEach(() => {
     component = render(<TotalMoodImprovement />)
@@ -40,12 +36,10 @@ describe('<TotalMoodImprovement />', () => {
   /**.
     * Test that TotalMoodImprovement is rendered
     *
-    * @type {object}
-    * @function
     * @memberof module:frontend/src/components/TotalMoodImprovement_test
     * @inner
     * @param {string} description - renders TotalMoodImprovement
-    * @param {object} TestCode - Code that runs the test
+    * @param {Function} testCode - Code that runs the test
     */
   test('renders TotalMoodImprovement', () => {
     waitFor(() => {

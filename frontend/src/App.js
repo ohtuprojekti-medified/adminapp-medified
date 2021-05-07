@@ -42,9 +42,8 @@ import 'primeflex/primeflex.css'
 /**.
  * Creates a single page application
  *
- * @type {object}
- * @function
  * @constant
+ * @function
  * @memberof module:frontend/src/App
  * @returns {object} - A single page application in JSX
  */
@@ -60,7 +59,6 @@ const App = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [organisationSelect, setOrganisation] = useState('ALL')
-  const [visible, setVisible] = useState(false)
   const [organisations, setOrganisations] = useState([])
   const [startDateEnable, setStartDateEnable] = useState(false)
   const [endDateEnable, setEndDateEnable] = useState(false)
@@ -84,8 +82,6 @@ const App = () => {
   /**.
    * Configure amplify authorization and check if user is logged in
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/App
    * @inner
    */
@@ -109,8 +105,6 @@ const App = () => {
   /**
    * Set token or refresh token and GET data if user logs in or is logged in. If secure ping fails twice user is logged out.
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/App
    * @inner
    */
@@ -211,37 +205,37 @@ const App = () => {
   }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable, moodDataSelect, byUsingPeriodFilter])
 
   /**.
-   *
    * Event handler for changing the status of caregiveFilterForAllUsers
    *
-   * @function
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
   /**.
-   *
    * Event handler for changuing the status of byUsingPeriodFilter
    *
-   * @function
    * @constant
+   * @function
    * @memberof module:src/App
+   * @inner
    */
   const handleByUsingPeriodChange = () => {
     setByUsingPeriodFilter(!byUsingPeriodFilter)
   }
 
   /**.
-   *
    * Event handler for changing the selected organisation
    *
    * @param {string} organisation - Requested organisation
-   * @function
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleOrganisationChange = (organisation) => {
     setOrganisation(organisation)
@@ -250,9 +244,10 @@ const App = () => {
   /**.
    * Event handler for enabling timeframe start filter
    *
-   * @function
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleStartDateEnableChange = () => {
     if (startDateEnable) {
@@ -266,9 +261,10 @@ const App = () => {
   /**.
    * Event handler for enabling timeframe end filter
    *
-   * @function
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleEndDateEnableChange = () => {
     if (endDateEnable) {
@@ -283,9 +279,10 @@ const App = () => {
    * Event handler for changeing timeframe filter start value
    *
    * @param {string} date - Date where to begin showing data
-   * @function
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleStartDateChange = (date) => {
     if (startDateEnable) {
@@ -297,9 +294,10 @@ const App = () => {
    * Event handler for changeing timeframe filter end value
    *
    * @param {string} date - Date where to end showing data
-   * @function
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleEndDateChange = (date) => {
     if (endDateEnable) {
@@ -316,10 +314,13 @@ const App = () => {
   ]
 
   /**.
-   *
    * Event handler for changing the status of moodGraph
    *
+   * @constant
+   * @function
    * @param {string} label - Name of mood graph to be used
+   * @memberof module:frontend/src/App
+   * @inner
    */
   const handleMoodDataSelectChange = (label) => {
     setMoodDataSelect(label)
@@ -329,6 +330,42 @@ const App = () => {
     setMoodChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].averageMoodWeeklyData)
     setWeeklyImprovementChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].weeklyImprovementData)
     setTotalImprovementChartDataByPeriod(moodGraphLabelsByPeriod.filter(entry => entry.label === label)[0].totalImprovementData)
+  }
+
+  /**.
+   * Handle login button presses
+   *
+   * @constant
+   * @async
+   * @function
+   * @memberof module:src/App
+   * @inner
+   * @param {object} event - Contains event
+   */
+  const handleLogin = async (event) => {
+    event.preventDefault()
+
+    try {
+      const user = await loginService.login({ username, password })
+      if (user.user) {
+        const appUser = {
+          username: user.user.username,
+          idToken: user.user.signInUserSession.idToken.jwtToken,
+          organisation: user.user.attributes['custom:organisation'],
+          admin: user.user.attributes['custom:admin']
+        }
+        setUser(appUser)
+        window.localStorage.setItem(
+          'loggedUser', JSON.stringify(appUser)
+        )
+      } else {
+        setUser(undefined)
+      }
+      setUsername('')
+      setPassword('')
+    } catch (exception) {
+      return
+    }
   }
 
   const containerStyle = {
@@ -349,8 +386,6 @@ const App = () => {
                 caregiverFilterForAllUsers={caregiverFilterForAllUsers}
                 handleFilterChange={handleFilterChange}
                 organisations={organisations}
-                visible={visible}
-                setVisible={setVisible}
                 organisationSelect={organisationSelect}
                 handleOrganisationChange={handleOrganisationChange}
                 startDateEnable={startDateEnable}
@@ -402,7 +437,7 @@ const App = () => {
               password={password}
               setPassword={setPassword}
               user={user}
-              setUser={setUser} />
+              handleLogin={handleLogin} />
           </>
         }
       </Router>

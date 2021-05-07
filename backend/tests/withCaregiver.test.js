@@ -16,7 +16,7 @@ const controller = require('../controllers/controller')
 //  * Helper function for creating new Date objects
 //  *
 //  * @constant
-//  * @function
+//  *
 //  */
 // const newDates = require('./newDatesAroundLastMidnight')
 // const USER_PROFILES_CREATED_AT_TIMES = newDates([-150, -100, -90, -75])
@@ -25,13 +25,10 @@ const controller = require('../controllers/controller')
 /**.
  * Creating mock data for user_care_givers
  *
- * @type {object}
- * @function
  * @memberof module:backend/tests/withCaregiver_test
- * @param {string} user_caregivers_model - user_caregivesr_model
- * @param {object} mock_function - Function that creates mock data
+ * @param {string} user_caregivers_model - user_caregivers_model
+ * @param {Function} mock_function - Function that creates mock data
  */
-
 jest.mock('../models/user_care_givers', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -45,6 +42,13 @@ jest.mock('../models/user_care_givers', () => () => {
   })
 })
 
+/**.
+ * Creating mock data for user_profiles
+ *
+ * @memberof module:backend/tests/withCaregiver_test
+ * @param {string} user_caregivers_model - user_profiles
+ * @param {Function} mock_function - Function that creates mock data
+ */
 jest.mock('../models/user_profiles', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -61,13 +65,26 @@ jest.mock('../models/user_profiles', () => () => {
   })
 })
 
+/**
+ * Tests for withCaregiver.
+ *
+ * @memberof module:backend/tests/withCaregiver_test
+ * @param {string} describtion - Controller.
+ * @param {Function} tests - Function that runs tests.
+ */
 describe('controller', () => {
 
+  /**.
+   * FindAllUsers returns correct data with caregiver filter
+   *
+   * @memberof module:backend/tests/withCaregiver_test
+   * @inner
+   * @param {string} testName - Name of the test
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findAllUsers returns correct data with caregiver filter', async () => {
     const allUsers = await controller.findAllUsers('ALL', true)
     expect(allUsers.length).toEqual(1)
   })
-
-
 })
 

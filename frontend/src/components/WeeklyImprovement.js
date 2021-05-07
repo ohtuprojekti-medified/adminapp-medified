@@ -12,11 +12,10 @@ import { Chart } from 'primereact/chart'
 /**.
  * Component for graphing weekly mood improvement
  *
- * @type {object}
- * @function
  * @constant
+ * @function
  * @memberof module:frontend/src/components/WeeklyImprovement
- * @param {object} param0 - Object with weekly mood improvement
+ * @param {*} param0 - Object with weekly mood improvement
  * @param {Array} param0.weeklyImprovementAverages - list of mood averages and their weeks
  * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods
@@ -26,7 +25,7 @@ const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
     label: 'mood improvement%',
     data: weeklyImprovementAverages === undefined || weeklyImprovementAverages === null ? []
       : [...weeklyImprovementAverages.map(entry => entry.average * 100)],
-    backgroundColor: '#008000'
+    backgroundColor: '#30C8BF'
   }
   let moodChartData, chartOptions
 
@@ -44,7 +43,16 @@ const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
         : labelText,
       datasets: [weeklyImprovementDataset]
     }
-    chartOptions = {}
+    chartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+          }
+        }]
+      },
+      animation: false
+    }
   } else {
     moodChartData = {
       labels: weeklyImprovementAverages === undefined || weeklyImprovementAverages === null ? []
@@ -56,8 +64,12 @@ const WeeklyImprovement = ({ weeklyImprovementAverages, byPeriod }) => {
       scales: {
         xAxes: [{
           type: 'time',
+          gridLines: {
+            color: '#ffffff',
+          }
         }]
-      }
+      },
+      animation: false
     }
   }
 

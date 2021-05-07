@@ -11,9 +11,10 @@ import React from 'react'
 /**.
  * Component that creates a checkbox that can be used for filtering
  *
- * @type {object}
+ * @constant
+ * @function
  * @memberof module:frontend/src/components/Filter
- * @param {object} param0 - Object with params
+ * @param {*} param0 - Object with params
  * @param {string} param0.description - Description of the filter
  * @param {boolean} param0.checked -  Boolean value of the checkbox
  * @param {Function} param0.handleFilterChange - Event handler

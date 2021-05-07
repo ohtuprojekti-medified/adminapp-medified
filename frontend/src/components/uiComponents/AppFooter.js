@@ -19,7 +19,7 @@ const footerStyle = {
 }
 
 const toolbarStyle = {
-  backgroundColor: '#d1e8e6'
+  backgroundColor: '#A9EAE8'
 }
 
 const leftContents = (
@@ -31,6 +31,8 @@ const leftContents = (
 /**.
  * Component for applications UI footer
  *
+ * @constant
+ * @function
  * @memberof module:frontend/src/components/uiComponents/AppFooter
  * @returns {object} - JSX Footer component
  */

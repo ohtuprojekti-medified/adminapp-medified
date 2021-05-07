@@ -15,11 +15,9 @@ import Cumulative from './Cumulative'
 /**.
  * Describe tests
  *
- * @type {object}
- * @function
  * @memberof module:frontend/src/components/Cumulative_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('<Cumulative />', () => {
   let component
@@ -27,11 +25,9 @@ describe('<Cumulative />', () => {
   /**.
    * Render Cumulative with mock values
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/Cumulative_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     component = render(<Cumulative cumulative={[]} activeUsers={[]} />)
@@ -40,12 +36,10 @@ describe('<Cumulative />', () => {
   /**.
    * Test that Cumulative is rendered
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/Cumulative_test
    * @inner
    * @param {string} description - Renders chart
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders Cumulative', () => {
     waitFor(() => {
