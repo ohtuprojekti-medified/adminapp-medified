@@ -13,9 +13,10 @@ import { Dropdown } from 'primereact/dropdown'
 /**.
  * Component that creates a dropdown for selecting mood data type
  *
- * @type {object}
+ * @constant
+ * @function
  * @memberof module:frontend/src/components/MoodFilter
- * @param {object} param0 - Object with params
+ * @param {*} param0 - Object with params
  * @param {string} param0.moodDataSelect - selected mood data type
  * @param {array} param0.moodGraphLabels -  array of possible mood data types
  * @param {Function} param0.handleMoodDataSelectChange - Event handler

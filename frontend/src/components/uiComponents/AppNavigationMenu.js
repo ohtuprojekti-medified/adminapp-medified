@@ -7,6 +7,7 @@
  * @requires primereact/menu
  * @requires primereact/button
  * @requires react-router-dom/useHistory
+ * @requires frontend/src/components/MoodFilter
  * @exports AppNavigationMenu - Navigation menu
  */
 import React, { useRef } from 'react'
@@ -17,6 +18,8 @@ import { useHistory } from 'react-router-dom'
 /**.
  * Component for navigation menu
  *
+ * @constant
+ * @function
  * @memberof module:frontend/src/components/uiComponents/AppNavigationMenu
  * @returns {object} - JSX NavigationMenu component
  */
@@ -28,7 +31,7 @@ const AppNavigationMenu = () => {
   /**.
    * Tells react router where to route when pressing menu button
    *
-   * @type {object}
+   * @type {Array}
    * @memberof module:frontend/src/components/uiComponents/AppNavigationMenu
    * @inner
    */
@@ -39,22 +42,22 @@ const AppNavigationMenu = () => {
         {
           label: 'All graphs',
           icon: 'pi pi-fw pi-home',
-          command:() => { history.push('/') }
+          command: () => { history.push('/') }
         },
         {
           label: 'Retention rates',
           icon: 'pi pi-fw pi-chart-bar',
-          command:() => { history.push('/retention') }
+          command: () => { history.push('/retention') }
         },
         {
           label: 'New and active users',
           icon: 'pi pi-fw pi-chart-bar',
-          command:() => { history.push('/cumulative') }
+          command: () => { history.push('/cumulative') }
         },
         {
           label: 'Mood improvement',
           icon: 'pi pi-fw pi-chart-bar',
-          command:() => { history.push('/moodimprovement') }
+          command: () => { history.push('/moodimprovement') }
         }
       ]
     }

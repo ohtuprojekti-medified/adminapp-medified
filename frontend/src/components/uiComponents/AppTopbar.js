@@ -6,7 +6,7 @@
  * @requires primereact/toolbar
  * @requires primereact/button
  * @requires frontend/src/services/loginService
- * @requires frontend/src/components/uiComponents/AppHeader
+ * @requires frontend/src/components/uiComponents/AppNavigationMenu
  * @requires frontend/src/components/Filter
  * @requires frontend/src/components/TimeFilter
  * @requires frontend/src/components/Organisations
