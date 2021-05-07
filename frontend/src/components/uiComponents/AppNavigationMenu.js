@@ -1,12 +1,37 @@
+/**.
+ * Component for navigation menu
+ *
+ * @module frontend/src/components/uiComponents/AppNavigationMenu
+ * @requires react
+ * @requires react/useRef
+ * @requires primereact/menu
+ * @requires primereact/button
+ * @requires react-router-dom/useHistory
+ * @exports AppNavigationMenu - Navigation menu
+ */
 import React, { useRef } from 'react'
 import { Menu } from 'primereact/menu'
 import { Button } from 'primereact/button'
 import { useHistory } from 'react-router-dom'
 
-
+/**.
+ * Component for navigation menu
+ *
+ * @memberof module:frontend/src/components/uiComponents/AppNavigationMenu
+ * @returns {object} - JSX NavigationMenu component
+ */
 const AppNavigationMenu = () => {
   const menu = useRef(null)
+
   let history = useHistory()
+
+  /**.
+   * Tells react router where to route when pressing menu button
+   *
+   * @type {object}
+   * @memberof module:frontend/src/components/uiComponents/AppNavigationMenu
+   * @inner
+   */
   const items = [
     {
       label: 'Navigate',
