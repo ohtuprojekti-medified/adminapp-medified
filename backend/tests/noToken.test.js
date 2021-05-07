@@ -224,7 +224,7 @@ describe('noToken tests', () => {
    *
    * @memberof module:backend/tests/noToken_test
    * @inner
-   * @param {object} functionAfterAll - Function to be executed after all tests
+   * @param {Function} functionAfterAll - Function to be executed after all tests
    */
   afterAll(() => mongoose.connection.close())
 })

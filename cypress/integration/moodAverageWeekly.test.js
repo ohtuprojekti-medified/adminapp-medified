@@ -8,8 +8,6 @@
 /**.
  * Describe tests for mood average page
  *
- * @name AverageMoodWeekly
- * @type {object}
  * @memberof module:cypress/integration/AverageMoodWeekly_spec
  * @param {string} describe - AverageMoodWeekly chart
  * @param {Function} tests - Test code
@@ -19,11 +17,9 @@ describe('MoodAverage chart', function () {
   /**.
    * Log in fast before each test
    *
-   * @name beforeEach
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
-   * @param {object} functionBeforeEach - Function to be run before each test
+   * @param {Function} functionBeforeEach - Function to be run before each test
    */
   beforeEach(function () {
     cy.login()
@@ -32,11 +28,9 @@ describe('MoodAverage chart', function () {
   /**.
    * Log out fast after each test
    *
-   * @name afterEach
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
-   * @param {object} functionAfterEach - Function to be run before each test
+   * @param {Function} functionAfterEach - Function to be run before each test
    */
   afterEach(function () {
     cy.logOut()
@@ -45,8 +39,6 @@ describe('MoodAverage chart', function () {
   /**.
    * Test that mood average page exists
    *
-   * @name AverageMoodWeekly_exists
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists
@@ -60,8 +52,6 @@ describe('MoodAverage chart', function () {
   /**.
    * Test that Average mood weekly page exists after checking only patients with caregiver
    *
-   * @name AverageMoodWeekly_exists_after_checking_only_patients_with_caregiver
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after checking only patients with caregiver
@@ -79,8 +69,6 @@ describe('MoodAverage chart', function () {
   /**.
    * Test that Average mood weekly page exists after selecting start date
    *
-   * @name AverageMoodWeekly_exists_after_selecting_start_date
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after selecting start date
@@ -99,8 +87,6 @@ describe('MoodAverage chart', function () {
   /**.
    * Test that Average mood weekly page exists after selecting end date
    *
-   * @name AverageMoodWeekly_exists_after_selecting_end_date
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after selecting end date
@@ -119,8 +105,6 @@ describe('MoodAverage chart', function () {
   /**.
    * Test that Average mood weekly page exists after selecting start date and end date
    *
-   * @name AverageMoodWeekly_exists_after_selecting_start_date_and_end_date
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after selecting start date and end date
@@ -141,8 +125,6 @@ describe('MoodAverage chart', function () {
   /**.
    * Test that Average mood weekly page exists after checking only patients with caregivers, start date and end date
    *
-   * @name AverageMoodWeekly_exists_after_checking_only_patients_with_caregivers_start_date_and_end_date
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after selecting only patients with caregiver start date and end date
@@ -164,8 +146,6 @@ describe('MoodAverage chart', function () {
   /**.
    * Test that Average mood weekly page exists after changing by using period to by date
    *
-   * @name AverageMoodWeekly_exists_after_clicking_by_using_period
-   * @type {object}
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after changing by using period to by date

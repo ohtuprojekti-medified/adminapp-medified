@@ -8,8 +8,6 @@
 /**.
  * Describe tests for filter checbox to show only app users with caregiver(s)
  *
- * @name Filter
- * @type {object}
  * @memberof module:cypress/integration/filter_spec
  * @param {string} describe - Filter
  * @param {Function} tests - Test code
@@ -19,11 +17,9 @@ describe('Filter', function () {
   /**.
    * Log in fast before each test
    *
-   * @name beforeEach
-   * @type {object}
    * @memberof module:cypress/integration/filter_spec
    * @inner
-   * @param {object} functionBeforeEach - Function to be run before each test
+   * @param {Function} functionBeforeEach - Function to be run before each test
    */
   beforeEach(function () {
     cy.login()
@@ -32,11 +28,9 @@ describe('Filter', function () {
   /**.
    * Log out fast after each test
    *
-   * @name afterEach
-   * @type {object}
    * @memberof module:cypress/integration/filter_spec
    * @inner
-   * @param {object} functionAfterEach - Function to be run before each test
+   * @param {Function} functionAfterEach - Function to be run before each test
    */
   afterEach(function () {
     cy.logOut()
@@ -45,8 +39,6 @@ describe('Filter', function () {
   /**.
    * Test that filtering checkbox for showing only app users with caregiver(s) exists
    *
-   * @name Filter_checkbox_exists
-   * @type {object}
    * @memberof module:cypress/integration/filter_spec
    * @inner
    * @param {string} describe - checkbox exists
@@ -61,8 +53,6 @@ describe('Filter', function () {
   /**.
    * Test that filtering checkbox can be checked and unchecked
    *
-   * @name Checkbox_is_checkable
-   * @type {object}
    * @memberof module:cypress/integration/filter_spec
    * @inner
    * @param {string} describe - checkbox can be checked and unchecked
@@ -76,7 +66,5 @@ describe('Filter', function () {
     cy.contains('Application users: 7')
     cy.get('[data-testid="filter-checkbox"]').uncheck()
     cy.contains('Application users: 110')
-
   })
-
 })

@@ -41,7 +41,7 @@ describe('errorhandler tests', () => {
    *
    * @memberof module:backend/tests/errorHandler_Test
    * @inner
-   * @param {object} functionBeforeEach - Function to be executed before each test
+   * @param {Function} functionBeforeEach - Function to be executed before each test
    */
   beforeEach(() => {
     errorHandler = require('../utils/middleware').errorHandler

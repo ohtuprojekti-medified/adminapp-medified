@@ -42,7 +42,7 @@ describe('unknownEndpoint tests', () => {
    *
    * @memberof module:backend/tests/unknownEndpoint_test
    * @inner
-   * @param {object} functionBeforeEach - Function to be executed before each test
+   * @param {Function} functionBeforeEach - Function to be executed before each test
    */
   beforeEach(() => {
     unknownEndpoint = require('../utils/middleware').unknownEndpoint
