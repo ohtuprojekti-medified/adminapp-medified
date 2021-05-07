@@ -10,23 +10,19 @@ const config = require('../utils/config')
 /**.
  * Run tests for config
  *
- * @name description
  * @type {object}
- * @function
  * @memberof module:backend/tests/config_test
  * @param {string} description - config
- * @param {object} tests - Function that runs tests
+ * @param {Function} tests - Function that runs tests
  */
 describe('config', () => {
   /**.
    * Tests that the port of backend is correct
    *
-   * @name test_backend_port
-   * @function
    * @memberof module:backend/tests/config_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('Backend PORT of 5000', () => {
     const result = config.PORT

@@ -14,7 +14,7 @@ import { Dropdown } from 'primereact/dropdown'
  * Component for selecting an organisation from all the organisations
  *
  * @name Organisations
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/components/Organisations
  * @param {object} param0 - Object with params

@@ -12,7 +12,7 @@
  *
  * @type {object}
  * @constant
- * @namespace mocks
+ * @memberof module:backend/tests/unknownEndpoint_test
  */
 const mocks = require('node-mocks-http')
 
@@ -21,7 +21,7 @@ const mocks = require('node-mocks-http')
  *
  * @type {object}
  * @constant
- * @namespace sinon
+ * @memberof module:backend/tests/unknownEndpoint_test
  */
 const sinon = require('sinon')
 let unknownEndpoint
@@ -31,7 +31,6 @@ let mockSend
 /**.
  * Run tests for unknownEndpoint
  *
- * @function
  * @memberof module:backend/tests/unknownEndpoint_test
  * @param {string} description - unknownEndpoint tests
  * @returns {object} - Function that runs tests
@@ -41,8 +40,6 @@ describe('unknownEndpoint tests', () => {
   /**.
    * Restore unknownEndpoint and mocks before each test
    *
-   * @name beforeEach
-   * @function
    * @memberof module:backend/tests/unknownEndpoint_test
    * @inner
    * @param {object} functionBeforeEach - Function to be executed before each test
@@ -63,12 +60,10 @@ describe('unknownEndpoint tests', () => {
   /**.
    * Tests that middleware responds with error
    *
-   * @name unknownEndpoint
-   * @function
    * @memberof module:backend/tests/unknownEndpoint_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('unknownEndpoint sends error', async () => {
     unknownEndpoint(mockReq, mockRes, mockNext)

@@ -13,7 +13,7 @@ import { Chart } from 'primereact/chart'
  * Component for graphing weekly mood improvement
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/components/WeeklyImprovement
  * @param {object} param0 - Object with weekly mood improvement

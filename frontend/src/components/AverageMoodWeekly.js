@@ -13,7 +13,7 @@ import { Chart } from 'primereact/chart'
  * Component for graphing all new users, cumulative
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/components/MoodAverage
  * @param {object} param0 - Object with weekly cumulative users

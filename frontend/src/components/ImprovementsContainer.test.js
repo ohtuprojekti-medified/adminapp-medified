@@ -16,10 +16,10 @@ import ImprovementsContainer from './ImprovementsContainer'
  * Describe tests
  *
  * @type {object}
- * @function
+ *
  * @memberof module:frontend/src/components/ImprovementsContainer_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('<ImprovementsContainer />', () => {
   let component
@@ -28,7 +28,7 @@ describe('<ImprovementsContainer />', () => {
    * Render ImprovementsContainer
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/ImprovementsContainer_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
@@ -41,7 +41,7 @@ describe('<ImprovementsContainer />', () => {
    * Test that ImprovementsContainer is rendered
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/ImprovementsController_test
    * @inner
    * @param {string} description - renders ImprovementsContainer correctly

@@ -19,12 +19,16 @@ const WEEK_IN_MS = 604800000
 /**.
  * Return weekly values with given parameters/filters
  *
- * @param {*} organisation - Organisation name/code for filtering
- * @param {*} withCaregiver - Specifies whether data should be filtered to only users with caregiver
- * @param {*} startDate - time filtering start date
- * @param {*} endDate - time filtering end date
- * @param {*} variable - variable indicating which data is queried
- * @param {*} byUsingPeriod - variable indicating week by date or using period
+ * @constant
+ * @async
+ * @function
+ * @param {string} organisation - Organisation name/code for filtering
+ * @param {boolean} withCaregiver - Specifies whether data should be filtered to only users with caregiver
+ * @param {string} startDate - time filtering start date
+ * @param {string} endDate - time filtering end date
+ * @param {string} variable - variable indicating which data is queried
+ * @param {boolean} byUsingPeriod - variable indicating week by date or using period
+ * @memberof module:backend/controllers/improvementController
  * @returns {...any} - computed and modified data of given variable, with possible filters
  */
 const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod) => {
@@ -60,9 +64,13 @@ const findWeeklyValues = async (organisation, withCaregiver, startDate, endDate,
 /**.
  * Function for modifying and calculating data when variable is mood
  *
- * @param {*} userMoodsData - object with data from database, with possible filtering
- * @param {*} byUsingPeriod - variable indicating week by date or using period
- * @returns {...any} - computed and modified data
+ * @constant
+ * @async
+ * @function
+ * @param {...any} userMoodsData - object with data from database, with possible filtering
+ * @param {boolean} byUsingPeriod - variable indicating week by date or using period
+ * @memberof module:backend/controllers/improvementController
+ * @returns {Array} - computed and modified data
  */
 const findWeeklyMoods = async (userMoodsData, byUsingPeriod) => {
   return byUsingPeriod
@@ -73,8 +81,12 @@ const findWeeklyMoods = async (userMoodsData, byUsingPeriod) => {
 /**.
  * Function for modifying and calculating data when variable is mood by date
  *
- * @param {*} userMoodsData - object with data from database, with possible filtering
- * @returns {...any} - computed and modified data
+ * @constant
+ * @async
+ * @function
+ * @param {...any} userMoodsData - object with data from database, with possible filtering
+ * @memberof module:backend/controllers/improvementController
+ * @returns {Array} - computed and modified data
  */
 const findWeeklyMoodsByDate = async (userMoodsData) => {
   if (userMoodsData.length === 0) {
@@ -167,8 +179,12 @@ const findWeeklyMoodsByDate = async (userMoodsData) => {
 /**.
  * Function for modifying and calculating data when variable is mood by using periods
  *
- * @param {*} userMoodsData - object with data from database, with possible filtering
- * @returns {...any} - computed and modified data
+ * @constant
+ * @async
+ * @function
+ * @param {...any} userMoodsData - object with data from database, with possible filtering
+ * @memberof module:backend/controllers/improvementController
+ * @returns {Array} - computed and modified data
  */
 const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
   if (userMoodsData.length === 0) {
@@ -265,12 +281,14 @@ const findWeeklyMoodsByUsingPeriod = async (userMoodsData) => {
  *
  * @constant
  * @async
+ * @function
  * @param {string} organisation - Organisation for filtering
  * @param {boolean} withCaregiver - Show only users with caregiver filter value
  * @param {string} startDate - Start date for filtering
  * @param {string} endDate - End date for filtering
  * @param {string} variable - Selector for mood data type
  * @param {boolean} byUsingPeriod - variable indicating week by date or using period
+ * @memberof module:backend/controllers/improvementController
  * @returns {Array} - Mood improvement percentages and their dates in an array
  */
 const findWeeklyImprovement = async (organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod) => {
@@ -317,12 +335,16 @@ const findWeeklyImprovement = async (organisation, withCaregiver, startDate, end
 /**.
  * Find change in current week's mood in relation to mood on first week
  *
- * @param {*} organisation - Organisation for filtering
- * @param {*} withCaregiver - Show only users with caregiver filter value
- * @param {*} startDate - Start date for filtering
- * @param {*} endDate - End date for filtering
- * @param {*} variable - Selector for mood data type
- * @param {*} byUsingPeriod - variable indicating week by date or using period
+ * @constant
+ * @async
+ * @function
+ * @param {string} organisation - Organisation for filtering
+ * @param {boolean} withCaregiver - Show only users with caregiver filter value
+ * @param {string} startDate - Start date for filtering
+ * @param {string} endDate - End date for filtering
+ * @param {string} variable - Selector for mood data type
+ * @param {boolean} byUsingPeriod - variable indicating week by date or using period
+ * @memberof module:backend/controllers/improvementController
  * @returns {Array} - Mood change percentages and their dates in an array
  */
 const findTotalImprovement = async (organisation, withCaregiver, startDate, endDate, variable, byUsingPeriod) => {
@@ -365,6 +387,16 @@ const findTotalImprovement = async (organisation, withCaregiver, startDate, endD
   return totalImprovements
 }
 
+/**
+ * Compare wether moodA or moodB is created first.
+ *
+ * @constant
+ * @function
+ * @param {object} moodA - MoodA.
+ * @param {object} moodB - MoodB.
+ * @memberof module:backend/controllers/improvementController
+ * @returns {number} - Integer value for which mood was created first.
+ */
 const compare = (moodA, moodB) => {
   if (moodA.created_at < moodB.created_at) {
     return -1

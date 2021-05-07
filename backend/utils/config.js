@@ -19,7 +19,7 @@ require('dotenv').config()
  *
  * @type {string}
  * @constant
- * @namespace PORT
+ * @memberof module:backend/utils/config
  */
 const PORT = process.env.PORT || '5000'
 
@@ -36,7 +36,7 @@ const db_name = 'adminapp'
  *
  * @type {string}
  * @constant
- * @namespace DB_USERNAME
+ * @memberof module:backend/utils/config
  */
 const db_user = process.env.DB_USERNAME
 
@@ -45,7 +45,7 @@ const db_user = process.env.DB_USERNAME
  *
  * @type {string}
  * @constant
- * @namespace DB_PASSWORD
+ * @memberof module:backend/utils/config
  */
 const db_password = process.env.DB_PASSWORD
 const dialect = 'postgres'

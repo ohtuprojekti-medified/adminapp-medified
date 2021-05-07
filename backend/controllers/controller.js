@@ -42,7 +42,6 @@ const Op = Sequelize.Op
  * @memberof module:backend/controllers/controller
  * @returns {...any} accessCodes - list of access codes
  */
-
 const findAllAccessCodes = async (organisation) => {
 
   let accessCodes = undefined
@@ -69,7 +68,6 @@ const findAllAccessCodes = async (organisation) => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} allOrganisations - list of organisations
  */
-
 const findAllOrgs = async (organisation) => {
   // only admin can send requests with 'ALL' organisation
   if (organisation === 'ALL') {
@@ -90,7 +88,6 @@ const findAllOrgs = async (organisation) => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userProfiles - list of users
  */
-
 const findAllUsers = async (organisation, withCaregiver) => {
   let userProfiles
   if (organisation === 'ALL') {
@@ -156,7 +153,6 @@ const findAllUsers = async (organisation, withCaregiver) => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userCaregivers - list of caregiver-user relationships
  */
-
 const findAllUserCaregivers = async () => {
   const userCaregivers = await user_care_givers.findAll({
     attributes: ['id', 'user_id', 'access_code_id', 'consent', 'created_at', 'updated_at']
@@ -172,7 +168,6 @@ const findAllUserCaregivers = async () => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userActivities - list of all user activities
  */
-
 const findAllUserActivities = async () => {
   const userActivities = await user_activities.findAll({
     attributes: ['id', 'user_id', 'created_at', 'updated_at']
@@ -188,7 +183,6 @@ const findAllUserActivities = async () => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userCaregiverActivities - list of all caregiver activities
  */
-
 const findAllUserCaregiverActivities = async () => {
   const userCaregiverActivities = await user_care_giver_activities.findAll({
     attributes: ['id', 'user_care_giver_id', 'created_at', 'updated_at']
@@ -204,7 +198,6 @@ const findAllUserCaregiverActivities = async () => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userAnswers - list of user answers
  */
-
 const findAllUserAnswers = async () => {
   const userAnswers = await user_answers.findAll({
     attributes: ['id', 'user_id', 'created_at', 'updated_at']
@@ -220,7 +213,6 @@ const findAllUserAnswers = async () => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userDiaryItems - list of all user diary items
  */
-
 const findAllUserDiaryItems = async () => {
   const userDiaryItems = await user_diary_items.findAll({
     attributes: ['id', 'user_id', 'diary_item_id', 'positive', 'extra', 'created_at', 'updated_at', 'name', 'user_diary_item_group_id']
@@ -236,7 +228,6 @@ const findAllUserDiaryItems = async () => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userDiaryItemGroups - list of diary item groups
  */
-
 const findAllUserDiaryItemGroups = async () => {
   const userDiaryItemGroups = await user_diary_item_groups.findAll({
     attributes: ['id', 'user_id', 'extra']
@@ -252,7 +243,6 @@ const findAllUserDiaryItemGroups = async () => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userProfessionalProfiles - list of all professional profiles
  */
-
 const findAllUserProfessionalProfiles = async () => {
   const userProfessionalProfiles = await user_professional_profiles.findAll({
     attributes: ['professional_id', 'user_id', 'name', 'profession', 'workplace', 'created_at', 'updated_at']
@@ -268,7 +258,6 @@ const findAllUserProfessionalProfiles = async () => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userSurveyAnswers - list of survey answers
  */
-
 const findAllUserSurveyAnswers = async () => {
   const userSurveyAnswers = await user_survey_answers.findAll({
     attributes: ['id', 'user_id', 'survey_id', 'score', 'options', 'created_at', 'updated_at']
@@ -284,7 +273,6 @@ const findAllUserSurveyAnswers = async () => {
  * @memberof module:backend/controllers/controller
  * @returns {...any} userMoods - list of user moods
  */
-
 const findAllMoods = async () => {
   const userMoods = await user_moods.findAll()
   return userMoods

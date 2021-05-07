@@ -12,7 +12,7 @@ import { Card } from 'primereact/card'
  * Component listing registered caregivers
  *
  * @name Caregivers
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/components/Caregivers
  * @param {object} param0 - Object with params

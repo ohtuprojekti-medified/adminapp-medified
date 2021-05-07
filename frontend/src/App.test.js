@@ -17,10 +17,10 @@ import App from './App'
  * Describe tests
  *
  * @type {object}
- * @function
+ *
  * @memberof module:frontend/src/App_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('<App />', () => {
   let component
@@ -29,7 +29,7 @@ describe('<App />', () => {
 
   /**
    * @type {object}
-   * @function
+   *
    * @constant
    * @memberof module:frontend/src/App_test
    * @inner
@@ -56,7 +56,7 @@ describe('<App />', () => {
    * Render App and select items from it before each test
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/App_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
@@ -74,11 +74,11 @@ describe('<App />', () => {
    * Test that header is rendered
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders header
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders header', () => {
     expect(component.container).toHaveTextContent('Adminapp for monitoring moods')
@@ -88,11 +88,11 @@ describe('<App />', () => {
    * Test that login form is rendered
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders login form
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders login form', () => {
     expect(component.container).toHaveTextContent('Login')
@@ -104,11 +104,11 @@ describe('<App />', () => {
    * Test that App does not render login form after logged in
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Does not render login form after logged in
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('does not render login form after logged in', async () => {
     login(testUsername, testPassword)
@@ -124,11 +124,11 @@ describe('<App />', () => {
    * Test that App renders patients page after logged in
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders patients page after successful login
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders patients page after successful login', async () => {
     login(testUsername, testPassword)
@@ -140,11 +140,11 @@ describe('<App />', () => {
    * Test that App renders login form after log out
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders login form after log out
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders login form after log out', async () => {
     login(testUsername, testPassword)
@@ -164,11 +164,11 @@ describe('<App />', () => {
    * Test that logout-button is not shown in the beginning
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Logout-button is not shown in the beginning
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('logout-button is not shown in the beginning', async () => {
     waitFor(() => expect(component.container.not.toHaveTextContent('log out')))
@@ -178,11 +178,11 @@ describe('<App />', () => {
    * Test that App renders logout-button after successful login
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders logout-button after successful login
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders logout-button after successful login', async () => {
     login(testUsername, testPassword)
@@ -194,11 +194,11 @@ describe('<App />', () => {
    * Test that logging out removes logout-button
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Logging out removes logout-button
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('logging out removes logout-button', async () => {
     login(testUsername, testPassword)
@@ -214,11 +214,11 @@ describe('<App />', () => {
    * Test that App renders after clicking only patients with caregiver checkbox
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders App after checking only patients with a caregiver
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders App after checking only patients with a caregiver', () => {
     login(testUsername, testPassword)
@@ -242,11 +242,11 @@ describe('<App />', () => {
    * Test that App does not render login form after clicking only patients with caregiver checkbox
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Does not render login form after checking only patients with caregiver
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('does not render login form after checking only patients with caregiver', () => {
     login(testUsername, testPassword)

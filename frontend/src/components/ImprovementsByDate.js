@@ -17,7 +17,7 @@ import TotalMoodImprovement from './TotalMoodImprovement'
  * Component containing improvement graphs byDate
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:src/components/ImprovementsByDate
  * @param {*} param0 - mood averages, weekly improvement averages, total improvement averages and byPeriod filter

@@ -16,10 +16,10 @@ import Filter from './Filter'
  * Describe tests
  *
  * @type {object}
- * @function
+ *
  * @memberof module:frontend/src/components/Filter_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('<Filter />', () => {
   let component, mockHandler
@@ -28,7 +28,7 @@ describe('<Filter />', () => {
    * Render Filter
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/Filter_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
@@ -43,11 +43,11 @@ describe('<Filter />', () => {
    * Test that Filter is rendered
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/Filter_test
    * @inner
    * @param {string} description - renders filter component
-   * @param {object} TestCode - code that runs the test
+   * @param {Function} testCode - code that runs the test
    */
   test('renders Filter', () => {
     waitFor(() => {
@@ -59,11 +59,11 @@ describe('<Filter />', () => {
    * Test that checking checkbox calls event handler once
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/Filter_test
    * @inner
    * @param {string} description - eventhandler is called once
-   * @param {object} TestCode - code that runs the test
+   * @param {Function} testCode - code that runs the test
    */
   test('checking filtering checkbox calls event handler once', async () => {
     const checkbox = component.getByTestId('filter-checkbox')

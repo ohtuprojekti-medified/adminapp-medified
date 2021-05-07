@@ -13,7 +13,7 @@ import { Card } from 'primereact/card'
  * Component listing App users
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/components/Users
  * @param {object} param0 - Object with users

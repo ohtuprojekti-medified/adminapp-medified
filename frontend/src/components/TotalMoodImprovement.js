@@ -13,7 +13,7 @@ import { Chart } from 'primereact/chart'
  * Component for graphing total mood improvement
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/components/TotalMoodImprovement
  * @param {object} param0 - Object with total mood improvement

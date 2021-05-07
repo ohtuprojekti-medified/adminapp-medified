@@ -17,7 +17,7 @@ import { ToggleButton } from 'primereact/togglebutton'
  * Component containing byPeriod or byDate improvement graphs
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/components/ImprovementContainer
  * @param {object} param0 - Object containing mood avreages, total improvement averages and weekly improvement averages, both byPeriod and byDate and filter value and change-function

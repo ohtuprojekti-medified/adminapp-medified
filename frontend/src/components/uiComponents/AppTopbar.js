@@ -42,7 +42,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
    * Handle logout button presses
    *
    * @type {object}
-   * @function
+   *
    * @constant
    * @memberof module:frontend/src/components/uiComponents/AppTopbar
    * @inner

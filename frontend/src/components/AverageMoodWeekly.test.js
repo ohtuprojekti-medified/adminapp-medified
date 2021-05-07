@@ -16,10 +16,10 @@ import AverageMoodWeekly from './AverageMoodWeekly'
  * Describe tests
  *
  * @type {object}
- * @function
+ *
  * @memberof module:frontend/src/components/AverageMoodWeekly_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('<AverageMoodWeekly />', () => {
   let component
@@ -28,7 +28,7 @@ describe('<AverageMoodWeekly />', () => {
    * Render AverageMoodWeekly
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/AverageMoodWeekly_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
@@ -41,11 +41,11 @@ describe('<AverageMoodWeekly />', () => {
    * Test that MoodAverage is rendered
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/AverageMoodWeekly_test
    * @inner
    * @param {string} description - renders AverageMoodWeekly
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders AverageMoodWeekly', () => {
     waitFor(() => {

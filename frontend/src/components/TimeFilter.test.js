@@ -16,10 +16,10 @@ import TimeFilter from './TimeFilter'
  * Describe tests
  *
  * @type {object}
- * @function
+ *
  * @memberof module:frontend/src/components/TimeFilter_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('<TimeFilter />', () => {
   let component
@@ -32,7 +32,7 @@ describe('<TimeFilter />', () => {
    * Render TimeFilter with mock values
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
@@ -53,11 +53,11 @@ describe('<TimeFilter />', () => {
    * Test that TimeFilter is rendered
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Renders filter
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders TimeFilter', () => {
     waitFor(() => {
@@ -70,11 +70,11 @@ describe('<TimeFilter />', () => {
    * Test that TimeFilter calls start date enable eventhandler
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls start date enable eventhandler
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('checking start date checkbox calls eventhandler', () => {
     const checkbox = component.findByTestId('startDate-checkbox')
@@ -89,11 +89,11 @@ describe('<TimeFilter />', () => {
    * Test that TimeFilter calls end date enable eventhandler
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls end date enable eventhandler
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('checking end date checkbox calls eventhandler', () => {
     const checkbox = component.findByTestId('endDate-checkbox')
@@ -108,11 +108,11 @@ describe('<TimeFilter />', () => {
    * Test that TimeFilter calls start date event handler
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls start date eventhandler
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('typeing start date calls eventhandler', () => {
     const dateInput = component.findByTestId('startDate-date')
@@ -127,11 +127,11 @@ describe('<TimeFilter />', () => {
    * Test that TimeFilter calls end date eventhandler
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls end date eventhandler
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('typeing end date calls eventhandler', () => {
     const dateInput = component.findByTestId('endDate-date')

@@ -9,7 +9,7 @@
  * Retrieve username from enviromment variables for logging in
  *
  * @name testUsername
- * @function
+ *
  * @constant
  * @memberof module:cypress/integration/login_spec
  * @param {string} username - Retrieve username from environment variables
@@ -20,7 +20,7 @@ const testUsername = Cypress.env('USERNAME')
  * Retrieve password from enviromment variables for logging in
  *
  * @name testPassword
- * @function
+ *
  * @constant
  * @memberof module:cypress/integration/login_spec
  * @param {string} username - Retrieve password from environment variables
@@ -62,7 +62,7 @@ const logout = () => {
  * @type {object}
  * @memberof module:cypress/integration/login_spec
  * @param {string} describe - Login
- * @param {object} tests - Test code
+ * @param {Function} tests - Test code
  */
 describe('Login', function () {
 
@@ -87,7 +87,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - exists
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists', function () {
     // Can enter website
@@ -108,7 +108,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - disappears after logged in
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('disappears after logged in', function () {
     login(testUsername, testPassword)
@@ -128,7 +128,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - shows patients page after successful login
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('shows patients page after successful login', function () {
     login(testUsername, testPassword)
@@ -145,7 +145,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - shows logout-button after successfull login
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('shows logout-button after successfull login', function () {
     login(testUsername, testPassword)
@@ -161,7 +161,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - does not show logout-button before login
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('does not show logout-button before login', function () {
     cy.get('body').should('not.contain', 'Log out')
@@ -175,7 +175,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - shows login form after logging out
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('shows login form after logging out', function () {
     login(testUsername, testPassword)
@@ -195,7 +195,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - does not show logout-button after logging out
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('does not show logout-button after logging out', function () {
     login(testUsername, testPassword)
@@ -212,7 +212,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - does not login with wrong password
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('does not login with wrong password', function () {
     login(testUsername, 'WrongPassword')
@@ -233,7 +233,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - does not login with wrong username
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('does not login with wrong username', function () {
     login('WrongUsername', testPassword)
@@ -254,7 +254,7 @@ describe('Login', function () {
    * @memberof module:cypress/integration/login_spec
    * @inner
    * @param {string} describe - does not login with wrong username and password
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('does not login with wrong username and password', function () {
     login('WrongUsername', 'WrongPassword')

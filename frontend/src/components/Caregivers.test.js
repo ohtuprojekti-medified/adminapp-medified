@@ -16,10 +16,10 @@ import Caregivers from './Caregivers'
  * Describe tests
  *
  * @type {object}
- * @function
+ *
  * @memberof module:frontend/src/components/Caregivers_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('Caregivers', () => {
 
@@ -27,11 +27,11 @@ describe('Caregivers', () => {
    * Test that Caregivers renders correct amount of caregivers
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/Caregivers_test
    * @inner
    * @param {string} description - renders content
-   * @param {object} testFunction - Runs the test
+   * @param {Function} testFunction - Runs the test
    */
   test('renders content', () => {
     const caregivers = [{

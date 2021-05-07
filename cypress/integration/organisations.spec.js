@@ -9,7 +9,7 @@
  * Retrieve username from enviromment variables for logging in
  *
  * @name testUsername
- * @function
+ *
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} username - Retrieve username from environment variables
@@ -20,7 +20,7 @@ const testUsername = Cypress.env('USERNAME')
  * Retrieve password from enviromment variables for logging in
  *
  * @name testPassword
- * @function
+ *
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} username - Retrieve password from environment variables
@@ -31,7 +31,7 @@ const testPassword = Cypress.env('PASSWORD')
  * Retrieve admin username from enviromment variables for logging in
  *
  * @name testAdminUsername
- * @function
+ *
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} username - Retrieve username from environment variables
@@ -42,7 +42,7 @@ const testAdminUsername = Cypress.env('ADMIN_USERNAME')
  * Retrieve admin password from enviromment variables for logging in
  *
  * @name testAdminPassword
- * @function
+ *
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} password - Retrieve password from environment variables
@@ -73,7 +73,7 @@ const login = (username, password) => {
  * @type {object}
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} describe - Organisations
- * @param {object} tests - Test code
+ * @param {Function} tests - Test code
  */
 describe('Organisations', function () {
 
@@ -110,7 +110,7 @@ describe('Organisations', function () {
    * @memberof module:cypress/integration/organisations_spec
    * @inner
    * @param {string} describe - organisations filter exists
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('organisations filter exists', function () {
     login(testAdminUsername, testAdminPassword)
@@ -129,7 +129,7 @@ describe('Organisations', function () {
    * @memberof module:cypress/integration/organisations_spec
    * @inner
    * @param {string} describe - organisation filter does not show for normal user
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('organisation filter does not show for normal user', function () {
     login(testUsername, testPassword)

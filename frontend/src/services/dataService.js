@@ -15,7 +15,7 @@ let token = null
  * Sets new token to axios config
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/services/dataService
  */
@@ -34,7 +34,7 @@ const getConfig = () => ({
  * Gets all data from given API endpoint
  *
  * @type {object}
- * @function
+ *
  * @async
  * @constant
  * @memberof module:frontend/src/services/dataService

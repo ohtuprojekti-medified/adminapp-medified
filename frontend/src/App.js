@@ -43,7 +43,7 @@ import 'primeflex/primeflex.css'
  * Creates a single page application
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/App
  * @returns {object} - A single page application in JSX
@@ -84,7 +84,7 @@ const App = () => {
    * Configure amplify authorization and check if user is logged in
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/App
    * @inner
    */
@@ -109,7 +109,7 @@ const App = () => {
    * Set token or refresh token and GET data if user logs in or is logged in. If secure ping fails twice user is logged out.
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/App
    * @inner
    */
@@ -213,7 +213,7 @@ const App = () => {
    *
    * Event handler for changing the status of caregiveFilterForAllUsers
    *
-   * @function
+   *
    * @constant
    * @memberof module:frontend/src/App
    */
@@ -225,7 +225,7 @@ const App = () => {
    *
    * Event handler for changuing the status of byUsingPeriodFilter
    *
-   * @function
+   *
    * @constant
    * @memberof module:src/App
    */
@@ -238,7 +238,7 @@ const App = () => {
    * Event handler for changing the selected organisation
    *
    * @param {string} organisation - Requested organisation
-   * @function
+   *
    * @constant
    * @memberof module:frontend/src/App
    */
@@ -249,7 +249,7 @@ const App = () => {
   /**.
    * Event handler for enabling timeframe start filter
    *
-   * @function
+   *
    * @constant
    * @memberof module:frontend/src/App
    */
@@ -265,7 +265,7 @@ const App = () => {
   /**.
    * Event handler for enabling timeframe end filter
    *
-   * @function
+   *
    * @constant
    * @memberof module:frontend/src/App
    */
@@ -282,7 +282,7 @@ const App = () => {
    * Event handler for changeing timeframe filter start value
    *
    * @param {string} date - Date where to begin showing data
-   * @function
+   *
    * @constant
    * @memberof module:frontend/src/App
    */
@@ -296,7 +296,7 @@ const App = () => {
    * Event handler for changeing timeframe filter end value
    *
    * @param {string} date - Date where to end showing data
-   * @function
+   *
    * @constant
    * @memberof module:frontend/src/App
    */
@@ -334,7 +334,7 @@ const App = () => {
    * Handle login button presses
    *
    * @type {object}
-   * @function
+   *
    * @constant
    * @memberof module:src/App
    * @inner

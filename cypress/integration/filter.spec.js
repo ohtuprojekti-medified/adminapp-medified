@@ -12,7 +12,7 @@
  * @type {object}
  * @memberof module:cypress/integration/filter_spec
  * @param {string} describe - Filter
- * @param {object} tests - Test code
+ * @param {Function} tests - Test code
  */
 describe('Filter', function () {
 
@@ -50,7 +50,7 @@ describe('Filter', function () {
    * @memberof module:cypress/integration/filter_spec
    * @inner
    * @param {string} describe - checkbox exists
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('checkbox exists', function () {
     cy.contains('Adminapp for monitoring moods')
@@ -66,7 +66,7 @@ describe('Filter', function () {
    * @memberof module:cypress/integration/filter_spec
    * @inner
    * @param {string} describe - checkbox can be checked and unchecked
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('checkbox can be checked and unchecked', function () {
     cy.contains('Adminapp for monitoring moods')

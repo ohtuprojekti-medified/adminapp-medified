@@ -12,7 +12,7 @@
  *
  * @type {object}
  * @constant
- * @namespace mongoose
+ * @memberof module:backend/tests/noToken_test
  */
 const mongoose = require('mongoose')
 
@@ -21,7 +21,7 @@ const mongoose = require('mongoose')
  *
  * @type {object}
  * @constant
- * @namespace supertest
+ * @memberof module:backend/tests/noToken_test
  */
 const supertest = require('supertest')
 
@@ -30,7 +30,7 @@ const supertest = require('supertest')
  *
  * @type {object}
  * @constant
- * @namespace app
+ * @memberof module:backend/tests/noToken_test
  */
 const app = require('../app')
 
@@ -39,7 +39,7 @@ const app = require('../app')
  *
  * @type {object}
  * @constant
- * @namespace api
+ * @memberof module:backend/tests/noToken_test
  */
 const api = supertest(app)
 
@@ -48,6 +48,7 @@ const api = supertest(app)
  *
  * @constant
  * @type {string}
+ * @memberof module:backend/tests/noToken_test
  */
 const apiUrl = '/api'
 
@@ -55,23 +56,20 @@ const apiUrl = '/api'
 /**.
  * Run tests for noToken requests
  *
- * @name description
  * @type {object}
- * @function
  * @memberof module:backend/tests/noToken_test
  * @param {string} description - noToken tests
- * @param {object} tests - Function that runs tests
+ * @param {Function} tests - Function that runs tests
  */
 describe('noToken tests', () => {
 
   /**.
  * Tests that weekly mood averages are not returned without token
  *
- * @name no_weekly_mood_averages_without_token
- * @function
  * @memberof module:backend/tests/noToken_test
+ * @inner
  * @param {string} name - Name of the test
- * @param {object} test - Test code
+ * @param {Function} test - Test code
  */
   test('weekly mood averages are not returned without token', async () => {
     await api.get(apiUrl + '/weeklyvalue')
@@ -81,11 +79,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that weekly improvement averages are not returned without token
    *
-   * @name no_weekly_improvement_averages_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
+   * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('weekly improvement averages are not returned without token', async () => {
     await api.get(apiUrl + '/weeklyimprovement')
@@ -95,12 +92,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that users are not returned without token
    *
-   * @name no_users_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('users are not returned without token', async () => {
     await api.get(apiUrl + '/users')
@@ -110,12 +105,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that caregivers are not returned without token
    *
-   * @name no_caregivers_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('caregivers are not returned without token', async () => {
     await api.get(apiUrl + '/caregivers')
@@ -125,12 +118,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that ping is not returned without token
    *
-   * @name no_ping_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('ping is not returned without token', async () => {
     await api.get(apiUrl + '/ping')
@@ -140,12 +131,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that cumulative amount of users is not returned without token
    *
-   * @name no_cumulative_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('cumulative amount of users is not returned without token', async () => {
     await api.get(apiUrl + '/cumulative')
@@ -155,12 +144,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that activeusers are not returned without token
    *
-   * @name no_activeusers_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('active users are not returned without token', async () => {
     await api.get(apiUrl + '/activeusers')
@@ -170,12 +157,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that newusers are not returned without token
    *
-   * @name no_newusers_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('new users are not returned without token', async () => {
     await api.get(apiUrl + '/newusers')
@@ -185,12 +170,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that user activity today is not returned without token
    *
-   * @name no_activitytoday_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('user activity today is not returned without token', async () => {
     await api.get(apiUrl + '/activitytoday')
@@ -200,12 +183,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that retention rate is not returned without token
    *
-   * @name no_retention_rate_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('retention rate is not returned without token', async () => {
     await api.get(apiUrl + '/retention')
@@ -215,12 +196,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that average retention rate is not returned without token
    *
-   * @name no_average_retention_rate_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('average retention rate is not returned without token', async () => {
     await api.get(apiUrl + '/avgretention')
@@ -230,12 +209,10 @@ describe('noToken tests', () => {
   /**.
    * Tests that unknown url returns 403 without token
    *
-   * @name unknown_url_returns_403_without_token
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('unknown url returns 403 without token', async () => {
     await api.get(apiUrl + '/unknownurl')
@@ -245,8 +222,6 @@ describe('noToken tests', () => {
   /**.
    * Close connection after all tests have been executed
    *
-   * @name afterAll
-   * @function
    * @memberof module:backend/tests/noToken_test
    * @inner
    * @param {object} functionAfterAll - Function to be executed after all tests

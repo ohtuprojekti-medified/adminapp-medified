@@ -12,7 +12,7 @@
  * @type {object}
  * @memberof module:cypress/integration/AverageMoodWeekly_spec
  * @param {string} describe - AverageMoodWeekly chart
- * @param {object} tests - Test code
+ * @param {Function} tests - Test code
  */
 describe('MoodAverage chart', function () {
 
@@ -50,7 +50,7 @@ describe('MoodAverage chart', function () {
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
@@ -65,7 +65,7 @@ describe('MoodAverage chart', function () {
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after checking only patients with caregiver
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after checking only patients with caregivers', function () {
     cy.contains('Adminapp for monitoring moods')
@@ -84,7 +84,7 @@ describe('MoodAverage chart', function () {
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after selecting start date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after selecting start date in filters', function () {
     cy.contains('Adminapp for monitoring moods')
@@ -104,7 +104,7 @@ describe('MoodAverage chart', function () {
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after selecting end date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after selecting end date in filters', function () {
     cy.contains('Adminapp for monitoring moods')
@@ -124,7 +124,7 @@ describe('MoodAverage chart', function () {
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after selecting start date and end date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after selecting start date and end date in filters', function () {
     cy.contains('Adminapp for monitoring moods')
@@ -146,7 +146,7 @@ describe('MoodAverage chart', function () {
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after selecting only patients with caregiver start date and end date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after checking only patients with caregivers, start date and end date in filters', function () {
     cy.contains('Adminapp for monitoring moods')
@@ -169,7 +169,7 @@ describe('MoodAverage chart', function () {
    * @memberof module:cypress/integration/AverageMoodWeekly_spec
    * @inner
    * @param {string} describe - exists after changing by using period to by date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after clicking by using period', function () {
     cy.contains('Adminapp for monitoring moods')

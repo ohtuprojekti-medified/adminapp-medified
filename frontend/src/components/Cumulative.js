@@ -14,7 +14,7 @@ import { subDays, format } from 'date-fns'
  * Component for graphing all new users, cumulative
  *
  * @type {object}
- * @function
+ *
  * @constant
  * @memberof module:frontend/src/components/Cumulative
  * @param {object} param0 - Object with weekly cumulative users

@@ -16,10 +16,10 @@ import WeeklyImprovement from './WeeklyImprovement'
  * Describe tests
  *
  * @type {object}
- * @function
+ *
  * @memberof module:frontend/src/components/WeeklyImprovement_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('<WeeklyImprovement />', () => {
   let component
@@ -28,7 +28,7 @@ describe('<WeeklyImprovement />', () => {
    * Render WeeklyImprovement
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/WeeklyImprovement_test
    * @inner
    * @param {object} beforeEachCode - Code to be run before each test
@@ -41,11 +41,11 @@ describe('<WeeklyImprovement />', () => {
    * Test that WeeklyImprovement is rendered
    *
    * @type {object}
-   * @function
+   *
    * @memberof module:frontend/src/components/WeeklyImprovement_test
    * @inner
    * @param {string} description - renders WeeklyImprovement
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders WeeklyImprovement', () => {
     waitFor(() => {
