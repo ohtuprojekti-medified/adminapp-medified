@@ -14,9 +14,9 @@ let token = null
 /**.
  * Sets new token to axios config
  *
- * @type {object}
- *
+ * @param {string} newToken - Token without bearer
  * @constant
+ * @function
  * @memberof module:frontend/src/services/dataService
  */
 const setToken = newToken => {
@@ -33,10 +33,9 @@ const getConfig = () => ({
 /**.
  * Gets all data from given API endpoint
  *
- * @type {object}
- *
  * @async
  * @constant
+ * @function
  * @memberof module:frontend/src/services/dataService
  * @param {string} endpoint - API endpoint
  * @returns {*} - API response data
@@ -46,7 +45,7 @@ const getAll = async (endpoint) => {
     const response = await axios.get(endpoint, getConfig())
     return response.data
   } catch (error) {
-    if(error.message.includes('403')) {
+    if (error.message.includes('403')) {
       return 403
     }
     return []

@@ -13,16 +13,15 @@ import { Dropdown } from 'primereact/dropdown'
 /**.
  * Component for selecting an organisation from all the organisations
  *
- * @name Organisations
- *
  * @constant
+ * @function
  * @memberof module:frontend/src/components/Organisations
- * @param {object} param0 - Object with params
+ * @param {*} param0 - Object with params
  * @param {Array} param0.organisations - Array of all organisations
+ * @param {Function} param0.handleOrganisationChange - Eventhandler for organisation selector
+ * @param {boolean} param0.organisationSelect - Organisation select value
  * @returns {object} - Dropdown menu with all the organisations
  */
-
-
 const Organisations = ({ organisations, handleOrganisationChange, organisationSelect }) => {
   const placeholder = organisationSelect ? organisationSelect : 'ALL'
   const organisationArray = organisations.map(x => x.id)

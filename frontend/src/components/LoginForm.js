@@ -17,11 +17,10 @@ import { Button } from 'primereact/button'
 /**.
  * Component that creates a form for login and button for logout
  *
- * @type {object}
- *
  * @constant
+ * @function
  * @memberof module:frontend/src/components/LoginForm
- * @param {object} param0 - Object with params
+ * @param {*} param0 - Object with params
  * @param {string} param0.username - Value of username in form
  * @param {Function} param0.setUsername - Function to set the value of username
  * @param {string} param0.password - Value of password in form

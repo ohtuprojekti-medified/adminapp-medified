@@ -191,7 +191,7 @@ describe('userhistory controller', () => {
    *
    * @memberof module:backend/tests/userhistoryController_test
    * @inner
-   * @param {object} beforeEachCode - beforeEach code
+   * @param {Function} beforeEachCode - beforeEach code
    */
   beforeEach(() => {
     userhistoryController = userhistoryControllerMocked()
@@ -313,7 +313,7 @@ describe('userhistory controller', () => {
    *
    * @memberof module:backend/tests/userhistoryController_test
    * @inner
-   * @param {object} afterEachCode - afterEach code
+   * @param {Function} afterEachCode - afterEach code
    */
   afterEach(() => {
     user_activities_stub.restore()

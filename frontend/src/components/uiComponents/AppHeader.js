@@ -14,6 +14,9 @@ import { Link } from 'react-router-dom'
 
 /**
  * CSS-styling for navigation links.
+ *
+ * @constant
+ * @type {object}
  */
 const linkStyle = {
   textDecoration: 'none',
@@ -28,9 +31,11 @@ const linkStyle = {
 /**.
  * Component for header's nav links
  *
- * @param {object} param0 - Page name in path and title to show in navigation
- * @param {object} param0.page - page
- * @param {object} param0.title - title
+ * @constant
+ * @function
+ * @param {*} param0 - Page name in path and title to show in navigation
+ * @param {string} param0.page - page
+ * @param {string} param0.title - title
  * @memberof module:frontend/src/components/uiComponents/AppHeader
  * @returns { Link } - navigation link
  */
@@ -41,6 +46,8 @@ const HeaderLink = ({ page, title }) => {
 /**.
  * Component containing all navigation links
  *
+ * @constant
+ * @function
  * @memberof module:frontend/src/components/uiComponents/AppHeader
  * @returns {object} - JSX component containing all links
  */

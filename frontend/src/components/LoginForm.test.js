@@ -15,8 +15,6 @@ import LoginForm from './LoginForm'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/LoginForm_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -34,11 +32,9 @@ describe('<LoginForm />', () => {
   /**.
    * Render Loginform, select items from it and create mocks for its functions before each test
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     component = render(<LoginForm />)
@@ -62,8 +58,6 @@ describe('<LoginForm />', () => {
   /**.
    * Test that LoginForm is rendered
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - Renders form
@@ -78,8 +72,6 @@ describe('<LoginForm />', () => {
 
   /**.
    * Test that submitting LoginForm calls handleLogin function
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
@@ -105,8 +97,6 @@ describe('<LoginForm />', () => {
   /**.
    * Test that logging in renders logout-button
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - logging in renders logout-button
@@ -129,8 +119,6 @@ describe('<LoginForm />', () => {
   /**.
    * Test that logout-button is not shown in the beginning
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner
    * @param {string} description - logout-button is not shown in the beginning
@@ -142,8 +130,6 @@ describe('<LoginForm />', () => {
 
   /**.
    * Test that logging out renders login-form
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/LoginForm_test
    * @inner

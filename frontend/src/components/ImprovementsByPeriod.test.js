@@ -15,8 +15,6 @@ import ImprovementsByPeriod from './ImprovementsByPeriod'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/ImprovementsByPeriod_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -27,11 +25,9 @@ describe('<ImprovementsByPeriod />', () => {
   /**.
    * Render ImprovementsContainer
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/ImprovementsByPeriod_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     component = render(<ImprovementsByPeriod />)
@@ -39,8 +35,6 @@ describe('<ImprovementsByPeriod />', () => {
 
   /**.
    * Test that ImprovementsByPeriod is rendered
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/ImprovementsByPeriod_test
    * @inner

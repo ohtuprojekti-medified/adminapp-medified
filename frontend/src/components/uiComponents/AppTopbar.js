@@ -26,6 +26,8 @@ import AppNavigationMenu from './AppNavigationMenu'
 /**.
  * Component for applications UI topbar
  *
+ * @constant
+ * @function
  * @memberof module:frontend/src/components/uiComponents/AppTopbar
  * @param {*} param0 - all props from App.js
  * @returns {object} - JSX Topbar component
@@ -41,9 +43,9 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
   /**.
    * Handle logout button presses
    *
-   * @type {object}
-   *
    * @constant
+   * @async
+   * @function
    * @memberof module:frontend/src/components/uiComponents/AppTopbar
    * @inner
    * @param {object} event - Contains event
@@ -71,6 +73,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
   /**.
    * Contents for the left side of primereact's toolbar
    *
+   * @constant
    * @type {object}
    * @memberof module:frontend/src/components/uiComponents/AppTopbar
    * @inner
@@ -90,6 +93,7 @@ const AppTopbar = ({ user, setUser, caregiverFilterForAllUsers, handleFilterChan
   /**.
    * Contents for the right side of primereact's toolbar
    *
+   * @constant
    * @type {object}
    * @memberof module:frontend/src/components/uiComponents/AppTopbar
    * @inner

@@ -12,7 +12,7 @@ import { InputSwitch } from 'primereact/inputswitch'
  * This creates a JSX object that users can use to filter timeframe
  *
  * @constant
- *
+ * @function
  * @param {*} param0 - Object with params
  * @returns {object} - JSX object
  */

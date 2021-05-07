@@ -42,9 +42,8 @@ import 'primeflex/primeflex.css'
 /**.
  * Creates a single page application
  *
- * @type {object}
- *
  * @constant
+ * @function
  * @memberof module:frontend/src/App
  * @returns {object} - A single page application in JSX
  */
@@ -83,8 +82,6 @@ const App = () => {
   /**.
    * Configure amplify authorization and check if user is logged in
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/App
    * @inner
    */
@@ -107,8 +104,6 @@ const App = () => {
 
   /**
    * Set token or refresh token and GET data if user logs in or is logged in. If secure ping fails twice user is logged out.
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/App
    * @inner
@@ -210,37 +205,37 @@ const App = () => {
   }, [user, caregiverFilterForAllUsers, organisationSelect, startDate, endDate, startDateEnable, endDateEnable, moodDataSelect, byUsingPeriodFilter])
 
   /**.
-   *
    * Event handler for changing the status of caregiveFilterForAllUsers
    *
-   *
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleFilterChange = () => {
     setCaregiverFilterForAllUsers(!caregiverFilterForAllUsers)
   }
 
   /**.
-   *
    * Event handler for changuing the status of byUsingPeriodFilter
    *
-   *
    * @constant
+   * @function
    * @memberof module:src/App
+   * @inner
    */
   const handleByUsingPeriodChange = () => {
     setByUsingPeriodFilter(!byUsingPeriodFilter)
   }
 
   /**.
-   *
    * Event handler for changing the selected organisation
    *
    * @param {string} organisation - Requested organisation
-   *
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleOrganisationChange = (organisation) => {
     setOrganisation(organisation)
@@ -249,9 +244,10 @@ const App = () => {
   /**.
    * Event handler for enabling timeframe start filter
    *
-   *
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleStartDateEnableChange = () => {
     if (startDateEnable) {
@@ -265,9 +261,10 @@ const App = () => {
   /**.
    * Event handler for enabling timeframe end filter
    *
-   *
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleEndDateEnableChange = () => {
     if (endDateEnable) {
@@ -282,9 +279,10 @@ const App = () => {
    * Event handler for changeing timeframe filter start value
    *
    * @param {string} date - Date where to begin showing data
-   *
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleStartDateChange = (date) => {
     if (startDateEnable) {
@@ -296,9 +294,10 @@ const App = () => {
    * Event handler for changeing timeframe filter end value
    *
    * @param {string} date - Date where to end showing data
-   *
    * @constant
+   * @function
    * @memberof module:frontend/src/App
+   * @inner
    */
   const handleEndDateChange = (date) => {
     if (endDateEnable) {
@@ -315,10 +314,13 @@ const App = () => {
   ]
 
   /**.
-   *
    * Event handler for changing the status of moodGraph
    *
+   * @constant
+   * @function
    * @param {string} label - Name of mood graph to be used
+   * @memberof module:frontend/src/App
+   * @inner
    */
   const handleMoodDataSelectChange = (label) => {
     setMoodDataSelect(label)
@@ -333,9 +335,9 @@ const App = () => {
   /**.
    * Handle login button presses
    *
-   * @type {object}
-   *
    * @constant
+   * @async
+   * @function
    * @memberof module:src/App
    * @inner
    * @param {object} event - Contains event

@@ -16,8 +16,6 @@ import App from './App'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/App_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -27,10 +25,11 @@ describe('<App />', () => {
   let usernameInput, passwordInput, loginForm
   let onlyWithCaregiverCheckbox
 
-  /**
-   * @type {object}
+  /**.
+   * Login function
    *
    * @constant
+   * @function
    * @memberof module:frontend/src/App_test
    * @inner
    * @param {string} username - Username for tests.
@@ -55,11 +54,9 @@ describe('<App />', () => {
   /**.
    * Render App and select items from it before each test
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/App_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     component = render(<App />)
@@ -73,8 +70,6 @@ describe('<App />', () => {
   /**.
    * Test that header is rendered
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders header
@@ -86,8 +81,6 @@ describe('<App />', () => {
 
   /**.
    * Test that login form is rendered
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/App_test
    * @inner
@@ -102,8 +95,6 @@ describe('<App />', () => {
 
   /**.
    * Test that App does not render login form after logged in
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/App_test
    * @inner
@@ -123,8 +114,6 @@ describe('<App />', () => {
   /**.
    * Test that App renders patients page after logged in
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Renders patients page after successful login
@@ -138,8 +127,6 @@ describe('<App />', () => {
 
   /**.
    * Test that App renders login form after log out
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/App_test
    * @inner
@@ -163,8 +150,6 @@ describe('<App />', () => {
   /**.
    * Test that logout-button is not shown in the beginning
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/App_test
    * @inner
    * @param {string} description - Logout-button is not shown in the beginning
@@ -176,8 +161,6 @@ describe('<App />', () => {
 
   /**.
    * Test that App renders logout-button after successful login
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/App_test
    * @inner
@@ -192,8 +175,6 @@ describe('<App />', () => {
 
   /**.
    * Test that logging out removes logout-button
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/App_test
    * @inner
@@ -212,8 +193,6 @@ describe('<App />', () => {
 
   /**.
    * Test that App renders after clicking only patients with caregiver checkbox
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/App_test
    * @inner
@@ -240,8 +219,6 @@ describe('<App />', () => {
 
   /**.
    * Test that App does not render login form after clicking only patients with caregiver checkbox
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/App_test
    * @inner

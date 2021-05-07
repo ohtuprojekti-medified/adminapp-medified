@@ -14,8 +14,6 @@ import Users from './Users'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/Users_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -24,8 +22,6 @@ describe('Users', () => {
 
   /**.
    * Test that Users is rendered
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/Users_test
    * @inner

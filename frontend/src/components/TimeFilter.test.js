@@ -15,8 +15,6 @@ import TimeFilter from './TimeFilter'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/TimeFilter_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -31,11 +29,9 @@ describe('<TimeFilter />', () => {
   /**.
    * Render TimeFilter with mock values
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     handleStartDateEnableChange = jest.fn()
@@ -52,8 +48,6 @@ describe('<TimeFilter />', () => {
   /**.
    * Test that TimeFilter is rendered
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Renders filter
@@ -68,8 +62,6 @@ describe('<TimeFilter />', () => {
 
   /**.
    * Test that TimeFilter calls start date enable eventhandler
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
@@ -88,8 +80,6 @@ describe('<TimeFilter />', () => {
   /**.
    * Test that TimeFilter calls end date enable eventhandler
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls end date enable eventhandler
@@ -107,8 +97,6 @@ describe('<TimeFilter />', () => {
   /**.
    * Test that TimeFilter calls start date event handler
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner
    * @param {string} description - Calls start date eventhandler
@@ -125,8 +113,6 @@ describe('<TimeFilter />', () => {
 
   /**.
    * Test that TimeFilter calls end date eventhandler
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/TimeFilter_test
    * @inner

@@ -15,8 +15,6 @@ import Filter from './Filter'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/Filter_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -27,11 +25,9 @@ describe('<Filter />', () => {
   /**.
    * Render Filter
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/Filter_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     mockHandler = jest.fn()
@@ -41,8 +37,6 @@ describe('<Filter />', () => {
 
   /**.
    * Test that Filter is rendered
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/Filter_test
    * @inner
@@ -57,8 +51,6 @@ describe('<Filter />', () => {
 
   /**.
    * Test that checking checkbox calls event handler once
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/Filter_test
    * @inner

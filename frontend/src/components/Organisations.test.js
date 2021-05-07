@@ -15,8 +15,6 @@ import Organisations from './Organisations'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/Organisations_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -29,11 +27,9 @@ describe('<Organisations />', () => {
   /**.
    * Render Organisations with 2 organisations
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/Organisation_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     organisations = [
@@ -45,8 +41,6 @@ describe('<Organisations />', () => {
 
   /**.
    * Test that Organisations is rendered
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/Organisations_test
    * @inner

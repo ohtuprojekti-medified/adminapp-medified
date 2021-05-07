@@ -15,8 +15,6 @@ import WeeklyImprovement from './WeeklyImprovement'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/WeeklyImprovement_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -27,11 +25,9 @@ describe('<WeeklyImprovement />', () => {
   /**.
    * Render WeeklyImprovement
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/WeeklyImprovement_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     component = render(<WeeklyImprovement />)
@@ -39,8 +35,6 @@ describe('<WeeklyImprovement />', () => {
 
   /**.
    * Test that WeeklyImprovement is rendered
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/WeeklyImprovement_test
    * @inner

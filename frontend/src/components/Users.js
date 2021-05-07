@@ -12,11 +12,10 @@ import { Card } from 'primereact/card'
 /**.
  * Component listing App users
  *
- * @type {object}
- *
  * @constant
+ * @function
  * @memberof module:frontend/src/components/Users
- * @param {object} param0 - Object with users
+ * @param {*} param0 - Object with users
  * @param {Array} param0.users - Array of all users
  * @returns {object} - JSX component that counts amount of users
  */

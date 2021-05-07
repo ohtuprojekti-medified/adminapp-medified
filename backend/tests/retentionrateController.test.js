@@ -156,7 +156,7 @@ describe('retentionrate controller', () => {
    *
    * @memberof module:backend/tests/retentionrateController_test
    * @inner
-   * @param {object} beforeEachCode - beforeEach code
+   * @param {Function} beforeEachCode - beforeEach code
    */
   beforeEach(() => {
     retentionrateController = retentionrateControllerMocked()
@@ -228,7 +228,7 @@ describe('retentionrate controller', () => {
    *
    * @memberof module:backend/tests/retentionrateController_test
    * @inner
-   * @param {object} afterEachCode - afterEach code
+   * @param {Function} afterEachCode - afterEach code
    */
   afterEach(() => {
     user_activities_stub.restore()

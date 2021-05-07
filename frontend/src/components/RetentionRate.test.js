@@ -15,8 +15,6 @@ import RetentionRate from './RetentionRate'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/RetentionRate_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -28,11 +26,9 @@ describe('<RetentionRate />', () => {
   /**.
    * Render RetentionRate with mock values
    *
-   * @type {object}
-   *
    * @memberof module:frontend/src/components/RetentionRate_test
    * @inner
-   * @param {object} beforeEachCode - Code to be run before each test
+   * @param {Function} beforeEachCode - Code to be run before each test
    */
   beforeEach(() => {
     retentionRates = [1, 3, 7, 6, 5, 8].map(num => { return { daysUsed: num } })
@@ -43,8 +39,6 @@ describe('<RetentionRate />', () => {
 
   /**.
    * Test that RetentionRate is rendered
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/RetentionRate_test
    * @inner

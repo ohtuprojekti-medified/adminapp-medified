@@ -15,8 +15,6 @@ import Caregivers from './Caregivers'
 /**.
  * Describe tests
  *
- * @type {object}
- *
  * @memberof module:frontend/src/components/Caregivers_test
  * @param {string} description - Description of tests
  * @param {Function} testCode - Code for tests
@@ -25,8 +23,6 @@ describe('Caregivers', () => {
 
   /**.
    * Test that Caregivers renders correct amount of caregivers
-   *
-   * @type {object}
    *
    * @memberof module:frontend/src/components/Caregivers_test
    * @inner
