@@ -23,10 +23,11 @@ const WEEK_IN_MS = 604800000
 /**.
  * Returns all user activities in app today from database
  *
+ * @constant
+ * @async
+ * @function
  * @param {string} organisation - Organisation name for filtering
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
- * @async
- * @constant
  * @memberof module:backend/controllers/userhistoryController
  * @returns {...any} userActivitiesToday - list of user activities today
  */
@@ -51,10 +52,11 @@ const findUserActivitiesToday = async (organisation, withCaregiver) => {
 /**.
  * Returns new users within week from database
  *
+ * @constant
+ * @async
+ * @function
  * @param {string} organisation - Organisation name for filtering
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
- * @async
- * @constant
  * @memberof module:backend/controllers/userhistoryController
  * @returns {...any} usersCreatedAt - list of new users registered in the last week
  */
@@ -83,14 +85,15 @@ const findNewUsers = async (organisation, withCaregiver) => {
 /**.
  * Returns total cumulative new users week by week from database
  *
+ * @constant
+ * @async
+ * @function
  * @param {string} organisation - Organisation name for filtering
  * @param {boolean} withCaregiver - Boolean value for filtering patiens with caregiver
  * @param {string} startDate - Date object for limiting data from start
  * @param {string} endDate - Date object for limiting data from last
- * @async
- * @constant
  * @memberof module:backend/controllers/userhistoryController
- * @returns {...any} entries - new users in following format week: [beginning, end], entries: cumulative amount
+ * @returns {Array} entries - new users in following format week: [beginning, end], entries: cumulative amount
  */
 
 const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, endDate) => {
@@ -135,14 +138,15 @@ const findCumulativeNewUsers = async (organisation, withCaregiver, startDate, en
 /**.
  * Returns active users week by week
  *
+ * @constant
+ * @async
+ * @function
  * @param {string} organisation - string id used to identify organisation
  * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
  * @param {string} startDate - Date object for limiting data from start
  * @param {string} endDate - Date object for limiting data from last
- * @async
- * @constant
  * @memberof module:backend/controllers/userhistoryController
- * @returns {...any} entries - active users in following format week: [beginning, end], entries: amount
+ * @returns {Array} entries - active users in following format week: [beginning, end], entries: amount
  */
 const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) => {
   const userIds = await controller.findAllUsers(organisation, withCaregiver)
@@ -172,11 +176,11 @@ const findActiveUsers = async (organisation, withCaregiver, startDate, endDate) 
   let entries = []
 
   while (currentWeek < last + WEEK_IN_MS) {
-    while (userActivities[counter].created_at <= currentWeek ) {
+    while (userActivities[counter].created_at <= currentWeek) {
       counter++
-      if(counter >= userActivities.length) break
-      if (!activeUsersThisWeek.includes(userActivities[counter-1].user_id)) {
-        activeUsersThisWeek = [...activeUsersThisWeek, userActivities[counter-1].user_id]
+      if (counter >= userActivities.length) break
+      if (!activeUsersThisWeek.includes(userActivities[counter - 1].user_id)) {
+        activeUsersThisWeek = [...activeUsersThisWeek, userActivities[counter - 1].user_id]
       }
     }
     entries = [...entries, { week: week, entries: activeUsersThisWeek.length }]

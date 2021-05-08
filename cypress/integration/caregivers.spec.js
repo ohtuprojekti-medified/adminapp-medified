@@ -8,22 +8,18 @@
 /**.
  * Describe tests for caregivers page
  *
- * @name Caregivers
- * @type {object}
  * @memberof module:cypress/integration/caregivers_spec
  * @param {string} describe - Caregivers
- * @param {object} tests - Test code
+ * @param {Function} tests - Test code
  */
 describe('Caregivers', function () {
 
   /**.
    * Log in fast before each test
    *
-   * @name beforeEach
-   * @type {object}
    * @memberof module:cypress/integration/caregivers_spec
    * @inner
-   * @param {object} functionBeforeEach - Function to be run before each test
+   * @param {Function} functionBeforeEach - Function to be run before each test
    */
   beforeEach(function () {
     cy.login()
@@ -32,11 +28,9 @@ describe('Caregivers', function () {
   /**.
    * Log out fast after each test
    *
-   * @name afterEach
-   * @type {object}
    * @memberof module:cypress/integration/caregivers_spec
    * @inner
-   * @param {object} functionAfterEach - Function to be run before each test
+   * @param {Function} functionAfterEach - Function to be run before each test
    */
   afterEach(function () {
     cy.logOut()
@@ -45,12 +39,10 @@ describe('Caregivers', function () {
   /**.
    * Test that caregivers page exists
    *
-   * @name Caregivers_exists
-   * @type {object}
    * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {string} describe - exists
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists', function () {
     cy.contains('Adminapp for monitoring moods')
@@ -61,12 +53,10 @@ describe('Caregivers', function () {
   /**.
    * Test that caregivers page exists after checking only patients with caregiver
    *
-   * @name Caregivers_exists_after_checking_only_patients_with_caregiver
-   * @type {object}
    * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {string} describe - exists after checking only patients with caregiver
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after checking only patients with caregivers', function () {
     cy.contains('Filter').click()
@@ -79,12 +69,10 @@ describe('Caregivers', function () {
   /**.
    * Test that caregivers page exists after selecting start date
    *
-   * @name Caregivers_exists_after_selecting_start_date
-   * @type {object}
    * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {string} describe - exists after selecting start date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after selecting start date in filters', function () {
     cy.contains('Filter').click()
@@ -98,12 +86,10 @@ describe('Caregivers', function () {
   /**.
    * Test that caregivers page exists after selecting end date
    *
-   * @name Caregivers_exists_after_selecting_end_date
-   * @type {object}
    * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {string} describe - exists after selecting end date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after selecting end date in filters', function () {
     cy.contains('Filter').click()
@@ -117,12 +103,10 @@ describe('Caregivers', function () {
   /**.
    * Test that caregivers page exists after selecting start date and end date
    *
-   * @name Caregivers_exists_after_selecting_start_date_and_end_date
-   * @type {object}
    * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {string} describe - exists after selecting start date and end date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after selecting start date and end date in filters', function () {
     cy.contains('Filter').click()
@@ -138,12 +122,10 @@ describe('Caregivers', function () {
   /**.
    * Test that caregivers page exists after selecting only patients with caregivers start date and end date
    *
-   * @name Caregivers_exists_after_selecting_only_patients_with_caregivers_start_date_and_end_date
-   * @type {object}
    * @memberof module:cypress/integration/caregivers_spec
    * @inner
    * @param {string} describe - exists after selecting only patients with caregivers start date and end date
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('exists after checking only patients with caregivers, start date and end date in filters', function () {
     cy.contains('Filter').click()

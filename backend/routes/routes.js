@@ -14,7 +14,7 @@
  *
  * @type {object}
  * @constant
- * @namespace router
+ * @memberof module:backend/routes/routes
  */
 const router = require('express').Router()
 
@@ -23,7 +23,7 @@ const router = require('express').Router()
  *
  * @type {object}
  * @constant
- * @namespace controller
+ * @memberof module:backend/routes/routes
  */
 const controller = require('../controllers/controller')
 const retentionrateController = require('../controllers/retentionrateController')
@@ -37,11 +37,9 @@ require('express-async-errors')
  * Route request for users
  *
  * @name get_users
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 router.get('/users', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
@@ -53,11 +51,9 @@ router.get('/users', async (req, res) => {
  * Route request for caregivers
  *
  * @name get_caregivers
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 router.get('/caregivers', async (req, res) => {
   const caregivers = await controller.findAllAccessCodes(req.query.organisation)
@@ -68,11 +64,9 @@ router.get('/caregivers', async (req, res) => {
  * Route request for organisations
  *
  * @name get_organisations
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 router.get('/organisations', async (req, res) => {
   const organisations = await controller.findAllOrgs(req.query.organisation)
@@ -83,11 +77,9 @@ router.get('/organisations', async (req, res) => {
  * Route request for secure ping
  *
  * @name get_ping
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 router.get('/ping', async (req, res) => {
   res.status(200).json({ message: 'token ok' })
@@ -97,11 +89,9 @@ router.get('/ping', async (req, res) => {
  * Route request for cumulative amount of users
  *
  * @name get_cumulative
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 
 router.get('/cumulative', async (req, res) => {
@@ -114,11 +104,9 @@ router.get('/cumulative', async (req, res) => {
  * Route request for amount of active users
  *
  * @name get_activeusers
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 
 router.get('/activeusers', async (req, res) => {
@@ -131,11 +119,9 @@ router.get('/activeusers', async (req, res) => {
  * Route request for new users within week
  *
  * @name get_newusers
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 
 router.get('/newusers', async (req, res) => {
@@ -148,11 +134,9 @@ router.get('/newusers', async (req, res) => {
  * Route request for user activity today
  *
  * @name get_activitytoday
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 
 router.get('/activitytoday', async (req, res) => {
@@ -165,11 +149,9 @@ router.get('/activitytoday', async (req, res) => {
  * Route request for retention/using periods
  *
  * @name get_retention
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 
 router.get('/retention', async (req, res) => {
@@ -182,11 +164,9 @@ router.get('/retention', async (req, res) => {
  * Route request for average retention rate
  *
  * @name get_avgretention
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 
 router.get('/avgretention', async (req, res) => {
@@ -199,11 +179,9 @@ router.get('/avgretention', async (req, res) => {
  * Route request for weekly improvement values
  *
  * @name get_weeklyvalues
- * @function
  * @memberof module:backend/routes/routes
- * @inner
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 router.get('/weeklyvalues', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
@@ -216,10 +194,9 @@ router.get('/weeklyvalues', async (req, res) => {
  * Route request for weekly mood improvement
  *
  * @name get_weeklyimprovement
- * @function
  * @memberof module:backend/routes/routes
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 router.get('/weeklyimprovement', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'
@@ -233,10 +210,9 @@ router.get('/weeklyimprovement', async (req, res) => {
  * Route request for total mood improvement
  *
  * @name get_totalimprovement
- * @function
  * @memberof module:backend/routes/routes
  * @param {string} path - Path for request
- * @param {object} middleware - Handle request to path
+ * @param {Function} middleware - Handle request to path
  */
 router.get('/totalimprovement', async (req, res) => {
   const withCaregiver = req.query.withcaregiver === 'true'

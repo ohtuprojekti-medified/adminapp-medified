@@ -37,8 +37,7 @@ import { Auth } from 'aws-amplify'
 /**.
  * Retrieve username from enviromment variables for logging in
  *
- * @name testUsername
- * @function
+ * @type {string}
  * @constant
  * @memberof module:cypress/integration/login_spec
  * @param {string} username - Retrieve username from environment variables
@@ -48,8 +47,7 @@ const testUsername = Cypress.env('USERNAME')
 /**.
  * Retrieve password from enviromment variables for logging in
  *
- * @name testPassword
- * @function
+ * @type {string}
  * @constant
  * @memberof module:cypress/integration/login_spec
  * @param {string} username - Retrieve password from environment variables
@@ -59,8 +57,7 @@ const testPassword = Cypress.env('PASSWORD')
 /**.
  * Retrieve admin username from enviromment variables for logging in
  *
- * @name testAdminUsername
- * @function
+ * @type {string}
  * @constant
  * @memberof module:cypress/support/commands
  * @param {string} username - Retrieve username from environment variables
@@ -70,8 +67,7 @@ const testAdminUsername = Cypress.env('ADMIN_USERNAME')
 /**.
  * Retrieve admin password from enviromment variables for logging in
  *
- * @name testAdminPassword
- * @function
+ * @type {string}
  * @constant
  * @memberof module:cypress/support/commands
  * @param {string} username - Retrieve password from environment variables
@@ -85,6 +81,7 @@ const react_app_web_client_id = '57bgrf7014uhtdu95jm8ci2ok5'
 /**.
  * Set nessessary params into config for AWS authentication request
  *
+ * @type {object}
  * @constant
  */
 const AWSConfig = {
@@ -95,7 +92,7 @@ const AWSConfig = {
 /**.
  * Configure AWS-requests
  *
- * @function
+ *
  * @param {object} AWSConfig - Config with params for AWS
  */
 Auth.configure(AWSConfig)
@@ -103,9 +100,8 @@ Auth.configure(AWSConfig)
 /**.
  * Add function for fast login to AWS without using UI
  *
- * @function
  * @param {string} name - Name of the login function
- * @param {object} login - Function that logs in
+ * @param {Function} login - Function that logs in
  */
 Cypress.Commands.add('login', () => {
   cy.then(() => Auth.signIn(testUsername, testPassword)).then((cognitoUser) => {
@@ -119,9 +115,8 @@ Cypress.Commands.add('login', () => {
 /**.
  * Add function for fast admin login to AWS without using UI
  *
- * @function
  * @param {string} name - Name of the login function
- * @param {object} login - Function that logs in
+ * @param {Function} login - Function that logs in
  */
 Cypress.Commands.add('loginAdmin', () => {
   cy.then(() => Auth.signIn(testAdminUsername, testAdminPassword)).then((cognitoUser) => {
@@ -135,9 +130,8 @@ Cypress.Commands.add('loginAdmin', () => {
 /**.
  * Add function for fast logout to AWS without using UI
  *
- * @function
  * @param {string} name - Name of the logout function
- * @param {object} login - Function that logs out
+ * @param {Function} login - Function that logs out
  */
 Cypress.Commands.add('logOut', async () => {
   try {

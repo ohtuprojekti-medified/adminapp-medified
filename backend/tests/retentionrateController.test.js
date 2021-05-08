@@ -14,7 +14,6 @@
  * @type {object}
  * @constant
  * @memberof module:backend/tests/retentionrateController_test
- * @name sinon
  */
 const sinon = require('sinon')
 
@@ -26,6 +25,7 @@ let user_activities_stub, user_profiles_stub
 /**.
  * Helper function for creating new Date objects
  *
+ * @type {object}
  * @constant
  * @memberof module:backend/tests/retentionrateController_test
  */
@@ -38,7 +38,6 @@ const TIMES2 = newDates([-25.4, -20.6, -7])
  * Creates retentionrateController with mock data
  *
  * @constant
- * @function
  * @memberof module:backend/tests/retentionrateController_test
  * @returns {object} - retentionrateController with mock data
  */
@@ -147,7 +146,6 @@ const retentionrateControllerMocked = () => {
 /**.
  * Run tests for retentionrate controller
  *
- * @function
  * @memberof module:backend/tests/retentionrateController_test
  * @param {string} description - retentionrate controller
  * @returns {object} - Function that runs tests
@@ -156,11 +154,9 @@ describe('retentionrate controller', () => {
   /**.
    * Code to be run before each test
    *
-   * @name beforeEach
-   * @function
    * @memberof module:backend/tests/retentionrateController_test
    * @inner
-   * @param {object} beforeEachCode - beforeEach code
+   * @param {Function} beforeEachCode - beforeEach code
    */
   beforeEach(() => {
     retentionrateController = retentionrateControllerMocked()
@@ -169,12 +165,10 @@ describe('retentionrate controller', () => {
   /**.
    * Tests that retentionrate controller findRetentionRates returns correct data
    *
-   * @name retentionrate_controller_findRetentionRates_returns_correct_data
-   * @function
    * @memberof module:backend/tests/retentionrateController_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('findRetentionRates returns correct data', async () => {
     expect(await retentionrateController.findRetentionRates('ALL')).toEqual([
@@ -193,12 +187,10 @@ describe('retentionrate controller', () => {
   /**.
    * Tests that retentionrate controller findAverageRetentionRate returns correct average
    *
-   * @name retentionrate_controller_findAverageRetentionRate_returns_correct_data
-   * @function
    * @memberof module:backend/tests/retentionrateController_test
    * @inner
    * @param {string} name - Name of the test
-   * @param {object} test - Test code
+   * @param {Function} test - Test code
    */
   test('findAverageRetentionRate returns correct average', async () => {
     expect(await retentionrateController.findAverageRetentionRate('ALL')).toEqual(12.33)
@@ -234,11 +226,9 @@ describe('retentionrate controller', () => {
   /**.
    * Code to be run after each test
    *
-   * @name afterEach
-   * @function
    * @memberof module:backend/tests/retentionrateController_test
    * @inner
-   * @param {object} afterEachCode - afterEach code
+   * @param {Function} afterEachCode - afterEach code
    */
   afterEach(() => {
     user_activities_stub.restore()

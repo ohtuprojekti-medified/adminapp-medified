@@ -14,23 +14,19 @@ import Users from './Users'
 /**.
  * Describe tests
  *
- * @type {object}
- * @function
  * @memberof module:frontend/src/components/Users_test
  * @param {string} description - Description of tests
- * @param {object} testCode - Code for tests
+ * @param {Function} testCode - Code for tests
  */
 describe('Users', () => {
 
   /**.
    * Test that Users is rendered
    *
-   * @type {object}
-   * @function
    * @memberof module:frontend/src/components/Users_test
    * @inner
    * @param {string} description - renders content
-   * @param {object} TestCode - Code that runs the test
+   * @param {Function} testCode - Code that runs the test
    */
   test('renders content correctly', () => {
     const users = [

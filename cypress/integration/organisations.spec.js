@@ -8,8 +8,7 @@
 /**.
  * Retrieve username from enviromment variables for logging in
  *
- * @name testUsername
- * @function
+ * @type {string}
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} username - Retrieve username from environment variables
@@ -19,8 +18,7 @@ const testUsername = Cypress.env('USERNAME')
 /**.
  * Retrieve password from enviromment variables for logging in
  *
- * @name testPassword
- * @function
+ * @type {string}
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} username - Retrieve password from environment variables
@@ -30,8 +28,7 @@ const testPassword = Cypress.env('PASSWORD')
 /**.
  * Retrieve admin username from enviromment variables for logging in
  *
- * @name testAdminUsername
- * @function
+ * @type {string}
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} username - Retrieve username from environment variables
@@ -41,8 +38,7 @@ const testAdminUsername = Cypress.env('ADMIN_USERNAME')
 /**.
  * Retrieve admin password from enviromment variables for logging in
  *
- * @name testAdminPassword
- * @function
+ * @type {string}
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} password - Retrieve password from environment variables
@@ -51,8 +47,7 @@ const testAdminPassword = Cypress.env('ADMIN_PASSWORD')
 
 /** Logs in with website UI.
  *
- * @name login
- * @type {object}
+ * @function
  * @constant
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} username - Username typed into website.
@@ -69,22 +64,18 @@ const login = (username, password) => {
 /**.
  * Describe tests for organisations filter
  *
- * @name Organisations
- * @type {object}
  * @memberof module:cypress/integration/organisations_spec
  * @param {string} describe - Organisations
- * @param {object} tests - Test code
+ * @param {Function} tests - Test code
  */
 describe('Organisations', function () {
 
   /**.
    * Log in fast before each test
    *
-   * @name beforeEach
-   * @type {object}
    * @memberof module:cypress/integration/organisations_spec
    * @inner
-   * @param {object} functionBeforeEach - Function to be run before each test
+   * @param {Function} functionBeforeEach - Function to be run before each test
    */
   beforeEach(function () {
     cy.visit('http://localhost:3000')
@@ -93,11 +84,9 @@ describe('Organisations', function () {
   /**.
    * Log out fast after each test
    *
-   * @name afterEach
-   * @type {object}
    * @memberof module:cypress/integration/organisations_spec
    * @inner
-   * @param {object} functionAfterEach - Function to be run before each test
+   * @param {Function} functionAfterEach - Function to be run before each test
    */
   afterEach(function () {
   })
@@ -105,12 +94,10 @@ describe('Organisations', function () {
   /**.
    * Test that organisations filter exists
    *
-   * @name Organisations_filter_exists
-   * @type {object}
    * @memberof module:cypress/integration/organisations_spec
    * @inner
    * @param {string} describe - organisations filter exists
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('organisations filter exists', function () {
     login(testAdminUsername, testAdminPassword)
@@ -124,12 +111,10 @@ describe('Organisations', function () {
   /**.
    * Test that organisation filter does not show for normal user
    *
-   * @name Organisations_filter_not_showing_for_normal_user
-   * @type {object}
    * @memberof module:cypress/integration/organisations_spec
    * @inner
    * @param {string} describe - organisation filter does not show for normal user
-   * @param {object} testFunction - Function that runs test
+   * @param {Function} testFunction - Function that runs test
    */
   it('organisation filter does not show for normal user', function () {
     login(testUsername, testPassword)
@@ -139,5 +124,4 @@ describe('Organisations', function () {
     cy.visit('http://localhost:3000')
     cy.contains('Log out').click()
   })
-
 })

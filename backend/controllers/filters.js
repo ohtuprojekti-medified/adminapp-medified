@@ -12,8 +12,9 @@ const { Op } = require('sequelize')
  * Conditionally add date filtering to query
  *
  * @param {*} oldQuery - Query before filter
- * @param {*} startDate - Time filtering start date
- * @param {*} endDate - Time filtering end date
+ * @param {string} startDate - Time filtering start date
+ * @param {string} endDate - Time filtering end date
+ * @memberof module:backend/controllers/filter
  * @returns {...any} - Updated query
  */
 const addDateFilterToQuery = (oldQuery, startDate, endDate) => {
