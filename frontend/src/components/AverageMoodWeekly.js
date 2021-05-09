@@ -12,11 +12,10 @@ import { Chart } from 'primereact/chart'
 /**.
  * Component for graphing all new users, cumulative
  *
- * @type {object}
- * @function
  * @constant
+ * @function
  * @memberof module:frontend/src/components/MoodAverage
- * @param {object} param0 - Object with weekly cumulative users
+ * @param {*} param0 - Object with weekly cumulative users
  * @param {Array} param0.moodAverages - list of mood averages and their weeks
  * @param {boolean} param0.byPeriod - boolean value indicating whether data is shown byPeriod or ByDate
  * @returns {object} - JSX component that creates a graph for average moods
@@ -59,7 +58,8 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
             color: '#ffffff',
           }
         }]
-      }
+      },
+      animation: false
     }
   } else {
     moodChartData = {
@@ -76,7 +76,8 @@ const AverageMoodWeekly = ({ moodAverages, byPeriod }) => {
             color: '#ffffff',
           }
         }]
-      }
+      },
+      animation: false
     }
   }
 

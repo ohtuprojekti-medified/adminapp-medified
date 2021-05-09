@@ -19,14 +19,15 @@ const { addDateFilterToQuery } = require('./filters')
 /**.
  * Returns retention rates as in how long does user use app actively
  *
+ * @constant
+ * @async
+ * @function
  * @param {string} organisation - Organisation for filtering
  * @param {boolean} withCaregiver - Show only users with caregiver filter value
  * @param {string} startDate - Start date for filtering
  * @param {string} endDate - End date for filtering
- * @async
- * @constant
  * @memberof module:backend/controllers/retentionrateController
- * @returns {...any} usingPeriods - number of days per using period
+ * @returns {Array} usingPeriods - number of days per using period
  */
 const findRetentionRates = async (organisation, withCaregiver, startDate, endDate) => {
 
@@ -43,10 +44,13 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
     attributes: ['id', 'user_id', 'created_at']
   }
 
-  addDateFilterToQuery(activitiesQuery, startDate, endDate)
-  const userActivities = await user_activities.findAll(activitiesQuery)
+  activitiesQuery = addDateFilterToQuery(activitiesQuery, startDate, endDate)
 
-  const userProfiles = await user_profiles.findAll({
+  const userActivitiesData = await user_activities.findAll(activitiesQuery)
+  const userActivities = userActivitiesData.map(activity => activity.dataValues)
+  const userActivitiesIdArray = userActivities.map(activity => activity.user_id)
+
+  const userProfilesData = await user_profiles.findAll({
     where: {
       user_id: userIdsArray
     },
@@ -55,35 +59,31 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
     ],
     attributes: ['user_id', 'created_at']
   })
+  const userProfiles = userProfilesData.map(profile => profile.dataValues)
+  const activeUsers = userProfiles.filter(user => userActivitiesIdArray.includes(user.user_id))
 
-  const allActivities = userActivities.map(activity => activity.dataValues)
-  const userIdsActivities = allActivities.map(obj => obj.user_id)
-
-  const allUserProfiles = userProfiles.map(profile => profile.dataValues)
-  const activeUsers = allUserProfiles.filter(user => userIdsActivities.includes(user.user_id))
   let usingPeriods = []
 
   for (let user of activeUsers) {
-    const usersActivity = allActivities.filter(activity => activity.user_id === user.user_id)
+    const usersActivity = userActivities.filter(activity => activity.user_id === user.user_id)
     let first = usersActivity[0].created_at
+    let latest
 
     for (let i = 1; i < usersActivity.length; i++) {
+      latest = usersActivity[i].created_at
 
       if (differenceInCalendarDays(usersActivity[i].created_at, usersActivity[i - 1].created_at) > 7) {
 
-        if (differenceInCalendarDays(usersActivity[i - 1].created_at, first) === 0) {
+        if (differenceInCalendarDays(usersActivity[i - 1].created_at, first) !== 0) {
+          const object = { daysUsed: differenceInCalendarDays(usersActivity[i - 1].created_at, first) }
+          usingPeriods = [...usingPeriods, object]
           first = usersActivity[i].created_at
-          continue
         }
-
-        const object = { daysUsed: differenceInCalendarDays(usersActivity[i - 1].created_at, first) }
-        usingPeriods = [...usingPeriods, object]
-
-        if (i + 1 >= usersActivity.length) {
-          break
-        }
-        first = usersActivity[i].created_at
       }
+    }
+    if (latest !== undefined && differenceInCalendarDays(latest, first) !== 0) {
+      const object = { daysUsed: differenceInCalendarDays(latest, first) }
+      usingPeriods = [...usingPeriods, object]
     }
   }
 
@@ -93,21 +93,25 @@ const findRetentionRates = async (organisation, withCaregiver, startDate, endDat
 /**.
  * Returns average retention rate
  *
+ * @constant
+ * @async
+ * @function
  * @param {string} organisation - string id used to identify organisation
  * @param {boolean} withCaregiver - boolean value determining if data should contain only users with caregiver or all users
  * @param {string} startDate - Date object for limiting data from start
  * @param {string} endDate - Date object for limiting data from last
- * @async
- * @constant
  * @memberof module:backend/controllers/retentionrateController
- * @returns {...any} averageUsingPeriod - average app using period
+ * @returns {number} averageUsingPeriod - average app using period
  */
 
 const findAverageRetentionRate = async (organisation, withCaregiver, startDate, endDate) => {
-  const allRates = await findRetentionRates(organisation, withCaregiver, startDate, endDate)
-  const daysUsed = allRates.map(obj => obj.daysUsed)
+  let averageUsingPeriod = 0
+  const allRetentionRates = await findRetentionRates(organisation, withCaregiver, startDate, endDate)
+  const daysUsed = allRetentionRates.map(retentionRate => retentionRate.daysUsed)
   const sum = daysUsed.reduce((a, b) => a + b, 0)
-  const averageUsingPeriod = sum / daysUsed.length
+  sum === 0
+    ? averageUsingPeriod = 0
+    : averageUsingPeriod = parseFloat((sum / daysUsed.length).toFixed(2))
 
   return averageUsingPeriod
 

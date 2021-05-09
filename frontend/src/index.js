@@ -17,7 +17,7 @@ import reportWebVitals from './reportWebVitals'
 /**.
  * Run the app
  *
- * @function
+ *
  * @memberof Frontend_index
  * @param {object} JSXApp - pass the app to be rendered
  * @param {object} root - pass root to react

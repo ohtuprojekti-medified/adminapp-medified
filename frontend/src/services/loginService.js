@@ -12,9 +12,10 @@ import { Auth } from 'aws-amplify'
  * Logs user into AWS
  *
  * @type {object}
- * @function
+ *
  * @async
  * @constant
+ * @function
  * @memberof module:frontend/src/services/loginService
  * @param {object} credentials - Contains username and password
  * @param {string} credentials.username - Username
@@ -36,10 +37,9 @@ const login = async credentials => {
 /**.
  * Logs user out of AWS
  *
- * @type {object}
- * @function
  * @async
  * @constant
+ * @function
  * @memberof module:frontend/src/services/loginService
  */
 const logOut = async () => {

@@ -22,6 +22,8 @@ import ImprovementContainer from '../ImprovementsContainer'
 /**.
  * Component containing all UI components on the home page
  *
+ * @constant
+ * @function
  * @param {*} param0 - all props from App.js
  * @memberof module:frontend/src/components/uiComponents/AppContent
  * @returns {object} - JSX component containing all sub components

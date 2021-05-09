@@ -31,6 +31,8 @@ const leftContents = (
 /**.
  * Component for applications UI footer
  *
+ * @constant
+ * @function
  * @memberof module:frontend/src/components/uiComponents/AppFooter
  * @returns {object} - JSX Footer component
  */

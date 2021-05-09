@@ -9,7 +9,6 @@
 /**.
  * Prints messages
  *
- * @name log
  * @memberof module:backend/utils/logger
  * @function
  * @constant
@@ -22,7 +21,6 @@ const log = (...messages) => {
 /**.
  * Prints errors
  *
- * @name logError
  * @memberof module:backend/utils/logger
  * @function
  * @constant

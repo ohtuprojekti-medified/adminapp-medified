@@ -12,18 +12,18 @@
 /**.
  * Logger for logging messages and errors
  *
+ * @memberof module:backend/utils/middlewares
  * @type {object}
  * @constant
- * @name logger
  */
 const logger = require('./logger')
 
 /**.
  * CognitoExpress for validating token given by frontend
  *
+ * @memberof module:backend/utils/middlewares
  * @type {object}
  * @constant
- * @name CognitoExpress
  */
 const CognitoExpress = require('cognito-express')
 
@@ -43,7 +43,6 @@ const jsonWebToken = require('jsonwebtoken')
 /**.
  * Authenticating token in aws here. If token is verified, check user organisation from aws
  *
- * @name authenticateToken
  * @memberof module:backend/utils/middlewares
  * @function
  * @constant
@@ -73,13 +72,13 @@ const authenticateToken = (req, res, next) => {
         const decoded = jsonWebToken.decode(idTokenFromClient)
         if (decoded['custom:admin']) {
           console.log('admin spotted')
-          console.log('organisation requested: ' ,req.query.organisation)
+          console.log('organisation requested: ', req.query.organisation)
           next()
         } else {
           const organisation = decoded['custom:organisation']
           if (organisation) {
             req.query.organisation = organisation
-            console.log('organisation set from aws: ',req.query.organisation)
+            console.log('organisation set from aws: ', req.query.organisation)
             next()
           } else {
             res.status(403).send({ error: 'Organisation undefined in amazon!' })
@@ -92,8 +91,7 @@ const authenticateToken = (req, res, next) => {
 
 /**.
  * Sends 404 to unknown paths
- *
- * @name unknownEndpoint
+
  * @memberof module:backend/utils/middlewares
  * @function
  * @constant
@@ -107,7 +105,6 @@ const unknownEndpoint = (req, res) => {
 /**.
  * Handles errors
  *
- * @name errorHandler
  * @memberof module:backend/utils/middlewares
  * @function
  * @constant

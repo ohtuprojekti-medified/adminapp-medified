@@ -13,7 +13,7 @@
  *
  * @type {object}
  * @constant
- * @namespace sinon
+ * @memberof module:backend/tests/improvementController_test
  */
 const sinon = require('sinon')
 let improvementController, db, user_moods_stub
@@ -21,21 +21,21 @@ let improvementController, db, user_moods_stub
 /**.
  * Helper function for creating new Date objects
  *
+ * @type {object}
  * @constant
- * @function
+ * @memberof module:backend/tests/improvementController_test
  */
 const newDates = require('./newDatesAroundLastMidnight')
 
 /**.
- * Created improvementController with mock data
+ * Created improvementController with mock user_care_givers data
  *
  * @constant
- * @function
+ * @param {string} model - user_care_givers
+ * @param {Function} mockFunction - Mock function
  * @memberof module:backend/tests/improvementController_test
- * @inner
  * @returns {object} - improvementController with mock data
  */
-
 jest.mock('../models/user_care_givers', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -49,6 +49,15 @@ jest.mock('../models/user_care_givers', () => () => {
   })
 })
 
+/**.
+ * Created improvementController with mock user_profiles data
+ *
+ * @constant
+ * @param {string} model - user_profiles
+ * @param {Function} mockFunction - Mock function
+ * @memberof module:backend/tests/improvementController_test
+ * @returns {object} - improvementController with mock data
+ */
 jest.mock('../models/user_profiles', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -65,6 +74,15 @@ jest.mock('../models/user_profiles', () => () => {
   })
 })
 
+/**.
+ * Created improvementController with mock organisations data
+ *
+ * @constant
+ * @param {string} model - organisations
+ * @param {Function} mockFunction - Mock function
+ * @memberof module:backend/tests/improvementController_test
+ * @returns {object} - improvementController with mock data
+ */
 jest.mock('../models/organisations', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -78,6 +96,15 @@ jest.mock('../models/organisations', () => () => {
   })
 })
 
+/**.
+ * Created improvementController with mock access_codes data
+ *
+ * @constant
+ * @param {string} model - access_codes
+ * @param {Function} mockFunction - Mock function
+ * @memberof module:backend/tests/improvementController_test
+ * @returns {object} - improvementController with mock data
+ */
 jest.mock('../models/access_codes', () => () => {
   const SequelizeMock = require('sequelize-mock')
   const dbMock = new SequelizeMock()
@@ -90,7 +117,14 @@ jest.mock('../models/access_codes', () => () => {
     updated_at: new Date()
   })
 })
-
+/**
+ * Function for creating improvement controller with mock values.
+ *
+ * @constant
+ * @function
+ * @memberof module:backend/tests/improvementController_test
+ * @returns {object} - Improvement controller with mock values.
+ */
 const improvementControllerMocked = () => {
   db = require('../models')
   const TIMES1 = newDates([-46.7, -43.6, -40.5, -37.4, -20.6, -15.9])
@@ -171,24 +205,45 @@ const improvementControllerMocked = () => {
 /**.
  * Run tests for improvement controller
  *
- * @constant
- * @function
  * @memberof module:backend/tests/improvementController_test
- * @inner
  * @param {string} description - improvement controller
- * @returns {object} - Function that runs tests
+ * @param {Function} tests - Function that runs tests
  */
 describe('improvement controller', () => {
+
+  /**
+   * Create improvement controller with mock values before each test.
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {Function} beforeEachFunction - Function before each test.
+   */
   beforeEach(() => {
     improvementController = improvementControllerMocked()
   })
 
+  /**.
+   * FindWeeklyValues returns correct data for moods
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findWeeklyValues returns correct data for moods
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findWeeklyValues returns correct data for moods', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', false, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
     expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
+  /**.
+   * findWeeklyValues returns correct data for moods with byUsingPeriod enabled
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findWeeklyValues returns correct data for moods with byUsingPeriod enabled
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findWeeklyValues returns correct data for moods with byUsingPeriod enabled', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', null, null, null, 'MOOD', true)
     expect(weeklyMoods.length).toEqual(5)
@@ -204,39 +259,96 @@ describe('improvement controller', () => {
   //   expect(weeklyMoods[0].averages).toEqual([{ average: 3.5, id: 1 }, { average: 5.5, id: 2 }, { average: 4.5, id: 'average' }])
   // })
 
+  /**.
+   * findWeeklyValues returns correct data for moods for certain organisation with caregiver
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findWeeklyValues returns correct data for moods for certain organisation with caregiver
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findWeeklyValues returns correct data for moods for certain organisation with caregiver', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('Yritys', true, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
     expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
+  /**.
+   * findWeeklyValues returns correct data for moods for certain organisation without caregiver
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findWeeklyValues returns correct data for moods for certain organisation without caregiver
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findWeeklyValues returns correct data for moods for certain organisation without caregiver', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('Yritys', false, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
     expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
+  /**.
+   * findWeeklyValues with caregivers returns correct data for moods
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findWeeklyValues with caregivers returns correct data for moods
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findWeeklyValues with caregivers returns correct data for moods', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', true, null, null, 'MOOD')
     expect(weeklyMoods.length).toEqual(5)
     expect(weeklyMoods[0].averages).toEqual([{ average: 4.08, id: 'average' }])
   })
 
+  /**.
+   * findWeeklyValues returns null if variable is not mood
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findWeeklyValues returns null if variable is not mood
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findWeeklyValues returns null if variable is not mood', async () => {
     const weeklyMoods = await improvementController.findWeeklyValues('ALL', false, null, null, 'NOTMOOD')
     expect(weeklyMoods).toEqual(null)
   })
+
+  /**.
+   * findWeeklyImprovement returns correct data for moods
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findWeeklyImprovement returns correct data for moods
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findWeeklyImprovement returns correct data for moods', async () => {
     const weeklyImprovement = await improvementController.findWeeklyImprovement('ALL', false, null, null, 'MOOD')
     expect(weeklyImprovement.length).toEqual(5)
     expect(weeklyImprovement[1].average).toEqual('-0.02')
   })
 
+  /**.
+   * findWeeklyMoods return null if userMoodsData is empty
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findWeeklyMoods return null if userMoodsData is empty
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findWeeklyMoods return null if userMoodsData is empty', async () => {
     const weeklyMoods = await improvementController.findWeeklyMoods([])
     expect(weeklyMoods).toEqual(null)
   })
 
+  /**.
+   * findTotalImprovement returns correct data for moods
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {string} testName - findTotalImprovement returns correct data for moods
+   * @param {Function} testFunction - Function that runs the test
+   */
   test('findTotalImprovement returns correct data for moods', async () => {
     const totalImprovement = await improvementController.findTotalImprovement('ALL', null, null, null, 'MOOD')
     expect(totalImprovement.length).toEqual(5)
@@ -244,6 +356,13 @@ describe('improvement controller', () => {
     expect(totalImprovement[2].average).toEqual('-0.02')
   })
 
+  /**
+   * Restore user moods stube after each test.
+   *
+   * @memberof module:backend/tests/improvementController_test
+   * @inner
+   * @param {Function} afterEachFunction - Function after each test.
+   */
   afterEach(() => {
     user_moods_stub.restore()
   })

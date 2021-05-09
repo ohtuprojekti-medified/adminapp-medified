@@ -16,15 +16,15 @@ import TotalMoodImprovement from './TotalMoodImprovement'
 /**.
  * Component containing improvement graphs byDate
  *
- * @type {object}
- * @function
  * @constant
+ * @function
  * @memberof module:src/components/ImprovementsByDate
  * @param {*} param0 - mood averages, weekly improvement averages, total improvement averages and byPeriod filter
  * @param {Array} param0.moodAverages - list of mood averages and weeks byDate
  * @param {Array} param0.totalImprovementAverages - list of total improvement averages and weeks byDate
  * @param {Array} param0.weeklyImprovementAverages - list of weekly improvement averages and weeks byDate
  * @param {boolean} param0.byUsingPeriodFilter - boolean value indicating whether data is shown byPeriod or ByDate
+ * @returns {object} - JSX object
  */
 const ImprovementsByDate = ({ moodAverages, totalImprovementAverages, weeklyImprovementAverages, byUsingPeriodFilter }) => {
   const centered = {

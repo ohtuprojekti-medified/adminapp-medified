@@ -48,11 +48,8 @@ const server = http.createServer(app)
 /**.
  * Listen to requests made to backend
  *
- * @name server_listen
- * @function
  * @memberof Backend_index
- * @inner
  * @param {string} PORT - Port that backend listens to
- * @param {object} functionWhenServerStarts - Function that logs a message when server starts
+ * @param {Function} functionWhenServerStarts - Function that logs a message when server starts
  */
 server.listen(config.PORT, () => logger.log(`Backend is running in port ${config.PORT}`))

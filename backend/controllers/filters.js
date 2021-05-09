@@ -1,8 +1,26 @@
+/**.
+ * Helper for adding filters to db queries
+ *
+ * @module backend/controllers/filter
+ * @requires sequelize
+ */
+
 const { Op } = require('sequelize')
 
 
-const addDateFilterToQuery = (query, startDate, endDate) => {
-  if (!startDate && !endDate) return
+/**.
+ * Conditionally add date filtering to query
+ *
+ * @param {*} oldQuery - Query before filter
+ * @param {string} startDate - Time filtering start date
+ * @param {string} endDate - Time filtering end date
+ * @memberof module:backend/controllers/filter
+ * @returns {...any} - Updated query
+ */
+const addDateFilterToQuery = (oldQuery, startDate, endDate) => {
+  if (!startDate && !endDate) return oldQuery
+
+  let newQuery = { ...oldQuery }
 
   let created_at
   if (startDate && endDate) {
@@ -13,9 +31,10 @@ const addDateFilterToQuery = (query, startDate, endDate) => {
     created_at = { [Op.lte]: endDate }
   }
 
-  query.where = { ...query.where, created_at }
+  newQuery.where = { ...newQuery.where, created_at }
+  return newQuery
 }
 
 module.exports = {
-  addDateFilterToQuery
+  addDateFilterToQuery,
 }
