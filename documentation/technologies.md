@@ -18,6 +18,7 @@
 |Docker Compose|tool for defining and running multi-container Docker applications|
 |GitHub Actions|tool for automating all software workflows|
 |Github Workflow|workflow that supports teams and projects where deployments are made regularly|
+|JSDoc|API documentation generator for JavaScript, adding comments directly to source code, alongside the code|
 
 
 ## Database
