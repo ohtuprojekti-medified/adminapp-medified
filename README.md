@@ -27,6 +27,8 @@ Adminapp is a wed-application for organizations to be able to easily view data c
 
 [Backend API](https://github.com/ohtuprojekti-medified/adminapp-medified/wiki/Backend-API)
 
+[Solution stack](https://github.com/ohtuprojekti-medified/adminapp-medified/wiki/Solution-stack)
+
 [More documentation](https://github.com/ohtuprojekti-medified/adminapp-medified/tree/master/documentation)
 
 ### License
