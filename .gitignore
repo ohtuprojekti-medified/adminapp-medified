@@ -45,6 +45,7 @@ frontend/.env
 database-data/
 db/
 **latest-staging-anon-extreme.sql
+**latest-staging-anon-extreme.sql.gpg
 
 ## test coverage
 
